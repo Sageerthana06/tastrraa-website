@@ -252,26 +252,20 @@ const About = () => {
                 alignItems: 'center',
                 gap: '14px'
               }}>
-                <div style={{
-                  width: '48px',
-                  height: '48px',
-                  borderRadius: '50%',
-                  backgroundColor: '#0F4A24',
-                  color: '#FFD700',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexShrink: 0,
-                  fontWeight: '900',
-                  fontSize: '0.75rem',
-                  border: '2px solid #FFD700',
-                  textAlign: 'center'
-                }}>
-                  GMP
-                </div>
+                <img
+                  src={gmpCertifiedImg}
+                  alt="GMP Certified Practice"
+                  style={{
+                    height: '52px',
+                    width: 'auto',
+                    objectFit: 'contain',
+                    flexShrink: 0,
+                    borderRadius: '6px'
+                  }}
+                />
                 <div>
                   <h4 style={{ margin: 0, fontSize: '0.95rem', fontWeight: '800', color: '#0F4A24' }}>
-                    Good Manufacturing Practice
+                    Good Manufacturing Practice (GMP)
                   </h4>
                   <p style={{ margin: '2px 0 0 0', fontSize: '0.8rem', color: '#B45309', fontWeight: '600' }}>
                     Strict hygiene & quality handling standards

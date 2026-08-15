@@ -23,6 +23,7 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import gmpCertifiedImg from '../assets/gmp_certified.png';
 
 const Quality = () => {
   const [activeStep, setActiveStep] = useState(0);
@@ -222,22 +223,34 @@ const Quality = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            {/* Top Quality Badge */}
-            <div style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              backgroundColor: 'rgba(255, 255, 255, 0.12)',
-              border: '1px solid rgba(255, 215, 0, 0.4)',
-              padding: '8px 22px',
-              borderRadius: '9999px',
-              marginBottom: '20px',
-              boxShadow: '0 4px 20px rgba(0,0,0,0.15)'
-            }}>
-              <Sparkles size={16} style={{ color: '#FFD700' }} />
-              <span style={{ color: '#FFD700', fontWeight: '800', fontSize: '0.825rem', letterSpacing: '1px' }}>
-                HYGIENE & PURITY CERTIFIED • TASTRAA (PVT) LTD
-              </span>
+            {/* Top Quality Badge & GMP Certified Badge */}
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '14px', marginBottom: '20px', flexWrap: 'wrap' }}>
+              <div style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                backgroundColor: 'rgba(255, 255, 255, 0.12)',
+                border: '1px solid rgba(255, 215, 0, 0.4)',
+                padding: '8px 22px',
+                borderRadius: '9999px',
+                boxShadow: '0 4px 20px rgba(0,0,0,0.15)'
+              }}>
+                <Sparkles size={16} style={{ color: '#FFD700' }} />
+                <span style={{ color: '#FFD700', fontWeight: '800', fontSize: '0.825rem', letterSpacing: '1px' }}>
+                  HYGIENE & PURITY CERTIFIED • TASTRAA (PVT) LTD
+                </span>
+              </div>
+              <img
+                src={gmpCertifiedImg}
+                alt="GMP Certified Practice"
+                style={{
+                  height: '46px',
+                  width: 'auto',
+                  objectFit: 'contain',
+                  filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.35))',
+                  borderRadius: '6px'
+                }}
+              />
             </div>
 
             {/* Dynamic Headline */}
