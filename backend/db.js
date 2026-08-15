@@ -74,27 +74,28 @@ export const initDb = async () => {
     await client.query(`ALTER TABLE products ADD COLUMN IF NOT EXISTS features JSONB DEFAULT '[]'::jsonb;`);
     await client.query(`ALTER TABLE products ADD COLUMN IF NOT EXISTS is_active BOOLEAN DEFAULT TRUE;`);
 
-    // Ensure default admin (admin@tastraa.com) exists with valid bcrypt password hash
-    const adminCheck = await client.query('SELECT * FROM admins WHERE LOWER(email) = LOWER($1)', ['admin@tastraa.com']);
-    
-    if (adminCheck.rows.length === 0) {
-      const hashedPassword = await bcrypt.hash('admin123', 10);
-      await client.query(
-        'INSERT INTO admins (email, password, name) VALUES ($1, $2, $3)',
-        ['admin@tastraa.com', hashedPassword, 'TASTRAA Admin Manager']
-      );
-      console.log('✅ Created default admin account (admin@tastraa.com)');
-    } else {
-      // Verify existing hash matches admin123; if not, update safely
-      const existingAdmin = adminCheck.rows[0];
-      const isPasswordValid = await bcrypt.compare('admin123', existingAdmin.password);
-      if (!isPasswordValid) {
+    // Ensure default admin accounts exist with valid bcrypt password hash
+    const adminEmails = ['admin@tastraa.com', 'admin@tastrraa.com'];
+    for (const email of adminEmails) {
+      const adminCheck = await client.query('SELECT * FROM admins WHERE LOWER(email) = LOWER($1)', [email]);
+      if (adminCheck.rows.length === 0) {
         const hashedPassword = await bcrypt.hash('admin123', 10);
         await client.query(
-          'UPDATE admins SET password = $1 WHERE id = $2',
-          [hashedPassword, existingAdmin.id]
+          'INSERT INTO admins (email, password, name) VALUES ($1, $2, $3)',
+          [email, hashedPassword, 'TASTRAA Admin Manager']
         );
-        console.log('✅ Updated admin@tastraa.com password to valid bcrypt hash for admin123');
+        console.log(`✅ Created default admin account (${email})`);
+      } else {
+        const existingAdmin = adminCheck.rows[0];
+        const isPasswordValid = await bcrypt.compare('admin123', existingAdmin.password);
+        if (!isPasswordValid) {
+          const hashedPassword = await bcrypt.hash('admin123', 10);
+          await client.query(
+            'UPDATE admins SET password = $1 WHERE id = $2',
+            [hashedPassword, existingAdmin.id]
+          );
+          console.log(`✅ Updated ${email} password to valid bcrypt hash for admin123`);
+        }
       }
     }
 
