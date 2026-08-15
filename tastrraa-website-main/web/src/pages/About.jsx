@@ -1,6 +1,7 @@
 import React from 'react';
 import { ShieldCheck, Award, CheckCircle2, MapPin, Users, Sparkles, Leaf, ShoppingBag, Factory, HeartHandshake, Compass, Target, Package } from 'lucide-react';
 import logoImg from '../assets/logo.png';
+import gmpCertifiedImg from '../assets/gmp_certified.png';
 
 const About = () => {
   return (
