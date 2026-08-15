@@ -41,13 +41,150 @@ const About = () => {
       </section>
 
       {/* Main Content */}
-      <section style={{ padding: '70px 0' }}>
+      <section style={{ padding: '60px 0' }}>
         <div className="container">
-          
-          {/* Section: Main Story & Corporate Entity */}
+
+          {/* Section: COMPANY OVERVIEW */}
+          <div style={{
+            backgroundColor: '#FFFFFF',
+            borderRadius: '24px',
+            padding: '36px',
+            border: '1px solid #E5E7EB',
+            boxShadow: '0 4px 20px rgba(0,0,0,0.03)',
+            marginBottom: '32px'
+          }}>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+              gap: '30px',
+              alignItems: 'center'
+            }}>
+              <div>
+                <div style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  backgroundColor: '#ECFDF5',
+                  color: '#047857',
+                  border: '1px solid #A7F3D0',
+                  padding: '5px 14px',
+                  borderRadius: '9999px',
+                  fontWeight: '800',
+                  fontSize: '0.75rem',
+                  letterSpacing: '1px',
+                  marginBottom: '16px'
+                }}>
+                  <ShieldCheck size={14} />
+                  <span>COMPANY OVERVIEW</span>
+                </div>
+
+                <p style={{
+                  color: '#4B5563',
+                  fontSize: '1.05rem',
+                  lineHeight: '1.75',
+                  margin: 0
+                }}>
+                  Founded in 2009, TASTRAA (PVT) LTD is a food production company focused on consistent, safe, and practical pantry staples. We operate at district level, supporting local sourcing and local employment throughout our production process. Our aim is to deliver products customers can rely on, backed by responsive customer care.
+                </p>
+              </div>
+
+              <div style={{
+                backgroundColor: '#F4FBF7',
+                borderRadius: '20px',
+                padding: '24px 28px',
+                border: '1px solid #E6F4ED',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '16px'
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', color: '#1F2937', fontWeight: '700', fontSize: '0.975rem' }}>
+                  <MapPin size={18} style={{ color: '#047857', flexShrink: 0 }} />
+                  <span>District level operations</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', color: '#1F2937', fontWeight: '700', fontSize: '0.975rem' }}>
+                  <Leaf size={18} style={{ color: '#047857', flexShrink: 0 }} />
+                  <span>Local sourcing and local expertise</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', color: '#1F2937', fontWeight: '700', fontSize: '0.975rem' }}>
+                  <Package size={18} style={{ color: '#047857', flexShrink: 0 }} />
+                  <span>Everyday cooking essentials</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Section: VISION & MISSION */}
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gap: '24px',
+            marginBottom: '60px'
+          }}>
+            {/* VISION CARD */}
+            <div style={{
+              backgroundColor: '#FFFBEB',
+              border: '1.5px solid #FDE68A',
+              borderRadius: '24px',
+              padding: '36px',
+              boxShadow: '0 4px 15px rgba(245, 158, 11, 0.05)'
+            }}>
+              <div style={{
+                width: '48px',
+                height: '48px',
+                borderRadius: '14px',
+                backgroundColor: '#F59E0B',
+                color: '#FFFFFF',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginBottom: '20px'
+              }}>
+                <Sparkles size={24} />
+              </div>
+              <h3 style={{ fontSize: '1.6rem', fontWeight: '900', color: '#111827', margin: '0 0 10px 0' }}>
+                Vision
+              </h3>
+              <p style={{ margin: '0 0 6px 0', color: '#4B5563', fontSize: '1.05rem', fontWeight: '600' }}>
+                Genuineness, Hard Work, and Elevation
+              </p>
+              <p style={{ margin: 0, color: '#D32F2F', fontSize: '0.9rem', fontWeight: '800' }}>
+                உண்மை • உழைப்பு • உயர்வு
+              </p>
+            </div>
+
+            {/* MISSION CARD */}
+            <div style={{
+              backgroundColor: '#F0FDF4',
+              border: '1.5px solid #DCFCE7',
+              borderRadius: '24px',
+              padding: '36px',
+              boxShadow: '0 4px 15px rgba(16, 185, 129, 0.05)'
+            }}>
+              <div style={{
+                width: '48px',
+                height: '48px',
+                borderRadius: '14px',
+                backgroundColor: '#047857',
+                color: '#FFFFFF',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginBottom: '20px'
+              }}>
+                <ShieldCheck size={24} />
+              </div>
+              <h3 style={{ fontSize: '1.6rem', fontWeight: '900', color: '#111827', margin: '0 0 10px 0' }}>
+                Mission
+              </h3>
+              <p style={{ margin: 0, color: '#4B5563', fontSize: '1.05rem', fontWeight: '600', lineHeight: '1.6' }}>
+                Manufacture and supply/distribute quality products for mankind.
+              </p>
+            </div>
+          </div>
+          {/* Section: OUR STORY & CORPORATE PROFILE */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
             gap: '40px',
             alignItems: 'center',
             marginBottom: '60px'
