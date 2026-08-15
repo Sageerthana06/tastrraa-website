@@ -1,9 +1,8 @@
 import axios from 'axios';
 
-let baseURL = import.meta.env.VITE_API_URL || 'http://localhost:5001/api';
-if (baseURL && !baseURL.endsWith('/api') && !baseURL.endsWith('/api/')) {
-  baseURL = `${baseURL.replace(/\/$/, '')}/api`;
-}
+const rawUrl = import.meta.env.VITE_API_URL || 'http://localhost:5001/api';
+const cleanUrl = rawUrl.trim().replace(/\/$/, '');
+const baseURL = cleanUrl.endsWith('/api') ? cleanUrl : `${cleanUrl}/api`;
 
 const api = axios.create({
   baseURL,
@@ -16,7 +15,7 @@ const api = axios.create({
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('tastraa_admin_token');
   if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+    config.headers.Authorization = `Bearer ${token.trim()}`;
   }
   return config;
 }, (error) => {

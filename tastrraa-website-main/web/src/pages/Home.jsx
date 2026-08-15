@@ -824,7 +824,7 @@ const Home = () => {
             }}>
               Authentic Local Food Essentials
             </h2>
-            <p style={{ color: '#64748B', fontSize: '0.975rem', marginTop: '10px' }}>
+            <p style={{ color: '#64748B', fontSize: '0.999rem', marginTop: '10px' }}>
               Crafted in Jaffna with pure traditional methods, zero artificial additives, and utmost ISO quality hygiene standards.
             </p>
 

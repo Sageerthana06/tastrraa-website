@@ -121,10 +121,14 @@ const AdminProducts = () => {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
       if (res.data?.success) {
-        const baseUrl = import.meta.env.VITE_API_URL 
-          ? import.meta.env.VITE_API_URL.replace(/\/api\/?$/, '') 
-          : 'http://localhost:5001';
-        setFormData((prev) => ({ ...prev, image_url: `${baseUrl}${res.data.imageUrl}` }));
+        const rawUrl = res.data.imageUrl;
+        if (rawUrl.startsWith('http://') || rawUrl.startsWith('https://')) {
+          setFormData((prev) => ({ ...prev, image_url: rawUrl }));
+        } else {
+          const rawApiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5001/api';
+          const baseUrl = rawApiUrl.trim().replace(/\/api\/?$/, '').replace(/\/$/, '');
+          setFormData((prev) => ({ ...prev, image_url: `${baseUrl}${rawUrl}` }));
+        }
       }
     } catch (err) {
       console.error('Image upload failed:', err);

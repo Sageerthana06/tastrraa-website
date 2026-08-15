@@ -7,10 +7,15 @@ import { authenticateToken } from '../middleware/auth.js';
 
 const router = express.Router();
 
-// Multer storage setup for image uploads
-const uploadsDir = path.join(process.cwd(), 'uploads');
-if (!fs.existsSync(uploadsDir)) {
-  fs.mkdirSync(uploadsDir, { recursive: true });
+// Multer storage setup for image uploads (Vercel serverless safe)
+const isVercel = !!process.env.VERCEL;
+const uploadsDir = isVercel ? '/tmp' : path.join(process.cwd(), 'uploads');
+if (!isVercel && !fs.existsSync(uploadsDir)) {
+  try {
+    fs.mkdirSync(uploadsDir, { recursive: true });
+  } catch (err) {
+    console.warn('Upload directory creation skipped:', err.message);
+  }
 }
 
 const storage = multer.diskStorage({

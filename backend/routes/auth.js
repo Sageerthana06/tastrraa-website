@@ -14,15 +14,22 @@ router.post('/login', async (req, res) => {
       return res.status(400).json({ success: false, message: 'Email and password are required.' });
     }
 
-    const result = await queryDb('SELECT * FROM admins WHERE LOWER(email) = LOWER($1)', [email]);
+    const cleanEmail = email.toString().trim().toLowerCase();
+    const cleanPassword = password.toString().trim();
+
+    console.log(`🔑 Processing login attempt for: ${cleanEmail}`);
+
+    const result = await queryDb('SELECT * FROM admins WHERE LOWER(email) = LOWER($1)', [cleanEmail]);
     if (result.rows.length === 0) {
+      console.log(`🔒 Login failed: Admin email not found in database (${cleanEmail})`);
       return res.status(401).json({ success: false, message: 'Invalid admin email or password.' });
     }
 
     const admin = result.rows[0];
-    const isMatch = await bcrypt.compare(password, admin.password);
+    const isMatch = await bcrypt.compare(cleanPassword, admin.password);
 
     if (!isMatch) {
+      console.log(`🔒 Login failed: Password mismatch for admin (${cleanEmail})`);
       return res.status(401).json({ success: false, message: 'Invalid admin email or password.' });
     }
 
@@ -31,6 +38,8 @@ router.post('/login', async (req, res) => {
       process.env.JWT_SECRET || 'tastraa_jwt_secret_key_2026_secure',
       { expiresIn: '24h' }
     );
+
+    console.log(`✅ Admin login successful for: ${cleanEmail}`);
 
     return res.json({
       success: true,
@@ -42,7 +51,7 @@ router.post('/login', async (req, res) => {
       }
     });
   } catch (error) {
-    console.error('Login error:', error);
+    console.error('Login route error:', error.message);
     return res.status(500).json({ success: false, message: 'Internal server error during authentication.' });
   }
 });
