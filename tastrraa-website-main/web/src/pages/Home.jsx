@@ -521,6 +521,25 @@ const Home = () => {
                       objectFit: 'cover'
                     }}
                   />
+                  {/* GMP Certified Badge Overlay in Corner */}
+                  <div style={{
+                    position: 'absolute',
+                    top: '12px',
+                    right: '12px',
+                    zIndex: 10,
+                    filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.35))'
+                  }}>
+                    <img
+                      src={gmpCertifiedImg}
+                      alt="GMP Certified Practice"
+                      style={{
+                        width: '85px',
+                        height: 'auto',
+                        objectFit: 'contain',
+                        display: 'block'
+                      }}
+                    />
+                  </div>
                 </div>
               ) : (
                 /* MODE B: 3D Interactive Carousel Showcase Stage */
