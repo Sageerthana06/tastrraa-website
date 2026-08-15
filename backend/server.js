@@ -18,9 +18,24 @@ const app = express();
 const PORT = process.env.PORT || 5001;
 
 // Security & Middleware
-app.use(cors());
+app.use(cors({
+  origin: true,
+  credentials: true
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Lazy Database Initialization Middleware for Serverless
+let dbInitPromise = null;
+app.use(async (req, res, next) => {
+  if (!dbInitPromise) {
+    dbInitPromise = initDb().catch(err => {
+      console.error('Database initialization error:', err);
+    });
+  }
+  await dbInitPromise;
+  next();
+});
 
 // Serve static uploads
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
@@ -45,14 +60,11 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Initialize Database & Start Server
-initDb().then(() => {
+// Local listener
+if (!process.env.VERCEL) {
   app.listen(PORT, () => {
     console.log(`🚀 TASTRAA Backend Server running on http://localhost:${PORT}`);
   });
-}).catch(err => {
-  console.error('Failed to initialize database:', err);
-  app.listen(PORT, () => {
-    console.log(`🚀 TASTRAA Backend Server running on http://localhost:${PORT} (Database Fallback Mode)`);
-  });
-});
+}
+
+export default app;
