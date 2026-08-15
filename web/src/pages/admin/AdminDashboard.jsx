@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Package, CheckCircle, XCircle, ArrowRight, ShieldCheck, Plus, RefreshCw, AlertCircle } from 'lucide-react';
+import { Package, CheckCircle, XCircle, ArrowRight, ShieldCheck, Plus, RefreshCw, AlertCircle, Edit } from 'lucide-react';
 import api from '../../api';
 
 const AdminDashboard = () => {
@@ -156,9 +156,13 @@ const AdminDashboard = () => {
                 As an authorized administrator, you can ADD new products, EDIT existing products, change prices, update images, modify descriptions, categories, units, key features, and toggle active/inactive status.
               </p>
               <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
-                <Link to="/admin/products" className="btn-primary">
+                <Link to="/admin/products" state={{ openAdd: true }} className="btn-primary">
                   <Plus size={18} />
-                  <span>Add / Edit Products</span>
+                  <span>+ ADD NEW PRODUCT</span>
+                </Link>
+                <Link to="/admin/products" className="btn-secondary" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', border: '1.5px solid #111827', color: '#111827', fontWeight: '700' }}>
+                  <Edit size={16} />
+                  <span>EDIT & DELETE CATALOG</span>
                 </Link>
                 <Link to="/products" className="btn-secondary">
                   <span>View Public Store</span>

@@ -77,6 +77,7 @@ const AIAssistant = () => {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
+          className="ai-floating-btn"
           style={{
             backgroundColor: '#D32F2F',
             color: '#FFFFFF',
@@ -113,7 +114,7 @@ const AIAssistant = () => {
 
       {/* AI Chat Window */}
       {isOpen && (
-        <div style={{
+        <div className="ai-chat-window" style={{
           width: '360px',
           maxWidth: 'calc(100vw - 32px)',
           height: '520px',

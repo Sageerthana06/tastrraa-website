@@ -14,9 +14,9 @@ const Footer = () => {
       position: 'relative'
     }}>
       <div className="container">
-        <div style={{
+        <div className="footer-col-grid" style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
           gap: '40px',
           marginBottom: '50px'
         }}>
@@ -49,12 +49,12 @@ const Footer = () => {
               Quick Links
             </h4>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '0.9rem' }}>
-              <li><Link to="/" style={{ color: '#D1D5DB', transition: 'color 0.2s' }}>Home</Link></li>
-              <li><Link to="/about" style={{ color: '#D1D5DB', transition: 'color 0.2s' }}>About Us</Link></li>
-              <li><Link to="/services" style={{ color: '#D1D5DB', transition: 'color 0.2s' }}>Our Services</Link></li>
-              <li><Link to="/products" style={{ color: '#D1D5DB', transition: 'color 0.2s' }}>Our Products</Link></li>
-              <li><Link to="/contact" style={{ color: '#D1D5DB', transition: 'color 0.2s' }}>Contact Us</Link></li>
-              <li><Link to="/admin/login" style={{ color: '#F59E0B', fontWeight: '600', display: 'inline-flex', alignItems: 'center', gap: '6px' }}><ShieldCheck size={14} /> Admin Portal</Link></li>
+              <li><Link to="/" style={{ color: '#D1D5DB', textDecoration: 'none' }}>HOME</Link></li>
+              <li><Link to="/about" style={{ color: '#D1D5DB', textDecoration: 'none' }}>ABOUT US</Link></li>
+              <li><Link to="/products" style={{ color: '#D1D5DB', textDecoration: 'none' }}>PRODUCTS</Link></li>
+              <li><Link to="/services" style={{ color: '#D1D5DB', textDecoration: 'none' }}>SERVICES</Link></li>
+              <li><Link to="/contact" style={{ color: '#D1D5DB', textDecoration: 'none' }}>CONTACT US</Link></li>
+              <li><Link to="/admin/login" style={{ color: '#F59E0B', fontWeight: '600', display: 'inline-flex', alignItems: 'center', gap: '6px', textDecoration: 'none' }}><ShieldCheck size={14} /> Admin Portal</Link></li>
             </ul>
           </div>
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { 
   Package, 
   Plus, 
@@ -25,6 +25,7 @@ const AdminProducts = () => {
   const [error, setError] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
   const navigate = useNavigate();
+  const location = useLocation();
 
   // Modal State
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -50,7 +51,10 @@ const AdminProducts = () => {
       return;
     }
     fetchProducts();
-  }, [navigate]);
+    if (location.state?.openAdd) {
+      openAddModal();
+    }
+  }, [navigate, location.state]);
 
   const fetchProducts = async () => {
     setLoading(true);
@@ -117,7 +121,10 @@ const AdminProducts = () => {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
       if (res.data?.success) {
-        setFormData((prev) => ({ ...prev, image_url: `http://localhost:5001${res.data.imageUrl}` }));
+        const baseUrl = import.meta.env.VITE_API_URL 
+          ? import.meta.env.VITE_API_URL.replace(/\/api\/?$/, '') 
+          : 'http://localhost:5001';
+        setFormData((prev) => ({ ...prev, image_url: `${baseUrl}${res.data.imageUrl}` }));
       }
     } catch (err) {
       console.error('Image upload failed:', err);

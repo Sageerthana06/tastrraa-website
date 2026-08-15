@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
+import Quality from './pages/Quality';
 import Products from './pages/Products';
 import ProductDetails from './pages/ProductDetails';
 import Contact from './pages/Contact';
@@ -21,7 +22,6 @@ function App() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-      {!isAdminPage && <TopBar />}
       <Navbar />
 
       <main style={{ flex: 1 }}>
@@ -30,6 +30,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/quality" element={<Quality />} />
           <Route path="/products" element={<Products />} />
           <Route path="/products/:slug" element={<ProductDetails />} />
           <Route path="/contact" element={<Contact />} />
