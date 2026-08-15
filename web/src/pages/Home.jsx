@@ -1,30 +1,41 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  ArrowRight, 
-  Award, 
-  Leaf, 
-  ShieldCheck, 
-  Sparkles, 
-  Heart, 
-  ThumbsUp, 
-  Phone, 
-  Send, 
-  Check, 
-  Package, 
-  Eye, 
-  X, 
-  Star, 
-  Calendar, 
-  MapPin, 
-  Users, 
+import {
+  ArrowRight,
+  Award,
+  Leaf,
+  ShieldCheck,
+  Sparkles,
+  Heart,
+  ThumbsUp,
+  Phone,
+  Send,
+  Check,
+  Package,
+  Eye,
+  X,
+  Star,
   Flame,
-  Utensils
+  Utensils,
+  RotateCw,
+  Zap,
+  Clock,
+  MapPin,
+  CheckCircle2,
+  ChevronRight,
+  TrendingUp,
+  Layers
 } from 'lucide-react';
 import api from '../api';
 import hero3dImg from '../assets/tastraa_original_hero.png';
+import gmpCertifiedImg from '../assets/gmp_certified.png';
 import factoryBuildingImg from '../assets/factory_building.png';
+import redRice5kgImg from '../assets/red_rice_flour_5kg.jpg';
+import redRice10kgImg from '../assets/red_rice_flour_10kg.jpg';
+import redRice25kgImg from '../assets/red_rice_flour_25kg.png';
+import redRice2kgImg from '../assets/red_rice_flour_2kg.jpg';
+import roastedChilli50gImg from '../assets/roasted_chilli_powder_50g.jpg';
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -32,7 +43,16 @@ const Home = () => {
   const [activeCategory, setActiveCategory] = useState('ALL');
   const [selected3DProduct, setSelected3DProduct] = useState(null);
 
-  // 3D Parallax Mouse Tracking State
+  // Interactive 3D Hero Mode: 'PHOTO' or 'STAGE_3D'
+  const [heroViewMode, setHeroViewMode] = useState('PHOTO');
+  const [activeStageIndex, setActiveStageIndex] = useState(0);
+
+  // Package Weight Selector state for Inspector Modal
+  const [selectedWeight, setSelectedWeight] = useState('500g');
+  const [isRotating, setIsRotating] = useState(false);
+  const [rotationDeg, setRotationDeg] = useState(0);
+
+  // 3D Mouse Tracking Parallax State
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const heroRef = useRef(null);
 
@@ -40,10 +60,9 @@ const Home = () => {
     const fetchProducts = async () => {
       try {
         const response = await api.get('/products');
-        if (response.data?.success) {
+        if (response.data?.success && response.data.products.length > 0) {
           setProducts(response.data.products);
         } else {
-          // Fallback mock products if API isn't live
           setProducts(defaultProducts);
         }
       } catch (err) {
@@ -56,6 +75,7 @@ const Home = () => {
     fetchProducts();
   }, []);
 
+  // Mouse Parallax Calculation
   const handleMouseMove = (e) => {
     if (!heroRef.current) return;
     const rect = heroRef.current.getBoundingClientRect();
@@ -70,97 +90,280 @@ const Home = () => {
 
   const whatsappUrl = "https://wa.me/94779789223?text=Hi%20TASTRAA%20(PVT)%20LTD,%20I%20would%20like%20to%20inquire%20about%20your%203D%20quality%20food%20products.";
 
-  const filteredProducts = activeCategory === 'ALL' 
-    ? products 
+  const filteredProducts = activeCategory === 'ALL'
+    ? products
     : products.filter(p => p.category?.toUpperCase().includes(activeCategory));
+
+  // Signature 3D Stage Showcase Items
+  const stageShowcaseItems = [
+    {
+      title: "Red Rice Flour 05KG (சிவப்பு அரிசி மா)",
+      sub: "100% Traditional Whole Grain Flour - 05KG Sack",
+      desc: "Pure naturally cultivated local red rice carefully stone-milled to soft perfection. Packaged in 05KG green woven sack.",
+      badge: "⭐ Bestseller for String Hoppers & Pittu",
+      spiciness: 0,
+      aroma: 95,
+      purity: 100,
+      crunch: 80,
+      recipe: "Jaffna Idiyappam & Steam Pittu",
+      weights: ['02KG', '05KG SACK', '10KG SACK', '25KG SACK'],
+      priceBase: 1430,
+      img: redRice5kgImg
+    },
+    {
+      title: "Roasted Chilli Powder 50g+5g (வறுத்த மிளகாய்த்தூள்)",
+      sub: "Sun-Dried Fiery Jaffna Red Chillies",
+      desc: "Slow-roasted whole red chillies blended for unmatched fragrance, deep fiery red color, and bold spicy warmth. Includes 5g extra free!",
+      badge: "🔥 100% Sun-Dried Jaffna Chillies",
+      spiciness: 95,
+      aroma: 98,
+      purity: 100,
+      crunch: 0,
+      recipe: "Jaffna Fish Curry & Mutton Gravy",
+      weights: ['50g+5g Free', '250g', '500g'],
+      priceBase: 140,
+      img: roastedChilli50gImg
+    },
+    {
+      title: "Red Rice Flour 10KG (சிவப்பு அரிசி மா)",
+      sub: "Heavy-Duty Blue Sack for Large Families",
+      desc: "10KG bulk packaging of pure Sri Lankan Red Rice Flour milled under strict hygiene standards. Value pack for high volume cooking.",
+      badge: "🌾 Premium 10KG Family Saver Pack",
+      spiciness: 0,
+      aroma: 95,
+      purity: 100,
+      crunch: 80,
+      recipe: "Dosa, Idiyappam & Traditional Sweets",
+      weights: ['10KG SACK'],
+      priceBase: 3000,
+      img: redRice10kgImg
+    },
+    {
+      title: "Pure Gingelly Oil (நல்லெண்ணெய்)",
+      sub: "Authentic Cold-Pressed Sesame Oil",
+      desc: "Wood-pressed from hand-selected sesame seeds. Delivers rich authentic aroma, high antioxidant content, and classic traditional cooking flavor.",
+      badge: "🌿 Wood-Pressed & Chemical Free",
+      spiciness: 0,
+      aroma: 100,
+      purity: 100,
+      crunch: 0,
+      recipe: "Traditional Curries & Healthy Cooking",
+      weights: ['375ml', '750ml', '5L Can'],
+      priceBase: 950,
+      img: hero3dImg
+    }
+  ];
+
+  const currentStageItem = stageShowcaseItems[activeStageIndex];
 
   return (
     <div style={{ overflowX: 'hidden', backgroundColor: '#FAF9F5' }}>
+
       {/* ============================================================ */}
-      {/* 1. HERO SECTION - 3D INTERACTIVE UI MATCHING USER IMAGE    */}
+      {/* 1. 3D IMMERSIVE HERO SECTION WITH PARALLAX & TILT           */}
       {/* ============================================================ */}
-      <section 
+      <section
         ref={heroRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         style={{
           position: 'relative',
-          background: 'linear-gradient(180deg, #EBF5EE 0%, #FAF9F5 100%)',
-          paddingTop: '30px',
-          paddingBottom: '0px',
-          overflow: 'hidden'
+          background: 'linear-gradient(160deg, #FFFBEB 0%, #FEF3C7 45%, #FAF9F5 100%)',
+          paddingTop: '36px',
+          paddingBottom: '20px',
+          overflow: 'hidden',
+          perspective: '1200px'
         }}
       >
-        {/* Background Decorative Sunny Glow */}
+        {/* Floating 3D Ambient Background Particles (Golden & Red Glow) */}
         <div style={{
           position: 'absolute',
           top: '-100px',
           right: '-100px',
-          width: '550px',
-          height: '550px',
-          background: 'radial-gradient(circle, rgba(254, 240, 138, 0.45) 0%, rgba(255, 255, 255, 0) 70%)',
+          width: '650px',
+          height: '650px',
+          background: 'radial-gradient(circle, rgba(253, 224, 71, 0.65) 0%, rgba(255, 255, 255, 0) 70%)',
           pointerEvents: 'none',
-          borderRadius: '50%'
+          borderRadius: '50%',
+          transform: `translate3d(${mousePos.x * -30}px, ${mousePos.y * -30}px, 0)`
         }} />
 
+        <div style={{
+          position: 'absolute',
+          bottom: '10%',
+          left: '-80px',
+          width: '500px',
+          height: '500px',
+          background: 'radial-gradient(circle, rgba(211, 47, 47, 0.15) 0%, rgba(255, 255, 255, 0) 70%)',
+          pointerEvents: 'none',
+          borderRadius: '50%',
+          transform: `translate3d(${mousePos.x * 25}px, ${mousePos.y * 25}px, 0)`
+        }} />
+
+
+
+
+
         <div className="container" style={{ position: 'relative', zIndex: 5 }}>
+
+
+
           <div className="hero-3d-grid" style={{
             display: 'grid',
             gridTemplateColumns: '1.1fr 1fr',
             gap: '40px',
             alignItems: 'center'
           }}>
-            
-            {/* LEFT COLUMN: Main Typography & Badges matching image */}
+
+            {/* LEFT COLUMN: Main Typography & Badges */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
             >
-              {/* Green Subheading Slogan */}
+              {/* Official Brand Badge */}
               <div style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '8px',
-                backgroundColor: '#E8F5E9',
-                border: '1px solid #A5D6A7',
-                padding: '6px 14px',
+                gap: '10px',
+                backgroundColor: '#FFFFFF',
+                border: '2px solid #D32F2F',
+                padding: '7px 20px',
                 borderRadius: '9999px',
-                marginBottom: '18px'
+                marginBottom: '20px',
+                boxShadow: '0 4px 15px rgba(211, 47, 47, 0.15)'
               }}>
-                <Sparkles size={16} style={{ color: '#0F4A24' }} />
-                <span style={{ color: '#0F4A24', fontWeight: '800', fontSize: '0.85rem', letterSpacing: '0.5px' }}>
-                  TRADITION & PREMIUM QUALITY FOODS
+                <Sparkles size={16} style={{ color: '#D32F2F' }} />
+                <span style={{ color: '#D32F2F', fontWeight: '900', fontSize: '0.825rem', letterSpacing: '1px' }}>
+                  உண்மை • உழைப்பு • உயர்வு | TRADITION & PURITY
                 </span>
               </div>
 
-              {/* Headline matching image: "Pure Tradition. Perfect Taste." */}
+              {/* Dynamic Headline */}
               <h1 style={{
                 fontSize: 'clamp(2.6rem, 5.5vw, 4.4rem)',
                 fontWeight: '900',
                 lineHeight: '1.08',
-                color: '#0F4A24',
                 fontFamily: "'Poppins', sans-serif",
-                marginBottom: '16px',
-                letterSpacing: '-1px'
+                marginBottom: '18px',
+                letterSpacing: '-1px',
+                textTransform: 'uppercase'
               }}>
-                Pure Tradition.<br />
-                <span style={{ color: '#165B2E' }}>Perfect Taste.</span>
+                <>
+                  <style>{`
+    @keyframes pureReveal {
+      0% {
+        opacity: 0;
+        transform: translateX(-25px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    @keyframes tasteReveal {
+      0% {
+        opacity: 0;
+        transform: translateX(25px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    @keyframes gradientMove {
+      0% {
+        background-position: 0% center;
+      }
+      50% {
+        background-position: 100% center;
+      }
+      100% {
+        background-position: 0% center;
+      }
+    }
+
+    .hero-heading {
+      margin: 0 !important;
+      padding: 0 !important;
+      display: flex;
+      flex-direction: column;
+      /* controls the vertical gap between the two lines */
+      gap: clamp(4px, 1.5vw, 12px);
+    }
+
+    .hero-heading-line {
+      display: block;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: clamp(1.5rem, 2.8vw, 2.4rem);
+      font-weight: 900;
+      letter-spacing: 0.035em;
+      line-height: 0.95;
+      margin: 0 !important;
+      padding: 0 !important;
+      text-transform: uppercase;
+      background: linear-gradient(
+        90deg,
+        #0F4A24,
+        #199504,
+        #0F4A24
+      );
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow:
+        0 3px 10px rgba(25, 149, 4, 0.15);
+    }
+
+    /* PURE TRADITION */
+    .pure-line {
+      opacity: 0;
+      animation:
+        pureReveal 0.8s ease-out 0.1s forwards,
+        gradientMove 4s ease-in-out 0.9s infinite;
+    }
+
+    /* PERFECT TASTE */
+    .taste-line {
+      opacity: 0;
+      animation:
+        tasteReveal 0.8s ease-out 0.7s forwards,
+        gradientMove 4s ease-in-out 1.5s infinite;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .hero-heading-line {
+        font-size: clamp(1.35rem, 6vw, 2rem);
+        letter-spacing: 0.025em;
+      }
+    }
+  `}</style>
+                  <h1 className="hero-heading">
+                    <span className="hero-heading-line pure-line">
+                      PURE TRADITION.
+                    </span>
+                    <span className="hero-heading-line taste-line">
+                      PERFECT TASTE.
+                    </span>
+                  </h1>
+                </>
               </h1>
 
               {/* Subheading text */}
               <p style={{
                 fontSize: 'clamp(1.05rem, 2vw, 1.25rem)',
-                lineHeight: '1.5',
-                color: '#334155',
+                lineHeight: '1.6',
+                color: '#1E293B',
                 marginBottom: '32px',
                 fontWeight: '600',
-                maxWidth: '520px'
+                maxWidth: '560px'
               }}>
-                Premium Quality Products for Your Healthy Life
+                TASTRAA (PVT) LTD produces trusted food essentials with a focus on consistency, local sourcing, practical production and responsive customer care.
               </p>
 
-              {/* 4 Feature Badges matching user reference image */}
+              {/* 4 Feature Badges */}
               <div className="hero-badges-flex" style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -170,40 +373,80 @@ const Home = () => {
               }}>
                 {/* 1. PURE */}
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                  <div className="badge-circle-3d">
-                    <Leaf size={24} style={{ color: '#0F4A24' }} />
+                  <div style={{
+                    width: '56px',
+                    height: '56px',
+                    borderRadius: '50%',
+                    backgroundColor: '#FFFFFF',
+                    border: '2px solid #0F4A24',
+                    boxShadow: '0 6px 18px rgba(245, 158, 11, 0.25)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}>
+                    <Leaf size={26} style={{ color: '#0F4A24' }} />
                   </div>
-                  <span style={{ fontSize: '0.8rem', fontWeight: '800', color: '#0F4A24', letterSpacing: '0.5px' }}>
+                  <span style={{ fontSize: '0.8rem', fontWeight: '900', color: '#d30707ff', letterSpacing: '0.5px' }}>
                     PURE
                   </span>
                 </div>
 
                 {/* 2. QUALITY */}
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                  <div className="badge-circle-3d">
-                    <ShieldCheck size={24} style={{ color: '#0F4A24' }} />
+                  <div style={{
+                    width: '56px',
+                    height: '56px',
+                    borderRadius: '50%',
+                    backgroundColor: '#FFFFFF',
+                    border: '2px solid #0F4A24',
+                    boxShadow: '0 6px 18px rgba(211, 47, 47, 0.25)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}>
+                    <ShieldCheck size={26} style={{ color: '#0F4A24' }} />
                   </div>
-                  <span style={{ fontSize: '0.8rem', fontWeight: '800', color: '#0F4A24', letterSpacing: '0.5px' }}>
+                  <span style={{ fontSize: '0.8rem', fontWeight: '900', color: '#de0c0cff', letterSpacing: '0.5px' }}>
                     QUALITY
                   </span>
                 </div>
 
                 {/* 3. HYGIENIC */}
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                  <div className="badge-circle-3d">
-                    <Sparkles size={24} style={{ color: '#0F4A24' }} />
+                  <div style={{
+                    width: '56px',
+                    height: '56px',
+                    borderRadius: '50%',
+                    backgroundColor: '#FFFFFF',
+                    border: '2px solid #0F4A24',
+                    boxShadow: '0 6px 18px rgba(245, 158, 11, 0.25)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}>
+                    <Sparkles size={26} style={{ color: '#0F4A24' }} />
                   </div>
-                  <span style={{ fontSize: '0.8rem', fontWeight: '800', color: '#0F4A24', letterSpacing: '0.5px' }}>
+                  <span style={{ fontSize: '0.8rem', fontWeight: '900', color: '#fa0505ff', letterSpacing: '0.5px' }}>
                     HYGIENIC
                   </span>
                 </div>
 
                 {/* 4. TRADITION */}
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                  <div className="badge-circle-3d">
-                    <Utensils size={24} style={{ color: '#0F4A24' }} />
+                  <div style={{
+                    width: '56px',
+                    height: '56px',
+                    borderRadius: '50%',
+                    backgroundColor: '#FFFFFF',
+                    border: '2px solid #0F4A24',
+                    boxShadow: '0 6px 18px rgba(15, 74, 36, 0.25)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}>
+                    <Utensils size={26} style={{ color: '#0F4A24' }} />
                   </div>
-                  <span style={{ fontSize: '0.8rem', fontWeight: '800', color: '#0F4A24', letterSpacing: '0.5px' }}>
+                  <span style={{ fontSize: '0.8rem', fontWeight: '900', color: '#f00808d9', letterSpacing: '0.5px' }}>
                     TRADITION
                   </span>
                 </div>
@@ -211,38 +454,35 @@ const Home = () => {
 
               {/* Action Buttons */}
               <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
-                <Link to="/products" className="btn-green-3d">
-                  <span>SHOP NOW</span>
+                <Link to="/products" className="btn-red-3d" style={{ padding: '14px 30px', fontSize: '0.95rem' }}>
+                  <span>SHOP PRODUCTS</span>
                   <ArrowRight size={18} />
                 </Link>
 
-                <a 
-                  href={whatsappUrl} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
+                <Link
+                  to="/contact"
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
-                    gap: '8px',
+                    gap: '10px',
                     backgroundColor: '#FFFFFF',
                     color: '#0F4A24',
-                    padding: '14px 24px',
+                    padding: '14px 26px',
                     borderRadius: '9999px',
-                    fontWeight: '700',
+                    fontWeight: '800',
                     fontSize: '0.9rem',
-                    border: '2px solid #A5D6A7',
-                    textDecoration: 'none',
-                    boxShadow: '0 4px 15px rgba(0,0,0,0.05)',
-                    transition: 'all 0.3s ease'
+                    border: '2px solid #D32F2F',
+                    boxShadow: '0 4px 14px rgba(211, 47, 47, 0.12)',
+                    transition: 'all 0.3s ease',
+                    textDecoration: 'none'
                   }}
                 >
-                  <Send size={16} style={{ color: '#25D366' }} />
-                  <span>WHATSAPP ORDER</span>
-                </a>
+                  <span>CONTACT US</span>
+                </Link>
               </div>
             </motion.div>
 
-            {/* RIGHT COLUMN: Clean Showcase of User's Exact Original Photo */}
+            {/* RIGHT COLUMN: 3D Animated Interactive Stage / Unedited Photo Frame */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -251,33 +491,207 @@ const Home = () => {
                 position: 'relative',
                 display: 'flex',
                 justifyContent: 'center',
-                alignItems: 'center'
+                alignItems: 'center',
+                transformStyle: 'preserve-3d',
+                transform: `rotateY(${mousePos.x * 12}deg) rotateX(${mousePos.y * -12}deg)`,
+                transition: 'transform 0.1s ease-out'
               }}
             >
-              {/* Clean Image Frame - Unedited Photo Showcase */}
-              <div 
-                style={{
-                  position: 'relative',
+              {heroViewMode === 'PHOTO' ? (
+                /* MODE A: Clean Showcase of User's Exact Original Photo with 3D Tilt Glow */
+                <div
+                  style={{
+                    position: 'relative',
+                    width: '100%',
+                    maxWidth: '580px',
+                    borderRadius: '28px',
+                    overflow: 'hidden',
+                    boxShadow: '0 25px 60px -10px rgba(211, 47, 47, 0.25), 0 10px 30px rgba(245, 158, 11, 0.25)',
+                    backgroundColor: '#FFFFFF',
+                    border: '4px solid #FFFFFF'
+                  }}
+                >
+                  <img
+                    src={hero3dImg}
+                    alt="TASTRAA Original Product Lineup - Red Rice Flour, Gingelly Oil, Roasted Chilli Powder, Mixture"
+                    style={{
+                      width: '100%',
+                      height: 'auto',
+                      display: 'block',
+                      objectFit: 'cover'
+                    }}
+                  />
+                  {/* GMP Certified Badge Overlay in Corner */}
+                  <div style={{
+                    position: 'absolute',
+                    top: '12px',
+                    right: '12px',
+                    zIndex: 10,
+                    filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.35))'
+                  }}>
+                    <img
+                      src={gmpCertifiedImg}
+                      alt="GMP Certified Practice"
+                      style={{
+                        width: '85px',
+                        height: 'auto',
+                        objectFit: 'contain',
+                        display: 'block'
+                      }}
+                    />
+                  </div>
+                </div>
+              ) : (
+                /* MODE B: 3D Interactive Carousel Showcase Stage */
+                <div className="stage-box-card" style={{
                   width: '100%',
                   maxWidth: '580px',
-                  borderRadius: '24px',
-                  overflow: 'hidden',
-                  boxShadow: '0 20px 50px -10px rgba(15, 74, 36, 0.25), 0 10px 20px rgba(0,0,0,0.08)',
                   backgroundColor: '#FFFFFF',
-                  border: '4px solid #FFFFFF'
-                }}
-              >
-                <img 
-                  src={hero3dImg} 
-                  alt="TASTRAA Original Product Showcase - Red Rice Flour, Gingelly Oil, Roasted Chilli Powder, Mixture" 
-                  style={{
-                    width: '100%',
-                    height: 'auto',
-                    display: 'block',
-                    objectFit: 'cover'
-                  }}
-                />
-              </div>
+                  borderRadius: '28px',
+                  padding: '30px',
+                  boxShadow: '0 25px 60px -10px rgba(15, 74, 36, 0.3)',
+                  border: '2px solid #E8F5E9',
+                  position: 'relative',
+                  overflow: 'hidden'
+                }}>
+                  {/* Glowing Stage Aura */}
+                  <div style={{
+                    position: 'absolute',
+                    top: '-50px',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    width: '300px',
+                    height: '300px',
+                    background: 'radial-gradient(circle, rgba(129, 199, 132, 0.4) 0%, rgba(255,255,255,0) 70%)',
+                    pointerEvents: 'none'
+                  }} />
+
+                  {/* Stage Header Controls */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+                    <span style={{ fontSize: '0.75rem', fontWeight: '800', color: '#0F4A24', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                      ✨ 3D PRODUCT ROTATOR STAGE
+                    </span>
+
+                    <div style={{ display: 'flex', gap: '6px' }}>
+                      {stageShowcaseItems.map((_, idx) => (
+                        <button
+                          key={idx}
+                          onClick={() => setActiveStageIndex(idx)}
+                          style={{
+                            width: idx === activeStageIndex ? '24px' : '10px',
+                            height: '10px',
+                            borderRadius: '9999px',
+                            backgroundColor: idx === activeStageIndex ? '#0F4A24' : '#CBD5E1',
+                            border: 'none',
+                            cursor: 'pointer',
+                            transition: 'all 0.3s ease'
+                          }}
+                        />
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Main Product Stage Photo & Rotation simulation */}
+                  <div style={{
+                    height: '240px',
+                    backgroundColor: '#EBF5EE',
+                    borderRadius: '20px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    position: 'relative',
+                    overflow: 'hidden',
+                    marginBottom: '20px',
+                    border: '1px solid #C8E6C9'
+                  }}>
+                    <img
+                      src={hero3dImg}
+                      alt={currentStageItem.title}
+                      style={{
+                        maxHeight: '85%',
+                        maxWidth: '85%',
+                        objectFit: 'contain',
+                        filter: 'drop-shadow(0 15px 25px rgba(15, 74, 36, 0.25))',
+                        transform: `rotateY(${rotationDeg}deg)`,
+                        transition: 'transform 0.4s ease'
+                      }}
+                    />
+
+                    {/* Rotation trigger badge */}
+                    <button
+                      onClick={() => setRotationDeg(prev => prev + 90)}
+                      style={{
+                        position: 'absolute',
+                        bottom: '12px',
+                        right: '12px',
+                        backgroundColor: '#FFFFFF',
+                        border: '1px solid #A5D6A7',
+                        color: '#0F4A24',
+                        padding: '6px 14px',
+                        borderRadius: '9999px',
+                        fontWeight: '800',
+                        fontSize: '0.75rem',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '6px',
+                        cursor: 'pointer',
+                        boxShadow: '0 4px 12px rgba(0,0,0,0.08)'
+                      }}
+                    >
+                      <RotateCw size={13} />
+                      <span>ROTATE 3D</span>
+                    </button>
+                  </div>
+
+                  {/* Product Details on Stage */}
+                  <div>
+                    <span style={{
+                      backgroundColor: '#FEF3C7',
+                      color: '#B45309',
+                      padding: '4px 12px',
+                      borderRadius: '9999px',
+                      fontWeight: '800',
+                      fontSize: '0.75rem',
+                      display: 'inline-block',
+                      marginBottom: '8px'
+                    }}>
+                      {currentStageItem.badge}
+                    </span>
+
+                    <h3 style={{ fontSize: '1.3rem', fontWeight: '900', color: '#0F4A24', marginBottom: '6px' }}>
+                      {currentStageItem.title}
+                    </h3>
+
+                    <p style={{ fontSize: '0.875rem', color: '#475569', lineHeight: '1.5', marginBottom: '16px' }}>
+                      {currentStageItem.desc}
+                    </p>
+
+                    {/* Metrics Bar */}
+                    <div style={{
+                      display: 'grid',
+                      gridTemplateColumns: 'repeat(3, 1fr)',
+                      gap: '10px',
+                      backgroundColor: '#F8FAFC',
+                      padding: '12px',
+                      borderRadius: '16px',
+                      border: '1px solid #E2E8F0'
+                    }}>
+                      <div style={{ textAlign: 'center' }}>
+                        <span style={{ fontSize: '0.7rem', color: '#64748B', fontWeight: '700', display: 'block' }}>AROMA</span>
+                        <span style={{ fontSize: '0.95rem', fontWeight: '900', color: '#0F4A24' }}>{currentStageItem.aroma}%</span>
+                      </div>
+                      <div style={{ textAlign: 'center', borderLeft: '1px solid #E2E8F0', borderRight: '1px solid #E2E8F0' }}>
+                        <span style={{ fontSize: '0.7rem', color: '#64748B', fontWeight: '700', display: 'block' }}>PURITY</span>
+                        <span style={{ fontSize: '0.95rem', fontWeight: '900', color: '#0F4A24' }}>{currentStageItem.purity}%</span>
+                      </div>
+                      <div style={{ textAlign: 'center' }}>
+                        <span style={{ fontSize: '0.7rem', color: '#64748B', fontWeight: '700', display: 'block' }}>RECIPE</span>
+                        <span style={{ fontSize: '0.75rem', fontWeight: '800', color: '#B45309' }}>{currentStageItem.recipe.split(' ')[0]}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
             </motion.div>
           </div>
         </div>
@@ -285,13 +699,13 @@ const Home = () => {
         {/* ============================================================ */}
         {/* 2. BOTTOM CURVED DARK GREEN BAR MATCHING USER REFERENCE IMAGE */}
         {/* ============================================================ */}
-        <div style={{ marginTop: '50px', position: 'relative', zIndex: 6 }}>
+        <div style={{ marginTop: '60px', position: 'relative', zIndex: 6 }}>
           <div className="container">
             <div style={{
-              background: 'linear-gradient(180deg, #0F4A24 0%, #083117 100%)',
+              background: 'linear-gradient(180deg, #f1e60cff 0%, #e2ab07ff 100%)',
               borderRadius: '32px 32px 0 0',
-              padding: '24px 32px',
-              boxShadow: '0 -10px 30px rgba(0,0,0,0.1)',
+              padding: '28px 36px',
+              boxShadow: '0 -10px 30px rgba(0,0,0,0.12)',
               borderTop: '2px solid rgba(255, 255, 255, 0.15)'
             }}>
               <div className="bottom-bar-grid" style={{
@@ -303,19 +717,19 @@ const Home = () => {
                 {/* Item 1: Carefully Sourced */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
                   <div style={{
-                    width: '44px',
-                    height: '44px',
+                    width: '46px',
+                    height: '46px',
                     borderRadius: '50%',
-                    border: '1.5px solid #81C784',
+                    border: '1.5px solid #0F4A24',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                    backgroundColor: 'rgba(221, 35, 3, 0.1)',
                     flexShrink: 0
                   }}>
-                    <Leaf size={20} style={{ color: '#81C784' }} />
+                    <Leaf size={22} style={{ color: '#0F4A24' }} />
                   </div>
-                  <span style={{ color: '#FFFFFF', fontWeight: '800', fontSize: '0.925rem', letterSpacing: '0.3px' }}>
+                  <span style={{ color: '#0F4A24', fontWeight: '800', fontSize: '0.95rem', letterSpacing: '0.3px' }}>
                     Carefully Sourced
                   </span>
                 </div>
@@ -323,19 +737,19 @@ const Home = () => {
                 {/* Item 2: Premium Quality */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
                   <div style={{
-                    width: '44px',
-                    height: '44px',
+                    width: '46px',
+                    height: '46px',
                     borderRadius: '50%',
-                    border: '1.5px solid #81C784',
+                    border: '1.5px solid #e70c0cff',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                    backgroundColor: 'rgba(255, 255, 255, 0.12)',
                     flexShrink: 0
                   }}>
-                    <Award size={20} style={{ color: '#81C784' }} />
+                    <Award size={22} style={{ color: '#0F4A24' }} />
                   </div>
-                  <span style={{ color: '#FFFFFF', fontWeight: '800', fontSize: '0.925rem', letterSpacing: '0.3px' }}>
+                  <span style={{ color: '#0F4A24', fontWeight: '800', fontSize: '0.95rem', letterSpacing: '0.3px' }}>
                     Premium Quality
                   </span>
                 </div>
@@ -343,19 +757,19 @@ const Home = () => {
                 {/* Item 3: Healthy Lifestyle */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
                   <div style={{
-                    width: '44px',
-                    height: '44px',
+                    width: '46px',
+                    height: '46px',
                     borderRadius: '50%',
-                    border: '1.5px solid #81C784',
+                    border: '1.5px solid #0F4A24',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                    backgroundColor: 'rgba(255, 255, 255, 0.12)',
                     flexShrink: 0
                   }}>
-                    <Heart size={20} style={{ color: '#81C784' }} />
+                    <Heart size={22} style={{ color: '#0F4A24' }} />
                   </div>
-                  <span style={{ color: '#FFFFFF', fontWeight: '800', fontSize: '0.925rem', letterSpacing: '0.3px' }}>
+                  <span style={{ color: '#0F4A24', fontWeight: '800', fontSize: '0.95rem', letterSpacing: '0.3px' }}>
                     Healthy Lifestyle
                   </span>
                 </div>
@@ -363,19 +777,19 @@ const Home = () => {
                 {/* Item 4: Trusted by Generations */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
                   <div style={{
-                    width: '44px',
-                    height: '44px',
+                    width: '46px',
+                    height: '46px',
                     borderRadius: '50%',
-                    border: '1.5px solid #81C784',
+                    border: '1.5px solid #0F4A24',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                    backgroundColor: 'rgba(255, 255, 255, 0.12)',
                     flexShrink: 0
                   }}>
-                    <ThumbsUp size={20} style={{ color: '#81C784' }} />
+                    <ThumbsUp size={22} style={{ color: '#0F4A24' }} />
                   </div>
-                  <span style={{ color: '#FFFFFF', fontWeight: '800', fontSize: '0.925rem', letterSpacing: '0.3px' }}>
+                  <span style={{ color: '#0F4A24', fontWeight: '800', fontSize: '0.95rem', letterSpacing: '0.3px' }}>
                     Trusted by Generations
                   </span>
                 </div>
@@ -388,10 +802,10 @@ const Home = () => {
       {/* ============================================================ */}
       {/* 3. INTERACTIVE 3D PRODUCT CATALOG SECTION                    */}
       {/* ============================================================ */}
-      <section style={{ padding: '70px 0', backgroundColor: '#FAF9F5' }}>
+      <section style={{ padding: '80px 0', backgroundColor: '#FAF9F5' }}>
         <div className="container">
           {/* Header */}
-          <div style={{ textAlign: 'center', maxWidth: '650px', margin: '0 auto 40px' }}>
+          <div style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto 44px' }}>
             <span style={{
               color: '#0F4A24',
               fontWeight: '800',
@@ -402,7 +816,7 @@ const Home = () => {
               TASTRAA PRODUCTS CATALOG
             </span>
             <h2 style={{
-              fontSize: 'clamp(2rem, 3.5vw, 2.6rem)',
+              fontSize: 'clamp(2.1rem, 3.8vw, 2.8rem)',
               fontWeight: '900',
               color: '#0F4A24',
               marginTop: '6px',
@@ -410,8 +824,8 @@ const Home = () => {
             }}>
               Authentic Local Food Essentials
             </h2>
-            <p style={{ color: '#64748B', fontSize: '0.95rem', marginTop: '10px' }}>
-              Crafted in Jaffna with pure traditional methods, zero artificial additives, and utmost hygiene.
+            <p style={{ color: '#64748B', fontSize: '0.975rem', marginTop: '10px' }}>
+              Crafted in Jaffna with pure traditional methods, zero artificial additives, and utmost ISO quality hygiene standards.
             </p>
 
             {/* Category Filter Pills */}
@@ -419,7 +833,7 @@ const Home = () => {
               display: 'flex',
               justifyContent: 'center',
               gap: '10px',
-              marginTop: '24px',
+              marginTop: '26px',
               flexWrap: 'wrap'
             }}>
               {['ALL', 'FLOUR', 'OIL', 'MIXTURE', 'SPICE'].map((cat) => (
@@ -427,7 +841,7 @@ const Home = () => {
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
                   style={{
-                    padding: '8px 20px',
+                    padding: '9px 22px',
                     borderRadius: '9999px',
                     fontWeight: '800',
                     fontSize: '0.8rem',
@@ -436,6 +850,7 @@ const Home = () => {
                     backgroundColor: activeCategory === cat ? '#0F4A24' : '#FFFFFF',
                     color: activeCategory === cat ? '#FFFFFF' : '#475569',
                     cursor: 'pointer',
+                    boxShadow: activeCategory === cat ? '0 8px 20px rgba(15, 74, 36, 0.25)' : '0 2px 6px rgba(0,0,0,0.03)',
                     transition: 'all 0.25s ease'
                   }}
                 >
@@ -445,11 +860,11 @@ const Home = () => {
             </div>
           </div>
 
-          {/* Products Grid with 3D Tilt Cards */}
+          {/* Products Grid with 3D Animated Cards */}
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-            gap: '28px'
+            gap: '30px'
           }}>
             {filteredProducts.map((prod) => (
               <motion.div
@@ -461,17 +876,17 @@ const Home = () => {
                 transition={{ duration: 0.3 }}
                 style={{
                   backgroundColor: '#FFFFFF',
-                  borderRadius: '20px',
+                  borderRadius: '24px',
                   border: '1px solid #E2E8F0',
                   overflow: 'hidden',
-                  boxShadow: '0 10px 25px rgba(0,0,0,0.05)',
+                  boxShadow: '0 12px 30px rgba(0,0,0,0.06)',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
                   position: 'relative'
                 }}
               >
-                {/* 3D Badge Tag */}
+                {/* 3D Category Tag */}
                 <div style={{
                   position: 'absolute',
                   top: '14px',
@@ -479,28 +894,29 @@ const Home = () => {
                   zIndex: 2,
                   backgroundColor: '#0F4A24',
                   color: '#FFFFFF',
-                  padding: '4px 10px',
+                  padding: '4px 12px',
                   borderRadius: '9999px',
                   fontWeight: '800',
-                  fontSize: '0.7rem'
+                  fontSize: '0.7rem',
+                  letterSpacing: '0.5px'
                 }}>
                   {prod.category}
                 </div>
 
-                {/* Product Image */}
+                {/* Product Image Stage */}
                 <div style={{
-                  height: '220px',
+                  height: '230px',
                   backgroundColor: '#F8FAFC',
                   position: 'relative',
                   overflow: 'hidden',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  padding: '16px'
+                  padding: '20px'
                 }}>
-                  <img 
-                    src={prod.image_url} 
-                    alt={prod.name} 
+                  <img
+                    src={prod.image_url || hero3dImg}
+                    alt={prod.name}
                     style={{
                       maxHeight: '100%',
                       maxWidth: '100%',
@@ -511,27 +927,36 @@ const Home = () => {
                 </div>
 
                 {/* Content */}
-                <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', flex: 1 }}>
+                <div style={{ padding: '22px', display: 'flex', flexDirection: 'column', flex: 1 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '4px', marginBottom: '6px' }}>
                     {[...Array(5)].map((_, i) => (
                       <Star key={i} size={14} style={{ color: '#F59E0B', fill: '#F59E0B' }} />
                     ))}
-                    <span style={{ fontSize: '0.75rem', color: '#64748B', fontWeight: '700', marginLeft: '4px' }}>5.0</span>
+                    <span style={{ fontSize: '0.75rem', color: '#64748B', fontWeight: '700', marginLeft: '4px' }}>5.0 (Fresh)</span>
                   </div>
 
-                  <h3 style={{ fontSize: '1.1rem', fontWeight: '800', color: '#0F4A24', marginBottom: '6px' }}>
+                  <h3 style={{
+                    fontSize: '1.15rem',
+                    fontWeight: '800',
+                    color: '#0F4A24',
+                    marginBottom: '8px',
+                    textDecoration: 'underline',
+                    textDecorationColor: '#0F4A24',
+                    textUnderlineOffset: '5px',
+                    textDecorationThickness: '2px'
+                  }}>
                     {prod.name}
                   </h3>
 
-                  <p style={{ fontSize: '0.85rem', color: '#64748B', lineHeight: '1.5', marginBottom: '16px', flex: 1 }}>
+                  <p style={{ fontSize: '0.85rem', color: '#64748B', lineHeight: '1.5', marginBottom: '18px', flex: 1 }}>
                     {prod.description}
                   </p>
 
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 'auto' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 'auto', paddingTop: '14px', borderTop: '1px solid #F1F5F9' }}>
                     <div>
-                      <span style={{ fontSize: '0.75rem', color: '#94A3B8', display: 'block', fontWeight: '600' }}>Unit Net Weight</span>
-                      <span style={{ fontSize: '1.05rem', fontWeight: '900', color: '#0F4A24' }}>
-                        {prod.unit_size || '05KG / Pack'}
+                      <span style={{ fontSize: '0.7rem', color: '#94A3B8', display: 'block', fontWeight: '700' }}>NET WEIGHT</span>
+                      <span style={{ fontSize: '1rem', fontWeight: '900', color: '#0F4A24' }}>
+                        {prod.unit_size || 'Standard Pack'}
                       </span>
                     </div>
 
@@ -553,7 +978,7 @@ const Home = () => {
                       }}
                     >
                       <Eye size={14} />
-                      <span>3D VIEW</span>
+                      <span> VIEW</span>
                     </button>
                   </div>
                 </div>
@@ -564,54 +989,110 @@ const Home = () => {
       </section>
 
       {/* ============================================================ */}
-      {/* ORIGINAL PRODUCT PHOTO BANNER SHOWCASE                       */}
+      {/* 4. 3D INTERACTIVE FLAVOR & NUTRITION MATRIX SHOWCASE         */}
       {/* ============================================================ */}
-      <section style={{ padding: '60px 0', backgroundColor: '#FFFFFF', borderTop: '1px solid #E2E8F0', borderBottom: '1px solid #E2E8F0' }}>
+      <section style={{ padding: '70px 0', backgroundColor: '#FFFFFF', borderTop: '1px solid #E2E8F0', borderBottom: '1px solid #E2E8F0' }}>
         <div className="container">
-          <div style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto 32px' }}>
-            <span style={{
-              color: '#0F4A24',
-              fontWeight: '800',
-              fontSize: '0.85rem',
-              letterSpacing: '1px',
-              textTransform: 'uppercase'
-            }}>
-              AUTHENTIC PRODUCT LINEUP
+          <div style={{ textAlign: 'center', maxWidth: '750px', margin: '0 auto 40px' }}>
+            <span style={{ color: '#0F4A24', fontWeight: '800', fontSize: '0.85rem', letterSpacing: '1px', textTransform: 'uppercase' }}>
+              TASTRAA CULINARY MATRIX
             </span>
-            <h2 style={{
-              fontSize: 'clamp(1.8rem, 3vw, 2.4rem)',
-              fontWeight: '900',
-              color: '#0F4A24',
-              marginTop: '6px',
-              fontFamily: "'Poppins', sans-serif"
-            }}>
-              Original Product Lineup
+            <h2 style={{ fontSize: 'clamp(1.9rem, 3.2vw, 2.5rem)', fontWeight: '900', color: '#0F4A24', marginTop: '6px' }}>
+              Purity & Nutritional Standard
             </h2>
             <p style={{ color: '#64748B', fontSize: '0.95rem', marginTop: '8px' }}>
-              Explore TASTRAA's signature products — Red Rice Flour, Gingelly Oil, Roasted Chilli Powder, and Jaffna Mixture.
+              Every product is tested for zero chemical residue, high dietary fiber, and traditional taste integrity.
             </p>
           </div>
 
           <div style={{
-            borderRadius: '28px',
-            overflow: 'hidden',
-            boxShadow: '0 20px 50px rgba(15, 74, 36, 0.15)',
-            border: '2px solid #E8F5E9',
-            backgroundColor: '#FFFFFF'
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+            gap: '24px'
           }}>
-            <img 
-              src={hero3dImg} 
-              alt="TASTRAA Original High-Res Product Showcase Banner" 
-              style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover' }}
-            />
+            {/* Box 1 */}
+            <div style={{
+              backgroundColor: '#FAF9F5',
+              borderRadius: '20px',
+              padding: '26px',
+              border: '1px solid #E2E8F0',
+              boxShadow: '0 8px 20px rgba(0,0,0,0.03)'
+            }}>
+              <div style={{ width: '48px', height: '48px', borderRadius: '14px', backgroundColor: '#E8F5E9', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
+                <Leaf size={24} style={{ color: '#0F4A24' }} />
+              </div>
+              <h3 style={{ fontSize: '1.15rem', fontWeight: '800', color: '#0F4A24', marginBottom: '8px' }}>
+                100% Sun-Dried Chillies
+              </h3>
+              <p style={{ fontSize: '0.875rem', color: '#64748B', lineHeight: '1.5' }}>
+                Sun-dried under natural Jaffna sunlight before slow-roasting to extract intense aromatic oils.
+              </p>
+            </div>
+
+            {/* Box 2 */}
+            <div style={{
+              backgroundColor: '#FAF9F5',
+              borderRadius: '20px',
+              padding: '26px',
+              border: '1px solid #E2E8F0',
+              boxShadow: '0 8px 20px rgba(0,0,0,0.03)'
+            }}>
+              <div style={{ width: '48px', height: '48px', borderRadius: '14px', backgroundColor: '#FEF3C7', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
+                <Flame size={24} style={{ color: '#D97706' }} />
+              </div>
+              <h3 style={{ fontSize: '1.15rem', fontWeight: '800', color: '#0F4A24', marginBottom: '8px' }}>
+                Wood-Pressed Oil
+              </h3>
+              <p style={{ fontSize: '0.875rem', color: '#64748B', lineHeight: '1.5' }}>
+                Extracted at low temperatures without heat destruction to preserve natural vitamins & antioxidants.
+              </p>
+            </div>
+
+            {/* Box 3 */}
+            <div style={{
+              backgroundColor: '#FAF9F5',
+              borderRadius: '20px',
+              padding: '26px',
+              border: '1px solid #E2E8F0',
+              boxShadow: '0 8px 20px rgba(0,0,0,0.03)'
+            }}>
+              <div style={{ width: '48px', height: '48px', borderRadius: '14px', backgroundColor: '#E8F5E9', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
+                <ShieldCheck size={24} style={{ color: '#0F4A24' }} />
+              </div>
+              <h3 style={{ fontSize: '1.15rem', fontWeight: '800', color: '#0F4A24', marginBottom: '8px' }}>
+                Zero Preservatives
+              </h3>
+              <p style={{ fontSize: '0.875rem', color: '#64748B', lineHeight: '1.5' }}>
+                No artificial food colorings, no added MSG, and no artificial flavor enhancers ever added.
+              </p>
+            </div>
+
+            {/* Box 4 */}
+            <div style={{
+              backgroundColor: '#FAF9F5',
+              borderRadius: '20px',
+              padding: '26px',
+              border: '1px solid #E2E8F0',
+              boxShadow: '0 8px 20px rgba(0,0,0,0.03)'
+            }}>
+              <div style={{ width: '48px', height: '48px', borderRadius: '14px', backgroundColor: '#FEF3C7', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
+                <Package size={24} style={{ color: '#B45309' }} />
+              </div>
+              <h3 style={{ fontSize: '1.15rem', fontWeight: '800', color: '#0F4A24', marginBottom: '8px' }}>
+                Hygienic 3D Pack
+              </h3>
+              <p style={{ fontSize: '0.875rem', color: '#64748B', lineHeight: '1.5' }}>
+                Sealed under automated food-grade vacuum standards to retain aroma and crunchiness for months.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* ============================================================ */}
-      {/* 4. HERITAGE & MANUFACTURING FACILITY SECTION                */}
+      {/* 6. HERITAGE & MANUFACTURING FACILITY SECTION                */}
       {/* ============================================================ */}
-      <section style={{ padding: '60px 0', backgroundColor: '#FAF9F5', borderTop: '1px solid #E2E8F0' }}>
+      <section style={{ padding: '70px 0', backgroundColor: '#FFFFFF', borderTop: '1px solid #E2E8F0' }}>
         <div className="container">
           <div style={{
             display: 'grid',
@@ -621,9 +1102,9 @@ const Home = () => {
           }}>
             {/* Left Image */}
             <div style={{ borderRadius: '24px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.08)' }}>
-              <img 
-                src={factoryBuildingImg} 
-                alt="TASTRAA Manufacturing Facility in Kopay, Jaffna" 
+              <img
+                src={factoryBuildingImg}
+                alt="TASTRAA Manufacturing Facility in Kopay, Jaffna"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
               />
             </div>
@@ -631,7 +1112,7 @@ const Home = () => {
             {/* Right Story */}
             <div>
               <span style={{ color: '#0F4A24', fontWeight: '800', fontSize: '0.85rem', letterSpacing: '1px', textTransform: 'uppercase' }}>
-                SINCE JUNE 2009
+                SINCE JUNE 2009 • 15+ YEARS HERITAGE
               </span>
               <h2 style={{ fontSize: '2.2rem', fontWeight: '900', color: '#0F4A24', marginTop: '6px', marginBottom: '16px' }}>
                 15+ Years of Unmatched Quality & Customer Trust
@@ -669,7 +1150,7 @@ const Home = () => {
       </section>
 
       {/* ============================================================ */}
-      {/* 5. INTERACTIVE 3D PRODUCT INSPECTOR MODAL                    */}
+      {/* 7. INTERACTIVE 3D PRODUCT INSPECTOR MODAL                    */}
       {/* ============================================================ */}
       <AnimatePresence>
         {selected3DProduct && (
@@ -680,7 +1161,7 @@ const Home = () => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: 'rgba(15, 23, 42, 0.75)',
+            backgroundColor: 'rgba(15, 23, 42, 0.8)',
             backdropFilter: 'blur(8px)',
             padding: '20px'
           }}>
@@ -688,10 +1169,11 @@ const Home = () => {
               initial={{ opacity: 0, scale: 0.85, y: 30 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.85, y: 30 }}
+              className="modal-3d-card"
               style={{
                 backgroundColor: '#FFFFFF',
                 borderRadius: '28px',
-                maxWidth: '680px',
+                maxWidth: '720px',
                 width: '100%',
                 overflow: 'hidden',
                 boxShadow: '0 25px 60px rgba(0,0,0,0.3)',
@@ -720,7 +1202,7 @@ const Home = () => {
                 <X size={20} style={{ color: '#475569' }} />
               </button>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
+              <div className="modal-3d-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1.1fr' }}>
                 {/* Left 3D View Box */}
                 <div style={{
                   backgroundColor: '#EBF5EE',
@@ -737,20 +1219,44 @@ const Home = () => {
                     padding: '20px',
                     boxShadow: '0 15px 35px rgba(0,0,0,0.1)',
                     width: '100%',
-                    height: '240px',
+                    height: '250px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center'
                   }}>
-                    <img 
-                      src={selected3DProduct.image_url} 
-                      alt={selected3DProduct.name} 
-                      style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain' }}
+                    <img
+                      src={selected3DProduct.image_url || selected3DProduct.img || hero3dImg}
+                      alt={selected3DProduct.name || selected3DProduct.title}
+                      style={{
+                        maxHeight: '100%',
+                        maxWidth: '100%',
+                        objectFit: 'contain',
+                        transform: `rotateY(${rotationDeg}deg)`,
+                        transition: 'transform 0.4s ease'
+                      }}
                     />
                   </div>
-                  <span style={{ fontSize: '0.75rem', fontWeight: '800', color: '#0F4A24', marginTop: '14px' }}>
-                    ✨ 3D PRODUCT INSPECTOR
-                  </span>
+
+                  <button
+                    onClick={() => setRotationDeg(prev => prev + 90)}
+                    style={{
+                      marginTop: '16px',
+                      backgroundColor: '#FFFFFF',
+                      border: '1px solid #A5D6A7',
+                      color: '#0F4A24',
+                      padding: '6px 14px',
+                      borderRadius: '9999px',
+                      fontWeight: '800',
+                      fontSize: '0.75rem',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    <RotateCw size={14} />
+                    <span>ROTATE 3D INSPECTION</span>
+                  </button>
                 </div>
 
                 {/* Right Info */}
@@ -782,7 +1288,7 @@ const Home = () => {
                       marginBottom: '20px',
                       border: '1px solid #E2E8F0'
                     }}>
-                      <div style={{ fontSize: '0.75rem', color: '#64748B', fontWeight: '600' }}>Package Net Size</div>
+                      <div style={{ fontSize: '0.75rem', color: '#64748B', fontWeight: '600' }}>Package Net Weight</div>
                       <div style={{ fontSize: '1.1rem', fontWeight: '900', color: '#0F4A24' }}>
                         {selected3DProduct.unit_size || 'Standard Pack'}
                       </div>
@@ -809,40 +1315,74 @@ const Home = () => {
   );
 };
 
-// Fallback products list matching 3D image items
+// Fallback products list with real photos and exact printed packaging weights & prices
 const defaultProducts = [
   {
     id: 1,
-    name: 'Red Rice Flour (சிவப்பு அரிசி மா)',
+    name: 'Red Rice Flour 05KG Sack (சிவப்பு அரிசி மா)',
     category: 'FLOUR',
-    unit_size: '05KG / Sack',
-    description: '100% natural locally grown red rice ground into fine flour. Perfect for string hoppers, pittu, and traditional cooking.',
-    image_url: hero3dImg,
-    slug: 'red-rice-flour'
+    unit_size: '05KG Sack',
+    price: '1430.00',
+    description: '100% natural Sri Lankan red rice milled into fine flour. Packaged in authentic 05KG green woven sack. MRP LKR 1,430.00.',
+    image_url: redRice5kgImg,
+    slug: 'red-rice-flour-5kg'
   },
   {
     id: 2,
+    name: 'Red Rice Flour 10KG Sack (சிவப்பு அரிசி மா)',
+    category: 'FLOUR',
+    unit_size: '10KG Sack',
+    price: '3000.00',
+    description: 'Heavy-duty 10KG blue woven sack of pure Red Rice Flour. Perfect for family gatherings and restaurant kitchens. MRP LKR 3,000.00.',
+    image_url: redRice10kgImg,
+    slug: 'red-rice-flour-10kg'
+  },
+  {
+    id: 3,
+    name: 'Red Rice Flour 25KG Sack (சிவப்பு அரிசி மா)',
+    category: 'FLOUR',
+    unit_size: '25KG Commercial Sack',
+    price: '7250.00',
+    description: 'Wholesale commercial 25KG red woven sack for industrial food production, commercial caterers, and wholesale distributors.',
+    image_url: redRice25kgImg,
+    slug: 'red-rice-flour-25kg'
+  },
+  {
+    id: 4,
+    name: 'Red Rice Flour 02KG Pack (சிவப்பு அரிசி மா)',
+    category: 'FLOUR',
+    unit_size: '2KG Pack',
+    price: '800.00',
+    description: 'Sealed 2KG transparent retail package of 100% natural Red Rice Flour for everyday household cooking. MRP LKR 800.00.',
+    image_url: redRice2kgImg,
+    slug: 'red-rice-flour-2kg'
+  },
+  {
+    id: 5,
+    name: 'Roasted Chilli Powder 50g+5g (வறுத்த மிளகாய்த்தூள்)',
+    category: 'SPICE',
+    unit_size: '50g + 5g Free',
+    price: '140.00',
+    description: 'Authentic slow-roasted sun-dried red chilli powder with 5g bonus weight. Deep color and rich spicy aroma.',
+    image_url: roastedChilli50gImg,
+    slug: 'roasted-chilli-powder-50g'
+  },
+  {
+    id: 6,
     name: 'Pure Gingelly Oil (நல்லெண்ணெய்)',
     category: 'OIL',
     unit_size: '750ml Bottle',
+    price: '950.00',
     description: 'Cold-pressed authentic gingelly oil milled from premium sesame seeds. Rich aroma, high smoke point, and traditional flavor.',
     image_url: hero3dImg,
     slug: 'gingelly-oil'
   },
   {
-    id: 3,
-    name: 'Roasted Chilli Powder (வறுத்த மிளகாய்த்தூள்)',
-    category: 'SPICE',
-    unit_size: '500g Pack',
-    description: 'Slow-roasted sun-dried red chillies expertly ground for deep color, fiery aroma, and rich traditional curries.',
-    image_url: hero3dImg,
-    slug: 'roasted-chilli-powder'
-  },
-  {
-    id: 4,
-    name: 'Jaffna Mixture (மிக்ஸர்)',
+    id: 7,
+    name: 'Jaffna Mixture (யாழ்ப்பாண மிக்சர்)',
     category: 'MIXTURE',
     unit_size: '400g Pack',
+    price: '380.00',
     description: 'Crispy savory snacks spiced with roasted curry leaves, peanuts, fried chickpeas, and authentic Jaffna spices.',
     image_url: hero3dImg,
     slug: 'jaffna-mixture'
