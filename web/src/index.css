@@ -274,16 +274,16 @@ button {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  background: linear-gradient(135deg, #0F4A24 0%, #0F4A24 100%);
+  background: linear-gradient(135deg, #E53935 0%, #C62828 100%);
   color: #FFFFFF;
   font-weight: 800;
   font-size: 0.95rem;
   letter-spacing: 0.8px;
   padding: 14px 32px;
   border-radius: 9999px;
-  border: 1px solid #0F4A24;
+  border: 1px solid #B71C1C;
   transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  box-shadow: 0 10px 25px -5px rgba(211, 47, 47, 0.4), 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 25px -5px rgba(229, 57, 53, 0.5), 0 4px 10px rgba(0, 0, 0, 0.15);
   text-transform: uppercase;
   white-space: nowrap;
   text-decoration: none;
@@ -667,4 +667,33 @@ svg {
     width: 20px !important;
     height: 20px !important;
   }
+}
+
+/* Custom Order Now Button Class */
+.order-now-btn {
+  background: #15803d;
+  color: #ffffff;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(21, 128, 61, 0.25);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.order-now-btn:hover {
+  background: #166534;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(21, 128, 61, 0.35);
+}
+
+.order-now-btn:active {
+  transform: translateY(0);
 }

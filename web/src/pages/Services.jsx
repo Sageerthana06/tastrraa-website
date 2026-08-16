@@ -136,7 +136,7 @@ const Services = () => {
               Contact TASTRAA (PVT) LTD to discuss supply coordination, wholesale orders, or startup partnerships.
             </p>
             <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }}>
-              <Link to="/contact" className="btn-green-3d" style={{ backgroundColor: '#FFFFFF', color: '#0F4A24' }}>
+              <Link to="/contact" className="btn-green-3d" style={{ backgroundColor: '#FFFFFF', color: '#ead40cff' }}>
                 <span>CONTACT US</span>
                 <ArrowRight size={18} />
               </Link>

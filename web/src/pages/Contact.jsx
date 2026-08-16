@@ -101,7 +101,7 @@ const Contact = () => {
                     <div>
                       <strong style={{ display: 'block', color: '#0F4A24', fontSize: '0.95rem' }}>Phone Numbers:</strong>
                       <span style={{ color: '#475569', fontSize: '0.95rem', fontWeight: '600' }}>
-                        076 4400816 / 077 978 9223 / 075 4400318
+                        076 4400816 / 077 978 9223
                       </span>
                     </div>
                   </div>
@@ -166,9 +166,9 @@ const Contact = () => {
                 <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
                   <div>
                     <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: '800', color: '#0F4A24', marginBottom: '6px' }}>Full Name *</label>
-                    <input 
-                      type="text" 
-                      required 
+                    <input
+                      type="text"
+                      required
                       value={formState.name}
                       onChange={(e) => setFormState({ ...formState, name: e.target.value })}
                       placeholder="e.g. K. Vimalan"
@@ -178,8 +178,8 @@ const Contact = () => {
 
                   <div>
                     <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: '800', color: '#0F4A24', marginBottom: '6px' }}>Email Address *</label>
-                    <input 
-                      type="email" 
+                    <input
+                      type="email"
                       required
                       value={formState.email}
                       onChange={(e) => setFormState({ ...formState, email: e.target.value })}
@@ -190,9 +190,9 @@ const Contact = () => {
 
                   <div>
                     <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: '800', color: '#0F4A24', marginBottom: '6px' }}>Phone Number *</label>
-                    <input 
-                      type="tel" 
-                      required 
+                    <input
+                      type="tel"
+                      required
                       value={formState.phone}
                       onChange={(e) => setFormState({ ...formState, phone: e.target.value })}
                       placeholder="e.g. 0771234567"
@@ -202,9 +202,9 @@ const Contact = () => {
 
                   <div>
                     <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: '800', color: '#0F4A24', marginBottom: '6px' }}>Subject *</label>
-                    <input 
-                      type="text" 
-                      required 
+                    <input
+                      type="text"
+                      required
                       value={formState.subject}
                       onChange={(e) => setFormState({ ...formState, subject: e.target.value })}
                       placeholder="e.g. Product Wholesale Enquiry"
@@ -214,8 +214,8 @@ const Contact = () => {
 
                   <div>
                     <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: '800', color: '#0F4A24', marginBottom: '6px' }}>Message *</label>
-                    <textarea 
-                      required 
+                    <textarea
+                      required
                       rows={4}
                       value={formState.message}
                       onChange={(e) => setFormState({ ...formState, message: e.target.value })}

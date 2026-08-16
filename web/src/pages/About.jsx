@@ -28,7 +28,7 @@ const About = () => {
           }}>
             <Sparkles size={16} style={{ color: '#FFD700' }} />
             <span style={{ color: '#FFD700', fontWeight: '800', fontSize: '0.825rem', letterSpacing: '1px' }}>
-              ESTABLISHED 2009 • TASTRAA (PVT) LTD
+              ESTABLISHED 2008 • TASTRAA (PVT) LTD
             </span>
           </div>
 
@@ -85,7 +85,7 @@ const About = () => {
                   lineHeight: '1.75',
                   margin: 0
                 }}>
-                  Founded in 2009, TASTRAA (PVT) LTD is a food production company focused on consistent, safe, and practical pantry staples. We operate at district level, supporting local sourcing and local employment throughout our production process. Our aim is to deliver products customers can rely on, backed by responsive customer care.
+                  Founded in 2008, TASTRAA (PVT) LTD is a food production company focused on consistent, safe, and practical pantry staples. We operate at district level, supporting local sourcing and local employment throughout our production process. Our aim is to deliver products customers can rely on, backed by responsive customer care.
                 </p>
               </div>
 
@@ -198,12 +198,12 @@ const About = () => {
               </div>
               <h2 style={{ fontSize: '2.2rem', fontWeight: '900', color: '#0F4A24', marginBottom: '20px', lineHeight: '1.2' }}>
                 Dependable Food Manufacturing <br />
-                <span style={{ color: '#B45309' }}>Established in 2009</span>
+                <span style={{ color: '#B45309' }}>Established in 2008</span>
               </h2>
-              
+
               <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', color: '#334155', fontSize: '1.025rem', lineHeight: '1.75' }}>
                 <p>
-                  <strong style={{ color: '#0F4A24' }}>TASTRAA (PVT) LTD</strong> was established in 2009 to provide dependable, locally produced food essentials for households and growing businesses. Our work centers on three core categories—<span style={{ color: '#D32F2F', fontWeight: '700' }}>rice flour production</span>, <span style={{ color: '#B45309', fontWeight: '700' }}>mixture production</span>, and <span style={{ color: '#0F4A24', fontWeight: '700' }}>gingelly oil production</span>—delivered with an emphasis on product consistency and clear handling practices.
+                  <strong style={{ color: '#0F4A24' }}>TASTRAA (PVT) LTD</strong> was established in 2008 to provide dependable, locally produced food essentials for households and growing businesses. Our work centers on three core categories—<span style={{ color: '#D32F2F', fontWeight: '700' }}>rice flour production</span>, <span style={{ color: '#B45309', fontWeight: '700' }}>mixture production</span>, and <span style={{ color: '#0F4A24', fontWeight: '700' }}>gingelly oil production</span>—delivered with an emphasis on product consistency and clear handling practices.
                 </p>
                 <p>
                   By sourcing ingredients locally and building our production team locally, we help strengthen the district supply chain while maintaining close control over freshness and availability. We value long-term relationships with customers and startups alike, supported by straightforward communication and attentive customer care.
@@ -231,7 +231,7 @@ const About = () => {
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', fontSize: '0.95rem', color: '#334155' }}>
                 <div><strong style={{ color: '#0F4A24' }}>Entity Name:</strong> TASTRAA (PVT) LTD</div>
-                <div><strong style={{ color: '#0F4A24' }}>Established:</strong> June 2009</div>
+                <div><strong style={{ color: '#0F4A24' }}>Established:</strong> June 2008</div>
                 <div><strong style={{ color: '#0F4A24' }}>Registration No:</strong> PV 00242273</div>
                 <div><strong style={{ color: '#0F4A24' }}>Factory & Office Address:</strong></div>
                 <div style={{ color: '#475569', paddingLeft: '14px', borderLeft: '3px solid #D32F2F', fontWeight: '600' }}>
@@ -527,7 +527,7 @@ const About = () => {
               <span style={{ color: '#FFD700', fontWeight: '800', fontSize: '0.85rem', letterSpacing: '1px', textTransform: 'uppercase' }}>
                 POSITIONING STATEMENT & COMPANY OVERVIEW
               </span>
-              
+
               <h3 style={{ fontSize: 'clamp(1.2rem, 3vw, 1.5rem)', fontWeight: '800', color: '#FFFFFF', marginTop: '16px', marginBottom: '24px', lineHeight: '1.6' }}>
                 "TASTRAA (PVT) LTD produces trusted rice flour, mixture, and gingelly oil using local raw materials and local expertise—made for everyday cooking needs at the district level."
               </h3>
@@ -535,7 +535,7 @@ const About = () => {
               <div style={{ height: '2px', backgroundColor: 'rgba(255, 215, 0, 0.3)', width: '120px', margin: '0 auto 24px' }}></div>
 
               <p style={{ color: '#E2E8F0', fontSize: '1.05rem', lineHeight: '1.8', margin: 0 }}>
-                Founded in 2009, TASTRAA (PVT) LTD is a food production company focused on consistent, safe, and practical pantry staples. We operate at district level, supporting local sourcing and local employment throughout our production process. Our aim is to deliver products customers can rely on, backed by responsive customer care.
+                Founded in 2008, TASTRAA (PVT) LTD is a food production company focused on consistent, safe, and practical pantry staples. We operate at district level, supporting local sourcing and local employment throughout our production process. Our aim is to deliver products customers can rely on, backed by responsive customer care.
               </p>
             </div>
           </div>

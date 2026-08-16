@@ -300,6 +300,7 @@ const AdminProducts = () => {
               <option value="Rice Flour">Rice Flour</option>
               <option value="Mixture">Mixture</option>
               <option value="Gingelly Oil">Gingelly Oil</option>
+              <option value="Spices">Spices</option>
             </select>
           </div>
         </div>
@@ -504,6 +505,7 @@ const AdminProducts = () => {
                     <option value="Rice Flour">Rice Flour</option>
                     <option value="Mixture">Mixture</option>
                     <option value="Gingelly Oil">Gingelly Oil</option>
+                    <option value="Spices">Spices</option>
                   </select>
                 </div>
 

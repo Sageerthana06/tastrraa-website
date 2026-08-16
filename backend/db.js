@@ -162,6 +162,56 @@ export const initDb = async () => {
           unit: '1 Litre',
           image_url: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=800&q=80',
           features: ['Economical Pack', 'Unrefined & Chemical-Free', 'Rich Golden Hue', 'Deep Authentic Flavor']
+        },
+        {
+          name: 'TASTRAA Pakoda Hot & Crispy (250g)',
+          slug: 'tastraa-pakoda-250g',
+          description: 'Authentic spicy & crispy Pakoda snack (பகோடா) made with gram flour, sesame, omam, garlic, curry leaves, and traditional spice blends.',
+          category: 'Mixture',
+          price: 530.00,
+          unit: '250g Pack',
+          image_url: 'https://images.unsplash.com/photo-1621996346565-e3d5d6281270?auto=format&fit=crop&w=800&q=80',
+          features: ['100% Veg', 'Hot & Crispy', 'Spicy Snack', '250g Pack', 'Traditional Recipe']
+        },
+        {
+          name: 'TASTRAA Special Curry Powder (250g)',
+          slug: 'tastraa-curry-powder-250g',
+          description: 'Traditional Sri Lankan Curry Powder (கரித்தூள்) ground from red dry chilli, coriander, fennel, cumin, turmeric, curry leaves, cinnamon, cardamom, and black pepper.',
+          category: 'Spices',
+          price: 250.00,
+          unit: '250g Pack',
+          image_url: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=80',
+          features: ['100% Pure Spices', 'Authentic Recipe', 'Rich Aroma & Flavor', 'No Preservatives']
+        },
+        {
+          name: 'TASTRAA Crispy Bites (50g)',
+          slug: 'tastraa-crispy-bites-50g',
+          description: 'Crunchy savory snack bites (பைட்ஸ்) made with wheat flour, urad dal, vegetable oil, and spicy red chilli seasoning. Net Wt: 50g.',
+          category: 'Mixture',
+          price: 50.00,
+          unit: '50g Pack',
+          image_url: 'https://images.unsplash.com/photo-1599490659213-e2b9527bd087?auto=format&fit=crop&w=800&q=80',
+          features: ['Crispy & Savory', 'Tea-time Snack', 'Spicy Seasoning', 'Pocket Friendly']
+        },
+        {
+          name: 'TASTRAA Special Curry Powder (100g)',
+          slug: 'tastraa-curry-powder-100g',
+          description: 'Convenient 100g pack of authentic Jaffna curry powder (கரித்தூள்) with premium whole spices for delicious family meals.',
+          category: 'Spices',
+          price: 100.00,
+          unit: '100g Pack',
+          image_url: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=80',
+          features: ['100g Pack', 'Authentic Jaffna Blend', '100% Natural Spices', 'Rich Curry Flavor']
+        },
+        {
+          name: 'TASTRAA Bengal Gram (மஞ்சள் கடலை)',
+          slug: 'tastraa-bengal-gram-100',
+          description: 'Authentic roasted yellow Bengal Gram (மஞ்சள் கடலை) seasoned with salt. Crisp, delicious, healthy traditional roasted snack. MRP LKR 100.00.',
+          category: 'Mixture',
+          price: 100.00,
+          unit: 'Rs 100 Pack',
+          image_url: '/assets/bengal_gram_100.jpg',
+          features: ['Roasted Yellow Gram', '100% Pure & Natural', 'Lightly Salted', 'High Protein Snack']
         }
       ];
 
@@ -193,6 +243,58 @@ const setupMemoryStore = async () => {
   memoryProducts = [
     {
       id: 1,
+      name: 'TASTRAA Pakoda Hot & Crispy (250g)',
+      slug: 'tastraa-pakoda-250g',
+      description: 'Authentic spicy & crispy Pakoda snack (பகோடா) made with gram flour, sesame, omam, garlic, curry leaves, and traditional spice blends.',
+      category: 'Mixture',
+      price: 530.00,
+      unit: '250g Pack',
+      image_url: 'https://images.unsplash.com/photo-1621996346565-e3d5d6281270?auto=format&fit=crop&w=800&q=80',
+      features: ['100% Veg', 'Hot & Crispy', 'Spicy Snack', '250g Pack', 'Traditional Recipe'],
+      is_active: true,
+      created_at: new Date()
+    },
+    {
+      id: 2,
+      name: 'TASTRAA Special Curry Powder (250g)',
+      slug: 'tastraa-curry-powder-250g',
+      description: 'Traditional Sri Lankan Curry Powder (கரித்தூள்) ground from red dry chilli, coriander, fennel, cumin, turmeric, curry leaves, cinnamon, cardamom, and black pepper.',
+      category: 'Spices',
+      price: 250.00,
+      unit: '250g Pack',
+      image_url: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=80',
+      features: ['100% Pure Spices', 'Authentic Recipe', 'Rich Aroma & Flavor', 'No Preservatives'],
+      is_active: true,
+      created_at: new Date()
+    },
+    {
+      id: 3,
+      name: 'TASTRAA Crispy Bites (50g)',
+      slug: 'tastraa-crispy-bites-50g',
+      description: 'Crunchy savory snack bites (பைட்ஸ்) made with wheat flour, urad dal, vegetable oil, and spicy red chilli seasoning. Net Wt: 50g.',
+      category: 'Mixture',
+      price: 50.00,
+      unit: '50g Pack',
+      image_url: 'https://images.unsplash.com/photo-1599490659213-e2b9527bd087?auto=format&fit=crop&w=800&q=80',
+      features: ['Crispy & Savory', 'Tea-time Snack', 'Spicy Seasoning', 'Pocket Friendly'],
+      is_active: true,
+      created_at: new Date()
+    },
+    {
+      id: 4,
+      name: 'TASTRAA Special Curry Powder (100g)',
+      slug: 'tastraa-curry-powder-100g',
+      description: 'Convenient 100g pack of authentic Jaffna curry powder (கரித்தூள்) with premium whole spices for delicious family meals.',
+      category: 'Spices',
+      price: 100.00,
+      unit: '100g Pack',
+      image_url: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=80',
+      features: ['100g Pack', 'Authentic Jaffna Blend', '100% Natural Spices', 'Rich Curry Flavor'],
+      is_active: true,
+      created_at: new Date()
+    },
+    {
+      id: 5,
       name: 'TASTRAA Premium Rice Flour (1kg)',
       slug: 'tastraa-premium-rice-flour-1kg',
       description: 'Finely ground from 100% locally sourced premium Sri Lankan rice. Ideal for String Hoppers (Idiyappam), Pittu, Dosa, and crispy Sri Lankan snacks.',
@@ -205,7 +307,7 @@ const setupMemoryStore = async () => {
       created_at: new Date()
     },
     {
-      id: 2,
+      id: 6,
       name: 'TASTRAA Traditional Jaffna Mixture (500g)',
       slug: 'tastraa-traditional-jaffna-mixture-500g',
       description: 'Authentic spicy and savory Jaffna mixture made with premium peanuts, fried gram, curry leaves, and secret family spice blends.',
@@ -218,7 +320,7 @@ const setupMemoryStore = async () => {
       created_at: new Date()
     },
     {
-      id: 3,
+      id: 7,
       name: 'TASTRAA Pure Cold-Pressed Gingelly Oil (500ml)',
       slug: 'tastraa-pure-cold-pressed-gingelly-oil-500ml',
       description: 'Pure cold-pressed sesame / gingelly oil extracted from selected sesame seeds using traditional expeller methods. Rich natural aroma and healthy.',
@@ -227,6 +329,19 @@ const setupMemoryStore = async () => {
       unit: '500ml',
       image_url: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=800&q=80',
       features: ['Cold-Pressed Extraction', '100% Pure Sesame', 'Rich Natural Aroma', 'Heart-Healthy', 'Traditional Quality'],
+      is_active: true,
+      created_at: new Date()
+    },
+    {
+      id: 8,
+      name: 'TASTRAA Bengal Gram (மஞ்சள் கடலை)',
+      slug: 'tastraa-bengal-gram-100',
+      description: 'Authentic roasted yellow Bengal Gram (மஞ்சள் கடலை) seasoned with salt. Crisp, delicious, healthy traditional roasted snack. MRP LKR 100.00.',
+      category: 'Mixture',
+      price: 100.00,
+      unit: 'Rs 100 Pack',
+      image_url: '/assets/bengal_gram_100.jpg',
+      features: ['Roasted Yellow Gram', '100% Pure & Natural', 'Lightly Salted', 'High Protein Snack'],
       is_active: true,
       created_at: new Date()
     }

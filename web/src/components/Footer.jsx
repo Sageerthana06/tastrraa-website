@@ -23,23 +23,23 @@ const Footer = () => {
           {/* Col 1: Brand Info */}
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '18px' }}>
-              <img 
-                src={logoImg} 
-                alt="TASTRAA Logo" 
+              <img
+                src={logoImg}
+                alt="TASTRAA Logo"
                 style={{
                   height: '50px',
                   backgroundColor: '#FFFFFF',
                   padding: '6px 12px',
                   borderRadius: '8px'
-                }} 
+                }}
               />
             </div>
             <p style={{ fontSize: '0.9rem', lineHeight: '1.6', marginBottom: '20px', color: '#D1D5DB' }}>
-              TASTRAA (PVT) LTD is a trusted Sri Lankan manufacturer established in June 2009. We specialize in producing premium Rice Flour, traditional Jaffna Mixture, and pure Gingelly Oil.
+              TASTRAA (PVT) LTD is a trusted Sri Lankan manufacturer established in June 2008. We specialize in producing premium Rice Flour, traditional Jaffna Mixture, and pure Gingelly Oil.
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '0.85rem', color: '#FEF3C7' }}>
               <div><strong>Registration No:</strong> PV 00242273</div>
-              <div><strong>Established:</strong> June 2009</div>
+              <div><strong>Established:</strong> June 2008</div>
             </div>
           </div>
 
