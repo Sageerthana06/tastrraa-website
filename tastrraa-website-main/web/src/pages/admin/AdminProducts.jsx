@@ -17,8 +17,155 @@ import {
 } from 'lucide-react';
 import api from '../../api';
 
+const defaultAdminProducts = [
+  {
+    id: 1,
+    name: 'TASTRAA Premium Rice Flour (1kg)',
+    slug: 'tastraa-premium-rice-flour-1kg',
+    description: 'Finely ground from 100% locally sourced premium Sri Lankan rice. Ideal for String Hoppers (Idiyappam), Pittu, Dosa, and crispy Sri Lankan snacks.',
+    category: 'Rice Flour',
+    price: 380.00,
+    unit: '1kg',
+    image_url: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=800&q=80',
+    features: ['100% Pure & Natural', 'Super Fine Texture', 'No Preservatives'],
+    is_active: true
+  },
+  {
+    id: 2,
+    name: 'TASTRAA Traditional Jaffna Mixture (500g)',
+    slug: 'tastraa-traditional-jaffna-mixture-500g',
+    description: 'Authentic spicy and savory Jaffna mixture made with premium peanuts, fried gram, curry leaves, and secret family spice blends.',
+    category: 'Mixture',
+    price: 650.00,
+    unit: '500g',
+    image_url: 'https://images.unsplash.com/photo-1599490659213-e2b9527bd087?auto=format&fit=crop&w=800&q=80',
+    features: ['Authentic Jaffna Recipe', 'Crunchy & Fresh', 'Zero Trans Fat'],
+    is_active: true
+  },
+  {
+    id: 3,
+    name: 'TASTRAA Pure Cold-Pressed Gingelly Oil (500ml)',
+    slug: 'tastraa-pure-cold-pressed-gingelly-oil-500ml',
+    description: 'Pure cold-pressed sesame / gingelly oil extracted from selected sesame seeds using traditional expeller methods.',
+    category: 'Gingelly Oil',
+    price: 1250.00,
+    unit: '500ml',
+    image_url: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=800&q=80',
+    features: ['Cold-Pressed Extraction', '100% Pure Sesame', 'Rich Natural Aroma'],
+    is_active: true
+  },
+  {
+    id: 4,
+    name: 'TASTRAA Special Rice Flour (500g)',
+    slug: 'tastraa-special-rice-flour-500g',
+    description: 'Convenient 500g pack of high-grade rice flour for everyday family cooking and baking. Silky smooth texture.',
+    category: 'Rice Flour',
+    price: 200.00,
+    unit: '500g',
+    image_url: 'https://images.unsplash.com/photo-1610555356070-d0efb6505f81?auto=format&fit=crop&w=800&q=80',
+    features: ['Easy-to-use Pack', 'Silky Smooth Grain'],
+    is_active: true
+  },
+  {
+    id: 5,
+    name: 'TASTRAA Spicy Mixture Delight (250g)',
+    slug: 'tastraa-spicy-mixture-delight-250g',
+    description: 'Extra spicy Jaffna mixture for snack lovers. Packed with roasted cashews, fried lentils, and aromatic herbs.',
+    category: 'Mixture',
+    price: 350.00,
+    unit: '250g',
+    image_url: 'https://images.unsplash.com/photo-1621996346565-e3d5d6281270?auto=format&fit=crop&w=800&q=80',
+    features: ['Extra Crunchy', 'Spicy Chili Blast'],
+    is_active: true
+  },
+  {
+    id: 6,
+    name: 'TASTRAA Pure Gingelly Oil (1 Litre)',
+    slug: 'tastraa-pure-cold-pressed-gingelly-oil-1l',
+    description: 'Bulk 1L bottle of 100% pure cold-pressed Gingelly Oil for commercial kitchens, catering, and food enthusiasts.',
+    category: 'Gingelly Oil',
+    price: 2400.00,
+    unit: '1 Litre',
+    image_url: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=800&q=80',
+    features: ['Economical Pack', 'Unrefined & Chemical-Free'],
+    is_active: true
+  },
+  {
+    id: 7,
+    name: 'TASTRAA Pakoda Hot & Crispy (250g)',
+    slug: 'tastraa-pakoda-250g',
+    description: 'Authentic spicy & crispy Pakoda snack (பகோடா) made with gram flour, sesame, omam, garlic, curry leaves, and traditional spice blends.',
+    category: 'Mixture',
+    price: 530.00,
+    unit: '250g Pack',
+    image_url: 'https://images.unsplash.com/photo-1621996346565-e3d5d6281270?auto=format&fit=crop&w=800&q=80',
+    features: ['100% Veg', 'Hot & Crispy'],
+    is_active: true
+  },
+  {
+    id: 8,
+    name: 'TASTRAA Special Curry Powder (250g)',
+    slug: 'tastraa-curry-powder-250g',
+    description: 'Traditional Sri Lankan Curry Powder (கரித்தூள்) ground from red dry chilli, coriander, fennel, cumin, turmeric, curry leaves, cinnamon, cardamom, and black pepper.',
+    category: 'Spices',
+    price: 250.00,
+    unit: '250g Pack',
+    image_url: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=80',
+    features: ['100% Pure Spices', 'Authentic Recipe'],
+    is_active: true
+  },
+  {
+    id: 9,
+    name: 'TASTRAA Bengal Gram (மஞ்சள் கடலை)',
+    slug: 'tastraa-bengal-gram-100',
+    description: 'Authentic roasted yellow Bengal Gram (மஞ்சள் கடலை) seasoned with salt. Crisp, delicious, healthy traditional roasted snack.',
+    category: 'Mixture',
+    price: 500.00,
+    unit: 'Rs 500 Pack',
+    image_url: '/assets/bengal_gram_yellow.jpg',
+    features: ['Roasted Yellow Gram', '100% Pure & Natural'],
+    is_active: true
+  },
+  {
+    id: 10,
+    name: 'TASTRAA Plate Dumplings (தட்டு வடை)',
+    slug: 'tastraa-plate-dumplings-100',
+    description: 'Authentic traditional crunchy Plate Dumplings (தட்டு வடை) made from dhal, vegetable oil, salt, and spicy red chilli powder.',
+    category: 'Mixture',
+    price: 100.00,
+    unit: 'Rs 100 Pack',
+    image_url: '/assets/plate_dumplings.jpg',
+    features: ['Authentic Plate Dumplings', 'Crispy Tea-time Snack'],
+    is_active: true
+  },
+  {
+    id: 11,
+    name: 'TASTRAA Bites (பைட்ஸ்)',
+    slug: 'tastraa-bites-50',
+    description: 'Crunchy savory snack Bites (பைட்ஸ்) made with wheat flour, urad dal, vegetable oil, and spicy red chilli seasoning.',
+    category: 'Mixture',
+    price: 50.00,
+    unit: 'Rs 50 Pack',
+    image_url: '/assets/bites_pack.jpg',
+    features: ['Crispy Savory Bites', 'Rs 50 Pocket Pack'],
+    is_active: true
+  },
+  {
+    id: 12,
+    name: 'TASTRAA Masala Murukku (மசாலா முறுக்கு)',
+    slug: 'tastraa-masala-murukku-50',
+    description: 'Authentic spicy & crispy Masala Murukku (மசாலா முறுக்கு) made with rice flour, urad flour, gram flour, curry leaves, and traditional spices.',
+    category: 'Mixture',
+    price: 50.00,
+    unit: 'Rs 50 Pack',
+    image_url: '/assets/masala_murukku.jpg',
+    features: ['Authentic Masala Murukku', '100% Veg Snack'],
+    is_active: true
+  }
+];
+
 const AdminProducts = () => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState(defaultAdminProducts);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('All');
@@ -61,8 +208,10 @@ const AdminProducts = () => {
     setError('');
     try {
       const response = await api.get('/products?includeInactive=true');
-      if (response.data?.success) {
+      if (response.data?.success && Array.isArray(response.data.products) && response.data.products.length > 0) {
         setProducts(response.data.products);
+      } else {
+        setProducts(defaultAdminProducts);
       }
     } catch (err) {
       console.error('Fetch products error:', err);
@@ -70,7 +219,7 @@ const AdminProducts = () => {
         localStorage.removeItem('tastraa_admin_token');
         navigate('/admin/login');
       } else {
-        setError('Failed to fetch products from backend server.');
+        setProducts(defaultAdminProducts);
       }
     } finally {
       setLoading(false);
@@ -121,10 +270,14 @@ const AdminProducts = () => {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
       if (res.data?.success) {
-        const baseUrl = import.meta.env.VITE_API_URL 
-          ? import.meta.env.VITE_API_URL.replace(/\/api\/?$/, '') 
-          : 'http://localhost:5001';
-        setFormData((prev) => ({ ...prev, image_url: `${baseUrl}${res.data.imageUrl}` }));
+        const rawUrl = res.data.imageUrl;
+        if (rawUrl.startsWith('http://') || rawUrl.startsWith('https://')) {
+          setFormData((prev) => ({ ...prev, image_url: rawUrl }));
+        } else {
+          const rawApiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5001/api';
+          const baseUrl = rawApiUrl.trim().replace(/\/api\/?$/, '').replace(/\/$/, '');
+          setFormData((prev) => ({ ...prev, image_url: `${baseUrl}${rawUrl}` }));
+        }
       }
     } catch (err) {
       console.error('Image upload failed:', err);
