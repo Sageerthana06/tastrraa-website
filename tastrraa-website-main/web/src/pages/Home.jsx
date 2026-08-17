@@ -36,12 +36,21 @@ import redRice10kgImg from '../assets/red_rice_flour_10kg.jpg';
 import redRice25kgImg from '../assets/red_rice_flour_25kg.png';
 import redRice2kgImg from '../assets/red_rice_flour_2kg.jpg';
 import roastedChilli50gImg from '../assets/roasted_chilli_powder_50g.jpg';
+import bengalGram100Img from '../assets/bengal_gram_100.jpg';
+import gingellyOil750mlImg from '../assets/gingelly_oil_750ml.jpg';
+import bengalGramPackImg from '../assets/bengal_gram_pack.jpg';
+import redRawRice25kgImg from '../assets/red_raw_rice_25kg.jpg';
+import plateDumplingsImg from '../assets/plate_dumplings.jpg';
+import bitesPackImg from '../assets/bites_pack.jpg';
+import bengalGramYellowImg from '../assets/bengal_gram_yellow.jpg';
+import masalaMurukkuImg from '../assets/masala_murukku.jpg';
 
 const Home = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState('ALL');
   const [selected3DProduct, setSelected3DProduct] = useState(null);
+  const [modalQuantity, setModalQuantity] = useState(1);
 
   // Interactive 3D Hero Mode: 'PHOTO' or 'STAGE_3D'
   const [heroViewMode, setHeroViewMode] = useState('PHOTO');
@@ -60,8 +69,20 @@ const Home = () => {
     const fetchProducts = async () => {
       try {
         const response = await api.get('/products');
-        if (response.data?.success && response.data.products.length > 0) {
-          setProducts(response.data.products);
+        if (response.data?.success && Array.isArray(response.data.products) && response.data.products.length > 0) {
+          const apiProducts = response.data.products;
+          const combined = [...apiProducts];
+          defaultProducts.forEach((defItem) => {
+            const exists = combined.some((p) =>
+              (p.id && defItem.id && p.id === defItem.id) ||
+              (p.slug && defItem.slug && p.slug === defItem.slug) ||
+              (p.name && defItem.name && p.name.toLowerCase() === defItem.name.toLowerCase())
+            );
+            if (!exists) {
+              combined.push(defItem);
+            }
+          });
+          setProducts(combined);
         } else {
           setProducts(defaultProducts);
         }
@@ -126,7 +147,7 @@ const Home = () => {
     },
     {
       title: "Red Rice Flour 10KG (சிவப்பு அரிசி மா)",
-      sub: "Heavy-Duty Blue Sack for Large Families",
+      sub: "Heavy-Duty Blue  for Large Families",
       desc: "10KG bulk packaging of pure Sri Lankan Red Rice Flour milled under strict hygiene standards. Value pack for high volume cooking.",
       badge: "🌾 Premium 10KG Family Saver Pack",
       spiciness: 0,
@@ -160,7 +181,7 @@ const Home = () => {
     <div style={{ overflowX: 'hidden', backgroundColor: '#FAF9F5' }}>
 
       {/* ============================================================ */}
-      {/* 1. 3D IMMERSIVE HERO SECTION WITH PARALLAX & TILT           */}
+      {/* 1. 3D IMMERSIVE FULL-COVER HERO SECTION WITH PARALLAX & TILT */}
       {/* ============================================================ */}
       <section
         ref={heroRef}
@@ -200,14 +221,7 @@ const Home = () => {
           transform: `translate3d(${mousePos.x * 25}px, ${mousePos.y * 25}px, 0)`
         }} />
 
-
-
-
-
         <div className="container" style={{ position: 'relative', zIndex: 5 }}>
-
-
-
           <div className="hero-3d-grid" style={{
             display: 'grid',
             gridTemplateColumns: '1.1fr 1fr',
@@ -240,17 +254,7 @@ const Home = () => {
               </div>
 
               {/* Dynamic Headline */}
-              <h1 style={{
-                fontSize: 'clamp(2.6rem, 5.5vw, 4.4rem)',
-                fontWeight: '900',
-                lineHeight: '1.08',
-                fontFamily: "'Poppins', sans-serif",
-                marginBottom: '18px',
-                letterSpacing: '-1px',
-                textTransform: 'uppercase'
-              }}>
-                <>
-                  <style>{`
+              <style>{`
     @keyframes pureReveal {
       0% {
         opacity: 0;
@@ -288,14 +292,13 @@ const Home = () => {
       padding: 0 !important;
       display: flex;
       flex-direction: column;
-      /* controls the vertical gap between the two lines */
       gap: clamp(4px, 1.5vw, 12px);
     }
 
     .hero-heading-line {
       display: block;
       font-family: Georgia, 'Times New Roman', serif;
-      font-size: clamp(1.5rem, 2.8vw, 2.4rem);
+      font-size: clamp(2.5rem, 4.8vw, 4.4rem);
       font-weight: 900;
       letter-spacing: 0.035em;
       line-height: 0.95;
@@ -316,7 +319,6 @@ const Home = () => {
         0 3px 10px rgba(25, 149, 4, 0.15);
     }
 
-    /* PURE TRADITION */
     .pure-line {
       opacity: 0;
       animation:
@@ -324,7 +326,6 @@ const Home = () => {
         gradientMove 4s ease-in-out 0.9s infinite;
     }
 
-    /* PERFECT TASTE */
     .taste-line {
       opacity: 0;
       animation:
@@ -332,32 +333,30 @@ const Home = () => {
         gradientMove 4s ease-in-out 1.5s infinite;
     }
 
-    /* Mobile */
     @media (max-width: 768px) {
       .hero-heading-line {
-        font-size: clamp(1.35rem, 6vw, 2rem);
+        font-size: clamp(1.8rem, 6vw, 2.5rem);
         letter-spacing: 0.025em;
       }
     }
   `}</style>
-                  <h1 className="hero-heading">
-                    <span className="hero-heading-line pure-line">
-                      PURE TRADITION.
-                    </span>
-                    <span className="hero-heading-line taste-line">
-                      PERFECT TASTE.
-                    </span>
-                  </h1>
-                </>
+              <h1 className="hero-heading" style={{ marginBottom: '18px' }}>
+                <span className="hero-heading-line pure-line">
+                  PURE TRADITION.
+                </span>
+                <span className="hero-heading-line taste-line">
+                  PERFECT TASTE.
+                </span>
               </h1>
 
               {/* Subheading text */}
               <p style={{
+                fontFamily: "'Montserrat', sans-serif",
                 fontSize: 'clamp(1.05rem, 2vw, 1.25rem)',
                 lineHeight: '1.6',
                 color: '#1E293B',
                 marginBottom: '32px',
-                fontWeight: '600',
+                fontWeight: '700',
                 maxWidth: '560px'
               }}>
                 TASTRAA (PVT) LTD produces trusted food essentials with a focus on consistency, local sourcing, practical production and responsive customer care.
@@ -454,7 +453,24 @@ const Home = () => {
 
               {/* Action Buttons */}
               <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
-                <Link to="/products" className="btn-red-3d" style={{ padding: '14px 30px', fontSize: '0.95rem' }}>
+                <Link
+                  to="/products"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '10px',
+                    backgroundColor: '#0F4A24',
+                    color: '#FFFFFF',
+                    padding: '14px 28px',
+                    borderRadius: '9999px',
+                    fontWeight: '800',
+                    fontSize: '0.9rem',
+                    letterSpacing: '0.5px',
+                    boxShadow: '0 4px 15px rgba(15, 74, 36, 0.3)',
+                    textDecoration: 'none',
+                    transition: 'all 0.3s ease'
+                  }}
+                >
                   <span>SHOP PRODUCTS</span>
                   <ArrowRight size={18} />
                 </Link>
@@ -482,7 +498,7 @@ const Home = () => {
               </div>
             </motion.div>
 
-            {/* RIGHT COLUMN: 3D Animated Interactive Stage / Unedited Photo Frame */}
+            {/* RIGHT COLUMN: 3D Animated Showcase Photo Frame */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -497,201 +513,48 @@ const Home = () => {
                 transition: 'transform 0.1s ease-out'
               }}
             >
-              {heroViewMode === 'PHOTO' ? (
-                /* MODE A: Clean Showcase of User's Exact Original Photo with 3D Tilt Glow */
-                <div
-                  style={{
-                    position: 'relative',
-                    width: '100%',
-                    maxWidth: '580px',
-                    borderRadius: '28px',
-                    overflow: 'hidden',
-                    boxShadow: '0 25px 60px -10px rgba(211, 47, 47, 0.25), 0 10px 30px rgba(245, 158, 11, 0.25)',
-                    backgroundColor: '#FFFFFF',
-                    border: '4px solid #FFFFFF'
-                  }}
-                >
-                  <img
-                    src={hero3dImg}
-                    alt="TASTRAA Original Product Lineup - Red Rice Flour, Gingelly Oil, Roasted Chilli Powder, Mixture"
-                    style={{
-                      width: '100%',
-                      height: 'auto',
-                      display: 'block',
-                      objectFit: 'cover'
-                    }}
-                  />
-                  {/* GMP Certified Badge Overlay in Corner */}
-                  <div style={{
-                    position: 'absolute',
-                    top: '12px',
-                    right: '12px',
-                    zIndex: 10,
-                    filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.35))'
-                  }}>
-                    <img
-                      src={gmpCertifiedImg}
-                      alt="GMP Certified Practice"
-                      style={{
-                        width: '85px',
-                        height: 'auto',
-                        objectFit: 'contain',
-                        display: 'block'
-                      }}
-                    />
-                  </div>
-                </div>
-              ) : (
-                /* MODE B: 3D Interactive Carousel Showcase Stage */
-                <div className="stage-box-card" style={{
+              <div
+                style={{
+                  position: 'relative',
                   width: '100%',
                   maxWidth: '580px',
-                  backgroundColor: '#FFFFFF',
                   borderRadius: '28px',
-                  padding: '30px',
-                  boxShadow: '0 25px 60px -10px rgba(15, 74, 36, 0.3)',
-                  border: '2px solid #E8F5E9',
-                  position: 'relative',
-                  overflow: 'hidden'
+                  overflow: 'hidden',
+                  boxShadow: '0 25px 60px -10px rgba(211, 47, 47, 0.25), 0 10px 30px rgba(245, 158, 11, 0.25)',
+                  backgroundColor: '#FFFFFF',
+                  border: '4px solid #FFFFFF'
+                }}
+              >
+                <img
+                  src={hero3dImg}
+                  alt="TASTRAA Original Product Lineup - Red Rice Flour, Gingelly Oil, Roasted Chilli Powder, Mixture"
+                  style={{
+                    width: '100%',
+                    height: 'auto',
+                    display: 'block',
+                    objectFit: 'cover'
+                  }}
+                />
+                {/* GMP Certified Badge Overlay in Corner */}
+                <div style={{
+                  position: 'absolute',
+                  top: '12px',
+                  right: '12px',
+                  zIndex: 10,
+                  filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.35))'
                 }}>
-                  {/* Glowing Stage Aura */}
-                  <div style={{
-                    position: 'absolute',
-                    top: '-50px',
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                    width: '300px',
-                    height: '300px',
-                    background: 'radial-gradient(circle, rgba(129, 199, 132, 0.4) 0%, rgba(255,255,255,0) 70%)',
-                    pointerEvents: 'none'
-                  }} />
-
-                  {/* Stage Header Controls */}
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-                    <span style={{ fontSize: '0.75rem', fontWeight: '800', color: '#0F4A24', textTransform: 'uppercase', letterSpacing: '1px' }}>
-                      ✨ 3D PRODUCT ROTATOR STAGE
-                    </span>
-
-                    <div style={{ display: 'flex', gap: '6px' }}>
-                      {stageShowcaseItems.map((_, idx) => (
-                        <button
-                          key={idx}
-                          onClick={() => setActiveStageIndex(idx)}
-                          style={{
-                            width: idx === activeStageIndex ? '24px' : '10px',
-                            height: '10px',
-                            borderRadius: '9999px',
-                            backgroundColor: idx === activeStageIndex ? '#0F4A24' : '#CBD5E1',
-                            border: 'none',
-                            cursor: 'pointer',
-                            transition: 'all 0.3s ease'
-                          }}
-                        />
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Main Product Stage Photo & Rotation simulation */}
-                  <div style={{
-                    height: '240px',
-                    backgroundColor: '#EBF5EE',
-                    borderRadius: '20px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    position: 'relative',
-                    overflow: 'hidden',
-                    marginBottom: '20px',
-                    border: '1px solid #C8E6C9'
-                  }}>
-                    <img
-                      src={hero3dImg}
-                      alt={currentStageItem.title}
-                      style={{
-                        maxHeight: '85%',
-                        maxWidth: '85%',
-                        objectFit: 'contain',
-                        filter: 'drop-shadow(0 15px 25px rgba(15, 74, 36, 0.25))',
-                        transform: `rotateY(${rotationDeg}deg)`,
-                        transition: 'transform 0.4s ease'
-                      }}
-                    />
-
-                    {/* Rotation trigger badge */}
-                    <button
-                      onClick={() => setRotationDeg(prev => prev + 90)}
-                      style={{
-                        position: 'absolute',
-                        bottom: '12px',
-                        right: '12px',
-                        backgroundColor: '#FFFFFF',
-                        border: '1px solid #A5D6A7',
-                        color: '#0F4A24',
-                        padding: '6px 14px',
-                        borderRadius: '9999px',
-                        fontWeight: '800',
-                        fontSize: '0.75rem',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '6px',
-                        cursor: 'pointer',
-                        boxShadow: '0 4px 12px rgba(0,0,0,0.08)'
-                      }}
-                    >
-                      <RotateCw size={13} />
-                      <span>ROTATE 3D</span>
-                    </button>
-                  </div>
-
-                  {/* Product Details on Stage */}
-                  <div>
-                    <span style={{
-                      backgroundColor: '#FEF3C7',
-                      color: '#B45309',
-                      padding: '4px 12px',
-                      borderRadius: '9999px',
-                      fontWeight: '800',
-                      fontSize: '0.75rem',
-                      display: 'inline-block',
-                      marginBottom: '8px'
-                    }}>
-                      {currentStageItem.badge}
-                    </span>
-
-                    <h3 style={{ fontSize: '1.3rem', fontWeight: '900', color: '#0F4A24', marginBottom: '6px' }}>
-                      {currentStageItem.title}
-                    </h3>
-
-                    <p style={{ fontSize: '0.875rem', color: '#475569', lineHeight: '1.5', marginBottom: '16px' }}>
-                      {currentStageItem.desc}
-                    </p>
-
-                    {/* Metrics Bar */}
-                    <div style={{
-                      display: 'grid',
-                      gridTemplateColumns: 'repeat(3, 1fr)',
-                      gap: '10px',
-                      backgroundColor: '#F8FAFC',
-                      padding: '12px',
-                      borderRadius: '16px',
-                      border: '1px solid #E2E8F0'
-                    }}>
-                      <div style={{ textAlign: 'center' }}>
-                        <span style={{ fontSize: '0.7rem', color: '#64748B', fontWeight: '700', display: 'block' }}>AROMA</span>
-                        <span style={{ fontSize: '0.95rem', fontWeight: '900', color: '#0F4A24' }}>{currentStageItem.aroma}%</span>
-                      </div>
-                      <div style={{ textAlign: 'center', borderLeft: '1px solid #E2E8F0', borderRight: '1px solid #E2E8F0' }}>
-                        <span style={{ fontSize: '0.7rem', color: '#64748B', fontWeight: '700', display: 'block' }}>PURITY</span>
-                        <span style={{ fontSize: '0.95rem', fontWeight: '900', color: '#0F4A24' }}>{currentStageItem.purity}%</span>
-                      </div>
-                      <div style={{ textAlign: 'center' }}>
-                        <span style={{ fontSize: '0.7rem', color: '#64748B', fontWeight: '700', display: 'block' }}>RECIPE</span>
-                        <span style={{ fontSize: '0.75rem', fontWeight: '800', color: '#B45309' }}>{currentStageItem.recipe.split(' ')[0]}</span>
-                      </div>
-                    </div>
-                  </div>
+                  <img
+                    src={gmpCertifiedImg}
+                    alt="GMP Certified Practice"
+                    style={{
+                      width: '85px',
+                      height: 'auto',
+                      objectFit: 'contain',
+                      display: 'block'
+                    }}
+                  />
                 </div>
-              )}
+              </div>
             </motion.div>
           </div>
         </div>
@@ -824,7 +687,7 @@ const Home = () => {
             }}>
               Authentic Local Food Essentials
             </h2>
-            <p style={{ color: '#64748B', fontSize: '0.999rem', marginTop: '10px' }}>
+            <p style={{ color: '#64748B', fontSize: '0.975rem', marginTop: '10px' }}>
               Crafted in Jaffna with pure traditional methods, zero artificial additives, and utmost ISO quality hygiene standards.
             </p>
 
@@ -866,57 +729,74 @@ const Home = () => {
             gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
             gap: '30px'
           }}>
-            {filteredProducts.map((prod) => (
-              <motion.div
-                key={prod.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -8, scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-                style={{
-                  backgroundColor: '#FFFFFF',
-                  borderRadius: '24px',
-                  border: '1px solid #E2E8F0',
-                  overflow: 'hidden',
-                  boxShadow: '0 12px 30px rgba(0,0,0,0.06)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  position: 'relative'
-                }}
-              >
-                {/* 3D Category Tag */}
-                <div style={{
-                  position: 'absolute',
-                  top: '14px',
-                  left: '14px',
-                  zIndex: 2,
-                  backgroundColor: '#0F4A24',
-                  color: '#FFFFFF',
-                  padding: '4px 12px',
-                  borderRadius: '9999px',
-                  fontWeight: '800',
-                  fontSize: '0.7rem',
-                  letterSpacing: '0.5px'
-                }}>
-                  {prod.category}
-                </div>
+            {filteredProducts.map((prod) => {
+              const getProductImage = (p) => {
+                if (!p) return hero3dImg;
+                const url = p.image_url || '';
+                if (url === '/assets/gingelly_oil_750ml.jpg' || p.slug === 'gingelly-oil') return gingellyOil750mlImg;
+                if (url === '/assets/gingelly_oil_375ml.jpg' || p.slug === 'gingelly-oil-375ml') return gingellyOil375mlImg;
+                if (url === '/assets/bengal_gram_pack.jpg' || url === '/assets/bengal_gram_100.jpg' || p.slug === 'tastraa-bengal-gram-100') return bengalGramPackImg;
+                if (url === '/assets/red_raw_rice_25kg.jpg' || p.slug === 'red-raw-rice-25kg') return redRawRice25kgImg;
+                if (url === '/assets/red_rice_flour_5kg.jpg' || p.slug === 'red-rice-flour-5kg') return redRice5kgImg;
+                if (url === '/assets/red_rice_flour_10kg.jpg' || p.slug === 'red-rice-flour-10kg') return redRice10kgImg;
+                if (url === '/assets/red_rice_flour_25kg.png' || p.slug === 'red-rice-flour-25kg') return redRice25kgImg;
+                if (url === '/assets/red_rice_flour_2kg.jpg' || p.slug === 'red-rice-flour-2kg') return redRice2kgImg;
+                if (url === '/assets/roasted_chilli_powder_50g.jpg' || p.slug === 'roasted-chilli-powder-50g') return roastedChilli50gImg;
+                if (typeof url === 'string' && (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:'))) return url;
+                return p.image_url || hero3dImg;
+              };
 
-                {/* Product Image Stage */}
-                <div style={{
-                  height: '230px',
-                  backgroundColor: '#F8FAFC',
-                  position: 'relative',
-                  overflow: 'hidden',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  padding: '20px'
-                }}>
-                  <img
-                    src={prod.image_url || hero3dImg}
-                    alt={prod.name}
+              return (
+                <motion.div
+                  key={prod.id || prod.slug}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  transition={{ duration: 0.3 }}
+                  style={{
+                    backgroundColor: '#FFFFFF',
+                    borderRadius: '24px',
+                    border: '1px solid #E2E8F0',
+                    overflow: 'hidden',
+                    boxShadow: '0 12px 30px rgba(0,0,0,0.06)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                    position: 'relative'
+                  }}
+                >
+                  {/* 3D Category Tag */}
+                  <div style={{
+                    position: 'absolute',
+                    top: '14px',
+                    left: '14px',
+                    zIndex: 2,
+                    backgroundColor: '#0F4A24',
+                    color: '#FFFFFF',
+                    padding: '4px 12px',
+                    borderRadius: '9999px',
+                    fontWeight: '800',
+                    fontSize: '0.7rem',
+                    letterSpacing: '0.5px'
+                  }}>
+                    {prod.category}
+                  </div>
+
+                  {/* Product Image Stage */}
+                  <div style={{
+                    height: '230px',
+                    backgroundColor: '#F8FAFC',
+                    position: 'relative',
+                    overflow: 'hidden',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '20px'
+                  }}>
+                    <img
+                      src={getProductImage(prod)}
+                      alt={prod.name}
                     style={{
                       maxHeight: '100%',
                       maxWidth: '100%',
@@ -983,7 +863,8 @@ const Home = () => {
                   </div>
                 </div>
               </motion.div>
-            ))}
+            );
+          })}
           </div>
         </div>
       </section>
@@ -1112,13 +993,13 @@ const Home = () => {
             {/* Right Story */}
             <div>
               <span style={{ color: '#0F4A24', fontWeight: '800', fontSize: '0.85rem', letterSpacing: '1px', textTransform: 'uppercase' }}>
-                SINCE JUNE 2009 • 15+ YEARS HERITAGE
+                SINCE JUNE 2008 • 18+ YEARS HERITAGE
               </span>
               <h2 style={{ fontSize: '2.2rem', fontWeight: '900', color: '#0F4A24', marginTop: '6px', marginBottom: '16px' }}>
-                15+ Years of Unmatched Quality & Customer Trust
+                18+ Years of Unmatched Quality & Customer Trust
               </h2>
               <p style={{ color: '#475569', fontSize: '0.95rem', lineHeight: '1.6', marginBottom: '24px' }}>
-                Established in June 2009 in Kopay, Jaffna, TASTRAA (PVT) LTD produces dependable, high-grade food products. From our signature red rice flour and gingelly oil to crunchy mixtures and roasted spices, every batch undergoes thorough quality testing.
+                Established in June 2008 in Kopay, Jaffna, TASTRAA (PVT) LTD produces dependable, high-grade food products. From our signature red rice flour and gingelly oil to crunchy mixtures and roasted spices, every batch undergoes thorough quality testing.
               </p>
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '28px' }}>
@@ -1285,25 +1166,104 @@ const Home = () => {
                       backgroundColor: '#F8FAFC',
                       padding: '12px 16px',
                       borderRadius: '12px',
-                      marginBottom: '20px',
-                      border: '1px solid #E2E8F0'
+                      marginBottom: '16px',
+                      border: '1px solid #E2E8F0',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between'
                     }}>
-                      <div style={{ fontSize: '0.75rem', color: '#64748B', fontWeight: '600' }}>Package Net Weight</div>
-                      <div style={{ fontSize: '1.1rem', fontWeight: '900', color: '#0F4A24' }}>
-                        {selected3DProduct.unit_size || 'Standard Pack'}
+                      <div>
+                        <div style={{ fontSize: '0.75rem', color: '#64748B', fontWeight: '600' }}>Package Net Weight</div>
+                        <div style={{ fontSize: '1.1rem', fontWeight: '900', color: '#0F4A24' }}>
+                          {selected3DProduct.unit_size || 'Standard Pack'}
+                        </div>
+                      </div>
+                      {selected3DProduct.price && (
+                        <div style={{ textAlign: 'right' }}>
+                          <div style={{ fontSize: '0.75rem', color: '#64748B', fontWeight: '600' }}>Price</div>
+                          <div style={{ fontSize: '1.1rem', fontWeight: '900', color: '#0F4A24' }}>
+                            LKR {parseFloat(selected3DProduct.price).toFixed(2)}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Modal Quantity Selector */}
+                    <div style={{
+                      backgroundColor: '#E8F5E9',
+                      padding: '12px 16px',
+                      borderRadius: '14px',
+                      marginBottom: '20px',
+                      border: '1px solid #A5D6A7',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between'
+                    }}>
+                      <span style={{ fontSize: '0.85rem', fontWeight: '800', color: '#0F4A24' }}>
+                        Quantity:
+                      </span>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <button
+                          type="button"
+                          onClick={() => setModalQuantity(prev => Math.max(1, prev - 1))}
+                          style={{
+                            width: '32px',
+                            height: '32px',
+                            borderRadius: '8px',
+                            border: 'none',
+                            backgroundColor: modalQuantity > 1 ? '#0F4A24' : '#C8E6C9',
+                            color: modalQuantity > 1 ? '#FFFFFF' : '#81C784',
+                            fontWeight: '900',
+                            fontSize: '1.1rem',
+                            cursor: modalQuantity > 1 ? 'pointer' : 'not-allowed',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center'
+                          }}
+                          disabled={modalQuantity <= 1}
+                        >
+                          -
+                        </button>
+                        <span style={{ minWidth: '28px', textAlign: 'center', fontWeight: '900', fontSize: '1.1rem', color: '#0F4A24' }}>
+                          {modalQuantity}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => setModalQuantity(prev => prev + 1)}
+                          style={{
+                            width: '32px',
+                            height: '32px',
+                            borderRadius: '8px',
+                            border: 'none',
+                            backgroundColor: '#0F4A24',
+                            color: '#FFFFFF',
+                            fontWeight: '900',
+                            fontSize: '1.1rem',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center'
+                          }}
+                        >
+                          +
+                        </button>
                       </div>
                     </div>
                   </div>
 
                   <a
-                    href={`https://wa.me/94779789223?text=Hi%20TASTRAA,%20I%20want%20to%20order%20${encodeURIComponent(selected3DProduct.name)}`}
+                    href={`https://wa.me/94779789223?text=${encodeURIComponent(
+                      `Hi TASTRAA, I want to order ${modalQuantity} x ${selected3DProduct.name} (${selected3DProduct.unit_size || 'Pack'}). Total Price: LKR ${(
+                        parseFloat(selected3DProduct.price || 0) * modalQuantity
+                      ).toFixed(2)}. Please confirm order.`
+                    )}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-green-3d"
                     style={{ textDecoration: 'none', justifyContent: 'center' }}
                   >
                     <Send size={16} />
-                    <span>ORDER ON WHATSAPP</span>
+                    <span>ORDER ON WHATSAPP ({modalQuantity})</span>
                   </a>
                 </div>
               </div>
@@ -1319,7 +1279,7 @@ const Home = () => {
 const defaultProducts = [
   {
     id: 1,
-    name: 'Red Rice Flour 05KG Sack (சிவப்பு அரிசி மா)',
+    name: 'Red Rice Flour 05KG  (சிவப்பு அரிசி மா)',
     category: 'FLOUR',
     unit_size: '05KG Sack',
     price: '1430.00',
@@ -1329,21 +1289,21 @@ const defaultProducts = [
   },
   {
     id: 2,
-    name: 'Red Rice Flour 10KG Sack (சிவப்பு அரிசி மா)',
+    name: 'Red Rice Flour 10KG  (சிவப்பு அரிசி மா)',
     category: 'FLOUR',
     unit_size: '10KG Sack',
     price: '3000.00',
-    description: 'Heavy-duty 10KG blue woven sack of pure Red Rice Flour. Perfect for family gatherings and restaurant kitchens. MRP LKR 3,000.00.',
+    description: 'Heavy-duty 10KG blue woven of pure Red Rice Flour. Perfect for family gatherings and restaurant kitchens. MRP LKR 3,000.00.',
     image_url: redRice10kgImg,
     slug: 'red-rice-flour-10kg'
   },
   {
     id: 3,
-    name: 'Red Rice Flour 25KG Sack (சிவப்பு அரிசி மா)',
+    name: 'Red Rice Flour 25KG  (சிவப்பு அரிசி மா)',
     category: 'FLOUR',
     unit_size: '25KG Commercial Sack',
     price: '7250.00',
-    description: 'Wholesale commercial 25KG red woven sack for industrial food production, commercial caterers, and wholesale distributors.',
+    description: 'Wholesale commercial 25KG red woven  for industrial food production, commercial caterers, and wholesale distributors.',
     image_url: redRice25kgImg,
     slug: 'red-rice-flour-25kg'
   },
@@ -1369,23 +1329,73 @@ const defaultProducts = [
   },
   {
     id: 6,
-    name: 'Pure Gingelly Oil (நல்லெண்ணெய்)',
+    name: 'Pure Gingelly Oil 750ml (நல்லெண்ணெய்)',
     category: 'OIL',
     unit_size: '750ml Bottle',
     price: '950.00',
     description: 'Cold-pressed authentic gingelly oil milled from premium sesame seeds. Rich aroma, high smoke point, and traditional flavor.',
-    image_url: hero3dImg,
+    image_url: gingellyOil750mlImg,
     slug: 'gingelly-oil'
   },
   {
     id: 7,
-    name: 'Jaffna Mixture (யாழ்ப்பாண மிக்சர்)',
+    name: 'Pure Gingelly Oil 375ml (நல்லெண்ணெய்)',
+    category: 'OIL',
+    unit_size: '375ml Bottle',
+    price: '500.00',
+    description: '100% pure cold-pressed sesame oil with authentic Jaffna aroma. Hygienic sealed bottle.',
+    image_url: gingellyOil375mlImg,
+    slug: 'gingelly-oil-375ml'
+  },
+  {
+    id: 8,
+    name: 'TASTRAA Bengal Gram (மஞ்சள் கடலை)',
     category: 'MIXTURE',
-    unit_size: '400g Pack',
-    price: '380.00',
-    description: 'Crispy savory snacks spiced with roasted curry leaves, peanuts, fried chickpeas, and authentic Jaffna spices.',
-    image_url: hero3dImg,
-    slug: 'jaffna-mixture'
+    unit_size: 'Rs 500 Pack',
+    price: '500.00',
+    description: 'Authentic roasted yellow Bengal Gram (மஞ்சள் கடலை) seasoned with salt. Crisp, delicious, healthy traditional roasted snack.',
+    image_url: bengalGramYellowImg,
+    slug: 'tastraa-bengal-gram-100'
+  },
+  {
+    id: 9,
+    name: 'Red Raw Rice 25KG Sack (சிவப்பு பச்சை அரிசி)',
+    category: 'RICE',
+    unit_size: '25KG Sack',
+    price: '7500.00',
+    description: 'Premium Quality Red Raw Rice (சிவப்பு பச்சை அரிசி) packaged in authentic 25kg yellow woven sack.',
+    image_url: redRawRice25kgImg,
+    slug: 'red-raw-rice-25kg'
+  },
+  {
+    id: 10,
+    name: 'TASTRAA Plate Dumplings (தட்டு வடை)',
+    category: 'MIXTURE',
+    unit_size: 'Rs 100 Pack',
+    price: '100.00',
+    description: 'Authentic traditional crunchy Plate Dumplings (தட்டு வடை) made from dhal, vegetable oil, salt, and spicy red chilli powder.',
+    image_url: plateDumplingsImg,
+    slug: 'tastraa-plate-dumplings-100'
+  },
+  {
+    id: 11,
+    name: 'TASTRAA Bites (பைட்ஸ்)',
+    category: 'MIXTURE',
+    unit_size: 'Rs 50 Pack',
+    price: '50.00',
+    description: 'Crunchy savory snack Bites (பைட்ஸ்) made with wheat flour, urad dal, vegetable oil, and spicy red chilli seasoning.',
+    image_url: bitesPackImg,
+    slug: 'tastraa-bites-50'
+  },
+  {
+    id: 12,
+    name: 'TASTRAA Masala Murukku (மசாலா முறுக்கு)',
+    category: 'MIXTURE',
+    unit_size: 'Rs 50 Pack',
+    price: '50.00',
+    description: 'Authentic spicy & crispy Masala Murukku (மசாலா முறுக்கு) made with rice flour, urad flour, gram flour, curry leaves, and traditional spices.',
+    image_url: masalaMurukkuImg,
+    slug: 'tastraa-masala-murukku-50'
   }
 ];
 

@@ -38,9 +38,12 @@ import redRice2kgImg from '../assets/red_rice_flour_2kg.jpg';
 import roastedChilli50gImg from '../assets/roasted_chilli_powder_50g.jpg';
 import bengalGram100Img from '../assets/bengal_gram_100.jpg';
 import gingellyOil750mlImg from '../assets/gingelly_oil_750ml.jpg';
-import gingellyOil375mlImg from '../assets/gingelly_oil_375ml.jpg';
 import bengalGramPackImg from '../assets/bengal_gram_pack.jpg';
 import redRawRice25kgImg from '../assets/red_raw_rice_25kg.jpg';
+import plateDumplingsImg from '../assets/plate_dumplings.jpg';
+import bitesPackImg from '../assets/bites_pack.jpg';
+import bengalGramYellowImg from '../assets/bengal_gram_yellow.jpg';
+import masalaMurukkuImg from '../assets/masala_murukku.jpg';
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -1351,7 +1354,7 @@ const defaultProducts = [
     unit_size: 'Rs 500 Pack',
     price: '500.00',
     description: 'Authentic roasted yellow Bengal Gram (மஞ்சள் கடலை) seasoned with salt. Crisp, delicious, healthy traditional roasted snack.',
-    image_url: bengalGramPackImg,
+    image_url: bengalGramYellowImg,
     slug: 'tastraa-bengal-gram-100'
   },
   {
@@ -1363,6 +1366,36 @@ const defaultProducts = [
     description: 'Premium Quality Red Raw Rice (சிவப்பு பச்சை அரிசி) packaged in authentic 25kg yellow woven sack.',
     image_url: redRawRice25kgImg,
     slug: 'red-raw-rice-25kg'
+  },
+  {
+    id: 10,
+    name: 'TASTRAA Plate Dumplings (தட்டு வடை)',
+    category: 'MIXTURE',
+    unit_size: 'Rs 100 Pack',
+    price: '100.00',
+    description: 'Authentic traditional crunchy Plate Dumplings (தட்டு வடை) made from dhal, vegetable oil, salt, and spicy red chilli powder.',
+    image_url: plateDumplingsImg,
+    slug: 'tastraa-plate-dumplings-100'
+  },
+  {
+    id: 11,
+    name: 'TASTRAA Bites (பைட்ஸ்)',
+    category: 'MIXTURE',
+    unit_size: 'Rs 50 Pack',
+    price: '50.00',
+    description: 'Crunchy savory snack Bites (பைட்ஸ்) made with wheat flour, urad dal, vegetable oil, and spicy red chilli seasoning.',
+    image_url: bitesPackImg,
+    slug: 'tastraa-bites-50'
+  },
+  {
+    id: 12,
+    name: 'TASTRAA Masala Murukku (மசாலா முறுக்கு)',
+    category: 'MIXTURE',
+    unit_size: 'Rs 50 Pack',
+    price: '50.00',
+    description: 'Authentic spicy & crispy Masala Murukku (மசாலா முறுக்கு) made with rice flour, urad flour, gram flour, curry leaves, and traditional spices.',
+    image_url: masalaMurukkuImg,
+    slug: 'tastraa-masala-murukku-50'
   }
 ];
 

@@ -13,6 +13,10 @@ import gingellyOil750mlImg from '../assets/gingelly_oil_750ml.jpg';
 import gingellyOil375mlImg from '../assets/gingelly_oil_375ml.jpg';
 import bengalGramPackImg from '../assets/bengal_gram_pack.jpg';
 import redRawRice25kgImg from '../assets/red_raw_rice_25kg.jpg';
+import plateDumplingsImg from '../assets/plate_dumplings.jpg';
+import bitesPackImg from '../assets/bites_pack.jpg';
+import bengalGramYellowImg from '../assets/bengal_gram_yellow.jpg';
+import masalaMurukkuImg from '../assets/masala_murukku.jpg';
 
 const fallbackDetails = {
   'red-rice-flour-5kg': {
@@ -66,7 +70,7 @@ const fallbackDetails = {
     category: 'Rice Flour',
     price: '7250.00',
     unit: '25KG Commercial Sack',
-    description: 'Wholesale commercial 25KG red woven  for industrial food production, commercial caterers, and wholesale distributors.',
+    description: 'Wholesale commercial 25KG red woven for industrial food production, commercial caterers, and wholesale distributors.',
     features: ['25KG Bulk Sack', 'Commercial Milling', 'Wholesale Pricing', 'Heavy Duty Pack'],
     image_url: redRice25kgImg
   },
@@ -125,28 +129,6 @@ const fallbackDetails = {
     features: ['50g + 5g Extra Free', 'Sun-Dried Jaffna Chillies', 'No Artificial Colors'],
     image_url: roastedChilli50gImg
   },
-  'gingelly-oil': {
-    id: 106,
-    slug: 'gingelly-oil',
-    name: 'Pure Gingelly Oil (நல்லெண்ணெய்)',
-    category: 'Gingelly Oil',
-    price: '950.00',
-    unit: '750ml Bottle',
-    description: 'Cold-pressed authentic gingelly oil milled from premium sesame seeds. Rich aroma, high smoke point, and traditional flavor for healthy home cooking.',
-    features: ['Cold-Pressed Unrefined Extraction', 'High Thermal Smoke Point', 'Rich Natural Sesame Aroma', 'Heart-Healthy Antioxidants'],
-    image_url: hero3dImg
-  },
-  '106': {
-    id: 106,
-    slug: 'gingelly-oil',
-    name: 'Pure Gingelly Oil (நல்லெண்ணெய்)',
-    category: 'Gingelly Oil',
-    price: '950.00',
-    unit: '750ml Bottle',
-    description: 'Cold-pressed authentic gingelly oil milled from premium sesame seeds. Rich aroma, high smoke point, and traditional flavor for healthy home cooking.',
-    features: ['Cold-Pressed Unrefined Extraction', 'High Thermal Smoke Point', 'Rich Natural Sesame Aroma', 'Heart-Healthy Antioxidants'],
-    image_url: hero3dImg
-  },
   'jaffna-mixture': {
     id: 105,
     slug: 'jaffna-mixture',
@@ -178,7 +160,7 @@ const fallbackDetails = {
     unit: 'Rs 500 Pack',
     description: 'Authentic roasted yellow Bengal Gram (மஞ்சள் கடலை) seasoned with salt. Crisp, delicious, healthy traditional roasted snack.',
     features: ['Roasted Yellow Gram', '100% Pure & Natural', 'Lightly Salted', 'High Protein Snack'],
-    image_url: bengalGramPackImg
+    image_url: bengalGramYellowImg
   },
   'gingelly-oil': {
     id: 106,
@@ -212,6 +194,39 @@ const fallbackDetails = {
     description: 'Premium Quality Red Raw Rice (சிவப்பு பச்சை அரிசி) packaged in authentic 25kg yellow woven sack.',
     features: ['25KG Yellow Sack', '100% Red Raw Rice', 'Premium Quality', 'Wholesale Pack'],
     image_url: redRawRice25kgImg
+  },
+  'tastraa-plate-dumplings-100': {
+    id: 115,
+    slug: 'tastraa-plate-dumplings-100',
+    name: 'TASTRAA Plate Dumplings (தட்டு வடை)',
+    category: 'Mixture',
+    price: '100.00',
+    unit: 'Rs 100 Pack',
+    description: 'Authentic traditional crunchy Plate Dumplings (தட்டு வடை) made from dhal, vegetable oil, salt, and spicy red chilli powder.',
+    features: ['Authentic Plate Dumplings', '100% Pure & Natural', 'Dhal, Oil, Salt & Chilli', 'Crispy Tea-time Snack'],
+    image_url: plateDumplingsImg
+  },
+  'tastraa-bites-50': {
+    id: 116,
+    slug: 'tastraa-bites-50',
+    name: 'TASTRAA Bites (பைட்ஸ்)',
+    category: 'Mixture',
+    price: '50.00',
+    unit: 'Rs 50 Pack',
+    description: 'Crunchy savory snack Bites (பைட்ஸ்) made with wheat flour, urad dal, vegetable oil, and spicy red chilli seasoning.',
+    features: ['Crispy Savory Bites', 'Wheat Flour & Urad Dal', 'Spicy Chilli Seasoning', 'Rs 50 Pocket Pack'],
+    image_url: bitesPackImg
+  },
+  'tastraa-masala-murukku-50': {
+    id: 117,
+    slug: 'tastraa-masala-murukku-50',
+    name: 'TASTRAA Masala Murukku (மசாலா முறுக்கு)',
+    category: 'Mixture',
+    price: '50.00',
+    unit: 'Rs 50 Pack',
+    description: 'Authentic spicy & crispy Masala Murukku (மசாலா முறுக்கு) made with rice flour, urad flour, gram flour, curry leaves, and traditional spices.',
+    features: ['Authentic Masala Murukku', 'Crispy & Crunchy', 'Curry Leaves & Spices', '100% Veg Snack'],
+    image_url: masalaMurukkuImg
   }
 };
 

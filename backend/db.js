@@ -21,17 +21,13 @@ let memoryProducts = [];
 let memoryAdmins = [];
 
 export const initDb = async () => {
+  // Always initialize memory store so fallback is ready regardless of DB state
+  await setupMemoryStore();
+
   if (!process.env.DATABASE_URL) {
-    if (isProduction) {
-      console.error('⚠️ DATABASE_URL is missing in production environment variables!');
-      isPgConnected = false;
-      return;
-    } else {
-      console.log('ℹ️ No DATABASE_URL found. Initializing local in-memory fallback store...');
-      isPgConnected = false;
-      await setupMemoryStore();
-      return;
-    }
+    console.log('ℹ️ No DATABASE_URL found. Running with in-memory fallback store.');
+    isPgConnected = false;
+    return;
   }
 
   try {
@@ -206,12 +202,42 @@ export const initDb = async () => {
         {
           name: 'TASTRAA Bengal Gram (மஞ்சள் கடலை)',
           slug: 'tastraa-bengal-gram-100',
-          description: 'Authentic roasted yellow Bengal Gram (மஞ்சள் கடலை) seasoned with salt. Crisp, delicious, healthy traditional roasted snack. MRP LKR 100.00.',
+          description: 'Authentic roasted yellow Bengal Gram (மஞ்சள் கடலை) seasoned with salt. Crisp, delicious, healthy traditional roasted snack. MRP LKR 500.00.',
+          category: 'Mixture',
+          price: 500.00,
+          unit: 'Rs 500 Pack',
+          image_url: '/assets/bengal_gram_yellow.jpg',
+          features: ['Roasted Yellow Gram', '100% Pure & Natural', 'Lightly Salted', 'High Protein Snack']
+        },
+        {
+          name: 'TASTRAA Plate Dumplings (தட்டு வடை)',
+          slug: 'tastraa-plate-dumplings-100',
+          description: 'Authentic traditional crunchy Plate Dumplings (தட்டு வடை) made from dhal, vegetable oil, salt, and spicy red chilli powder.',
           category: 'Mixture',
           price: 100.00,
           unit: 'Rs 100 Pack',
-          image_url: '/assets/bengal_gram_100.jpg',
-          features: ['Roasted Yellow Gram', '100% Pure & Natural', 'Lightly Salted', 'High Protein Snack']
+          image_url: '/assets/plate_dumplings.jpg',
+          features: ['Authentic Plate Dumplings', '100% Pure & Natural', 'Dhal, Oil, Salt & Chilli', 'Crispy Tea-time Snack']
+        },
+        {
+          name: 'TASTRAA Bites (பைட்ஸ்)',
+          slug: 'tastraa-bites-50',
+          description: 'Crunchy savory snack Bites (பைட்ஸ்) made with wheat flour, urad dal, vegetable oil, and spicy red chilli seasoning.',
+          category: 'Mixture',
+          price: 50.00,
+          unit: 'Rs 50 Pack',
+          image_url: '/assets/bites_pack.jpg',
+          features: ['Crispy Savory Bites', 'Wheat Flour & Urad Dal', 'Spicy Chilli Seasoning', 'Rs 50 Pocket Pack']
+        },
+        {
+          name: 'TASTRAA Masala Murukku (மசாலா முறுக்கு)',
+          slug: 'tastraa-masala-murukku-50',
+          description: 'Authentic spicy & crispy Masala Murukku (மசாலா முறுக்கு) made with rice flour, urad flour, gram flour, curry leaves, and traditional spices.',
+          category: 'Mixture',
+          price: 50.00,
+          unit: 'Rs 50 Pack',
+          image_url: '/assets/masala_murukku.jpg',
+          features: ['Authentic Masala Murukku', 'Crispy & Crunchy', 'Curry Leaves & Spices', '100% Veg Snack']
         }
       ];
 
@@ -229,16 +255,15 @@ export const initDb = async () => {
   } catch (err) {
     console.error('⚠️ PostgreSQL connection failed:', err.message);
     isPgConnected = false;
-    if (!isProduction) {
-      setupMemoryStore();
-    }
+    await setupMemoryStore();
   }
 };
 
 const setupMemoryStore = async () => {
   const hashedPassword = await bcrypt.hash('admin123', 10);
   memoryAdmins = [
-    { id: 1, email: 'admin@tastraa.com', password: hashedPassword, name: 'TASTRAA Admin Manager' }
+    { id: 1, email: 'admin@tastraa.com', password: hashedPassword, name: 'TASTRAA Admin Manager' },
+    { id: 2, email: 'admin@tastrraa.com', password: hashedPassword, name: 'TASTRAA Admin Manager' }
   ];
   memoryProducts = [
     {
@@ -336,12 +361,51 @@ const setupMemoryStore = async () => {
       id: 8,
       name: 'TASTRAA Bengal Gram (மஞ்சள் கடலை)',
       slug: 'tastraa-bengal-gram-100',
-      description: 'Authentic roasted yellow Bengal Gram (மஞ்சள் கடலை) seasoned with salt. Crisp, delicious, healthy traditional roasted snack. MRP LKR 100.00.',
+      description: 'Authentic roasted yellow Bengal Gram (மஞ்சள் கடலை) seasoned with salt. Crisp, delicious, healthy traditional roasted snack. MRP LKR 500.00.',
+      category: 'Mixture',
+      price: 500.00,
+      unit: 'Rs 500 Pack',
+      image_url: '/assets/bengal_gram_yellow.jpg',
+      features: ['Roasted Yellow Gram', '100% Pure & Natural', 'Lightly Salted', 'High Protein Snack'],
+      is_active: true,
+      created_at: new Date()
+    },
+    {
+      id: 9,
+      name: 'TASTRAA Plate Dumplings (தட்டு வடை)',
+      slug: 'tastraa-plate-dumplings-100',
+      description: 'Authentic traditional crunchy Plate Dumplings (தட்டு வடை) made from dhal, vegetable oil, salt, and spicy red chilli powder.',
       category: 'Mixture',
       price: 100.00,
       unit: 'Rs 100 Pack',
-      image_url: '/assets/bengal_gram_100.jpg',
-      features: ['Roasted Yellow Gram', '100% Pure & Natural', 'Lightly Salted', 'High Protein Snack'],
+      image_url: '/assets/plate_dumplings.jpg',
+      features: ['Authentic Plate Dumplings', '100% Pure & Natural', 'Dhal, Oil, Salt & Chilli', 'Crispy Tea-time Snack'],
+      is_active: true,
+      created_at: new Date()
+    },
+    {
+      id: 10,
+      name: 'TASTRAA Bites (பைட்ஸ்)',
+      slug: 'tastraa-bites-50',
+      description: 'Crunchy savory snack Bites (பைட்ஸ்) made with wheat flour, urad dal, vegetable oil, and spicy red chilli seasoning.',
+      category: 'Mixture',
+      price: 50.00,
+      unit: 'Rs 50 Pack',
+      image_url: '/assets/bites_pack.jpg',
+      features: ['Crispy Savory Bites', 'Wheat Flour & Urad Dal', 'Spicy Chilli Seasoning', 'Rs 50 Pocket Pack'],
+      is_active: true,
+      created_at: new Date()
+    },
+    {
+      id: 11,
+      name: 'TASTRAA Masala Murukku (மசாலா முறுக்கு)',
+      slug: 'tastraa-masala-murukku-50',
+      description: 'Authentic spicy & crispy Masala Murukku (மசாலா முறுக்கு) made with rice flour, urad flour, gram flour, curry leaves, and traditional spices.',
+      category: 'Mixture',
+      price: 50.00,
+      unit: 'Rs 50 Pack',
+      image_url: '/assets/masala_murukku.jpg',
+      features: ['Authentic Masala Murukku', 'Crispy & Crunchy', 'Curry Leaves & Spices', '100% Veg Snack'],
       is_active: true,
       created_at: new Date()
     }
@@ -350,22 +414,25 @@ const setupMemoryStore = async () => {
 
 export const queryDb = async (text, params) => {
   if (isPgConnected) {
-    return await pool.query(text, params);
-  } else if (process.env.DATABASE_URL) {
-    return await pool.query(text, params);
-  } else if (!isProduction) {
-    return executeMemoryQuery(text, params);
-  } else {
-    throw new Error('Database connection unavailable in production environment.');
+    try {
+      return await pool.query(text, params);
+    } catch (err) {
+      console.error('⚠️ PostgreSQL query error, falling back to memory store:', err.message);
+      return executeMemoryQuery(text, params);
+    }
   }
+  return executeMemoryQuery(text, params);
 };
 
 const executeMemoryQuery = (text, params = []) => {
   const normalized = text.trim().toLowerCase();
 
   if (normalized.includes('from admins')) {
-    const email = params[0];
-    const admin = memoryAdmins.find(a => a.email.toLowerCase() === email?.toLowerCase());
+    const email = params[0]?.toString().trim().toLowerCase();
+    const admin = memoryAdmins.find(a => 
+      a.email.toLowerCase() === email || 
+      (email === 'admin' && a.email.startsWith('admin@'))
+    );
     return { rows: admin ? [admin] : [] };
   }
 

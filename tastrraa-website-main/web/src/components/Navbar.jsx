@@ -51,21 +51,22 @@ const Navbar = () => {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          height: scrolled ? '72px' : '82px',
-          transition: 'height 0.3s ease'
+          minHeight: scrolled ? '68px' : '78px',
+          padding: '8px 0',
+          transition: 'all 0.3s ease'
         }}>
           {/* Brand Logo - English Branding */}
-          <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none' }}>
+          <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
             <img
               src={logoImg}
               alt="TASTRAA Logo"
-              style={{ height: scrolled ? '48px' : '56px', width: 'auto', objectFit: 'contain', transition: 'height 0.3s ease' }}
+              style={{ height: scrolled ? '44px' : '52px', width: 'auto', objectFit: 'contain', transition: 'height 0.3s ease' }}
             />
             <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <span className="logo-text-gradient" style={{ fontWeight: '900', fontSize: '1.2rem', letterSpacing: '1px', lineHeight: '1', fontFamily: "'Poppins', sans-serif" }}>
-                TASTRAA <span style={{ fontSize: '0.75rem', fontWeight: '800' }}>(PVT) LTD</span>
+              <span className="logo-text-gradient" style={{ fontWeight: '900', fontSize: 'clamp(1rem, 3.5vw, 1.25rem)', letterSpacing: '0.5px', lineHeight: '1.1', fontFamily: "'Poppins', sans-serif" }}>
+                TASTRAA <span style={{ fontSize: '0.7rem', fontWeight: '800' }}>(PVT) LTD</span>
               </span>
-              <span style={{ color: '#B45309', fontWeight: '700', fontSize: '0.7rem', letterSpacing: '0.5px', marginTop: '2px' }}>
+              <span style={{ color: '#B45309', fontWeight: '700', fontSize: '0.675rem', letterSpacing: '0.3px', marginTop: '2px' }}>
                 Dependable Local Food Essentials
               </span>
             </div>
@@ -109,7 +110,7 @@ const Navbar = () => {
           </nav>
 
           {/* Right Action Buttons */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <a
               href="tel:0764400816"
               className="btn-green-pill"
@@ -119,10 +120,10 @@ const Navbar = () => {
                 gap: '8px',
                 backgroundColor: '#0F4A24',
                 color: '#FFFFFF',
-                padding: '10px 20px',
+                padding: '9px 18px',
                 borderRadius: '9999px',
                 fontWeight: '800',
-                fontSize: '0.825rem',
+                fontSize: '0.8rem',
                 letterSpacing: '0.5px',
                 textDecoration: 'none',
                 boxShadow: '0 4px 14px rgba(15, 74, 36, 0.3)',
@@ -148,7 +149,8 @@ const Navbar = () => {
                 display: 'none',
                 alignItems: 'center',
                 justifyContent: 'center',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                flexShrink: 0
               }}
               aria-label="Toggle Navigation Menu"
             >

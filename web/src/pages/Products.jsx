@@ -14,6 +14,10 @@ import gingellyOil750mlImg from '../assets/gingelly_oil_750ml.jpg';
 import gingellyOil375mlImg from '../assets/gingelly_oil_375ml.jpg';
 import bengalGramPackImg from '../assets/bengal_gram_pack.jpg';
 import redRawRice25kgImg from '../assets/red_raw_rice_25kg.jpg';
+import plateDumplingsImg from '../assets/plate_dumplings.jpg';
+import bitesPackImg from '../assets/bites_pack.jpg';
+import bengalGramYellowImg from '../assets/bengal_gram_yellow.jpg';
+import masalaMurukkuImg from '../assets/masala_murukku.jpg';
 
 const fallbackProducts = [
   {
@@ -156,7 +160,7 @@ const fallbackProducts = [
     unit: 'Rs 500 Pack',
     description: 'Authentic roasted yellow Bengal Gram (மஞ்சள் கடலை) seasoned with salt. Crisp, delicious, healthy traditional roasted snack.',
     features: ['Roasted Yellow Gram', '100% Pure & Natural', 'Lightly Salted', 'High Protein Snack'],
-    image_url: bengalGramPackImg,
+    image_url: bengalGramYellowImg,
     slug: 'tastraa-bengal-gram-100'
   },
   {
@@ -169,6 +173,39 @@ const fallbackProducts = [
     features: ['25KG Yellow Sack', '100% Red Raw Rice', 'Premium Quality', 'Wholesale Pack'],
     image_url: redRawRice25kgImg,
     slug: 'red-raw-rice-25kg'
+  },
+  {
+    id: 115,
+    name: 'TASTRAA Plate Dumplings (தட்டு வடை)',
+    category: 'Mixture',
+    price: '100.00',
+    unit: 'Rs 100 Pack',
+    description: 'Authentic traditional crunchy Plate Dumplings (தட்டு வடை) made from dhal, vegetable oil, salt, and spicy red chilli powder.',
+    features: ['Authentic Plate Dumplings', '100% Pure & Natural', 'Dhal, Oil, Salt & Chilli', 'Crispy Tea-time Snack'],
+    image_url: plateDumplingsImg,
+    slug: 'tastraa-plate-dumplings-100'
+  },
+  {
+    id: 116,
+    name: 'TASTRAA Bites (பைட்ஸ்)',
+    category: 'Mixture',
+    price: '50.00',
+    unit: 'Rs 50 Pack',
+    description: 'Crunchy savory snack Bites (பைட்ஸ்) made with wheat flour, urad dal, vegetable oil, and spicy red chilli seasoning.',
+    features: ['Crispy Savory Bites', 'Wheat Flour & Urad Dal', 'Spicy Chilli Seasoning', 'Rs 50 Pocket Pack'],
+    image_url: bitesPackImg,
+    slug: 'tastraa-bites-50'
+  },
+  {
+    id: 117,
+    name: 'TASTRAA Masala Murukku (மசாலா முறுக்கு)',
+    category: 'Mixture',
+    price: '50.00',
+    unit: 'Rs 50 Pack',
+    description: 'Authentic spicy & crispy Masala Murukku (மசாலா முறுக்கு) made with rice flour, urad flour, gram flour, curry leaves, and traditional spices.',
+    features: ['Authentic Masala Murukku', 'Crispy & Crunchy', 'Curry Leaves & Spices', '100% Veg Snack'],
+    image_url: masalaMurukkuImg,
+    slug: 'tastraa-masala-murukku-50'
   }
 ];
 
@@ -360,7 +397,10 @@ const Products = () => {
                 const url = p.image_url || '';
                 if (url === '/assets/gingelly_oil_750ml.jpg' || p.slug === 'gingelly-oil') return gingellyOil750mlImg;
                 if (url === '/assets/gingelly_oil_375ml.jpg' || p.slug === 'gingelly-oil-375ml') return gingellyOil375mlImg;
-                if (url === '/assets/bengal_gram_pack.jpg' || url === '/assets/bengal_gram_100.jpg' || p.slug === 'tastraa-bengal-gram-100') return bengalGramPackImg;
+                if (url === '/assets/bengal_gram_yellow.jpg' || url === '/assets/bengal_gram_pack.jpg' || url === '/assets/bengal_gram_100.jpg' || p.slug === 'tastraa-bengal-gram-100') return bengalGramYellowImg;
+                if (url === '/assets/plate_dumplings.jpg' || p.slug === 'tastraa-plate-dumplings-100') return plateDumplingsImg;
+                if (url === '/assets/bites_pack.jpg' || p.slug === 'tastraa-bites-50') return bitesPackImg;
+                if (url === '/assets/masala_murukku.jpg' || p.slug === 'tastraa-masala-murukku-50') return masalaMurukkuImg;
                 if (url === '/assets/red_raw_rice_25kg.jpg' || p.slug === 'red-raw-rice-25kg') return redRawRice25kgImg;
                 if (url === '/assets/red_rice_flour_5kg.jpg' || p.slug === 'red-rice-flour-5kg') return redRice5kgImg;
                 if (url === '/assets/red_rice_flour_10kg.jpg' || p.slug === 'red-rice-flour-10kg') return redRice10kgImg;

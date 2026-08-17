@@ -5,13 +5,13 @@ const router = express.Router();
 
 const KNOWLEDGE_BASE = {
   company: "TASTRAA (PVT) LTD",
-  established: "June 2009",
+  established: "June 2008",
   registration: "PV 00242273",
   address: "No. 41, Kalasalai Road, Thirunelvely, Kopay, Jaffna, Sri Lanka",
   phone: ["0779789223", "0212052200"],
   email: "manivannann1980@gmail.com",
   products: ["Rice Flour", "Mixture", "Gingelly Oil"],
-  about: "TASTRAA (PVT) LTD was established in June 2009 in Jaffna, Sri Lanka. We specialize in processing high-quality, locally sourced food essentials including super-fine Rice Flour, traditional Jaffna Mixture, and pure cold-pressed Gingelly Oil for households and commercial businesses."
+  about: "TASTRAA (PVT) LTD was established in June 2008 in Jaffna, Sri Lanka. We specialize in processing high-quality, locally sourced food essentials including super-fine Rice Flour, traditional Jaffna Mixture, and pure cold-pressed Gingelly Oil for households and commercial businesses."
 };
 
 // POST /api/ai/ask

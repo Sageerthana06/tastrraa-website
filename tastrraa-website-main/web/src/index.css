@@ -619,3 +619,32 @@ svg {
     height: 20px !important;
   }
 }
+
+/* Custom Order Now Button Class */
+.order-now-btn {
+  background: #15803d;
+  color: #ffffff;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(21, 128, 61, 0.25);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.order-now-btn:hover {
+  background: #166534;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(21, 128, 61, 0.35);
+}
+
+.order-now-btn:active {
+  transform: translateY(0);
+}
