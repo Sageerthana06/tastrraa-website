@@ -513,7 +513,7 @@ Please let me know availability and delivery options.`;
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-red-3d"
+                className="btn-green-3d"
                 style={{ width: '100%', padding: '16px 28px', fontSize: '1.05rem', justifyContent: 'center' }}
               >
                 <Send size={18} />

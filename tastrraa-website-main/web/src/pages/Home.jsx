@@ -38,6 +38,7 @@ import redRice2kgImg from '../assets/red_rice_flour_2kg.jpg';
 import roastedChilli50gImg from '../assets/roasted_chilli_powder_50g.jpg';
 import bengalGram100Img from '../assets/bengal_gram_100.jpg';
 import gingellyOil750mlImg from '../assets/gingelly_oil_750ml.jpg';
+import gingellyOil375mlImg from '../assets/gingelly_oil_375ml.jpg';
 import bengalGramPackImg from '../assets/bengal_gram_pack.jpg';
 import redRawRice25kgImg from '../assets/red_raw_rice_25kg.jpg';
 import plateDumplingsImg from '../assets/plate_dumplings.jpg';

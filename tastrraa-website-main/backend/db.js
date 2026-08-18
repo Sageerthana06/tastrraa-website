@@ -266,149 +266,88 @@ const setupMemoryStore = async () => {
     { id: 2, email: 'admin@tastrraa.com', password: hashedPassword, name: 'TASTRAA Admin Manager' }
   ];
   memoryProducts = [
-    {
-      id: 1,
-      name: 'TASTRAA Pakoda Hot & Crispy (250g)',
-      slug: 'tastraa-pakoda-250g',
-      description: 'Authentic spicy & crispy Pakoda snack (பகோடா) made with gram flour, sesame, omam, garlic, curry leaves, and traditional spice blends.',
-      category: 'Mixture',
-      price: 530.00,
-      unit: '250g Pack',
-      image_url: 'https://images.unsplash.com/photo-1621996346565-e3d5d6281270?auto=format&fit=crop&w=800&q=80',
-      features: ['100% Veg', 'Hot & Crispy', 'Spicy Snack', '250g Pack', 'Traditional Recipe'],
-      is_active: true,
-      created_at: new Date()
-    },
-    {
-      id: 2,
-      name: 'TASTRAA Special Curry Powder (250g)',
-      slug: 'tastraa-curry-powder-250g',
-      description: 'Traditional Sri Lankan Curry Powder (கரித்தூள்) ground from red dry chilli, coriander, fennel, cumin, turmeric, curry leaves, cinnamon, cardamom, and black pepper.',
-      category: 'Spices',
-      price: 250.00,
-      unit: '250g Pack',
-      image_url: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=80',
-      features: ['100% Pure Spices', 'Authentic Recipe', 'Rich Aroma & Flavor', 'No Preservatives'],
-      is_active: true,
-      created_at: new Date()
-    },
-    {
-      id: 3,
-      name: 'TASTRAA Crispy Bites (50g)',
-      slug: 'tastraa-crispy-bites-50g',
-      description: 'Crunchy savory snack bites (பைட்ஸ்) made with wheat flour, urad dal, vegetable oil, and spicy red chilli seasoning. Net Wt: 50g.',
-      category: 'Mixture',
-      price: 50.00,
-      unit: '50g Pack',
-      image_url: 'https://images.unsplash.com/photo-1599490659213-e2b9527bd087?auto=format&fit=crop&w=800&q=80',
-      features: ['Crispy & Savory', 'Tea-time Snack', 'Spicy Seasoning', 'Pocket Friendly'],
-      is_active: true,
-      created_at: new Date()
-    },
-    {
-      id: 4,
-      name: 'TASTRAA Special Curry Powder (100g)',
-      slug: 'tastraa-curry-powder-100g',
-      description: 'Convenient 100g pack of authentic Jaffna curry powder (கரித்தூள்) with premium whole spices for delicious family meals.',
-      category: 'Spices',
-      price: 100.00,
-      unit: '100g Pack',
-      image_url: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=80',
-      features: ['100g Pack', 'Authentic Jaffna Blend', '100% Natural Spices', 'Rich Curry Flavor'],
-      is_active: true,
-      created_at: new Date()
-    },
-    {
-      id: 5,
-      name: 'TASTRAA Premium Rice Flour (1kg)',
-      slug: 'tastraa-premium-rice-flour-1kg',
-      description: 'Finely ground from 100% locally sourced premium Sri Lankan rice. Ideal for String Hoppers (Idiyappam), Pittu, Dosa, and crispy Sri Lankan snacks.',
-      category: 'Rice Flour',
-      price: 380.00,
-      unit: '1kg',
-      image_url: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=800&q=80',
-      features: ['100% Pure & Natural', 'Super Fine Texture', 'No Preservatives', 'Locally Processed in Jaffna', 'Hygienically Sealed'],
-      is_active: true,
-      created_at: new Date()
-    },
-    {
-      id: 6,
-      name: 'TASTRAA Traditional Jaffna Mixture (500g)',
-      slug: 'tastraa-traditional-jaffna-mixture-500g',
-      description: 'Authentic spicy and savory Jaffna mixture made with premium peanuts, fried gram, curry leaves, and secret family spice blends.',
-      category: 'Mixture',
-      price: 650.00,
-      unit: '500g',
-      image_url: 'https://images.unsplash.com/photo-1599490659213-e2b9527bd087?auto=format&fit=crop&w=800&q=80',
-      features: ['Authentic Jaffna Recipe', 'Crunchy & Fresh', 'Zero Trans Fat', 'Traditional Spice Blend', 'Sealed Freshness'],
-      is_active: true,
-      created_at: new Date()
-    },
-    {
-      id: 7,
-      name: 'TASTRAA Pure Cold-Pressed Gingelly Oil (500ml)',
-      slug: 'tastraa-pure-cold-pressed-gingelly-oil-500ml',
-      description: 'Pure cold-pressed sesame / gingelly oil extracted from selected sesame seeds using traditional expeller methods. Rich natural aroma and healthy.',
-      category: 'Gingelly Oil',
-      price: 1250.00,
-      unit: '500ml',
-      image_url: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=800&q=80',
-      features: ['Cold-Pressed Extraction', '100% Pure Sesame', 'Rich Natural Aroma', 'Heart-Healthy', 'Traditional Quality'],
-      is_active: true,
-      created_at: new Date()
-    },
-    {
-      id: 8,
-      name: 'TASTRAA Bengal Gram (மஞ்சள் கடலை)',
-      slug: 'tastraa-bengal-gram-100',
-      description: 'Authentic roasted yellow Bengal Gram (மஞ்சள் கடலை) seasoned with salt. Crisp, delicious, healthy traditional roasted snack. MRP LKR 500.00.',
-      category: 'Mixture',
-      price: 500.00,
-      unit: 'Rs 500 Pack',
-      image_url: '/assets/bengal_gram_yellow.jpg',
-      features: ['Roasted Yellow Gram', '100% Pure & Natural', 'Lightly Salted', 'High Protein Snack'],
-      is_active: true,
-      created_at: new Date()
-    },
-    {
-      id: 9,
-      name: 'TASTRAA Plate Dumplings (தட்டு வடை)',
-      slug: 'tastraa-plate-dumplings-100',
-      description: 'Authentic traditional crunchy Plate Dumplings (தட்டு வடை) made from dhal, vegetable oil, salt, and spicy red chilli powder.',
-      category: 'Mixture',
-      price: 100.00,
-      unit: 'Rs 100 Pack',
-      image_url: '/assets/plate_dumplings.jpg',
-      features: ['Authentic Plate Dumplings', '100% Pure & Natural', 'Dhal, Oil, Salt & Chilli', 'Crispy Tea-time Snack'],
-      is_active: true,
-      created_at: new Date()
-    },
-    {
-      id: 10,
-      name: 'TASTRAA Bites (பைட்ஸ்)',
-      slug: 'tastraa-bites-50',
-      description: 'Crunchy savory snack Bites (பைட்ஸ்) made with wheat flour, urad dal, vegetable oil, and spicy red chilli seasoning.',
-      category: 'Mixture',
-      price: 50.00,
-      unit: 'Rs 50 Pack',
-      image_url: '/assets/bites_pack.jpg',
-      features: ['Crispy Savory Bites', 'Wheat Flour & Urad Dal', 'Spicy Chilli Seasoning', 'Rs 50 Pocket Pack'],
-      is_active: true,
-      created_at: new Date()
-    },
-    {
-      id: 11,
-      name: 'TASTRAA Masala Murukku (மசாலா முறுக்கு)',
-      slug: 'tastraa-masala-murukku-50',
-      description: 'Authentic spicy & crispy Masala Murukku (மசாலா முறுக்கு) made with rice flour, urad flour, gram flour, curry leaves, and traditional spices.',
-      category: 'Mixture',
-      price: 50.00,
-      unit: 'Rs 50 Pack',
-      image_url: '/assets/masala_murukku.jpg',
-      features: ['Authentic Masala Murukku', 'Crispy & Crunchy', 'Curry Leaves & Spices', '100% Veg Snack'],
-      is_active: true,
-      created_at: new Date()
-    }
+    // --- FLOUR ---
+    { id: 101, name: 'Red Rice Flour 5kg (சிவப்பு அரிசி மா)', slug: 'red-rice-flour-5kg', description: '100% Pure Sri Lankan Red Rice Flour stone-milled to smooth perfection.', category: 'Flour', price: 1200.00, wholesale_price: 1140.00, unit: '5kg Sack', image_url: '/assets/red_rice_flour_5kg.jpg', features: ['100% Pure Red Rice', '5kg Woven Sack', 'Wholesale Rate: LKR 1,140'], is_active: true },
+    { id: 102, name: 'Red Rice Flour 10kg (சிவப்பு அரிசி மா)', slug: 'red-rice-flour-10kg', description: '100% Pure Sri Lankan Red Rice Flour in a durable 10kg family saver sack.', category: 'Flour', price: 3000.00, wholesale_price: 2300.00, unit: '10kg Sack', image_url: '/assets/red_rice_flour_10kg.jpg', features: ['10kg Bulk Sack', 'Rich in Fiber', 'Wholesale Rate: LKR 2,300'], is_active: true },
+    { id: 103, name: 'Red Rice Flour 25kg (சிவப்பு அரிசி மா)', slug: 'red-rice-flour-25kg', description: 'Heavy duty commercial 25kg bulk sack of premium red rice flour.', category: 'Flour', price: 7000.00, wholesale_price: 5600.00, unit: '25kg Sack', image_url: '/assets/red_rice_flour_25kg.png', features: ['25kg Commercial Pack', 'Strict Hygiene Quality', 'Wholesale Rate: LKR 5,600'], is_active: true },
+
+    // --- MIXTURE ---
+    { id: 201, name: 'Traditional Jaffna Mixture 1kg', slug: 'jaffna-mixture-1kg', description: 'Authentic spicy and savory Jaffna mixture with curry leaves & roasted nuts.', category: 'Mixture', price: 1200.00, wholesale_price: 880.00, unit: '1kg Pack', image_url: '/assets/bites_pack.jpg', features: ['1kg Catering Pack', 'Traditional Spiced', 'Wholesale Rate: LKR 880'], is_active: true },
+    { id: 202, name: 'Traditional Jaffna Mixture 500g', slug: 'jaffna-mixture-500g', description: 'Crispy savory spicy mixture packed fresh for tea-time and celebrations.', category: 'Mixture', price: 600.00, wholesale_price: 460.00, unit: '500g Pack', image_url: '/assets/bites_pack.jpg', features: ['500g Value Pack', 'Crunchy Fresh', 'Wholesale Rate: LKR 460'], is_active: true },
+    { id: 203, name: 'Traditional Jaffna Mixture 250g', slug: 'jaffna-mixture-250g', description: 'Perfect tea-time family pack of traditional Jaffna mixture.', category: 'Mixture', price: 300.00, wholesale_price: 250.00, unit: '250g Pack', image_url: '/assets/bites_pack.jpg', features: ['250g Pack', 'Spicy & Crispy', 'Wholesale Rate: LKR 250'], is_active: true },
+    { id: 204, name: 'Traditional Jaffna Mixture 80g', slug: 'jaffna-mixture-80g', description: 'Convenient 80g snack pouch of authentic Jaffna mixture.', category: 'Mixture', price: 100.00, wholesale_price: 75.00, unit: '80g Pack', image_url: '/assets/bites_pack.jpg', features: ['80g Snack Pack', 'Pocket Friendly', 'Wholesale Rate: LKR 75'], is_active: true },
+    { id: 205, name: 'Traditional Jaffna Mixture 40g', slug: 'jaffna-mixture-40g', description: 'Pocket-sized spicy snack pouch for quick bites on the go.', category: 'Mixture', price: 50.00, wholesale_price: 35.00, unit: '40g Pouch', image_url: '/assets/bites_pack.jpg', features: ['40g Pouch', 'Quick Snack', 'Wholesale Rate: LKR 35'], is_active: true },
+
+    // --- PAKODA ---
+    { id: 301, name: 'TASTRAA Crispy Pakoda 1kg (பகோடா)', slug: 'pakoda-1kg', description: 'Authentic hot & crispy Pakoda snack made with gram flour & curry leaves.', category: 'Pakoda', price: 1200.00, wholesale_price: 880.00, unit: '1kg Pack', image_url: '/assets/plate_dumplings.jpg', features: ['1kg Catering Pack', '100% Veg Hot & Crispy', 'Wholesale Rate: LKR 880'], is_active: true },
+    { id: 302, name: 'TASTRAA Crispy Pakoda 500g (பகோடா)', slug: 'pakoda-500g', description: 'Golden crunchy pakoda snacks seasoned with authentic Jaffna spices.', category: 'Pakoda', price: 600.00, wholesale_price: 460.00, unit: '500g Pack', image_url: '/assets/plate_dumplings.jpg', features: ['500g Family Pack', 'Spicy & Crispy', 'Wholesale Rate: LKR 460'], is_active: true },
+    { id: 303, name: 'TASTRAA Crispy Pakoda 250g (பகோடா)', slug: 'pakoda-250g', description: 'Savory crispy snack perfect for evening tea.', category: 'Pakoda', price: 300.00, wholesale_price: 250.00, unit: '250g Pack', image_url: '/assets/plate_dumplings.jpg', features: ['250g Pack', 'Traditional Recipe', 'Wholesale Rate: LKR 250'], is_active: true },
+    { id: 304, name: 'TASTRAA Crispy Pakoda 80g (பகோடா)', slug: 'pakoda-80g', description: 'Crispy crunchy pakoda snack pouch.', category: 'Pakoda', price: 100.00, wholesale_price: 75.00, unit: '80g Pack', image_url: '/assets/plate_dumplings.jpg', features: ['80g Pouch', 'Everyday Snack', 'Wholesale Rate: LKR 75'], is_active: true },
+    { id: 305, name: 'TASTRAA Crispy Pakoda 40g (பகோடா)', slug: 'pakoda-40g', description: 'Individual snack size hot & crispy pakoda pouch.', category: 'Pakoda', price: 50.00, wholesale_price: 35.00, unit: '40g Pouch', image_url: '/assets/plate_dumplings.jpg', features: ['40g Pouch', 'Pocket Pack', 'Wholesale Rate: LKR 35'], is_active: true },
+
+    // --- GARLIC MURUKKU ---
+    { id: 401, name: 'Garlic Murukku 1kg (பூண்டு முறுக்கு)', slug: 'garlic-murukku-1kg', description: 'Aromatic crunchy spiral murukku infused with fresh garlic flavor.', category: 'Murukku', price: 1200.00, wholesale_price: 880.00, unit: '1kg Pack', image_url: '/assets/masala_murukku.jpg', features: ['1kg Bulk Pack', 'Real Garlic Flavor', 'Wholesale Rate: LKR 880'], is_active: true },
+    { id: 402, name: 'Garlic Murukku 160g (பூண்டு முறுக்கு)', slug: 'garlic-murukku-160g', description: 'Crispy savory garlic murukku pack for tea time.', category: 'Murukku', price: 200.00, wholesale_price: 150.00, unit: '160g Pack', image_url: '/assets/masala_murukku.jpg', features: ['160g Pack', 'Garlic Infused', 'Wholesale Rate: LKR 150'], is_active: true },
+    { id: 403, name: 'Garlic Murukku 80g (பூண்டு முறுக்கு)', slug: 'garlic-murukku-80g', description: 'Aromatic garlic spiced murukku pouch.', category: 'Murukku', price: 100.00, wholesale_price: 75.00, unit: '80g Pack', image_url: '/assets/masala_murukku.jpg', features: ['80g Pouch', 'Crispy Crunch', 'Wholesale Rate: LKR 75'], is_active: true },
+    { id: 404, name: 'Garlic Murukku 40g (பூண்டு முறுக்கு)', slug: 'garlic-murukku-40g', description: 'Handy pocket size garlic murukku pouch.', category: 'Murukku', price: 50.00, wholesale_price: 35.00, unit: '40g Pouch', image_url: '/assets/masala_murukku.jpg', features: ['40g Pouch', 'Pocket Friendly', 'Wholesale Rate: LKR 35'], is_active: true },
+
+    // --- MASALA MURUKKU ---
+    { id: 501, name: 'Masala Murukku 1kg (மசாலா முறுக்கு)', slug: 'masala-murukku-1kg', description: 'Spicy seasoned murukku spirals prepared with traditional spices.', category: 'Murukku', price: 1200.00, wholesale_price: 880.00, unit: '1kg Pack', image_url: '/assets/masala_murukku.jpg', features: ['1kg Catering Pack', 'Traditional Spices', 'Wholesale Rate: LKR 880'], is_active: true },
+    { id: 502, name: 'Masala Murukku 250g (மசாலா முறுக்கு)', slug: 'masala-murukku-250g', description: 'Golden crunchy masala murukku for family gatherings.', category: 'Murukku', price: 300.00, wholesale_price: 240.00, unit: '250g Pack', image_url: '/assets/masala_murukku.jpg', features: ['250g Pack', 'Spicy & Crispy', 'Wholesale Rate: LKR 240'], is_active: true },
+    { id: 503, name: 'Masala Murukku 80g (மசாலா முறுக்கு)', slug: 'masala-murukku-80g', description: 'Everyday crunchy masala murukku pouch.', category: 'Murukku', price: 100.00, wholesale_price: 75.00, unit: '80g Pack', image_url: '/assets/masala_murukku.jpg', features: ['80g Pouch', 'Crispy Snack', 'Wholesale Rate: LKR 75'], is_active: true },
+    { id: 504, name: 'Masala Murukku 40g (மசாலா முறுக்கு)', slug: 'masala-murukku-40g', description: 'Pocket size spicy masala murukku pouch.', category: 'Murukku', price: 50.00, wholesale_price: 35.00, unit: '40g Pouch', image_url: '/assets/masala_murukku.jpg', features: ['40g Pouch', 'Quick Bite', 'Wholesale Rate: LKR 35'], is_active: true },
+
+    // --- BITES & CHIPS ---
+    { id: 601, name: 'TASTRAA Crispy Bites 1kg (பைட்ஸ்)', slug: 'bites-1kg', description: 'Savory spicy wheat flour and urad dal bites.', category: 'Bites & Chips', price: 1200.00, wholesale_price: 880.00, unit: '1kg Pack', image_url: '/assets/bites_pack.jpg', features: ['1kg Catering Pack', 'Spicy Seasoning', 'Wholesale Rate: LKR 880'], is_active: true },
+    { id: 602, name: 'TASTRAA Crispy Bites 250g (பைட்ஸ்)', slug: 'bites-250g', description: 'Crispy crunchy bite-sized savory snack.', category: 'Bites & Chips', price: 300.00, wholesale_price: 240.00, unit: '250g Pack', image_url: '/assets/bites_pack.jpg', features: ['250g Pack', 'Crispy Savory', 'Wholesale Rate: LKR 240'], is_active: true },
+    { id: 603, name: 'TASTRAA Crispy Bites 80g (பைட்ஸ்)', slug: 'bites-80g', description: 'Tea time favorite crunchy bite snack pouch.', category: 'Bites & Chips', price: 100.00, wholesale_price: 75.00, unit: '80g Pack', image_url: '/assets/bites_pack.jpg', features: ['80g Pouch', 'Spicy Crunch', 'Wholesale Rate: LKR 75'], is_active: true },
+    { id: 604, name: 'TASTRAA Crispy Bites 40g (பைட்ஸ்)', slug: 'bites-40g', description: 'Pocket pack savory bites for on-the-go snackers.', category: 'Bites & Chips', price: 50.00, wholesale_price: 35.00, unit: '40g Pouch', image_url: '/assets/bites_pack.jpg', features: ['40g Pouch', 'Pocket Size', 'Wholesale Rate: LKR 35'], is_active: true },
+
+    { id: 701, name: 'Thaddu Vadai 1kg (தட்டு வடை)', slug: 'thaddu-vadai-1kg', description: 'Traditional flattened crunchy lentil disk crackers.', category: 'Bites & Chips', price: 1800.00, wholesale_price: 1400.00, unit: '1kg Pack', image_url: '/assets/plate_dumplings.jpg', features: ['1kg Catering Pack', 'Traditional Recipe', 'Wholesale Rate: LKR 1,400'], is_active: true },
+    { id: 702, name: 'Thaddu Vadai 250g (தட்டு வடை)', slug: 'thaddu-vadai-250g', description: 'Spicy crisp thaddu vadai disks.', category: 'Bites & Chips', price: 450.00, wholesale_price: 400.00, unit: '250g Pack', image_url: '/assets/plate_dumplings.jpg', features: ['250g Pack', 'Crispy Disks', 'Wholesale Rate: LKR 400'], is_active: true },
+    { id: 703, name: 'Thaddu Vadai 60g (தட்டு வடை)', slug: 'thaddu-vadai-60g', description: 'Crispy thaddu vadai snack pouch.', category: 'Bites & Chips', price: 100.00, wholesale_price: 75.00, unit: '60g Pack', image_url: '/assets/plate_dumplings.jpg', features: ['60g Pouch', 'Savory Disks', 'Wholesale Rate: LKR 75'], is_active: true },
+    { id: 704, name: 'Thaddu Vadai 30g (தட்டு வடை)', slug: 'thaddu-vadai-30g', description: 'Pocket size thaddu vadai pouch.', category: 'Bites & Chips', price: 50.00, wholesale_price: 40.00, unit: '30g Pouch', image_url: '/assets/plate_dumplings.jpg', features: ['30g Pouch', 'Pocket Friendly', 'Wholesale Rate: LKR 40'], is_active: true },
+
+    { id: 801, name: 'Manioc Chips 1kg (மரவள்ளி கிழங்கு சிப்ஸ்)', slug: 'manioc-chips-1kg', description: 'Thinly sliced fresh tapioca / manioc roots fried crisp.', category: 'Bites & Chips', price: 1400.00, wholesale_price: 900.00, unit: '1kg Pack', image_url: '/assets/plate_dumplings.jpg', features: ['1kg Bulk Pack', 'Fresh Manioc Root', 'Wholesale Rate: LKR 900'], is_active: true },
+    { id: 802, name: 'Manioc Chips 250g (மரவள்ளி கிழங்கு சிப்ஸ்)', slug: 'manioc-chips-250g', description: 'Crunchy golden manioc chips.', category: 'Bites & Chips', price: 350.00, wholesale_price: 300.00, unit: '250g Pack', image_url: '/assets/plate_dumplings.jpg', features: ['250g Pack', 'Crispy Slices', 'Wholesale Rate: LKR 300'], is_active: true },
+    { id: 803, name: 'Manioc Chips 60g (மரவள்ளி கிழங்கு சிப்ஸ்)', slug: 'manioc-chips-60g', description: 'Snack pouch of crispy manioc chips.', category: 'Bites & Chips', price: 100.00, wholesale_price: 75.00, unit: '60g Pack', image_url: '/assets/plate_dumplings.jpg', features: ['60g Pouch', 'Golden Crisp', 'Wholesale Rate: LKR 75'], is_active: true },
+    { id: 804, name: 'Manioc Chips 30g (மரவள்ளி கிழங்கு சிப்ஸ்)', slug: 'manioc-chips-30g', description: 'Pocket size manioc chips pouch.', category: 'Bites & Chips', price: 50.00, wholesale_price: 40.00, unit: '30g Pouch', image_url: '/assets/plate_dumplings.jpg', features: ['30g Pouch', 'Quick Crunch', 'Wholesale Rate: LKR 40'], is_active: true },
+
+    // --- PEANUT PAKODA ---
+    { id: 901, name: 'Peanut Pakoda 1kg (கடலை பகோடா)', slug: 'peanut-pakoda-1kg', description: 'Crunchy whole peanuts coated in spicy gram flour batter.', category: 'Pakoda', price: 1800.00, wholesale_price: 1400.00, unit: '1kg Pack', image_url: '/assets/bengal_gram_yellow.jpg', features: ['1kg Catering Pack', 'Spicy Peanut Crunch', 'Wholesale Rate: LKR 1,400'], is_active: true },
+    { id: 902, name: 'Peanut Pakoda 250g (கடலை பகோடா)', slug: 'peanut-pakoda-250g', description: 'Spicy peanut pakoda snack pack.', category: 'Pakoda', price: 450.00, wholesale_price: 400.00, unit: '250g Pack', image_url: '/assets/bengal_gram_yellow.jpg', features: ['250g Pack', 'High Protein Snack', 'Wholesale Rate: LKR 400'], is_active: true },
+    { id: 903, name: 'Peanut Pakoda 100g (கடலை பகோடா)', slug: 'peanut-pakoda-100g', description: 'Crispy peanut pakoda pouch for snacks.', category: 'Pakoda', price: 200.00, wholesale_price: 170.00, unit: '100g Pack', image_url: '/assets/bengal_gram_yellow.jpg', features: ['100g Pouch', 'Nutty Crunch', 'Wholesale Rate: LKR 170'], is_active: true },
+
+    // --- DHAL & GRAM ---
+    { id: 1001, name: 'Roasted Dhal Snack 1kg (பருப்பு பைட்ஸ்)', slug: 'dhal-1kg', description: 'Crispy salted roasted lentils/dhal.', category: 'Dhal & Gram', price: 1000.00, wholesale_price: 700.00, unit: '1kg Pack', image_url: '/assets/bengal_gram_yellow.jpg', features: ['1kg Bulk Pack', 'Roasted & Salted', 'Wholesale Rate: LKR 700'], is_active: true },
+    { id: 1002, name: 'Roasted Dhal Snack 250g (பருப்பு பைட்ஸ்)', slug: 'dhal-250g', description: 'Crunchy dhal snack pack.', category: 'Dhal & Gram', price: 300.00, wholesale_price: 200.00, unit: '250g Pack', image_url: '/assets/bengal_gram_yellow.jpg', features: ['250g Pack', 'High Fiber', 'Wholesale Rate: LKR 200'], is_active: true },
+    { id: 1003, name: 'Roasted Dhal Snack 40g (பருப்பு பைட்ஸ்)', slug: 'dhal-40g', description: 'Small pouch of roasted crunchy dhal.', category: 'Dhal & Gram', price: 50.00, wholesale_price: 35.00, unit: '40g Pouch', image_url: '/assets/bengal_gram_yellow.jpg', features: ['40g Pouch', 'Pocket Pack', 'Wholesale Rate: LKR 35'], is_active: true },
+    { id: 1004, name: 'Roasted Dhal Snack 18g (பருப்பு பைட்ஸ்)', slug: 'dhal-18g', description: 'Mini pocket pouch of roasted dhal.', category: 'Dhal & Gram', price: 20.00, wholesale_price: 16.00, unit: '18g Mini Pouch', image_url: '/assets/bengal_gram_yellow.jpg', features: ['18g Mini Pouch', 'Rs 20 Pouch', 'Wholesale Rate: LKR 16'], is_active: true },
+
+    { id: 1101, name: 'Baby Mixture 1kg (பேபி மிக்சர்)', slug: 'baby-mixture-1kg', description: 'Mildly spiced fine noodle mixture crafted for all ages.', category: 'Mixture', price: 1200.00, wholesale_price: 880.00, unit: '1kg Pack', image_url: '/assets/bites_pack.jpg', features: ['1kg Catering Pack', 'Mild Spice Recipe', 'Wholesale Rate: LKR 880'], is_active: true },
+    { id: 1102, name: 'Baby Mixture 250g (பேபி மிக்சர்)', slug: 'baby-mixture-250g', description: 'Mild crunchy family snack mixture pack.', category: 'Mixture', price: 300.00, wholesale_price: 250.00, unit: '250g Pack', image_url: '/assets/bites_pack.jpg', features: ['250g Pack', 'Fine & Mild', 'Wholesale Rate: LKR 250'], is_active: true },
+    { id: 1103, name: 'Baby Mixture 80g (பேபி மிக்சர்)', slug: 'baby-mixture-80g', description: 'Pouch size mild baby mixture.', category: 'Mixture', price: 100.00, wholesale_price: 75.00, unit: '80g Pack', image_url: '/assets/bites_pack.jpg', features: ['80g Pouch', 'Mild Snack', 'Wholesale Rate: LKR 75'], is_active: true },
+
+    { id: 1201, name: 'Roasted Bengal Gram 1kg (மஞ்சள் கடலை)', slug: 'bengal-gram-1kg', description: 'Aromatic roasted yellow Bengal Gram seasoned with salt.', category: 'Dhal & Gram', price: 1000.00, wholesale_price: 700.00, unit: '1kg Pack', image_url: '/assets/bengal_gram_yellow.jpg', features: ['1kg Bulk Pack', '100% Pure Roasted Gram', 'Wholesale Rate: LKR 700'], is_active: true },
+    { id: 1202, name: 'Roasted Bengal Gram 500g (மஞ்சள் கடலை)', slug: 'bengal-gram-500g', description: 'Crisp roasted yellow gram family pack.', category: 'Dhal & Gram', price: 500.00, wholesale_price: 350.00, unit: '500g Pack', image_url: '/assets/bengal_gram_yellow.jpg', features: ['500g Pack', 'High Protein', 'Wholesale Rate: LKR 350'], is_active: true },
+    { id: 1203, name: 'Roasted Bengal Gram 250g (மஞ்சள் கடலை)', slug: 'bengal-gram-250g', description: 'Healthy crunchy roasted gram pack.', category: 'Dhal & Gram', price: 300.00, wholesale_price: 200.00, unit: '250g Pack', image_url: '/assets/bengal_gram_yellow.jpg', features: ['250g Pack', 'Salted & Crisp', 'Wholesale Rate: LKR 200'], is_active: true },
+    { id: 1204, name: 'Roasted Bengal Gram 80g (மஞ்சள் கடலை)', slug: 'bengal-gram-80g', description: 'Pocket pouch roasted yellow gram.', category: 'Dhal & Gram', price: 100.00, wholesale_price: 75.00, unit: '80g Pack', image_url: '/assets/bengal_gram_yellow.jpg', features: ['80g Pouch', 'Quick Protein', 'Wholesale Rate: LKR 75'], is_active: true },
+    { id: 1205, name: 'Roasted Bengal Gram 40g (மஞ்சள் கடலை)', slug: 'bengal-gram-40g', description: 'Handy mini pouch roasted yellow gram.', category: 'Dhal & Gram', price: 50.00, wholesale_price: 35.00, unit: '40g Pouch', image_url: '/assets/bengal_gram_yellow.jpg', features: ['40g Pouch', 'Pocket Friendly', 'Wholesale Rate: LKR 35'], is_active: true },
+    { id: 1206, name: 'Roasted Bengal Gram 18g (மஞ்சள் கடலை)', slug: 'bengal-gram-18g', description: 'Mini pocket pouch roasted gram.', category: 'Dhal & Gram', price: 20.00, wholesale_price: 16.00, unit: '18g Mini Pouch', image_url: '/assets/bengal_gram_yellow.jpg', features: ['18g Mini Pouch', 'Rs 20 Pouch', 'Wholesale Rate: LKR 16'], is_active: true },
+
+    { id: 1301, name: 'Roasted Salted Peanuts 1kg (வேர்க்கடலை)', slug: 'peanut-1kg', description: 'Selected premium Sri Lankan peanuts roasted to crunchy perfection.', category: 'Dhal & Gram', price: 1800.00, wholesale_price: 1300.00, unit: '1kg Pack', image_url: '/assets/bengal_gram_yellow.jpg', features: ['1kg Catering Pack', 'Freshly Roasted', 'Wholesale Rate: LKR 1,300'], is_active: true },
+    { id: 1302, name: 'Roasted Salted Peanuts 100g (வேர்க்கடலை)', slug: 'peanut-100g', description: 'Crunchy roasted peanut snack pack.', category: 'Dhal & Gram', price: 200.00, wholesale_price: 180.00, unit: '100g Pack', image_url: '/assets/bengal_gram_yellow.jpg', features: ['100g Pack', 'Rich Flavor', 'Wholesale Rate: LKR 180'], is_active: true },
+    { id: 1303, name: 'Roasted Salted Peanuts 50g (வேர்க்கடலை)', slug: 'peanut-50g', description: 'Convenient pocket size roasted peanut pouch.', category: 'Dhal & Gram', price: 100.00, wholesale_price: 80.00, unit: '50g Pouch', image_url: '/assets/bengal_gram_yellow.jpg', features: ['50g Pouch', 'Pocket Pack', 'Wholesale Rate: LKR 80'], is_active: true },
+
+    // --- SPICES ---
+    { id: 1401, name: 'Roasted Chilli Powder 1kg (வறுத்த மிளகாய்த்தூள்)', slug: 'chilli-powder-1kg', description: 'Sun-dried red Jaffna chillies slow-roasted & milled.', category: 'Spices', price: 1400.00, wholesale_price: 1000.00, unit: '1kg Pack', image_url: '/assets/roasted_chilli_powder_50g.jpg', features: ['1kg Catering Pack', 'Sun-Dried Jaffna Chillies', 'Wholesale Rate: LKR 1,000'], is_active: true },
+    { id: 1402, name: 'Roasted Chilli Powder 250g (வறுத்த மிளகாய்த்தூள்)', slug: 'chilli-powder-250g', description: 'Authentic Jaffna roasted chilli powder.', category: 'Spices', price: 350.00, wholesale_price: 250.00, unit: '250g Pack', image_url: '/assets/roasted_chilli_powder_50g.jpg', features: ['250g Pack', 'Deep Fiery Color', 'Wholesale Rate: LKR 250'], is_active: true },
+    { id: 1403, name: 'Roasted Chilli Powder 50g (வறுத்த மிளகாய்த்தூள்)', slug: 'chilli-powder-50g', description: 'Handy family pack of slow-roasted chilli powder.', category: 'Spices', price: 70.00, wholesale_price: 52.00, unit: '50g Pack', image_url: '/assets/roasted_chilli_powder_50g.jpg', features: ['50g Pack', 'Aromatic & Spicy', 'Wholesale Rate: LKR 52'], is_active: true },
+
+    // --- GINGELLY OIL ---
+    { id: 1501, name: 'Pure Cold-Pressed Gingelly Oil 750ml (நல்லெண்ணெய்)', slug: 'gingelly-oil-750ml', description: 'Wood-pressed 100% pure sesame oil.', category: 'Gingelly Oil', price: 1400.00, wholesale_price: 1050.00, unit: '750ml Bottle', image_url: '/assets/gingelly_oil_750ml.jpg', features: ['750ml Bottle', 'Cold-Pressed Unrefined', 'Wholesale Rate: LKR 1,050'], is_active: true },
+    { id: 1502, name: 'Pure Cold-Pressed Gingelly Oil 350ml (நல்லெண்ணெய்)', slug: 'gingelly-oil-350ml', description: '100% natural cold-pressed sesame oil.', category: 'Gingelly Oil', price: 750.00, wholesale_price: 560.00, unit: '350ml Bottle', image_url: '/assets/gingelly_oil_375ml.jpg', features: ['350ml Bottle', 'Rich Aroma & Taste', 'Wholesale Rate: LKR 560'], is_active: true },
+    { id: 1503, name: 'Pure Cold-Pressed Gingelly Oil 200ml (நல்லெண்ணெய்)', slug: 'gingelly-oil-200ml', description: 'Convenient 200ml bottle of authentic pure cold-pressed Gingelly oil.', category: 'Gingelly Oil', price: 400.00, wholesale_price: 320.00, unit: '200ml Bottle', image_url: '/assets/gingelly_oil_375ml.jpg', features: ['200ml Bottle', 'Pure & Unrefined', 'Wholesale Rate: LKR 320'], is_active: true }
   ];
 };
 
