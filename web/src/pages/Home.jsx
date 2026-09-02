@@ -431,22 +431,32 @@ const Home = () => {
               </p>
 
               {/* 4 Feature Badges */}
-              <div className="hero-badges-flex" style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '24px',
-                marginBottom: '36px',
-                flexWrap: 'wrap'
-              }}>
+              <motion.div 
+                className="hero-badges-flex" 
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.2 } }
+                }}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '24px',
+                  marginBottom: '36px',
+                  flexWrap: 'wrap'
+                }}
+              >
                 {/* 1. PURE */}
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                  <div style={{
+                <motion.div 
+                  variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+                  style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', cursor: 'pointer' }}
+                >
+                  <div className="badge-circle-3d" style={{
                     width: '56px',
                     height: '56px',
                     borderRadius: '50%',
                     backgroundColor: '#FFFFFF',
-                    border: '2px solid #0F4A24',
-                    boxShadow: '0 6px 18px rgba(245, 158, 11, 0.25)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center'
@@ -456,17 +466,18 @@ const Home = () => {
                   <span style={{ fontSize: '0.8rem', fontWeight: '900', color: '#d30707ff', letterSpacing: '0.5px' }}>
                     PURE
                   </span>
-                </div>
+                </motion.div>
 
                 {/* 2. QUALITY */}
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                  <div style={{
+                <motion.div 
+                  variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+                  style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', cursor: 'pointer' }}
+                >
+                  <div className="badge-circle-3d" style={{
                     width: '56px',
                     height: '56px',
                     borderRadius: '50%',
                     backgroundColor: '#FFFFFF',
-                    border: '2px solid #0F4A24',
-                    boxShadow: '0 6px 18px rgba(211, 47, 47, 0.25)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center'
@@ -476,17 +487,18 @@ const Home = () => {
                   <span style={{ fontSize: '0.8rem', fontWeight: '900', color: '#de0c0cff', letterSpacing: '0.5px' }}>
                     QUALITY
                   </span>
-                </div>
+                </motion.div>
 
                 {/* 3. HYGIENIC */}
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                  <div style={{
+                <motion.div 
+                  variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+                  style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', cursor: 'pointer' }}
+                >
+                  <div className="badge-circle-3d" style={{
                     width: '56px',
                     height: '56px',
                     borderRadius: '50%',
                     backgroundColor: '#FFFFFF',
-                    border: '2px solid #0F4A24',
-                    boxShadow: '0 6px 18px rgba(245, 158, 11, 0.25)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center'
@@ -496,17 +508,18 @@ const Home = () => {
                   <span style={{ fontSize: '0.8rem', fontWeight: '900', color: '#fa0505ff', letterSpacing: '0.5px' }}>
                     HYGIENIC
                   </span>
-                </div>
+                </motion.div>
 
                 {/* 4. TRADITION */}
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                  <div style={{
+                <motion.div 
+                  variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+                  style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', cursor: 'pointer' }}
+                >
+                  <div className="badge-circle-3d" style={{
                     width: '56px',
                     height: '56px',
                     borderRadius: '50%',
                     backgroundColor: '#FFFFFF',
-                    border: '2px solid #0F4A24',
-                    boxShadow: '0 6px 18px rgba(15, 74, 36, 0.25)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center'
@@ -516,8 +529,8 @@ const Home = () => {
                   <span style={{ fontSize: '0.8rem', fontWeight: '900', color: '#f00808d9', letterSpacing: '0.5px' }}>
                     TRADITION
                   </span>
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
 
               {/* Action Buttons */}
               <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
