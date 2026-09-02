@@ -301,7 +301,7 @@ const Home = () => {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
+              transition={{ duration: 0.3 }}
             >
               {/* Official Brand Badge */}
               <div style={{
@@ -437,7 +437,7 @@ const Home = () => {
                 animate="visible"
                 variants={{
                   hidden: { opacity: 0 },
-                  visible: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.2 } }
+                  visible: { opacity: 1, transition: { staggerChildren: 0.05, delayChildren: 0.05 } }
                 }}
                 style={{
                   display: 'flex',
@@ -583,7 +583,7 @@ const Home = () => {
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              transition={{ duration: 0.3 }}
               style={{
                 position: 'relative',
                 display: 'flex',
@@ -750,7 +750,7 @@ const Home = () => {
         initial={{ opacity: 0, y: 70 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 0.3 }}
         style={{ padding: '80px 0', backgroundColor: 'transparent' }}
       >
         <div className="container">
@@ -963,7 +963,7 @@ const Home = () => {
         initial={{ opacity: 0, y: 70 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 0.3 }}
         style={{ padding: '70px 0', backgroundColor: 'rgba(255, 255, 255, 0.7)', borderTop: '1px solid #E2E8F0', borderBottom: '1px solid #E2E8F0' }}
       >
         <div className="container">
@@ -1070,7 +1070,7 @@ const Home = () => {
         initial={{ opacity: 0, y: 70 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 0.3 }}
         style={{ padding: '70px 0', backgroundColor: 'rgba(255, 255, 255, 0.7)', borderTop: '1px solid #E2E8F0' }}
       >
         <div className="container">

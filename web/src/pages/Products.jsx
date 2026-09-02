@@ -965,7 +965,7 @@ const Products = () => {
                 <motion.div
                   key={product.id || product.slug}
                   whileHover={{ y: -8 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.15 }}
                   style={{
                     backgroundColor: '#FFFFFF',
                     borderRadius: '24px',

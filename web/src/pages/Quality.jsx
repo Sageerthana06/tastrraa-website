@@ -221,7 +221,7 @@ const Quality = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.3 }}
           >
             {/* Top Quality Badge & GMP Certified Badge */}
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '14px', marginBottom: '20px', flexWrap: 'wrap' }}>
@@ -353,7 +353,7 @@ const Quality = () => {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                transition={{ duration: 0.3, delay: idx * 0.05 }}
                 whileHover={{ y: -8, scale: 1.02 }}
                 style={{
                   backgroundColor: '#FFFFFF',
@@ -516,7 +516,7 @@ const Quality = () => {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.35 }}
+              transition={{ duration: 0.2 }}
               style={{
                 backgroundColor: '#FFFFFF',
                 borderRadius: '28px',
@@ -731,7 +731,7 @@ const Quality = () => {
                         <motion.div
                           initial={{ width: 0 }}
                           animate={{ width: `${Math.min(spec.value, 100)}%` }}
-                          transition={{ duration: 0.8, delay: idx * 0.1 }}
+                          transition={{ duration: 0.3, delay: idx * 0.05 }}
                           style={{
                             height: '100%',
                             backgroundColor: spec.color,
