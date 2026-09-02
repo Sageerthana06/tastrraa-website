@@ -977,7 +977,7 @@ const Products = () => {
                   }}
                 >
                   {/* Image Box */}
-                  <div style={{ position: 'relative', height: '230px', backgroundColor: '#F8FAFC', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px' }}>
+                  <div className="product-image-box" style={{ position: 'relative', height: '230px', backgroundColor: '#F8FAFC', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px' }}>
                     <img
                       src={getProductImage(product)}
                       alt={product.name || 'TASTRAA Product'}
@@ -1000,9 +1000,9 @@ const Products = () => {
                   </div>
 
                   {/* Card Body */}
-                  <div style={{ padding: '24px', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                  <div className="product-card-body" style={{ padding: '24px', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                     <div>
-                      <h3 style={{
+                      <h3 className="product-title" style={{
                         fontSize: '1.2rem',
                         fontWeight: '800',
                         color: '#0F4A24',
@@ -1011,13 +1011,13 @@ const Products = () => {
                         {product.name || 'TASTRAA Product'}
                       </h3>
 
-                      <p style={{ color: '#475569', fontSize: '0.925rem', lineHeight: '1.6', marginBottom: '16px' }}>
+                      <p className="product-desc" style={{ color: '#475569', fontSize: '0.925rem', lineHeight: '1.6', marginBottom: '16px' }}>
                         {product.description || ''}
                       </p>
 
                       {/* Features */}
                       {product.features && Array.isArray(product.features) && (
-                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '20px' }}>
+                        <div className="product-features" style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '20px' }}>
                           {product.features.map((feat, fidx) => (
                             <span key={fidx} style={{
                               backgroundColor: '#E8F5E9',
@@ -1037,7 +1037,7 @@ const Products = () => {
 
                     <div>
                       {/* Quantity Selector Bar */}
-                      <div style={{
+                      <div className="qty-selector" style={{
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'space-between',
@@ -1047,7 +1047,7 @@ const Products = () => {
                         border: '1px solid #E2E8F0',
                         marginBottom: '14px'
                       }}>
-                        <span style={{ fontSize: '0.8rem', fontWeight: '800', color: '#475569' }}>
+                        <span className="qty-label" style={{ fontSize: '0.8rem', fontWeight: '800', color: '#475569' }}>
                           Select Items:
                         </span>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -1101,11 +1101,11 @@ const Products = () => {
                       </div>
 
                       {/* Price & Unit */}
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '8px', marginBottom: '16px', paddingTop: '10px', borderTop: '1px solid #F1F5F9' }}>
+                      <div className="price-box" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '8px', marginBottom: '16px', paddingTop: '10px', borderTop: '1px solid #F1F5F9' }}>
                         <div style={{ flex: 1, minWidth: 0 }}>
                           {product.wholesale_price ? (
                             <>
-                              <div style={{ fontSize: '1.3rem', fontWeight: '900', color: '#0F4A24', lineHeight: '1.2' }}>
+                              <div className="price-text" style={{ fontSize: '1.3rem', fontWeight: '900', color: '#0F4A24', lineHeight: '1.2' }}>
                                 LKR {(parseFloat(product.wholesale_price) * qty).toFixed(2)}
                               </div>
                               <div style={{ fontSize: '0.9rem', color: '#94A3B8', fontWeight: '700', marginTop: '4px', textDecoration: 'line-through' }}>
@@ -1113,7 +1113,7 @@ const Products = () => {
                               </div>
                             </>
                           ) : (
-                            <div style={{ fontSize: '1.3rem', fontWeight: '900', color: '#0F4A24', lineHeight: '1.2' }}>
+                            <div className="price-text" style={{ fontSize: '1.3rem', fontWeight: '900', color: '#0F4A24', lineHeight: '1.2' }}>
                               LKR {totalPrice}
                             </div>
                           )}
@@ -1123,7 +1123,7 @@ const Products = () => {
                         </span>
                       </div>
 
-                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.35fr', gap: '10px', alignItems: 'center' }}>
+                      <div className="action-buttons" style={{ display: 'grid', gridTemplateColumns: '1fr 1.35fr', gap: '10px', alignItems: 'center' }}>
                         <Link
                           to={`/products/${productSlug}`}
                           style={{

@@ -624,10 +624,69 @@ svg {
     box-sizing: border-box !important;
   }
 
-  /* Product grid cards for small screens */
+  /* Product grid cards for small screens - 2 COLUMNS */
   .responsive-grid-auto {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+
+  /* Overrides for product cards in 2-column layout to prevent cramping */
+  .product-image-box {
+    height: 150px !important;
+    padding: 10px !important;
+  }
+  .product-image-box span {
+    font-size: 0.6rem !important;
+    padding: 2px 8px !important;
+    top: 8px !important;
+    left: 8px !important;
+  }
+  .product-card-body {
+    padding: 12px !important;
+  }
+  .product-title {
+    font-size: 0.9rem !important;
+    margin-bottom: 6px !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .product-desc {
+    font-size: 0.75rem !important;
+    margin-bottom: 8px !important;
+    line-height: 1.2 !important;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .product-features {
+    display: none !important;
+  }
+  .qty-selector {
+    padding: 4px 6px !important;
+    margin-bottom: 10px !important;
+  }
+  .qty-label {
+    display: none !important;
+  }
+  .price-box {
+    padding-top: 8px !important;
+    margin-bottom: 12px !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 4px !important;
+  }
+  .price-text {
+    font-size: 1.05rem !important;
+  }
+  .action-buttons {
     grid-template-columns: 1fr !important;
-    gap: 20px !important;
+    gap: 6px !important;
+  }
+  .action-buttons a, .action-buttons button {
+    padding: 8px !important;
+    font-size: 0.75rem !important;
   }
 
   /* Direct action buttons grid in contact */
