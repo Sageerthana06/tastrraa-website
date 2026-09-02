@@ -1104,14 +1104,9 @@ const Products = () => {
                       <div className="price-box" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '8px', marginBottom: '16px', paddingTop: '10px', borderTop: '1px solid #F1F5F9' }}>
                         <div style={{ flex: 1, minWidth: 0 }}>
                           {product.wholesale_price ? (
-                            <>
-                              <div className="price-text" style={{ fontSize: '1.3rem', fontWeight: '900', color: '#0F4A24', lineHeight: '1.2' }}>
-                                LKR {(parseFloat(product.wholesale_price) * qty).toFixed(2)}
-                              </div>
-                              <div style={{ fontSize: '0.9rem', color: '#94A3B8', fontWeight: '700', marginTop: '4px', textDecoration: 'line-through' }}>
-                                LKR {totalPrice}
-                              </div>
-                            </>
+                            <div className="price-text" style={{ fontSize: '1.3rem', fontWeight: '900', color: '#0F4A24', lineHeight: '1.2' }}>
+                              LKR {(parseFloat(product.wholesale_price) * qty).toFixed(2)}
+                            </div>
                           ) : (
                             <div className="price-text" style={{ fontSize: '1.3rem', fontWeight: '900', color: '#0F4A24', lineHeight: '1.2' }}>
                               LKR {totalPrice}

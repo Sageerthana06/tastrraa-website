@@ -64,10 +64,7 @@ const Navbar = () => {
             />
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <span className="logo-text-gradient" style={{ fontWeight: '900', fontSize: 'clamp(1rem, 3.5vw, 1.25rem)', letterSpacing: '0.5px', lineHeight: '1.1', fontFamily: "'Poppins', sans-serif" }}>
-                TASTRAA <span style={{ fontSize: '0.7rem', fontWeight: '800' }}>(PVT) LTD</span>
-              </span>
-              <span style={{ color: '#B45309', fontWeight: '700', fontSize: '0.675rem', letterSpacing: '0.3px', marginTop: '2px' }}>
-                Dependable Local Food Essentials
+                TASTRAA
               </span>
             </div>
           </Link>

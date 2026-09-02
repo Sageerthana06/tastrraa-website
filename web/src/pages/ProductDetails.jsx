@@ -411,11 +411,7 @@ Please let me know availability and delivery options.`;
                 <span style={{ fontSize: '2.2rem', fontWeight: '900', color: '#0F4A24' }}>
                   LKR {unitPrice.toFixed(2)}
                 </span>
-                {wholesalePrice && (
-                  <span style={{ fontSize: '1.2rem', fontWeight: '700', color: '#94A3B8', textDecoration: 'line-through' }}>
-                    LKR {originalUnitPrice.toFixed(2)}
-                  </span>
-                )}
+                {/* Strikethrough removed as requested */}
                 <span style={{ fontSize: '1rem', color: '#64748B', fontWeight: '700', backgroundColor: '#E8F5E9', padding: '4px 12px', borderRadius: '6px' }}>
                   {product.unit}
                 </span>
@@ -466,11 +462,7 @@ Please let me know availability and delivery options.`;
                   <span style={{ fontSize: '1.4rem', fontWeight: '900', color: '#0F4A24' }}>
                     LKR {totalPrice}
                   </span>
-                  {wholesalePrice && (
-                    <span style={{ fontSize: '0.95rem', fontWeight: '700', color: '#94A3B8', textDecoration: 'line-through' }}>
-                      LKR {originalTotalPrice}
-                    </span>
-                  )}
+                  {/* Strikethrough removed as requested */}
                   {quantity > 1 && (
                     <span style={{ fontSize: '0.85rem', color: '#64748B', fontWeight: '700' }}>
                       (LKR {unitPrice.toFixed(2)} each)
