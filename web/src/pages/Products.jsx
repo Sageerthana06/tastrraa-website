@@ -944,6 +944,27 @@ const Products = () => {
               const realPrice = product.wholesale_price ? (parseFloat(product.wholesale_price) * qty).toFixed(2) : totalPrice;
               const whatsappMsg = `Hi TASTRAA, I want to order ${qty} x ${product.name || 'Product'} (${product.unit || 'Pack'}). Total Price: LKR ${realPrice}. Please confirm availability.`;
 
+              const getTamilName = (p) => {
+                if (!p) return '';
+                if (p.tamil_name) return p.tamil_name;
+                const name = (p.name || '').toLowerCase();
+                if (name.includes('red raw rice')) return 'சிவப்பு பச்சரிசி';
+                if (name.includes('roasted red rice flour')) return 'வறுத்த சிவப்பு அரிசி மாவு';
+                if (name.includes('red rice flour') || name.includes('rice flour')) return 'சிவப்பு அரிசி மாவு';
+                if (name.includes('gingelly oil')) return 'சுத்தமான நல்லெண்ணெய்';
+                if (name.includes('chilli powder') || name.includes('chilli')) return 'வறுத்த மிளகாய்த்தூள்';
+                if (name.includes('garlic murukku')) return 'பூண்டு முறுக்கு';
+                if (name.includes('masala murukku')) return 'மசாலா முறுக்கு';
+                if (name.includes('murukku')) return 'முறுக்கு';
+                if (name.includes('pakoda')) return 'கார பகோடா';
+                if (name.includes('mixture')) return 'சுவையான மிச்சர்';
+                if (name.includes('manioc') || name.includes('chips')) return 'மரவள்ளி சிப்ஸ்';
+                if (name.includes('bites')) return 'சுவையான பைட்ஸ்';
+                if (name.includes('bengal gram') || name.includes('dhal')) return 'கடலை பருப்பு';
+                if (name.includes('peanut')) return 'வேர்க்கடலை';
+                return '';
+              };
+
               const getProductImage = (p) => {
                 if (!p) return hero3dImg;
                 const name = (p.name || '').toLowerCase();
@@ -1039,10 +1060,23 @@ const Products = () => {
                         fontSize: '1.2rem',
                         fontWeight: '800',
                         color: '#0F4A24',
-                        marginBottom: '10px'
+                        marginBottom: '2px'
                       }}>
                         {product.name || 'TASTRAA Product'}
                       </h3>
+
+                      {/* Tamil Product Name */}
+                      {getTamilName(product) && (
+                        <div style={{
+                          color: '#D32F2F',
+                          fontSize: '0.925rem',
+                          fontWeight: '800',
+                          marginBottom: '10px',
+                          letterSpacing: '0.2px'
+                        }}>
+                          {getTamilName(product)}
+                        </div>
+                      )}
 
                       <p className="product-desc" style={{ color: '#475569', fontSize: '0.925rem', lineHeight: '1.6', marginBottom: '16px' }}>
                         {product.description || ''}
