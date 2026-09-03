@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Phone, Menu, X, ShieldCheck } from 'lucide-react';
+import { motion } from 'framer-motion';
 import logoImg from '../assets/logo.png';
 
 const Navbar = () => {
@@ -55,17 +56,49 @@ const Navbar = () => {
           padding: '8px 0',
           transition: 'all 0.3s ease'
         }}>
-          {/* Brand Logo - English Branding */}
+          {/* Brand Logo - English & Animated Tamil Branding */}
           <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
-            <img
+            <motion.img
               src={logoImg}
               alt="TASTRAA Logo"
+              whileHover={{ scale: 1.05, rotate: 2 }}
+              transition={{ type: "spring", stiffness: 300 }}
               style={{ height: scrolled ? '44px' : '52px', width: 'auto', objectFit: 'contain', transition: 'height 0.3s ease' }}
             />
             <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <span className="logo-text-gradient" style={{ fontWeight: '900', fontSize: 'clamp(1rem, 3.5vw, 1.25rem)', letterSpacing: '0.5px', lineHeight: '1.1', fontFamily: "'Poppins', sans-serif" }}>
+              <span className="logo-text-gradient" style={{ fontWeight: '1000', fontSize: 'clamp(1rem, 3.5vw, 1.25rem)', letterSpacing: '0.5px', lineHeight: '1.1', fontFamily: "'Poppins', sans-serif" }}>
                 TASTRAA
               </span>
+              <motion.span
+                animate={{
+                  scale: [1, 1.06, 1],
+                  filter: [
+                    'drop-shadow(0 0 2px rgba(211,47,47,0.2))',
+                    'drop-shadow(0 0 8px rgba(211,47,47,0.6))',
+                    'drop-shadow(0 0 2px rgba(211,47,47,0.2))'
+                  ]
+                }}
+                transition={{
+                  duration: 2.2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                style={{
+                  background: 'linear-gradient(135deg, #D32F2F 0%, #B45309 45%, #0F4A24 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  fontWeight: '800',
+                  fontSize: '1.1rem',
+                  letterSpacing: '0.8px',
+                  lineHeight: '1',
+                  marginTop: '0px',
+                  fontFamily: "'Baloo Thambi 2', 'Anek Tamil', 'Noto Serif Tamil', sans-serif",
+                  display: 'inline-block',
+                  transformOrigin: 'left center'
+                }}
+              >
+                ரேஸ்ரா
+              </motion.span>
             </div>
           </Link>
 
@@ -107,13 +140,14 @@ const Navbar = () => {
           </nav>
 
           {/* Right Action Buttons */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <a
               href="tel:0764400816"
-              className="btn-green-pill"
+              className="btn-green-pill header-call-btn"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
+                justifyContent: 'center',
                 gap: '8px',
                 backgroundColor: '#0F4A24',
                 color: '#FFFFFF',
@@ -125,11 +159,13 @@ const Navbar = () => {
                 textDecoration: 'none',
                 boxShadow: '0 4px 14px rgba(15, 74, 36, 0.3)',
                 transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                border: '1px solid #165B2E'
+                border: '1px solid #165B2E',
+                flexShrink: 0
               }}
+              title="Call Us: 076 4400816"
             >
               <Phone size={15} style={{ color: '#FFD700' }} />
-              <span>CALL US: 076 4400816</span>
+              <span className="call-text-label">CALL US: 076 4400816</span>
             </a>
 
             {/* Mobile Hamburger Button */}
@@ -212,7 +248,7 @@ const Navbar = () => {
                 textDecoration: 'none'
               }}
             >
-              <Phone size={16} />
+              <Phone size={13} />
               <span>CALL US: 076 4400816</span>
             </a>
           </div>

@@ -122,12 +122,12 @@ const Contact = () => {
               </div>
 
               {/* Direct Quick Action Buttons */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '12px' }}>
-                <a href="tel:0764400816" className="btn-green-3d" style={{ padding: '12px 16px', fontSize: '0.85rem', width: '100%', justifyContent: 'center' }}>
-                  <Phone size={16} />
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: '8px' }}>
+                <a href="tel:0764400816" className="btn-green-3d" style={{ padding: '10px 14px', fontSize: '0.65rem', width: '100%', justifyContent: 'center' }}>
+                  <Phone size={12} />
                   <span>Call Us Now</span>
                 </a>
-                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" style={{ backgroundColor: '#25D366', color: '#FFFFFF', padding: '12px 16px', borderRadius: '9999px', fontWeight: '800', fontSize: '0.85rem', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" style={{ backgroundColor: '#25D366', color: '#FFFFFF', padding: '10px 13px', borderRadius: '9970px', fontWeight: '600', fontSize: '0.65rem', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '7px' }}>
                   <Send size={16} />
                   <span>WhatsApp</span>
                 </a>

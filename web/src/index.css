@@ -567,13 +567,16 @@ svg {
   }
 
   /* Header pill call button on small mobile */
-  .btn-green-pill span {
-    display: inline-block !important;
-    font-size: 0.775rem !important;
+  .call-text-label {
+    display: none !important;
   }
 
-  .btn-green-pill {
-    padding: 8px 14px !important;
+  .header-call-btn {
+    padding: 10px !important;
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50% !important;
+    justify-content: center !important;
   }
 
   /* Typography clamping */
@@ -622,6 +625,16 @@ svg {
     font-size: 0.925rem !important;
     font-weight: 800 !important;
     box-sizing: border-box !important;
+  }
+
+  /* Heritage Section 2 Photos in 1 Line on Mobile */
+  .heritage-2col-photos {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+  .heritage-2col-photos > div {
+    min-height: 160px !important;
+    border-radius: 16px !important;
   }
 
   /* Product grid cards for small screens - 2 COLUMNS */

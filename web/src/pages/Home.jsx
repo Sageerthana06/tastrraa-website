@@ -31,7 +31,8 @@ import {
 import api from '../api';
 import hero3dImg from '../assets/tastraa_original_hero.png';
 import gmpCertifiedImg from '../assets/gmp_certified.png';
-import factoryBuildingImg from '../assets/factory_building.png';
+import storeBuildingImg from '../assets/tastraa_store_building.jpg';
+import deliveryFleetImg from '../assets/tastraa_delivery_fleet.jpg';
 import redRice5kgImg from '../assets/red_rice_flour_5kg.jpg';
 import redRice10kgImg from '../assets/red_rice_flour_10kg.jpg';
 import redRice25kgImg from '../assets/red_rice_flour_25kg.png';
@@ -124,9 +125,21 @@ const Home = () => {
 
   const whatsappUrl = "https://wa.me/94779789223?text=Hi%20TASTRAA%20(PVT)%20LTD,%20I%20would%20like%20to%20inquire%20about%20your%203D%20quality%20food%20products.";
 
-  const filteredProducts = activeCategory === 'ALL'
-    ? products
-    : products.filter(p => p.category?.toUpperCase().includes(activeCategory));
+  const filteredProducts = React.useMemo(() => {
+    if (activeCategory === 'ALL') {
+      const seen = new Set();
+      const list = [];
+      for (const p of products) {
+        const cat = (p.category || 'OTHER').toUpperCase();
+        if (!seen.has(cat)) {
+          seen.add(cat);
+          list.push(p);
+        }
+      }
+      return list.length > 0 ? list : products.slice(0, 4);
+    }
+    return products.filter(p => p.category?.toUpperCase().includes(activeCategory));
+  }, [activeCategory, products]);
 
   // Signature 3D Stage Showcase Items
   const stageShowcaseItems = [
@@ -202,9 +215,50 @@ const Home = () => {
           50% { background-position: 100% 50%; }
           100% { background-position: 0% 50%; }
         }
+
+        @media (max-width: 640px) {
+          .home-products-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 12px !important;
+          }
+          .home-product-card {
+            border-radius: 16px !important;
+          }
+          .home-product-img-stage {
+            height: 140px !important;
+            padding: 8px !important;
+          }
+          .home-product-body {
+            padding: 12px !important;
+          }
+          .home-product-title {
+            font-size: 0.88rem !important;
+            line-height: 1.25 !important;
+            margin-bottom: 4px !important;
+          }
+          .home-product-desc {
+            font-size: 0.72rem !important;
+            line-height: 1.3 !important;
+            margin-bottom: 10px !important;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+          }
+          .home-product-netweight {
+            font-size: 0.65rem !important;
+          }
+          .home-product-weightval {
+            font-size: 0.825rem !important;
+          }
+          .home-product-btn {
+            padding: 6px 10px !important;
+            font-size: 0.7rem !important;
+          }
+        }
       `}</style>
       <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, zIndex: 1, overflow: 'hidden', pointerEvents: 'none' }}>
-        
+
         {/* Colorful Shifting Base Gradient */}
         <div style={{
           position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
@@ -227,11 +281,11 @@ const Home = () => {
             <motion.img
               src={prod.img}
               initial={{ rotate: 0, y: 0 }}
-              animate={{ 
-                rotate: 360, 
-                y: [0, 60, -60, 0] 
+              animate={{
+                rotate: 360,
+                y: [0, 60, -60, 0]
               }}
-              transition={{ 
+              transition={{
                 rotate: { duration: prod.duration, repeat: Infinity, ease: 'linear' },
                 y: { duration: prod.duration * 0.8, repeat: Infinity, ease: 'easeInOut' }
               }}
@@ -248,81 +302,81 @@ const Home = () => {
       </div>
 
       <div style={{ position: 'relative', zIndex: 10 }}>
-      {/* ============================================================ */}
-      {/* 1. 3D IMMERSIVE FULL-COVER HERO SECTION WITH PARALLAX & TILT */}
-      {/* ============================================================ */}
-      <section
-        ref={heroRef}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        style={{
-          position: 'relative',
-          background: 'linear-gradient(160deg, #FFFBEB 0%, #FEF3C7 45%, #FAF9F5 100%)',
-          paddingTop: '36px',
-          paddingBottom: '20px',
-          overflow: 'hidden',
-          perspective: '1200px'
-        }}
-      >
-        {/* Floating 3D Ambient Background Particles (Golden & Red Glow) */}
-        <div style={{
-          position: 'absolute',
-          top: '-100px',
-          right: '-100px',
-          width: '650px',
-          height: '650px',
-          background: 'radial-gradient(circle, rgba(253, 224, 71, 0.65) 0%, rgba(255, 255, 255, 0) 70%)',
-          pointerEvents: 'none',
-          borderRadius: '50%',
-          transform: `translate3d(${mousePos.x * -30}px, ${mousePos.y * -30}px, 0)`
-        }} />
+        {/* ============================================================ */}
+        {/* 1. 3D IMMERSIVE FULL-COVER HERO SECTION WITH PARALLAX & TILT */}
+        {/* ============================================================ */}
+        <section
+          ref={heroRef}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+          style={{
+            position: 'relative',
+            background: 'linear-gradient(160deg, #FFFBEB 0%, #FEF3C7 45%, #FAF9F5 100%)',
+            paddingTop: '36px',
+            paddingBottom: '20px',
+            overflow: 'hidden',
+            perspective: '1200px'
+          }}
+        >
+          {/* Floating 3D Ambient Background Particles (Golden & Red Glow) */}
+          <div style={{
+            position: 'absolute',
+            top: '-100px',
+            right: '-100px',
+            width: '650px',
+            height: '650px',
+            background: 'radial-gradient(circle, rgba(253, 224, 71, 0.65) 0%, rgba(255, 255, 255, 0) 70%)',
+            pointerEvents: 'none',
+            borderRadius: '50%',
+            transform: `translate3d(${mousePos.x * -30}px, ${mousePos.y * -30}px, 0)`
+          }} />
 
-        <div style={{
-          position: 'absolute',
-          bottom: '10%',
-          left: '-80px',
-          width: '500px',
-          height: '500px',
-          background: 'radial-gradient(circle, rgba(211, 47, 47, 0.15) 0%, rgba(255, 255, 255, 0) 70%)',
-          pointerEvents: 'none',
-          borderRadius: '50%',
-          transform: `translate3d(${mousePos.x * 25}px, ${mousePos.y * 25}px, 0)`
-        }} />
+          <div style={{
+            position: 'absolute',
+            bottom: '10%',
+            left: '-80px',
+            width: '500px',
+            height: '500px',
+            background: 'radial-gradient(circle, rgba(211, 47, 47, 0.15) 0%, rgba(255, 255, 255, 0) 70%)',
+            pointerEvents: 'none',
+            borderRadius: '50%',
+            transform: `translate3d(${mousePos.x * 25}px, ${mousePos.y * 25}px, 0)`
+          }} />
 
-        <div className="container" style={{ position: 'relative', zIndex: 5 }}>
-          <div className="hero-3d-grid" style={{
-            display: 'grid',
-            gridTemplateColumns: '1.1fr 1fr',
-            gap: '40px',
-            alignItems: 'center'
-          }}>
+          <div className="container" style={{ position: 'relative', zIndex: 5 }}>
+            <div className="hero-3d-grid" style={{
+              display: 'grid',
+              gridTemplateColumns: '1.1fr 1fr',
+              gap: '40px',
+              alignItems: 'center'
+            }}>
 
-            {/* LEFT COLUMN: Main Typography & Badges */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              {/* Official Brand Badge */}
-              <div style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '10px',
-                backgroundColor: '#FFFFFF',
-                border: '2px solid #D32F2F',
-                padding: '7px 20px',
-                borderRadius: '9999px',
-                marginBottom: '20px',
-                boxShadow: '0 4px 15px rgba(211, 47, 47, 0.15)'
-              }}>
-                <Sparkles size={16} style={{ color: '#D32F2F' }} />
-                <span style={{ color: '#D32F2F', fontWeight: '900', fontSize: '0.825rem', letterSpacing: '1px' }}>
-                  உண்மை • உழைப்பு • உயர்வு | TRADITION & PURITY
-                </span>
-              </div>
+              {/* LEFT COLUMN: Main Typography & Badges */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                {/* Official Brand Badge */}
+                <div style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '10px',
+                  backgroundColor: '#FFFFFF',
+                  border: '2px solid #D32F2F',
+                  padding: '7px 20px',
+                  borderRadius: '9999px',
+                  marginBottom: '20px',
+                  boxShadow: '0 4px 15px rgba(211, 47, 47, 0.15)'
+                }}>
+                  <Sparkles size={16} style={{ color: '#D32F2F' }} />
+                  <span style={{ color: '#D32F2F', fontWeight: '900', fontSize: '0.825rem', letterSpacing: '1px' }}>
+                    உண்மை • உழைப்பு • உயர்வு | TRADITION & PURITY
+                  </span>
+                </div>
 
-              {/* Dynamic Headline */}
-              <style>{`
+                {/* Dynamic Headline */}
+                <style>{`
     @keyframes pureReveal {
       0% {
         opacity: 0;
@@ -408,713 +462,789 @@ const Home = () => {
       }
     }
   `}</style>
-              <h1 className="hero-heading" style={{ marginBottom: '18px' }}>
-                <span className="hero-heading-line pure-line">
-                  PURE TRADITION.
-                </span>
-                <span className="hero-heading-line taste-line">
-                  PERFECT TASTE.
-                </span>
-              </h1>
+                <h1 className="hero-heading" style={{ marginBottom: '18px' }}>
+                  <span className="hero-heading-line pure-line">
+                    PURE TRADITION.
+                  </span>
+                  <span className="hero-heading-line taste-line">
+                    PERFECT TASTE.
+                  </span>
+                </h1>
 
-              {/* Subheading text */}
-              <p style={{
-                fontFamily: "'Montserrat', sans-serif",
-                fontSize: 'clamp(1.05rem, 2vw, 1.25rem)',
-                lineHeight: '1.6',
-                color: '#1E293B',
-                marginBottom: '32px',
-                fontWeight: '700',
-                maxWidth: '560px'
-              }}>
-                TASTRAA (PVT) LTD produces trusted food essentials with a focus on consistency, local sourcing, practical production and responsive customer care.
-              </p>
+                {/* Subheading text */}
+                <p style={{
+                  fontFamily: "'Montserrat', sans-serif",
+                  fontSize: 'clamp(1.05rem, 2vw, 1.25rem)',
+                  lineHeight: '1.6',
+                  color: '#1E293B',
+                  marginBottom: '32px',
+                  fontWeight: '700',
+                  maxWidth: '560px'
+                }}>
+                  TASTRAA (PVT) LTD produces trusted food essentials with a focus on consistency, local sourcing, practical production and responsive customer care.
+                </p>
 
-              {/* 4 Feature Badges */}
-              <motion.div 
-                className="hero-badges-flex" 
-                initial="hidden"
-                animate="visible"
-                variants={{
-                  hidden: { opacity: 0 },
-                  visible: { opacity: 1, transition: { staggerChildren: 0.05, delayChildren: 0.05 } }
-                }}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '24px',
-                  marginBottom: '36px',
-                  flexWrap: 'wrap'
-                }}
-              >
-                {/* 1. PURE */}
-                <motion.div 
-                  variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-                  style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', cursor: 'pointer' }}
-                >
-                  <div className="badge-circle-3d" style={{
-                    width: '56px',
-                    height: '56px',
-                    borderRadius: '50%',
-                    backgroundColor: '#FFFFFF',
+                {/* 4 Feature Badges */}
+                <motion.div
+                  className="hero-badges-flex"
+                  initial="hidden"
+                  animate="visible"
+                  variants={{
+                    hidden: { opacity: 0 },
+                    visible: { opacity: 1, transition: { staggerChildren: 0.05, delayChildren: 0.05 } }
+                  }}
+                  style={{
                     display: 'flex',
                     alignItems: 'center',
-                    justifyContent: 'center'
-                  }}>
-                    <Leaf size={26} style={{ color: '#0F4A24' }} />
-                  </div>
-                  <span style={{ fontSize: '0.8rem', fontWeight: '900', color: '#d30707ff', letterSpacing: '0.5px' }}>
-                    PURE
-                  </span>
+                    gap: '24px',
+                    marginBottom: '36px',
+                    flexWrap: 'wrap'
+                  }}
+                >
+                  {/* 1. PURE */}
+                  <motion.div
+                    variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+                    style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', cursor: 'pointer' }}
+                  >
+                    <div className="badge-circle-3d" style={{
+                      width: '56px',
+                      height: '56px',
+                      borderRadius: '50%',
+                      backgroundColor: '#FFFFFF',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }}>
+                      <Leaf size={26} style={{ color: '#0F4A24' }} />
+                    </div>
+                    <span style={{ fontSize: '0.8rem', fontWeight: '900', color: '#d30707ff', letterSpacing: '0.5px' }}>
+                      PURE
+                    </span>
+                  </motion.div>
+
+                  {/* 2. QUALITY */}
+                  <motion.div
+                    variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+                    style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', cursor: 'pointer' }}
+                  >
+                    <div className="badge-circle-3d" style={{
+                      width: '56px',
+                      height: '56px',
+                      borderRadius: '50%',
+                      backgroundColor: '#FFFFFF',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }}>
+                      <ShieldCheck size={26} style={{ color: '#0F4A24' }} />
+                    </div>
+                    <span style={{ fontSize: '0.8rem', fontWeight: '900', color: '#de0c0cff', letterSpacing: '0.5px' }}>
+                      QUALITY
+                    </span>
+                  </motion.div>
+
+                  {/* 3. HYGIENIC */}
+                  <motion.div
+                    variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+                    style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', cursor: 'pointer' }}
+                  >
+                    <div className="badge-circle-3d" style={{
+                      width: '56px',
+                      height: '56px',
+                      borderRadius: '50%',
+                      backgroundColor: '#FFFFFF',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }}>
+                      <Sparkles size={26} style={{ color: '#0F4A24' }} />
+                    </div>
+                    <span style={{ fontSize: '0.8rem', fontWeight: '900', color: '#fa0505ff', letterSpacing: '0.5px' }}>
+                      HYGIENIC
+                    </span>
+                  </motion.div>
+
+                  {/* 4. TRADITION */}
+                  <motion.div
+                    variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+                    style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', cursor: 'pointer' }}
+                  >
+                    <div className="badge-circle-3d" style={{
+                      width: '56px',
+                      height: '56px',
+                      borderRadius: '50%',
+                      backgroundColor: '#FFFFFF',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }}>
+                      <Utensils size={26} style={{ color: '#0F4A24' }} />
+                    </div>
+                    <span style={{ fontSize: '0.8rem', fontWeight: '900', color: '#f00808d9', letterSpacing: '0.5px' }}>
+                      TRADITION
+                    </span>
+                  </motion.div>
                 </motion.div>
 
-                {/* 2. QUALITY */}
-                <motion.div 
-                  variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-                  style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', cursor: 'pointer' }}
-                >
-                  <div className="badge-circle-3d" style={{
-                    width: '56px',
-                    height: '56px',
-                    borderRadius: '50%',
-                    backgroundColor: '#FFFFFF',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                  }}>
-                    <ShieldCheck size={26} style={{ color: '#0F4A24' }} />
-                  </div>
-                  <span style={{ fontSize: '0.8rem', fontWeight: '900', color: '#de0c0cff', letterSpacing: '0.5px' }}>
-                    QUALITY
-                  </span>
-                </motion.div>
+                {/* Action Buttons */}
+                <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
+                  <Link
+                    to="/products"
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '10px',
+                      backgroundColor: '#0F4A24',
+                      color: '#FFFFFF',
+                      padding: '14px 28px',
+                      borderRadius: '9999px',
+                      fontWeight: '800',
+                      fontSize: '0.9rem',
+                      letterSpacing: '0.5px',
+                      boxShadow: '0 4px 15px rgba(15, 74, 36, 0.3)',
+                      textDecoration: 'none',
+                      transition: 'all 0.3s ease'
+                    }}
+                  >
+                    <span>SHOP PRODUCTS</span>
+                    <ArrowRight size={18} />
+                  </Link>
 
-                {/* 3. HYGIENIC */}
-                <motion.div 
-                  variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-                  style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', cursor: 'pointer' }}
-                >
-                  <div className="badge-circle-3d" style={{
-                    width: '56px',
-                    height: '56px',
-                    borderRadius: '50%',
-                    backgroundColor: '#FFFFFF',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                  }}>
-                    <Sparkles size={26} style={{ color: '#0F4A24' }} />
-                  </div>
-                  <span style={{ fontSize: '0.8rem', fontWeight: '900', color: '#fa0505ff', letterSpacing: '0.5px' }}>
-                    HYGIENIC
-                  </span>
-                </motion.div>
-
-                {/* 4. TRADITION */}
-                <motion.div 
-                  variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-                  style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', cursor: 'pointer' }}
-                >
-                  <div className="badge-circle-3d" style={{
-                    width: '56px',
-                    height: '56px',
-                    borderRadius: '50%',
-                    backgroundColor: '#FFFFFF',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                  }}>
-                    <Utensils size={26} style={{ color: '#0F4A24' }} />
-                  </div>
-                  <span style={{ fontSize: '0.8rem', fontWeight: '900', color: '#f00808d9', letterSpacing: '0.5px' }}>
-                    TRADITION
-                  </span>
-                </motion.div>
+                  <Link
+                    to="/contact"
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '10px',
+                      backgroundColor: '#FFFFFF',
+                      color: '#0F4A24',
+                      padding: '14px 26px',
+                      borderRadius: '9999px',
+                      fontWeight: '800',
+                      fontSize: '0.9rem',
+                      border: '2px solid #D32F2F',
+                      boxShadow: '0 4px 14px rgba(211, 47, 47, 0.12)',
+                      transition: 'all 0.3s ease',
+                      textDecoration: 'none'
+                    }}
+                  >
+                    <span>CONTACT US</span>
+                  </Link>
+                </div>
               </motion.div>
 
-              {/* Action Buttons */}
-              <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
-                <Link
-                  to="/products"
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '10px',
-                    backgroundColor: '#0F4A24',
-                    color: '#FFFFFF',
-                    padding: '14px 28px',
-                    borderRadius: '9999px',
-                    fontWeight: '800',
-                    fontSize: '0.9rem',
-                    letterSpacing: '0.5px',
-                    boxShadow: '0 4px 15px rgba(15, 74, 36, 0.3)',
-                    textDecoration: 'none',
-                    transition: 'all 0.3s ease'
-                  }}
-                >
-                  <span>SHOP PRODUCTS</span>
-                  <ArrowRight size={18} />
-                </Link>
-
-                <Link
-                  to="/contact"
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '10px',
-                    backgroundColor: '#FFFFFF',
-                    color: '#0F4A24',
-                    padding: '14px 26px',
-                    borderRadius: '9999px',
-                    fontWeight: '800',
-                    fontSize: '0.9rem',
-                    border: '2px solid #D32F2F',
-                    boxShadow: '0 4px 14px rgba(211, 47, 47, 0.12)',
-                    transition: 'all 0.3s ease',
-                    textDecoration: 'none'
-                  }}
-                >
-                  <span>CONTACT US</span>
-                </Link>
-              </div>
-            </motion.div>
-
-            {/* RIGHT COLUMN: 3D Animated Showcase Photo Frame */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.3 }}
-              style={{
-                position: 'relative',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                transformStyle: 'preserve-3d',
-                transform: `rotateY(${mousePos.x * 12}deg) rotateX(${mousePos.y * -12}deg)`,
-                transition: 'transform 0.1s ease-out'
-              }}
-            >
-              <div
+              {/* RIGHT COLUMN: 3D Animated Showcase Photo Frame */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3 }}
                 style={{
                   position: 'relative',
-                  width: '100%',
-                  maxWidth: '580px',
-                  borderRadius: '28px',
-                  overflow: 'hidden',
-                  boxShadow: '0 25px 60px -10px rgba(211, 47, 47, 0.25), 0 10px 30px rgba(245, 158, 11, 0.25)',
-                  backgroundColor: '#FFFFFF',
-                  border: '4px solid #FFFFFF'
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  transformStyle: 'preserve-3d',
+                  transform: `rotateY(${mousePos.x * 12}deg) rotateX(${mousePos.y * -12}deg)`,
+                  transition: 'transform 0.1s ease-out'
                 }}
               >
-                <img
-                  src={hero3dImg}
-                  alt="TASTRAA Original Product Lineup - Red Rice Flour, Gingelly Oil, Roasted Chilli Powder, Mixture"
+                <div
                   style={{
+                    position: 'relative',
                     width: '100%',
-                    height: 'auto',
-                    display: 'block',
-                    objectFit: 'cover'
+                    maxWidth: '580px',
+                    borderRadius: '28px',
+                    overflow: 'hidden',
+                    boxShadow: '0 25px 60px -10px rgba(211, 47, 47, 0.25), 0 10px 30px rgba(245, 158, 11, 0.25)',
+                    backgroundColor: '#FFFFFF',
+                    border: '4px solid #FFFFFF'
                   }}
-                />
-                {/* GMP Certified Badge Overlay in Corner */}
-                <div style={{
-                  position: 'absolute',
-                  top: '12px',
-                  right: '12px',
-                  zIndex: 10,
-                  filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.35))'
-                }}>
+                >
                   <img
-                    src={gmpCertifiedImg}
-                    alt="GMP Certified Practice"
+                    src={hero3dImg}
+                    alt="TASTRAA Original Product Lineup - Red Rice Flour, Gingelly Oil, Roasted Chilli Powder, Mixture"
                     style={{
-                      width: '85px',
+                      width: '100%',
                       height: 'auto',
-                      objectFit: 'contain',
-                      display: 'block'
+                      display: 'block',
+                      objectFit: 'cover'
                     }}
                   />
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-
-        {/* ============================================================ */}
-        {/* 2. BOTTOM CURVED DARK GREEN BAR MATCHING USER REFERENCE IMAGE */}
-        {/* ============================================================ */}
-        <div style={{ marginTop: '60px', position: 'relative', zIndex: 6 }}>
-          <div className="container">
-            <div style={{
-              background: 'linear-gradient(180deg, #f1e60cff 0%, #e2ab07ff 100%)',
-              borderRadius: '32px 32px 0 0',
-              padding: '28px 36px',
-              boxShadow: '0 -10px 30px rgba(0,0,0,0.12)',
-              borderTop: '2px solid rgba(255, 255, 255, 0.15)'
-            }}>
-              <div className="bottom-bar-grid" style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(4, 1fr)',
-                gap: '24px',
-                alignItems: 'center'
-              }}>
-                {/* Item 1: Carefully Sourced */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-                  <div style={{
-                    width: '46px',
-                    height: '46px',
-                    borderRadius: '50%',
-                    border: '1.5px solid #0F4A24',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    backgroundColor: 'rgba(221, 35, 3, 0.1)',
-                    flexShrink: 0
-                  }}>
-                    <Leaf size={22} style={{ color: '#0F4A24' }} />
-                  </div>
-                  <span style={{ color: '#0F4A24', fontWeight: '800', fontSize: '0.95rem', letterSpacing: '0.3px' }}>
-                    Carefully Sourced
-                  </span>
-                </div>
-
-                {/* Item 2: Premium Quality */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-                  <div style={{
-                    width: '46px',
-                    height: '46px',
-                    borderRadius: '50%',
-                    border: '1.5px solid #e70c0cff',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    backgroundColor: 'rgba(255, 255, 255, 0.12)',
-                    flexShrink: 0
-                  }}>
-                    <Award size={22} style={{ color: '#0F4A24' }} />
-                  </div>
-                  <span style={{ color: '#0F4A24', fontWeight: '800', fontSize: '0.95rem', letterSpacing: '0.3px' }}>
-                    Premium Quality
-                  </span>
-                </div>
-
-                {/* Item 3: Healthy Lifestyle */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-                  <div style={{
-                    width: '46px',
-                    height: '46px',
-                    borderRadius: '50%',
-                    border: '1.5px solid #0F4A24',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    backgroundColor: 'rgba(255, 255, 255, 0.12)',
-                    flexShrink: 0
-                  }}>
-                    <Heart size={22} style={{ color: '#0F4A24' }} />
-                  </div>
-                  <span style={{ color: '#0F4A24', fontWeight: '800', fontSize: '0.95rem', letterSpacing: '0.3px' }}>
-                    Healthy Lifestyle
-                  </span>
-                </div>
-
-                {/* Item 4: Trusted by Generations */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-                  <div style={{
-                    width: '46px',
-                    height: '46px',
-                    borderRadius: '50%',
-                    border: '1.5px solid #0F4A24',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    backgroundColor: 'rgba(255, 255, 255, 0.12)',
-                    flexShrink: 0
-                  }}>
-                    <ThumbsUp size={22} style={{ color: '#0F4A24' }} />
-                  </div>
-                  <span style={{ color: '#0F4A24', fontWeight: '800', fontSize: '0.95rem', letterSpacing: '0.3px' }}>
-                    Trusted by Generations
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================================ */}
-      {/* 3. INTERACTIVE 3D PRODUCT CATALOG SECTION                    */}
-      {/* ============================================================ */}
-      <motion.section 
-        initial={{ opacity: 0, y: 70 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.3 }}
-        style={{ padding: '80px 0', backgroundColor: 'transparent' }}
-      >
-        <div className="container">
-          {/* Header */}
-          <div style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto 44px' }}>
-            <span style={{
-              color: '#0F4A24',
-              fontWeight: '800',
-              fontSize: '0.85rem',
-              letterSpacing: '1px',
-              textTransform: 'uppercase'
-            }}>
-              TASTRAA PRODUCTS CATALOG
-            </span>
-            <h2 style={{
-              fontSize: 'clamp(2.1rem, 3.8vw, 2.8rem)',
-              fontWeight: '900',
-              color: '#0F4A24',
-              marginTop: '6px',
-              fontFamily: "'Poppins', sans-serif"
-            }}>
-              Authentic Local Food Essentials
-            </h2>
-            <p style={{ color: '#64748B', fontSize: '0.975rem', marginTop: '10px' }}>
-              Crafted in Jaffna with pure traditional methods, zero artificial additives, and utmost ISO quality hygiene standards.
-            </p>
-
-            {/* Category Filter Pills */}
-            <div style={{
-              display: 'flex',
-              justifyContent: 'center',
-              gap: '10px',
-              marginTop: '26px',
-              flexWrap: 'wrap'
-            }}>
-              {['ALL', 'FLOUR', 'OIL', 'MIXTURE', 'SPICE'].map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setActiveCategory(cat)}
-                  style={{
-                    padding: '9px 22px',
-                    borderRadius: '9999px',
-                    fontWeight: '800',
-                    fontSize: '0.8rem',
-                    border: '1px solid',
-                    borderColor: activeCategory === cat ? '#0F4A24' : '#CBD5E1',
-                    backgroundColor: activeCategory === cat ? '#0F4A24' : '#FFFFFF',
-                    color: activeCategory === cat ? '#FFFFFF' : '#475569',
-                    cursor: 'pointer',
-                    boxShadow: activeCategory === cat ? '0 8px 20px rgba(15, 74, 36, 0.25)' : '0 2px 6px rgba(0,0,0,0.03)',
-                    transition: 'all 0.25s ease'
-                  }}
-                >
-                  {cat === 'ALL' ? 'ALL PRODUCTS' : cat}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Products Grid with 3D Animated Cards */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-            gap: '30px'
-          }}>
-            {filteredProducts.map((prod) => {
-              const getProductImage = (p) => {
-                if (!p) return hero3dImg;
-                const url = p.image_url || '';
-                if (url === '/assets/gingelly_oil_750ml.jpg' || p.slug === 'gingelly-oil') return gingellyOil750mlImg;
-                if (url === '/assets/gingelly_oil_375ml.jpg' || p.slug === 'gingelly-oil-375ml') return gingellyOil375mlImg;
-                if (url === '/assets/bengal_gram_pack.jpg' || url === '/assets/bengal_gram_100.jpg' || p.slug === 'tastraa-bengal-gram-100') return bengalGramPackImg;
-                if (url === '/assets/red_raw_rice_25kg.jpg' || p.slug === 'red-raw-rice-25kg') return redRawRice25kgImg;
-                if (url === '/assets/red_rice_flour_5kg.jpg' || p.slug === 'red-rice-flour-5kg') return redRice5kgImg;
-                if (url === '/assets/red_rice_flour_10kg.jpg' || p.slug === 'red-rice-flour-10kg') return redRice10kgImg;
-                if (url === '/assets/red_rice_flour_25kg.png' || p.slug === 'red-rice-flour-25kg') return redRice25kgImg;
-                if (url === '/assets/red_rice_flour_2kg.jpg' || p.slug === 'red-rice-flour-2kg') return redRice2kgImg;
-                if (url === '/assets/roasted_chilli_powder_50g.jpg' || p.slug === 'roasted-chilli-powder-50g') return roastedChilli50gImg;
-                if (typeof url === 'string' && (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:'))) return url;
-                return p.image_url || hero3dImg;
-              };
-
-              return (
-                <motion.div
-                  key={prod.id || prod.slug}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  whileHover={{ y: -8, scale: 1.02 }}
-                  transition={{ duration: 0.3 }}
-                  style={{
-                    backgroundColor: '#FFFFFF',
-                    borderRadius: '24px',
-                    border: '1px solid #E2E8F0',
-                    overflow: 'hidden',
-                    boxShadow: '0 12px 30px rgba(0,0,0,0.06)',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'space-between',
-                    position: 'relative'
-                  }}
-                >
-                  {/* 3D Category Tag */}
+                  {/* GMP Certified Badge Overlay in Corner */}
                   <div style={{
                     position: 'absolute',
-                    top: '14px',
-                    left: '14px',
-                    zIndex: 2,
-                    backgroundColor: '#0F4A24',
-                    color: '#FFFFFF',
-                    padding: '4px 12px',
-                    borderRadius: '9999px',
-                    fontWeight: '800',
-                    fontSize: '0.7rem',
-                    letterSpacing: '0.5px'
-                  }}>
-                    {prod.category}
-                  </div>
-
-                  {/* Product Image Stage */}
-                  <div style={{
-                    height: '230px',
-                    backgroundColor: '#F8FAFC',
-                    position: 'relative',
-                    overflow: 'hidden',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    padding: '20px'
+                    top: '12px',
+                    right: '12px',
+                    zIndex: 10,
+                    filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.35))'
                   }}>
                     <img
-                      src={getProductImage(prod)}
-                      alt={prod.name}
-                    style={{
-                      maxHeight: '100%',
-                      maxWidth: '100%',
-                      objectFit: 'contain',
-                      transition: 'transform 0.5s ease'
-                    }}
-                  />
-                </div>
-
-                {/* Content */}
-                <div style={{ padding: '22px', display: 'flex', flexDirection: 'column', flex: 1 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '4px', marginBottom: '6px' }}>
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} size={14} style={{ color: '#F59E0B', fill: '#F59E0B' }} />
-                    ))}
-                    <span style={{ fontSize: '0.75rem', color: '#64748B', fontWeight: '700', marginLeft: '4px' }}>5.0 (Fresh)</span>
-                  </div>
-
-                  <h3 style={{
-                    fontSize: '1.15rem',
-                    fontWeight: '800',
-                    color: '#0F4A24',
-                    marginBottom: '8px',
-                    textDecoration: 'underline',
-                    textDecorationColor: '#0F4A24',
-                    textUnderlineOffset: '5px',
-                    textDecorationThickness: '2px'
-                  }}>
-                    {prod.name}
-                  </h3>
-
-                  <p style={{ fontSize: '0.85rem', color: '#64748B', lineHeight: '1.5', marginBottom: '18px', flex: 1 }}>
-                    {prod.description}
-                  </p>
-
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 'auto', paddingTop: '14px', borderTop: '1px solid #F1F5F9' }}>
-                    <div>
-                      <span style={{ fontSize: '0.7rem', color: '#94A3B8', display: 'block', fontWeight: '700' }}>NET WEIGHT</span>
-                      <span style={{ fontSize: '1rem', fontWeight: '900', color: '#0F4A24' }}>
-                        {prod.unit_size || 'Standard Pack'}
-                      </span>
-                    </div>
-
-                    <button
-                      onClick={() => setSelected3DProduct(prod)}
+                      src={gmpCertifiedImg}
+                      alt="GMP Certified Practice"
                       style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '6px',
-                        backgroundColor: '#E8F5E9',
-                        color: '#0F4A24',
-                        border: '1px solid #A5D6A7',
-                        padding: '8px 16px',
-                        borderRadius: '9999px',
-                        fontWeight: '800',
-                        fontSize: '0.8rem',
-                        cursor: 'pointer',
-                        transition: 'all 0.2s ease'
+                        width: '85px',
+                        height: 'auto',
+                        objectFit: 'contain',
+                        display: 'block'
                       }}
-                    >
-                      <Eye size={14} />
-                      <span> VIEW</span>
-                    </button>
+                    />
                   </div>
                 </div>
               </motion.div>
-            );
-          })}
-          </div>
-        </div>
-      </motion.section>
-
-      {/* ============================================================ */}
-      {/* 4. 3D INTERACTIVE FLAVOR & NUTRITION MATRIX SHOWCASE         */}
-      {/* ============================================================ */}
-      <motion.section 
-        initial={{ opacity: 0, y: 70 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.3 }}
-        style={{ padding: '70px 0', backgroundColor: 'rgba(255, 255, 255, 0.7)', borderTop: '1px solid #E2E8F0', borderBottom: '1px solid #E2E8F0' }}
-      >
-        <div className="container">
-          <div style={{ textAlign: 'center', maxWidth: '750px', margin: '0 auto 40px' }}>
-            <span style={{ color: '#0F4A24', fontWeight: '800', fontSize: '0.85rem', letterSpacing: '1px', textTransform: 'uppercase' }}>
-              TASTRAA CULINARY MATRIX
-            </span>
-            <h2 style={{ fontSize: 'clamp(1.9rem, 3.2vw, 2.5rem)', fontWeight: '900', color: '#0F4A24', marginTop: '6px' }}>
-              Purity & Nutritional Standard
-            </h2>
-            <p style={{ color: '#64748B', fontSize: '0.95rem', marginTop: '8px' }}>
-              Every product is tested for zero chemical residue, high dietary fiber, and traditional taste integrity.
-            </p>
-          </div>
-
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-            gap: '24px'
-          }}>
-            {/* Box 1 */}
-            <div style={{
-              backgroundColor: '#FAF9F5',
-              borderRadius: '20px',
-              padding: '26px',
-              border: '1px solid #E2E8F0',
-              boxShadow: '0 8px 20px rgba(0,0,0,0.03)'
-            }}>
-              <div style={{ width: '48px', height: '48px', borderRadius: '14px', backgroundColor: '#E8F5E9', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
-                <Leaf size={24} style={{ color: '#0F4A24' }} />
-              </div>
-              <h3 style={{ fontSize: '1.15rem', fontWeight: '800', color: '#0F4A24', marginBottom: '8px' }}>
-                100% Sun-Dried Chillies
-              </h3>
-              <p style={{ fontSize: '0.875rem', color: '#64748B', lineHeight: '1.5' }}>
-                Sun-dried under natural Jaffna sunlight before slow-roasting to extract intense aromatic oils.
-              </p>
-            </div>
-
-            {/* Box 2 */}
-            <div style={{
-              backgroundColor: '#FAF9F5',
-              borderRadius: '20px',
-              padding: '26px',
-              border: '1px solid #E2E8F0',
-              boxShadow: '0 8px 20px rgba(0,0,0,0.03)'
-            }}>
-              <div style={{ width: '48px', height: '48px', borderRadius: '14px', backgroundColor: '#FEF3C7', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
-                <Flame size={24} style={{ color: '#D97706' }} />
-              </div>
-              <h3 style={{ fontSize: '1.15rem', fontWeight: '800', color: '#0F4A24', marginBottom: '8px' }}>
-                Wood-Pressed Oil
-              </h3>
-              <p style={{ fontSize: '0.875rem', color: '#64748B', lineHeight: '1.5' }}>
-                Extracted at low temperatures without heat destruction to preserve natural vitamins & antioxidants.
-              </p>
-            </div>
-
-            {/* Box 3 */}
-            <div style={{
-              backgroundColor: '#FAF9F5',
-              borderRadius: '20px',
-              padding: '26px',
-              border: '1px solid #E2E8F0',
-              boxShadow: '0 8px 20px rgba(0,0,0,0.03)'
-            }}>
-              <div style={{ width: '48px', height: '48px', borderRadius: '14px', backgroundColor: '#E8F5E9', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
-                <ShieldCheck size={24} style={{ color: '#0F4A24' }} />
-              </div>
-              <h3 style={{ fontSize: '1.15rem', fontWeight: '800', color: '#0F4A24', marginBottom: '8px' }}>
-                Zero Preservatives
-              </h3>
-              <p style={{ fontSize: '0.875rem', color: '#64748B', lineHeight: '1.5' }}>
-                No artificial food colorings, no added MSG, and no artificial flavor enhancers ever added.
-              </p>
-            </div>
-
-            {/* Box 4 */}
-            <div style={{
-              backgroundColor: '#FAF9F5',
-              borderRadius: '20px',
-              padding: '26px',
-              border: '1px solid #E2E8F0',
-              boxShadow: '0 8px 20px rgba(0,0,0,0.03)'
-            }}>
-              <div style={{ width: '48px', height: '48px', borderRadius: '14px', backgroundColor: '#FEF3C7', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
-                <Package size={24} style={{ color: '#B45309' }} />
-              </div>
-              <h3 style={{ fontSize: '1.15rem', fontWeight: '800', color: '#0F4A24', marginBottom: '8px' }}>
-                Hygienic 3D Pack
-              </h3>
-              <p style={{ fontSize: '0.875rem', color: '#64748B', lineHeight: '1.5' }}>
-                Sealed under automated food-grade vacuum standards to retain aroma and crunchiness for months.
-              </p>
             </div>
           </div>
-        </div>
-      </motion.section>
 
-      {/* ============================================================ */}
-      {/* 6. HERITAGE & MANUFACTURING FACILITY SECTION                */}
-      {/* ============================================================ */}
-      <motion.section 
-        initial={{ opacity: 0, y: 70 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.3 }}
-        style={{ padding: '70px 0', backgroundColor: 'rgba(255, 255, 255, 0.7)', borderTop: '1px solid #E2E8F0' }}
-      >
-        <div className="container">
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: '40px',
-            alignItems: 'center'
-          }}>
-            {/* Left Image */}
-            <div style={{ borderRadius: '24px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.08)' }}>
-              <img
-                src={factoryBuildingImg}
-                alt="TASTRAA Manufacturing Facility in Kopay, Jaffna"
-                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-              />
+          {/* ============================================================ */}
+          {/* 2. BOTTOM CURVED DARK GREEN BAR MATCHING USER REFERENCE IMAGE */}
+          {/* ============================================================ */}
+          <div style={{ marginTop: '60px', position: 'relative', zIndex: 6 }}>
+            <div className="container">
+              <div style={{
+                background: 'linear-gradient(180deg, #f1e60cff 0%, #e2ab07ff 100%)',
+                borderRadius: '32px 32px 0 0',
+                padding: '28px 36px',
+                boxShadow: '0 -10px 30px rgba(0,0,0,0.12)',
+                borderTop: '2px solid rgba(255, 255, 255, 0.15)'
+              }}>
+                <div className="bottom-bar-grid" style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(4, 1fr)',
+                  gap: '24px',
+                  alignItems: 'center'
+                }}>
+                  {/* Item 1: Carefully Sourced */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+                    <div style={{
+                      width: '46px',
+                      height: '46px',
+                      borderRadius: '50%',
+                      border: '1.5px solid #0F4A24',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      backgroundColor: 'rgba(221, 35, 3, 0.1)',
+                      flexShrink: 0
+                    }}>
+                      <Leaf size={22} style={{ color: '#0F4A24' }} />
+                    </div>
+                    <span style={{ color: '#0F4A24', fontWeight: '800', fontSize: '0.95rem', letterSpacing: '0.3px' }}>
+                      Carefully Sourced
+                    </span>
+                  </div>
+
+                  {/* Item 2: Premium Quality */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+                    <div style={{
+                      width: '46px',
+                      height: '46px',
+                      borderRadius: '50%',
+                      border: '1.5px solid #e70c0cff',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      backgroundColor: 'rgba(255, 255, 255, 0.12)',
+                      flexShrink: 0
+                    }}>
+                      <Award size={22} style={{ color: '#0F4A24' }} />
+                    </div>
+                    <span style={{ color: '#0F4A24', fontWeight: '800', fontSize: '0.95rem', letterSpacing: '0.3px' }}>
+                      Premium Quality
+                    </span>
+                  </div>
+
+                  {/* Item 3: Healthy Lifestyle */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+                    <div style={{
+                      width: '46px',
+                      height: '46px',
+                      borderRadius: '50%',
+                      border: '1.5px solid #0F4A24',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      backgroundColor: 'rgba(255, 255, 255, 0.12)',
+                      flexShrink: 0
+                    }}>
+                      <Heart size={22} style={{ color: '#0F4A24' }} />
+                    </div>
+                    <span style={{ color: '#0F4A24', fontWeight: '800', fontSize: '0.95rem', letterSpacing: '0.3px' }}>
+                      Healthy Lifestyle
+                    </span>
+                  </div>
+
+                  {/* Item 4: Trusted by Generations */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+                    <div style={{
+                      width: '46px',
+                      height: '46px',
+                      borderRadius: '50%',
+                      border: '1.5px solid #0F4A24',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      backgroundColor: 'rgba(255, 255, 255, 0.12)',
+                      flexShrink: 0
+                    }}>
+                      <ThumbsUp size={22} style={{ color: '#0F4A24' }} />
+                    </div>
+                    <span style={{ color: '#0F4A24', fontWeight: '800', fontSize: '0.95rem', letterSpacing: '0.3px' }}>
+                      Trusted by Generations
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================================ */}
+        {/* 3. INTERACTIVE 3D PRODUCT CATALOG SECTION                    */}
+        {/* ============================================================ */}
+        <motion.section
+          initial={{ opacity: 0, y: 70 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.3 }}
+          style={{ padding: '80px 0', backgroundColor: 'transparent' }}
+        >
+          <div className="container">
+            {/* Header */}
+            <div style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto 44px' }}>
+              <span style={{
+                color: '#0F4A24',
+                fontWeight: '800',
+                fontSize: '0.85rem',
+                letterSpacing: '1px',
+                textTransform: 'uppercase'
+              }}>
+                TASTRAA PRODUCTS CATALOG
+              </span>
+              <h2 style={{
+                fontSize: 'clamp(2.1rem, 3.8vw, 2.8rem)',
+                fontWeight: '900',
+                color: '#0F4A24',
+                marginTop: '6px',
+                fontFamily: "'Poppins', sans-serif"
+              }}>
+                Authentic Local Food Essentials
+              </h2>
+              <p style={{ color: '#64748B', fontSize: '0.975rem', marginTop: '10px' }}>
+                Crafted in Jaffna with pure traditional methods, zero artificial additives, and utmost GMP quality hygiene standards.
+              </p>
+
+              {/* Category Filter Pills */}
+              <div style={{
+                display: 'flex',
+                justifyContent: 'center',
+                gap: '10px',
+                marginTop: '26px',
+                flexWrap: 'wrap'
+              }}>
+                {['ALL', 'FLOUR', 'OIL', 'MIXTURE', 'SPICE'].map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() => setActiveCategory(cat)}
+                    style={{
+                      padding: '9px 22px',
+                      borderRadius: '9999px',
+                      fontWeight: '800',
+                      fontSize: '0.8rem',
+                      border: '1px solid',
+                      borderColor: activeCategory === cat ? '#0F4A24' : '#CBD5E1',
+                      backgroundColor: activeCategory === cat ? '#0F4A24' : '#FFFFFF',
+                      color: activeCategory === cat ? '#FFFFFF' : '#475569',
+                      cursor: 'pointer',
+                      boxShadow: activeCategory === cat ? '0 8px 20px rgba(15, 74, 36, 0.25)' : '0 2px 6px rgba(0,0,0,0.03)',
+                      transition: 'all 0.25s ease'
+                    }}
+                  >
+                    {cat === 'ALL' ? 'ALL PRODUCTS' : cat}
+                  </button>
+                ))}
+              </div>
             </div>
 
-            {/* Right Story */}
-            <div>
+            {/* Products Grid with 3D Animated Cards */}
+            <div className="home-products-grid" style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+              gap: '30px'
+            }}>
+              {filteredProducts.map((prod) => {
+                const getProductImage = (p) => {
+                  if (!p) return hero3dImg;
+                  const url = p.image_url || '';
+                  if (url === '/assets/gingelly_oil_750ml.jpg' || p.slug === 'gingelly-oil') return gingellyOil750mlImg;
+                  if (url === '/assets/gingelly_oil_375ml.jpg' || p.slug === 'gingelly-oil-375ml') return gingellyOil375mlImg;
+                  if (url === '/assets/bengal_gram_pack.jpg' || url === '/assets/bengal_gram_100.jpg' || p.slug === 'tastraa-bengal-gram-100') return bengalGramPackImg;
+                  if (url === '/assets/red_raw_rice_25kg.jpg' || p.slug === 'red-raw-rice-25kg') return redRawRice25kgImg;
+                  if (url === '/assets/red_rice_flour_5kg.jpg' || p.slug === 'red-rice-flour-5kg') return redRice5kgImg;
+                  if (url === '/assets/red_rice_flour_10kg.jpg' || p.slug === 'red-rice-flour-10kg') return redRice10kgImg;
+                  if (url === '/assets/red_rice_flour_25kg.png' || p.slug === 'red-rice-flour-25kg') return redRice25kgImg;
+                  if (url === '/assets/red_rice_flour_2kg.jpg' || p.slug === 'red-rice-flour-2kg') return redRice2kgImg;
+                  if (url === '/assets/roasted_chilli_powder_50g.jpg' || p.slug === 'roasted-chilli-powder-50g') return roastedChilli50gImg;
+                  if (typeof url === 'string' && (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:'))) return url;
+                  return p.image_url || hero3dImg;
+                };
+
+                return (
+                  <motion.div
+                    key={prod.id || prod.slug}
+                    className="home-product-card"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    whileHover={{ y: -8, scale: 1.02 }}
+                    transition={{ duration: 0.3 }}
+                    style={{
+                      backgroundColor: '#FFFFFF',
+                      borderRadius: '24px',
+                      border: '1px solid #E2E8F0',
+                      overflow: 'hidden',
+                      boxShadow: '0 12px 30px rgba(0,0,0,0.06)',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'space-between',
+                      position: 'relative'
+                    }}
+                  >
+                    {/* 3D Category Tag */}
+                    <div style={{
+                      position: 'absolute',
+                      top: '12px',
+                      left: '12px',
+                      zIndex: 2,
+                      backgroundColor: '#0F4A24',
+                      color: '#FFFFFF',
+                      padding: '4px 10px',
+                      borderRadius: '9999px',
+                      fontWeight: '800',
+                      fontSize: '0.65rem',
+                      letterSpacing: '0.5px'
+                    }}>
+                      {prod.category}
+                    </div>
+
+                    {/* Product Image Stage */}
+                    <div className="home-product-img-stage" style={{
+                      height: '230px',
+                      backgroundColor: '#F8FAFC',
+                      position: 'relative',
+                      overflow: 'hidden',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      padding: '20px'
+                    }}>
+                      <img
+                        src={getProductImage(prod)}
+                        alt={prod.name}
+                        style={{
+                          maxHeight: '100%',
+                          maxWidth: '100%',
+                          objectFit: 'contain',
+                          transition: 'transform 0.5s ease'
+                        }}
+                      />
+                    </div>
+
+                    {/* Content */}
+                    <div className="home-product-body" style={{ padding: '22px', display: 'flex', flexDirection: 'column', flex: 1 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '4px', marginBottom: '6px' }}>
+                        {[...Array(5)].map((_, i) => (
+                          <Star key={i} size={14} style={{ color: '#F59E0B', fill: '#F59E0B' }} />
+                        ))}
+                        <span style={{ fontSize: '0.75rem', color: '#64748B', fontWeight: '700', marginLeft: '4px' }}>5.0 (Fresh)</span>
+                      </div>
+
+                      <h3 className="home-product-title" style={{
+                        fontSize: '1.15rem',
+                        fontWeight: '800',
+                        color: '#0F4A24',
+                        marginBottom: '8px',
+                        textDecoration: 'underline',
+                        textDecorationColor: '#0F4A24',
+                        textUnderlineOffset: '5px',
+                        textDecorationThickness: '2px'
+                      }}>
+                        {prod.name}
+                      </h3>
+
+                      <p className="home-product-desc" style={{ fontSize: '0.85rem', color: '#64748B', lineHeight: '1.5', marginBottom: '18px', flex: 1 }}>
+                        {prod.description}
+                      </p>
+
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 'auto', paddingTop: '14px', borderTop: '1px solid #F1F5F9' }}>
+                        <div>
+                          <span className="home-product-netweight" style={{ fontSize: '0.7rem', color: '#94A3B8', display: 'block', fontWeight: '700' }}>NET WEIGHT</span>
+                          <span className="home-product-weightval" style={{ fontSize: '1rem', fontWeight: '900', color: '#0F4A24' }}>
+                            {prod.unit_size || 'Standard Pack'}
+                          </span>
+                        </div>
+
+                        <button
+                          className="home-product-btn"
+                          onClick={() => setSelected3DProduct(prod)}
+                          style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '6px',
+                            backgroundColor: '#E8F5E9',
+                            color: '#0F4A24',
+                            border: '1px solid #A5D6A7',
+                            padding: '8px 16px',
+                            borderRadius: '9999px',
+                            fontWeight: '800',
+                            fontSize: '0.8rem',
+                            cursor: 'pointer',
+                            transition: 'all 0.2s ease'
+                          }}
+                        >
+                          <Eye size={14} />
+                          <span> VIEW</span>
+                        </button>
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+
+            {/* MORE PRODUCTS BUTTON LINKING TO /products PAGE */}
+            <div style={{ textAlign: 'center', marginTop: '48px' }}>
+              <Link
+                to="/products"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '12px',
+                  backgroundColor: '#0F4A24',
+                  color: '#FFFFFF',
+                  padding: '16px 40px',
+                  borderRadius: '9999px',
+                  fontWeight: '900',
+                  fontSize: '1rem',
+                  letterSpacing: '1px',
+                  boxShadow: '0 10px 30px rgba(15, 74, 36, 0.3)',
+                  textDecoration: 'none',
+                  transition: 'all 0.3s ease'
+                }}
+              >
+                <span>MORE PRODUCTS</span>
+                <ArrowRight size={20} />
+              </Link>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* ============================================================ */}
+        {/* 4. 3D INTERACTIVE FLAVOR & NUTRITION MATRIX SHOWCASE         */}
+        {/* ============================================================ */}
+        <motion.section
+          initial={{ opacity: 0, y: 70 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.3 }}
+          style={{ padding: '70px 0', backgroundColor: 'rgba(255, 255, 255, 0.7)', borderTop: '1px solid #E2E8F0', borderBottom: '1px solid #E2E8F0' }}
+        >
+          <div className="container">
+            <div style={{ textAlign: 'center', maxWidth: '750px', margin: '0 auto 40px' }}>
+              <span style={{ color: '#0F4A24', fontWeight: '800', fontSize: '0.85rem', letterSpacing: '1px', textTransform: 'uppercase' }}>
+                TASTRAA CULINARY MATRIX
+              </span>
+              <h2 style={{ fontSize: 'clamp(1.9rem, 3.2vw, 2.5rem)', fontWeight: '900', color: '#0F4A24', marginTop: '6px' }}>
+                Purity & Nutritional Standard
+              </h2>
+              <p style={{ color: '#64748B', fontSize: '0.95rem', marginTop: '8px' }}>
+                Every product is tested for zero chemical residue, high dietary fiber, and traditional taste integrity.
+              </p>
+            </div>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+              gap: '24px'
+            }}>
+              {/* Box 1 */}
+              <div style={{
+                backgroundColor: '#FAF9F5',
+                borderRadius: '20px',
+                padding: '26px',
+                border: '1px solid #E2E8F0',
+                boxShadow: '0 8px 20px rgba(0,0,0,0.03)'
+              }}>
+                <div style={{ width: '48px', height: '48px', borderRadius: '14px', backgroundColor: '#E8F5E9', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
+                  <Leaf size={24} style={{ color: '#0F4A24' }} />
+                </div>
+                <h3 style={{ fontSize: '1.15rem', fontWeight: '800', color: '#0F4A24', marginBottom: '8px' }}>
+                  100% Sun-Dried Chillies
+                </h3>
+                <p style={{ fontSize: '0.875rem', color: '#64748B', lineHeight: '1.5' }}>
+                  Sun-dried under natural Jaffna sunlight before slow-roasting to extract intense aromatic oils.
+                </p>
+              </div>
+
+              {/* Box 2 */}
+              <div style={{
+                backgroundColor: '#FAF9F5',
+                borderRadius: '20px',
+                padding: '26px',
+                border: '1px solid #E2E8F0',
+                boxShadow: '0 8px 20px rgba(0,0,0,0.03)'
+              }}>
+                <div style={{ width: '48px', height: '48px', borderRadius: '14px', backgroundColor: '#FEF3C7', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
+                  <Flame size={24} style={{ color: '#D97706' }} />
+                </div>
+                <h3 style={{ fontSize: '1.15rem', fontWeight: '800', color: '#0F4A24', marginBottom: '8px' }}>
+                  w
+                </h3>
+                <p style={{ fontSize: '0.875rem', color: '#64748B', lineHeight: '1.5' }}>
+                  .
+                </p>
+              </div>
+
+              {/* Box 3 */}
+              <div style={{
+                backgroundColor: '#FAF9F5',
+                borderRadius: '20px',
+                padding: '26px',
+                border: '1px solid #E2E8F0',
+                boxShadow: '0 8px 20px rgba(0,0,0,0.03)'
+              }}>
+                <div style={{ width: '48px', height: '48px', borderRadius: '14px', backgroundColor: '#E8F5E9', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
+                  <ShieldCheck size={24} style={{ color: '#0F4A24' }} />
+                </div>
+                <h3 style={{ fontSize: '1.15rem', fontWeight: '800', color: '#0F4A24', marginBottom: '8px' }}>
+                  Zero Preservatives
+                </h3>
+                <p style={{ fontSize: '0.875rem', color: '#64748B', lineHeight: '1.5' }}>
+                  No artificial food colorings, no added MSG, and no artificial flavor enhancers ever added.
+                </p>
+              </div>
+
+
+            </div>
+          </div>
+        </motion.section>
+
+        {/* ============================================================ */}
+        {/* 6. HERITAGE & MANUFACTURING FACILITY SECTION                */}
+        {/* ============================================================ */}
+        <motion.section
+          initial={{ opacity: 0, y: 70 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.3 }}
+          style={{ padding: '70px 0', backgroundColor: 'rgba(255, 255, 255, 0.7)', borderTop: '1px solid #E2E8F0' }}
+        >
+          <div className="container">
+            {/* Header Title */}
+            <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto 36px' }}>
               <span style={{ color: '#0F4A24', fontWeight: '800', fontSize: '0.85rem', letterSpacing: '1px', textTransform: 'uppercase' }}>
                 SINCE JUNE 2008 • 18+ YEARS HERITAGE
               </span>
-              <h2 style={{ fontSize: '2.2rem', fontWeight: '900', color: '#0F4A24', marginTop: '6px', marginBottom: '16px' }}>
+              <h2 style={{ fontSize: 'clamp(2rem, 3.5vw, 2.6rem)', fontWeight: '900', color: '#0F4A24', marginTop: '6px' }}>
                 18+ Years of Unmatched Quality & Customer Trust
               </h2>
-              <p style={{ color: '#475569', fontSize: '0.95rem', lineHeight: '1.6', marginBottom: '24px' }}>
-                Established in June 2008 in Kopay, Jaffna, TASTRAA (PVT) LTD produces dependable, high-grade food products. From our signature red rice flour and gingelly oil to crunchy mixtures and roasted spices, every batch undergoes thorough quality testing.
+              <p style={{ color: '#475569', fontSize: '0.95rem', lineHeight: '1.6', marginTop: '8px' }}>
+                Established in June 2008 in Kopay, Jaffna, TASTRAA (PVT) LTD produces dependable, high-grade food products with state-of-the-art facilities and a dedicated distribution fleet.
               </p>
+            </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '28px' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            {/* 2 Photos Side by Side in 1 Line */}
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(2, 1fr)',
+              gap: '24px',
+              marginBottom: '36px'
+            }} className="heritage-2col-photos">
+              {/* Photo 1: Delivery Fleet */}
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+                style={{
+                  borderRadius: '24px',
+                  overflow: 'hidden',
+                  boxShadow: '0 20px 40px rgba(0,0,0,0.1)',
+                  position: 'relative',
+                  minHeight: '260px',
+                  border: '3px solid #FFFFFF'
+                }}
+              >
+                <img
+                  src={deliveryFleetImg}
+                  alt="TASTRAA Island-wide Delivery Fleet"
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                />
+                <div style={{
+                  position: 'absolute',
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  background: 'linear-gradient(to top, rgba(15,74,36,0.9), transparent)',
+                  padding: '16px 20px',
+                  color: '#FFFFFF'
+                }}>
+                  <h4 style={{ fontWeight: '800', fontSize: '1.05rem', marginBottom: '2px' }}></h4>
+                  <p style={{ fontSize: '0.8rem', opacity: 0.9 }}>    </p>
+                </div>
+              </motion.div>
+
+              {/* Photo 2: Store & Factory Building */}
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+                style={{
+                  borderRadius: '24px',
+                  overflow: 'hidden',
+                  boxShadow: '0 20px 40px rgba(0,0,0,0.1)',
+                  position: 'relative',
+                  minHeight: '260px',
+                  border: '3px solid #FFFFFF'
+                }}
+              >
+                <img
+                  src={storeBuildingImg}
+                  alt="TASTRAA Store & Manufacturing Building - Thirunelvely, Jaffna"
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                />
+                <div style={{
+                  position: 'absolute',
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  background: 'linear-gradient(to top, rgba(15,74,36,0.9), transparent)',
+                  padding: '16px 20px',
+                  color: '#FFFFFF'
+                }}>
+                  <h4 style={{ fontWeight: '500', fontSize: '0.05rem', marginBottom: '2px' }}>TASTRAA Store & Facility</h4>
+                  <p style={{ fontSize: '0.8rem', opacity: 0.5 }}></p>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Features list & Call to action */}
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              textAlign: 'center'
+            }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px', width: '100%', maxWidth: '900px', marginBottom: '28px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', backgroundColor: '#FAF9F5', padding: '12px 18px', borderRadius: '12px', border: '1px solid #E2E8F0' }}>
                   <Check size={18} style={{ color: '#0F4A24', flexShrink: 0 }} />
                   <span style={{ fontWeight: '700', fontSize: '0.875rem', color: '#1E293B' }}>100% Locally Sourced</span>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', backgroundColor: '#FAF9F5', padding: '12px 18px', borderRadius: '12px', border: '1px solid #E2E8F0' }}>
                   <Check size={18} style={{ color: '#0F4A24', flexShrink: 0 }} />
-                  <span style={{ fontWeight: '700', fontSize: '0.875rem', color: '#1E293B' }}>ISO Quality Control</span>
+                  <span style={{ fontWeight: '700', fontSize: '0.875rem', color: '#1E293B' }}>GMP Quality Control</span>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', backgroundColor: '#FAF9F5', padding: '12px 18px', borderRadius: '12px', border: '1px solid #E2E8F0' }}>
                   <Check size={18} style={{ color: '#0F4A24', flexShrink: 0 }} />
                   <span style={{ fontWeight: '700', fontSize: '0.875rem', color: '#1E293B' }}>Hygienic Packaging</span>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', backgroundColor: '#FAF9F5', padding: '12px 18px', borderRadius: '12px', border: '1px solid #E2E8F0' }}>
                   <Check size={18} style={{ color: '#0F4A24', flexShrink: 0 }} />
                   <span style={{ fontWeight: '700', fontSize: '0.875rem', color: '#1E293B' }}>Island-wide Distribution</span>
                 </div>
@@ -1126,250 +1256,249 @@ const Home = () => {
               </Link>
             </div>
           </div>
-        </div>
-      </motion.section>
+        </motion.section>
 
-      {/* ============================================================ */}
-      {/* 7. INTERACTIVE 3D PRODUCT INSPECTOR MODAL                    */}
-      {/* ============================================================ */}
-      <AnimatePresence>
-        {selected3DProduct && (
-          <div style={{
-            position: 'fixed',
-            inset: 0,
-            zIndex: 9999,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: 'rgba(15, 23, 42, 0.8)',
-            backdropFilter: 'blur(8px)',
-            padding: '20px'
-          }}>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.85, y: 30 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.85, y: 30 }}
-              className="modal-3d-card"
-              style={{
-                backgroundColor: '#FFFFFF',
-                borderRadius: '28px',
-                maxWidth: '720px',
-                width: '100%',
-                overflow: 'hidden',
-                boxShadow: '0 25px 60px rgba(0,0,0,0.3)',
-                position: 'relative'
-              }}
-            >
-              {/* Close Button */}
-              <button
-                onClick={() => setSelected3DProduct(null)}
+        {/* ============================================================ */}
+        {/* 7. INTERACTIVE 3D PRODUCT INSPECTOR MODAL                    */}
+        {/* ============================================================ */}
+        <AnimatePresence>
+          {selected3DProduct && (
+            <div style={{
+              position: 'fixed',
+              inset: 0,
+              zIndex: 9999,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: 'rgba(15, 23, 42, 0.8)',
+              backdropFilter: 'blur(8px)',
+              padding: '20px'
+            }}>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.85, y: 30 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.85, y: 30 }}
+                className="modal-3d-card"
                 style={{
-                  position: 'absolute',
-                  top: '16px',
-                  right: '16px',
-                  backgroundColor: '#F1F5F9',
-                  border: 'none',
-                  width: '36px',
-                  height: '36px',
-                  borderRadius: '50%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  cursor: 'pointer',
-                  zIndex: 10
+                  backgroundColor: '#FFFFFF',
+                  borderRadius: '28px',
+                  maxWidth: '720px',
+                  width: '100%',
+                  overflow: 'hidden',
+                  boxShadow: '0 25px 60px rgba(0,0,0,0.3)',
+                  position: 'relative'
                 }}
               >
-                <X size={20} style={{ color: '#475569' }} />
-              </button>
-
-              <div className="modal-3d-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1.1fr' }}>
-                {/* Left 3D View Box */}
-                <div style={{
-                  backgroundColor: '#EBF5EE',
-                  padding: '30px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  position: 'relative'
-                }}>
-                  <div style={{
-                    backgroundColor: '#FFFFFF',
-                    borderRadius: '20px',
-                    padding: '20px',
-                    boxShadow: '0 15px 35px rgba(0,0,0,0.1)',
-                    width: '100%',
-                    height: '250px',
+                {/* Close Button */}
+                <button
+                  onClick={() => setSelected3DProduct(null)}
+                  style={{
+                    position: 'absolute',
+                    top: '16px',
+                    right: '16px',
+                    backgroundColor: '#F1F5F9',
+                    border: 'none',
+                    width: '36px',
+                    height: '36px',
+                    borderRadius: '50%',
                     display: 'flex',
                     alignItems: 'center',
-                    justifyContent: 'center'
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    zIndex: 10
+                  }}
+                >
+                  <X size={20} style={{ color: '#475569' }} />
+                </button>
+
+                <div className="modal-3d-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1.1fr' }}>
+                  {/* Left 3D View Box */}
+                  <div style={{
+                    backgroundColor: '#EBF5EE',
+                    padding: '30px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    position: 'relative'
                   }}>
-                    <img
-                      src={selected3DProduct.image_url || selected3DProduct.img || hero3dImg}
-                      alt={selected3DProduct.name || selected3DProduct.title}
+                    <div style={{
+                      backgroundColor: '#FFFFFF',
+                      borderRadius: '20px',
+                      padding: '20px',
+                      boxShadow: '0 15px 35px rgba(0,0,0,0.1)',
+                      width: '100%',
+                      height: '250px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }}>
+                      <img
+                        src={selected3DProduct.image_url || selected3DProduct.img || hero3dImg}
+                        alt={selected3DProduct.name || selected3DProduct.title}
+                        style={{
+                          maxHeight: '100%',
+                          maxWidth: '100%',
+                          objectFit: 'contain',
+                          transform: `rotateY(${rotationDeg}deg)`,
+                          transition: 'transform 0.4s ease'
+                        }}
+                      />
+                    </div>
+
+                    <button
+                      onClick={() => setRotationDeg(prev => prev + 90)}
                       style={{
-                        maxHeight: '100%',
-                        maxWidth: '100%',
-                        objectFit: 'contain',
-                        transform: `rotateY(${rotationDeg}deg)`,
-                        transition: 'transform 0.4s ease'
+                        marginTop: '16px',
+                        backgroundColor: '#FFFFFF',
+                        border: '1px solid #A5D6A7',
+                        color: '#0F4A24',
+                        padding: '6px 14px',
+                        borderRadius: '9999px',
+                        fontWeight: '800',
+                        fontSize: '0.75rem',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '6px',
+                        cursor: 'pointer'
                       }}
-                    />
+                    >
+                      <RotateCw size={14} />
+                      <span>ROTATE 3D INSPECTION</span>
+                    </button>
                   </div>
 
-                  <button
-                    onClick={() => setRotationDeg(prev => prev + 90)}
-                    style={{
-                      marginTop: '16px',
-                      backgroundColor: '#FFFFFF',
-                      border: '1px solid #A5D6A7',
-                      color: '#0F4A24',
-                      padding: '6px 14px',
-                      borderRadius: '9999px',
-                      fontWeight: '800',
-                      fontSize: '0.75rem',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '6px',
-                      cursor: 'pointer'
-                    }}
-                  >
-                    <RotateCw size={14} />
-                    <span>ROTATE 3D INSPECTION</span>
-                  </button>
-                </div>
+                  {/* Right Info */}
+                  <div style={{ padding: '30px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                    <div>
+                      <span style={{
+                        backgroundColor: '#E8F5E9',
+                        color: '#0F4A24',
+                        padding: '4px 10px',
+                        borderRadius: '9999px',
+                        fontWeight: '800',
+                        fontSize: '0.7rem'
+                      }}>
+                        {selected3DProduct.category || 'TASTRAA ESSENTIAL'}
+                      </span>
 
-                {/* Right Info */}
-                <div style={{ padding: '30px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                  <div>
-                    <span style={{
-                      backgroundColor: '#E8F5E9',
-                      color: '#0F4A24',
-                      padding: '4px 10px',
-                      borderRadius: '9999px',
-                      fontWeight: '800',
-                      fontSize: '0.7rem'
-                    }}>
-                      {selected3DProduct.category || 'TASTRAA ESSENTIAL'}
-                    </span>
+                      <h3 style={{ fontSize: '1.4rem', fontWeight: '900', color: '#0F4A24', marginTop: '8px', marginBottom: '10px' }}>
+                        {selected3DProduct.name}
+                      </h3>
 
-                    <h3 style={{ fontSize: '1.4rem', fontWeight: '900', color: '#0F4A24', marginTop: '8px', marginBottom: '10px' }}>
-                      {selected3DProduct.name}
-                    </h3>
+                      <p style={{ color: '#64748B', fontSize: '0.875rem', lineHeight: '1.5', marginBottom: '16px' }}>
+                        {selected3DProduct.description}
+                      </p>
 
-                    <p style={{ color: '#64748B', fontSize: '0.875rem', lineHeight: '1.5', marginBottom: '16px' }}>
-                      {selected3DProduct.description}
-                    </p>
-
-                    <div style={{
-                      backgroundColor: '#F8FAFC',
-                      padding: '12px 16px',
-                      borderRadius: '12px',
-                      marginBottom: '16px',
-                      border: '1px solid #E2E8F0',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between'
-                    }}>
-                      <div>
-                        <div style={{ fontSize: '0.75rem', color: '#64748B', fontWeight: '600' }}>Package Net Weight</div>
-                        <div style={{ fontSize: '1.1rem', fontWeight: '900', color: '#0F4A24' }}>
-                          {selected3DProduct.unit_size || 'Standard Pack'}
-                        </div>
-                      </div>
-                      {selected3DProduct.price && (
-                        <div style={{ textAlign: 'right' }}>
-                          <div style={{ fontSize: '0.75rem', color: '#64748B', fontWeight: '600' }}>Price</div>
+                      <div style={{
+                        backgroundColor: '#F8FAFC',
+                        padding: '12px 16px',
+                        borderRadius: '12px',
+                        marginBottom: '16px',
+                        border: '1px solid #E2E8F0',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between'
+                      }}>
+                        <div>
+                          <div style={{ fontSize: '0.75rem', color: '#64748B', fontWeight: '600' }}>Package Net Weight</div>
                           <div style={{ fontSize: '1.1rem', fontWeight: '900', color: '#0F4A24' }}>
-                            LKR {parseFloat(selected3DProduct.price).toFixed(2)}
+                            {selected3DProduct.unit_size || 'Standard Pack'}
                           </div>
                         </div>
-                      )}
-                    </div>
+                        {selected3DProduct.price && (
+                          <div style={{ textAlign: 'right' }}>
+                            <div style={{ fontSize: '0.75rem', color: '#64748B', fontWeight: '600' }}>Price</div>
+                            <div style={{ fontSize: '1.1rem', fontWeight: '900', color: '#0F4A24' }}>
+                              LKR {parseFloat(selected3DProduct.price).toFixed(2)}
+                            </div>
+                          </div>
+                        )}
+                      </div>
 
-                    {/* Modal Quantity Selector */}
-                    <div style={{
-                      backgroundColor: '#E8F5E9',
-                      padding: '12px 16px',
-                      borderRadius: '14px',
-                      marginBottom: '20px',
-                      border: '1px solid #A5D6A7',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between'
-                    }}>
-                      <span style={{ fontSize: '0.85rem', fontWeight: '800', color: '#0F4A24' }}>
-                        Quantity:
-                      </span>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <button
-                          type="button"
-                          onClick={() => setModalQuantity(prev => Math.max(1, prev - 1))}
-                          style={{
-                            width: '32px',
-                            height: '32px',
-                            borderRadius: '8px',
-                            border: 'none',
-                            backgroundColor: modalQuantity > 1 ? '#0F4A24' : '#C8E6C9',
-                            color: modalQuantity > 1 ? '#FFFFFF' : '#81C784',
-                            fontWeight: '900',
-                            fontSize: '1.1rem',
-                            cursor: modalQuantity > 1 ? 'pointer' : 'not-allowed',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                          }}
-                          disabled={modalQuantity <= 1}
-                        >
-                          -
-                        </button>
-                        <span style={{ minWidth: '28px', textAlign: 'center', fontWeight: '900', fontSize: '1.1rem', color: '#0F4A24' }}>
-                          {modalQuantity}
+                      {/* Modal Quantity Selector */}
+                      <div style={{
+                        backgroundColor: '#E8F5E9',
+                        padding: '12px 16px',
+                        borderRadius: '14px',
+                        marginBottom: '20px',
+                        border: '1px solid #A5D6A7',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between'
+                      }}>
+                        <span style={{ fontSize: '0.85rem', fontWeight: '800', color: '#0F4A24' }}>
+                          Quantity:
                         </span>
-                        <button
-                          type="button"
-                          onClick={() => setModalQuantity(prev => prev + 1)}
-                          style={{
-                            width: '32px',
-                            height: '32px',
-                            borderRadius: '8px',
-                            border: 'none',
-                            backgroundColor: '#0F4A24',
-                            color: '#FFFFFF',
-                            fontWeight: '900',
-                            fontSize: '1.1rem',
-                            cursor: 'pointer',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                          }}
-                        >
-                          +
-                        </button>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                          <button
+                            type="button"
+                            onClick={() => setModalQuantity(prev => Math.max(1, prev - 1))}
+                            style={{
+                              width: '32px',
+                              height: '32px',
+                              borderRadius: '8px',
+                              border: 'none',
+                              backgroundColor: modalQuantity > 1 ? '#0F4A24' : '#C8E6C9',
+                              color: modalQuantity > 1 ? '#FFFFFF' : '#81C784',
+                              fontWeight: '900',
+                              fontSize: '1.1rem',
+                              cursor: modalQuantity > 1 ? 'pointer' : 'not-allowed',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center'
+                            }}
+                            disabled={modalQuantity <= 1}
+                          >
+                            -
+                          </button>
+                          <span style={{ minWidth: '28px', textAlign: 'center', fontWeight: '900', fontSize: '1.1rem', color: '#0F4A24' }}>
+                            {modalQuantity}
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => setModalQuantity(prev => prev + 1)}
+                            style={{
+                              width: '32px',
+                              height: '32px',
+                              borderRadius: '8px',
+                              border: 'none',
+                              backgroundColor: '#0F4A24',
+                              color: '#FFFFFF',
+                              fontWeight: '900',
+                              fontSize: '1.1rem',
+                              cursor: 'pointer',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center'
+                            }}
+                          >
+                            +
+                          </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <a
-                    href={`https://wa.me/94779789223?text=${encodeURIComponent(
-                      `Hi TASTRAA, I want to order ${modalQuantity} x ${selected3DProduct.name} (${selected3DProduct.unit_size || 'Pack'}). Total Price: LKR ${(
-                        parseFloat(selected3DProduct.price || 0) * modalQuantity
-                      ).toFixed(2)}. Please confirm order.`
-                    )}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-green-3d"
-                    style={{ textDecoration: 'none', justifyContent: 'center' }}
-                  >
-                    <Send size={16} />
-                    <span>ORDER ON WHATSAPP ({modalQuantity})</span>
-                  </a>
+                    <a
+                      href={`https://wa.me/94779789223?text=${encodeURIComponent(
+                        `Hi TASTRAA, I want to order ${modalQuantity} x ${selected3DProduct.name} (${selected3DProduct.unit_size || 'Pack'}). Total Price: LKR ${(
+                          parseFloat(selected3DProduct.price || 0) * modalQuantity
+                        ).toFixed(2)}. Please confirm order.`
+                      )}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-green-3d"
+                      style={{ textDecoration: 'none', justifyContent: 'center' }}
+                    >
+                      <Send size={16} />
+                      <span>ORDER ON WHATSAPP ({modalQuantity})</span>
+                    </a>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );

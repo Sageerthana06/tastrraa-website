@@ -18,6 +18,7 @@ import plateDumplingsImg from '../assets/plate_dumplings.jpg';
 import bitesPackImg from '../assets/bites_pack.jpg';
 import bengalGramYellowImg from '../assets/bengal_gram_yellow.jpg';
 import masalaMurukkuImg from '../assets/masala_murukku.jpg';
+import garlicMurukkuImg from '../assets/garlic_murukku.jpg';
 
 const fallbackProducts = [
   {
@@ -950,6 +951,7 @@ const Products = () => {
                 if (url === '/assets/bengal_gram_yellow.jpg' || url === '/assets/bengal_gram_pack.jpg' || url === '/assets/bengal_gram_100.jpg' || p.slug === 'tastraa-bengal-gram-100') return bengalGramYellowImg;
                 if (url === '/assets/plate_dumplings.jpg' || p.slug === 'tastraa-plate-dumplings-100') return plateDumplingsImg;
                 if (url === '/assets/bites_pack.jpg' || p.slug === 'tastraa-bites-50') return bitesPackImg;
+                if (url === '/assets/garlic_murukku.jpg' || (p.slug && p.slug.includes('garlic-murukku'))) return garlicMurukkuImg;
                 if (url === '/assets/masala_murukku.jpg' || p.slug === 'tastraa-masala-murukku-50') return masalaMurukkuImg;
                 if (url === '/assets/red_raw_rice_25kg.jpg' || p.slug === 'red-raw-rice-25kg') return redRawRice25kgImg;
                 if (url === '/assets/red_rice_flour_5kg.jpg' || p.slug === 'red-rice-flour-5kg') return redRice5kgImg;
@@ -1104,9 +1106,14 @@ const Products = () => {
                       <div className="price-box" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '8px', marginBottom: '16px', paddingTop: '10px', borderTop: '1px solid #F1F5F9' }}>
                         <div style={{ flex: 1, minWidth: 0 }}>
                           {product.wholesale_price ? (
-                            <div className="price-text" style={{ fontSize: '1.3rem', fontWeight: '900', color: '#0F4A24', lineHeight: '1.2' }}>
-                              LKR {(parseFloat(product.wholesale_price) * qty).toFixed(2)}
-                            </div>
+                            <>
+                              <div className="price-text" style={{ fontSize: '1.3rem', fontWeight: '900', color: '#0F4A24', lineHeight: '1.2' }}>
+                                LKR {(parseFloat(product.wholesale_price) * qty).toFixed(2)}
+                              </div>
+                              <div style={{ fontSize: '0.9rem', color: '#94A3B8', fontWeight: '700', marginTop: '4px', textDecoration: 'line-through' }}>
+                                LKR {totalPrice}
+                              </div>
+                            </>
                           ) : (
                             <div className="price-text" style={{ fontSize: '1.3rem', fontWeight: '900', color: '#0F4A24', lineHeight: '1.2' }}>
                               LKR {totalPrice}

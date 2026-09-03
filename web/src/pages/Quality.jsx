@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
-import { 
-  ShieldCheck, 
-  Award, 
-  CheckCircle2, 
-  Leaf, 
-  Sparkles, 
-  Truck, 
-  HeartHandshake, 
-  RefreshCw, 
-  ChevronRight, 
-  Flame, 
-  Layers, 
-  Check, 
-  Zap, 
-  Droplet, 
-  Eye, 
+import {
+  ShieldCheck,
+  Award,
+  CheckCircle2,
+  Leaf,
+  Sparkles,
+  Truck,
+  HeartHandshake,
+  RefreshCw,
+  ChevronRight,
+  Flame,
+  Layers,
+  Check,
+  Zap,
+  Droplet,
+  Eye,
   ArrowRight,
   FlaskConical,
   Scale,
@@ -46,12 +46,12 @@ const Quality = () => {
       icon: <ShieldCheck size={30} style={{ color: '#D32F2F' }} />,
       bgColor: "#FEE2E2",
       borderColor: "#FCA5A5",
-      highlight: "ISO-Aligned Hygiene Standards"
+      highlight: "GMP-Aligned Hygiene Standards"
     },
     {
       id: 3,
       title: "LOCAL SOURCING INTEGRITY",
-      desc: "Direct procurement of fresh agricultural harvests from local farmers and trusted district suppliers, empowering local communities.",
+      desc: "Direct procurement of fresh agricultural harvests from local farmers and trusted Island suppliers, empowering local communities.",
       icon: <Leaf size={30} style={{ color: '#B45309' }} />,
       bgColor: "#FEF3C7",
       borderColor: "#FCD34D",
@@ -68,8 +68,8 @@ const Quality = () => {
     },
     {
       id: 5,
-      title: "RELIABLE DISTRICT SUPPLY",
-      desc: "Structured inventory management and scheduled district distribution ensuring products reach retail shelves completely fresh.",
+      title: "RELIABLE Island SUPPLY",
+      desc: "Structured inventory management and scheduled Island distribution ensuring products reach retail shelves completely fresh.",
       icon: <Truck size={30} style={{ color: '#D32F2F' }} />,
       bgColor: "#FEE2E2",
       borderColor: "#FCA5A5",
@@ -181,7 +181,7 @@ const Quality = () => {
 
   return (
     <div style={{ backgroundColor: '#FAF9F5', minHeight: '100vh', overflowX: 'hidden' }}>
-      
+
       {/* ============================================================ */}
       {/* 1. 3D IMMERSIVE HERO BANNER WITH DYNAMIC GLOW PARTICLES      */}
       {/* ============================================================ */}
@@ -254,11 +254,11 @@ const Quality = () => {
             </div>
 
             {/* Dynamic Headline */}
-            <h1 style={{ 
-              fontSize: 'clamp(2.4rem, 5vw, 4rem)', 
-              fontWeight: '900', 
-              marginBottom: '18px', 
-              color: '#FFFFFF', 
+            <h1 style={{
+              fontSize: 'clamp(2.4rem, 5vw, 4rem)',
+              fontWeight: '900',
+              marginBottom: '18px',
+              color: '#FFFFFF',
               fontFamily: "'Poppins', sans-serif",
               letterSpacing: '-0.5px',
               lineHeight: '1.15'
@@ -267,11 +267,11 @@ const Quality = () => {
             </h1>
 
             {/* Subtitle */}
-            <p style={{ 
-              maxWidth: '720px', 
-              margin: '0 auto 36px', 
-              color: '#E2E8F0', 
-              fontSize: 'clamp(1rem, 2vw, 1.15rem)', 
+            <p style={{
+              maxWidth: '720px',
+              margin: '0 auto 36px',
+              color: '#E2E8F0',
+              fontSize: 'clamp(1rem, 2vw, 1.15rem)',
               lineHeight: '1.65',
               fontWeight: '400'
             }}>
@@ -318,21 +318,21 @@ const Quality = () => {
       <section style={{ padding: '85px 0 60px' }}>
         <div className="container">
           <div style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto 50px' }}>
-            <span style={{ 
-              color: '#D32F2F', 
-              fontWeight: '800', 
-              fontSize: '0.85rem', 
-              letterSpacing: '1.2px', 
-              textTransform: 'uppercase' 
+            <span style={{
+              color: '#D32F2F',
+              fontWeight: '800',
+              fontSize: '0.85rem',
+              letterSpacing: '1.2px',
+              textTransform: 'uppercase'
             }}>
               OUR CORE STANDARDS
             </span>
-            <h2 style={{ 
-              fontSize: 'clamp(2rem, 3.8vw, 2.7rem)', 
-              fontWeight: '900', 
-              color: '#0F4A24', 
-              marginTop: '8px', 
-              fontFamily: "'Poppins', sans-serif" 
+            <h2 style={{
+              fontSize: 'clamp(2rem, 3.8vw, 2.7rem)',
+              fontWeight: '900',
+              color: '#0F4A24',
+              marginTop: '8px',
+              fontFamily: "'Poppins', sans-serif"
             }}>
               The 6 Pillars of Tastraa Quality
             </h2>
@@ -397,13 +397,13 @@ const Quality = () => {
                     </span>
                   </div>
 
-                  <h3 style={{ 
-                    fontSize: '1.25rem', 
-                    fontWeight: '900', 
-                    color: '#0F4A24', 
-                    marginBottom: '12px', 
+                  <h3 style={{
+                    fontSize: '1.25rem',
+                    fontWeight: '900',
+                    color: '#0F4A24',
+                    marginBottom: '12px',
                     letterSpacing: '0.3px',
-                    fontFamily: "'Poppins', sans-serif" 
+                    fontFamily: "'Poppins', sans-serif"
                   }}>
                     {item.title}
                   </h3>
@@ -438,19 +438,19 @@ const Quality = () => {
       <section style={{ padding: '80px 0', backgroundColor: '#EBF5EE' }}>
         <div className="container">
           <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 46px' }}>
-            <span style={{ 
-              color: '#0F4A24', 
-              fontWeight: '800', 
-              fontSize: '0.85rem', 
-              letterSpacing: '1.2px', 
-              textTransform: 'uppercase' 
+            <span style={{
+              color: '#0F4A24',
+              fontWeight: '800',
+              fontSize: '0.85rem',
+              letterSpacing: '1.2px',
+              textTransform: 'uppercase'
             }}>
               FROM FARM TO TABLE
             </span>
-            <h2 style={{ 
-              fontSize: 'clamp(2rem, 3.8vw, 2.6rem)', 
-              fontWeight: '900', 
-              color: '#0F4A24', 
+            <h2 style={{
+              fontSize: 'clamp(2rem, 3.8vw, 2.6rem)',
+              fontWeight: '900',
+              color: '#0F4A24',
               marginTop: '6px',
               fontFamily: "'Poppins', sans-serif"
             }}>
@@ -490,8 +490,8 @@ const Quality = () => {
                   transition: 'all 0.3s ease'
                 }}
               >
-                <span style={{ 
-                  backgroundColor: activeStep === idx ? '#FFD700' : '#E2E8F0', 
+                <span style={{
+                  backgroundColor: activeStep === idx ? '#FFD700' : '#E2E8F0',
                   color: '#0F4A24',
                   width: '24px',
                   height: '24px',
@@ -639,21 +639,21 @@ const Quality = () => {
       <section style={{ padding: '85px 0' }}>
         <div className="container">
           <div style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto 44px' }}>
-            <span style={{ 
-              color: '#B45309', 
-              fontWeight: '800', 
-              fontSize: '0.85rem', 
-              letterSpacing: '1.2px', 
-              textTransform: 'uppercase' 
+            <span style={{
+              color: '#B45309',
+              fontWeight: '800',
+              fontSize: '0.85rem',
+              letterSpacing: '1.2px',
+              textTransform: 'uppercase'
             }}>
               LABORATORY STANDARDS
             </span>
-            <h2 style={{ 
-              fontSize: 'clamp(2rem, 3.8vw, 2.7rem)', 
-              fontWeight: '900', 
-              color: '#0F4A24', 
-              marginTop: '6px', 
-              fontFamily: "'Poppins', sans-serif" 
+            <h2 style={{
+              fontSize: 'clamp(2rem, 3.8vw, 2.7rem)',
+              fontWeight: '900',
+              color: '#0F4A24',
+              marginTop: '6px',
+              fontFamily: "'Poppins', sans-serif"
             }}>
               Interactive Product Purity Inspector
             </h2>
@@ -833,7 +833,7 @@ const Quality = () => {
                 <span>SHOP TESTED PRODUCTS</span>
                 <ArrowRight size={18} />
               </Link>
-              
+
               <Link to="/contact" style={{
                 display: 'inline-flex',
                 alignItems: 'center',

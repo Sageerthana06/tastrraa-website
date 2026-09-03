@@ -13,7 +13,7 @@ const Services = () => {
     },
     {
       title: "PRODUCT SUPPLY",
-      desc: "District-level supply for households, retailers and small businesses.",
+      desc: "Island-level supply for households, retailers and small businesses.",
       icon: <Truck size={30} style={{ color: '#0F4A24' }} />,
       bgColor: "#E8F5E9",
       borderColor: "#A5D6A7"

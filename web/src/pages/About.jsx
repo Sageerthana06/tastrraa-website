@@ -85,7 +85,7 @@ const About = () => {
                   lineHeight: '1.75',
                   margin: 0
                 }}>
-                  Founded in 2008, TASTRAA (PVT) LTD is a food production company focused on consistent, safe, and practical pantry staples. We operate at district level, supporting local sourcing and local employment throughout our production process. Our aim is to deliver products customers can rely on, backed by responsive customer care.
+                  Founded in 2008, TASTRAA (PVT) LTD is a food production company focused on consistent, safe, and practical pantry staples. We operate at Island level, supporting local sourcing and local employment throughout our production process. Our aim is to deliver products customers can rely on, backed by responsive customer care.
                 </p>
               </div>
 
@@ -100,7 +100,7 @@ const About = () => {
               }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px', color: '#1F2937', fontWeight: '700', fontSize: '0.975rem' }}>
                   <MapPin size={18} style={{ color: '#047857', flexShrink: 0 }} />
-                  <span>District level operations</span>
+                  <span>Island level operations</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px', color: '#1F2937', fontWeight: '700', fontSize: '0.975rem' }}>
                   <Leaf size={18} style={{ color: '#047857', flexShrink: 0 }} />
@@ -206,7 +206,7 @@ const About = () => {
                   <strong style={{ color: '#0F4A24' }}>TASTRAA (PVT) LTD</strong> was established in 2008 to provide dependable, locally produced food essentials for households and growing businesses. Our work centers on three core categories—<span style={{ color: '#D32F2F', fontWeight: '700' }}>rice flour production</span>, <span style={{ color: '#B45309', fontWeight: '700' }}>mixture production</span>, and <span style={{ color: '#0F4A24', fontWeight: '700' }}>gingelly oil production</span>—delivered with an emphasis on product consistency and clear handling practices.
                 </p>
                 <p>
-                  By sourcing ingredients locally and building our production team locally, we help strengthen the district supply chain while maintaining close control over freshness and availability. We value long-term relationships with customers and startups alike, supported by straightforward communication and attentive customer care.
+                  By sourcing ingredients locally and building our production team locally, we help strengthen the Island supply chain while maintaining close control over freshness and availability. We value long-term relationships with customers and startups alike, supported by straightforward communication and attentive customer care.
                 </p>
               </div>
             </div>
@@ -377,10 +377,10 @@ const About = () => {
 
               <div style={{ backgroundColor: '#FFFFFF', padding: '28px', borderRadius: '20px', border: '2px solid #FEE2E2' }}>
                 <h4 style={{ fontSize: '1.1rem', fontWeight: '900', color: '#0F4A24', marginBottom: '10px' }}>
-                  District-Level Supply
+                  Island-Level Supply
                 </h4>
                 <p style={{ margin: 0, color: '#475569', fontSize: '0.95rem', lineHeight: '1.6' }}>
-                  Supply products at district level for retail and small business needs.
+                  Supply products at Island level for retail and small business needs.
                 </p>
               </div>
             </div>
@@ -434,7 +434,7 @@ const About = () => {
                   <ShoppingBag size={24} style={{ color: '#B45309' }} />
                 </div>
                 <h4 style={{ fontSize: '1.2rem', fontWeight: '900', color: '#B45309', marginBottom: '10px' }}>
-                  District-Level Retailers & Resellers
+                  Island-Level Retailers & Resellers
                 </h4>
                 <p style={{ color: '#475569', fontSize: '0.95rem', lineHeight: '1.6', margin: 0 }}>
                   Distributing quality pantry staples across regional store networks.
@@ -484,7 +484,7 @@ const About = () => {
                   <h4 style={{ margin: 0, fontSize: '1.05rem', fontWeight: '800', color: '#D32F2F' }}>Local Workforce</h4>
                 </div>
                 <p style={{ margin: 0, color: '#475569', fontSize: '0.925rem', lineHeight: '1.6' }}>
-                  Production supported by people from the district community.
+                  Production supported by people from the Island community.
                 </p>
               </div>
 
@@ -529,13 +529,13 @@ const About = () => {
               </span>
 
               <h3 style={{ fontSize: 'clamp(1.2rem, 3vw, 1.5rem)', fontWeight: '800', color: '#FFFFFF', marginTop: '16px', marginBottom: '24px', lineHeight: '1.6' }}>
-                "TASTRAA (PVT) LTD produces trusted rice flour, mixture, and gingelly oil using local raw materials and local expertise—made for everyday cooking needs at the district level."
+                "TASTRAA (PVT) LTD produces trusted rice flour, mixture, and gingelly oil using local raw materials and local expertise—made for everyday cooking needs at the Island level."
               </h3>
 
               <div style={{ height: '2px', backgroundColor: 'rgba(255, 215, 0, 0.3)', width: '120px', margin: '0 auto 24px' }}></div>
 
               <p style={{ color: '#E2E8F0', fontSize: '1.05rem', lineHeight: '1.8', margin: 0 }}>
-                Founded in 2008, TASTRAA (PVT) LTD is a food production company focused on consistent, safe, and practical pantry staples. We operate at district level, supporting local sourcing and local employment throughout our production process. Our aim is to deliver products customers can rely on, backed by responsive customer care.
+                Founded in 2008, TASTRAA (PVT) LTD is a food production company focused on consistent, safe, and practical pantry staples. We operate at Island level, supporting local sourcing and local employment throughout our production process. Our aim is to deliver products customers can rely on, backed by responsive customer care.
               </p>
             </div>
           </div>
