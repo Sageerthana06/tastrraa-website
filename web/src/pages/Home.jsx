@@ -1096,10 +1096,10 @@ const Home = () => {
                   <Flame size={24} style={{ color: '#D97706' }} />
                 </div>
                 <h3 style={{ fontSize: '1.15rem', fontWeight: '800', color: '#0F4A24', marginBottom: '8px' }}>
-                  w
+                  Optimal Rice Drying Standard
                 </h3>
                 <p style={{ fontSize: '0.875rem', color: '#64748B', lineHeight: '1.5' }}>
-                  .
+                  Maintaining rice dried percentage at a right level to ensure long shelf-life, rich aroma, and perfect milling quality.
                 </p>
               </div>
 
@@ -1119,6 +1119,63 @@ const Home = () => {
                 </h3>
                 <p style={{ fontSize: '0.875rem', color: '#64748B', lineHeight: '1.5' }}>
                   No artificial food colorings, no added MSG, and no artificial flavor enhancers ever added.
+                </p>
+              </div>
+
+              {/* Box 4 */}
+              <div style={{
+                backgroundColor: '#FAF9F5',
+                borderRadius: '20px',
+                padding: '26px',
+                border: '1px solid #E2E8F0',
+                boxShadow: '0 8px 20px rgba(0,0,0,0.03)'
+              }}>
+                <div style={{ width: '48px', height: '48px', borderRadius: '14px', backgroundColor: '#FEE2E2', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
+                  <Sparkles size={24} style={{ color: '#D32F2F' }} />
+                </div>
+                <h3 style={{ fontSize: '1.15rem', fontWeight: '800', color: '#0F4A24', marginBottom: '8px' }}>
+                  Strict Process Hygiene
+                </h3>
+                <p style={{ fontSize: '0.875rem', color: '#64748B', lineHeight: '1.5' }}>
+                  Maintaining hygiene practices throughout the product process to ensure maximum safety and purity.
+                </p>
+              </div>
+
+              {/* Box 5: Red Rice Flour Production */}
+              <div style={{
+                backgroundColor: '#FAF9F5',
+                borderRadius: '20px',
+                padding: '26px',
+                border: '1px solid #E2E8F0',
+                boxShadow: '0 8px 20px rgba(0,0,0,0.03)'
+              }}>
+                <div style={{ width: '48px', height: '48px', borderRadius: '14px', backgroundColor: '#E8F5E9', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
+                  <Package size={24} style={{ color: '#0F4A24' }} />
+                </div>
+                <h3 style={{ fontSize: '1.15rem', fontWeight: '800', color: '#0F4A24', marginBottom: '8px' }}>
+                  Red Rice Flour Production
+                </h3>
+                <p style={{ fontSize: '0.875rem', color: '#64748B', lineHeight: '1.5' }}>
+                  Produce red rice flour with a focus on uniform texture, fine stone-milling, and authentic taste usability.
+                </p>
+              </div>
+
+              {/* Box 6: Mixture Production */}
+              <div style={{
+                backgroundColor: '#FAF9F5',
+                borderRadius: '20px',
+                padding: '26px',
+                border: '1px solid #E2E8F0',
+                boxShadow: '0 8px 20px rgba(0,0,0,0.03)'
+              }}>
+                <div style={{ width: '48px', height: '48px', borderRadius: '14px', backgroundColor: '#FEF3C7', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
+                  <Utensils size={24} style={{ color: '#B45309' }} />
+                </div>
+                <h3 style={{ fontSize: '1.15rem', fontWeight: '800', color: '#0F4A24', marginBottom: '8px' }}>
+                  Mixture Production
+                </h3>
+                <p style={{ fontSize: '0.875rem', color: '#64748B', lineHeight: '1.5' }}>
+                  Manufacture authentic mixture snacks specially crafted for rich crunchy flavor and everyday family enjoyment.
                 </p>
               </div>
 

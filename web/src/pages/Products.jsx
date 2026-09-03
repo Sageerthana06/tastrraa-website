@@ -847,18 +847,19 @@ const Products = () => {
             gap: '8px',
             backgroundColor: 'rgba(255, 255, 255, 0.12)',
             border: '1px solid rgba(255, 255, 255, 0.25)',
-            padding: '6px 18px',
+            padding: '6px 16px',
             borderRadius: '9999px',
             marginBottom: '16px',
+            maxWidth: '95%',
             backdropFilter: 'blur(4px)'
           }}>
-            <Sparkles size={16} style={{ color: '#FFD700' }} />
-            <span style={{ color: '#FFD700', fontWeight: '800', fontSize: '0.825rem', letterSpacing: '1px' }}>
+            <Sparkles size={16} style={{ color: '#FFD700', flexShrink: 0 }} />
+            <span style={{ color: '#FFD700', fontWeight: '800', fontSize: 'clamp(0.7rem, 2.5vw, 0.825rem)', letterSpacing: '0.5px' }}>
               OUR PRODUCT LINEUP • TASTRAA (PVT) LTD
             </span>
           </div>
 
-          <h1 style={{ fontSize: 'clamp(2.2rem, 4.5vw, 3.4rem)', fontWeight: '900', marginBottom: '16px', color: '#FFFFFF', fontFamily: "'Poppins', sans-serif" }}>
+          <h1 style={{ fontSize: 'clamp(1.5rem, 5.5vw, 3.4rem)', fontWeight: '900', marginBottom: '16px', color: '#FFFFFF', fontFamily: "'Poppins', sans-serif" }}>
             PRODUCT <span style={{ color: '#FFD700' }}>CATALOG</span>
           </h1>
           <p style={{ maxWidth: '700px', margin: '0 auto', color: '#E2E8F0', fontSize: '1.1rem', fontWeight: '600', lineHeight: '1.6' }}>

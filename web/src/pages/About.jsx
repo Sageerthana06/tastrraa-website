@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { ShieldCheck, Award, CheckCircle2, MapPin, Users, Sparkles, Leaf, ShoppingBag, Factory, HeartHandshake, Compass, Target, Package } from 'lucide-react';
 import logoImg from '../assets/logo.png';
 import gmpCertifiedImg from '../assets/gmp_certified.png';
@@ -16,25 +17,61 @@ const About = () => {
         overflow: 'hidden'
       }}>
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <div style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '8px',
-            backgroundColor: 'rgba(255, 255, 255, 0.12)',
-            border: '1px solid rgba(255, 255, 255, 0.25)',
-            padding: '6px 18px',
-            borderRadius: '9999px',
-            marginBottom: '16px'
-          }}>
-            <Sparkles size={16} style={{ color: '#FFD700' }} />
-            <span style={{ color: '#FFD700', fontWeight: '800', fontSize: '0.825rem', letterSpacing: '1px' }}>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 15 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              backgroundColor: 'rgba(255, 255, 255, 0.12)',
+              border: '1px solid rgba(255, 255, 255, 0.25)',
+              padding: '6px 16px',
+              borderRadius: '9999px',
+              marginBottom: '16px',
+              maxWidth: '95%'
+            }}
+          >
+            <Sparkles size={16} style={{ color: '#FFD700', flexShrink: 0 }} />
+            <span style={{ color: '#FFD700', fontWeight: '800', fontSize: 'clamp(0.7rem, 2.5vw, 0.825rem)', letterSpacing: '0.5px' }}>
               ESTABLISHED 2008 • TASTRAA (PVT) LTD
             </span>
-          </div>
+          </motion.div>
 
-          <h1 style={{ fontSize: 'clamp(2.2rem, 4.5vw, 3.4rem)', fontWeight: '900', marginBottom: '16px', color: '#FFFFFF', fontFamily: "'Poppins', sans-serif" }}>
-            ABOUT <span style={{ color: '#FFD700' }}>TASTRAA (PVT) LTD</span>
-          </h1>
+          <motion.h1
+            initial={{ opacity: 0, scale: 0.85, y: -20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.3, ease: 'easeOut' }}
+            style={{
+              fontSize: 'clamp(2.5rem, 8.5vw, 4.5rem)',
+              fontWeight: '900',
+              marginBottom: '4px',
+              color: '#FFD700',
+              fontFamily: "'Poppins', sans-serif",
+              lineHeight: '1.1',
+              letterSpacing: '3px',
+              filter: 'drop-shadow(0 6px 20px rgba(0,0,0,0.4))'
+            }}
+          >
+            TASTRAA
+          </motion.h1>
+
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: 0.15, ease: 'easeOut' }}
+            style={{
+              fontSize: 'clamp(1rem, 3.5vw, 1.5rem)',
+              fontWeight: '900',
+              color: '#FFFFFF',
+              letterSpacing: '5px',
+              marginBottom: '20px',
+              filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.3))'
+            }}
+          >
+            (PVT) LTD
+          </motion.div>
           <p style={{ maxWidth: '780px', margin: '0 auto', color: '#E2E8F0', fontSize: '1.1rem', fontWeight: '600', lineHeight: '1.6' }}>
             Trusted Rice Flour, Mixture, and Gingelly Oil Using Local Raw Materials & Local Expertise
           </p>
@@ -203,7 +240,7 @@ const About = () => {
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', color: '#334155', fontSize: '1.025rem', lineHeight: '1.75' }}>
                 <p>
-                  <strong style={{ color: '#0F4A24' }}>TASTRAA (PVT) LTD</strong> was established in 2008 to provide dependable, locally produced food essentials for households and growing businesses. Our work centers on three core categories—<span style={{ color: '#D32F2F', fontWeight: '700' }}>rice flour production</span>, <span style={{ color: '#B45309', fontWeight: '700' }}>mixture production</span>, and <span style={{ color: '#0F4A24', fontWeight: '700' }}>gingelly oil production</span>—delivered with an emphasis on product consistency and clear handling practices.
+                  <strong style={{ color: '#0F4A24' }}>TASTRAA (PVT) LTD</strong> was established in 2008 to provide dependable, locally produced food essentials for households and growing businesses. Our work centers on core categories—<span style={{ color: '#D32F2F', fontWeight: '700' }}>Raw Red Rice</span>, <span style={{ color: '#D32F2F', fontWeight: '700' }}>Raw Red Rice Flour</span>, <span style={{ color: '#D32F2F', fontWeight: '700' }}>Roasted Red Rice Flour</span>, <span style={{ color: '#B45309', fontWeight: '700' }}>mixture production</span>, and <span style={{ color: '#0F4A24', fontWeight: '700' }}>gingelly oil production</span>—delivered with an emphasis on product consistency and clear handling practices.
                 </p>
                 <p>
                   By sourcing ingredients locally and building our production team locally, we help strengthen the Island supply chain while maintaining close control over freshness and availability. We value long-term relationships with customers and startups alike, supported by straightforward communication and attentive customer care.
@@ -348,6 +385,15 @@ const About = () => {
               gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
               gap: '24px'
             }}>
+              <div style={{ backgroundColor: '#FFFFFF', padding: '28px', borderRadius: '20px', border: '2px solid #E8F5E9' }}>
+                <h4 style={{ fontSize: '1.1rem', fontWeight: '900', color: '#0F4A24', marginBottom: '10px' }}>
+                  Customer Loyalty & Order Commitment
+                </h4>
+                <p style={{ margin: 0, color: '#475569', fontSize: '0.95rem', lineHeight: '1.6' }}>
+                  Our company shows loyalty to customer orders by fulfilling commitments accurately, communicating openly, and prioritizing customer satisfaction at every step.
+                </p>
+              </div>
+
               <div style={{ backgroundColor: '#FFFFFF', padding: '28px', borderRadius: '20px', border: '2px solid #E8F5E9' }}>
                 <h4 style={{ fontSize: '1.1rem', fontWeight: '900', color: '#D32F2F', marginBottom: '10px' }}>
                   Red Rice Flour Production
