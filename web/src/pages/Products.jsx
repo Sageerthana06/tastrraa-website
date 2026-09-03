@@ -946,20 +946,25 @@ const Products = () => {
 
               const getProductImage = (p) => {
                 if (!p) return hero3dImg;
-                const url = p.image_url || '';
-                if (url === '/assets/gingelly_oil_750ml.jpg' || p.slug === 'gingelly-oil') return gingellyOil750mlImg;
-                if (url === '/assets/gingelly_oil_375ml.jpg' || p.slug === 'gingelly-oil-375ml') return gingellyOil375mlImg;
-                if (url === '/assets/bengal_gram_yellow.jpg' || url === '/assets/bengal_gram_pack.jpg' || url === '/assets/bengal_gram_100.jpg' || p.slug === 'tastraa-bengal-gram-100') return bengalGramYellowImg;
-                if (url === '/assets/plate_dumplings.jpg' || p.slug === 'tastraa-plate-dumplings-100') return plateDumplingsImg;
-                if (url === '/assets/bites_pack.jpg' || p.slug === 'tastraa-bites-50') return bitesPackImg;
-                if (url === '/assets/garlic_murukku.jpg' || (p.slug && p.slug.includes('garlic-murukku'))) return garlicMurukkuImg;
-                if (url === '/assets/masala_murukku.jpg' || p.slug === 'tastraa-masala-murukku-50') return masalaMurukkuImg;
-                if (url === '/assets/red_raw_rice_25kg.jpg' || p.slug === 'red-raw-rice-25kg') return redRawRice25kgImg;
-                if (url === '/assets/red_rice_flour_5kg.jpg' || p.slug === 'red-rice-flour-5kg') return redRice5kgImg;
-                if (url === '/assets/red_rice_flour_10kg.jpg' || p.slug === 'red-rice-flour-10kg') return redRice10kgImg;
-                if (url === '/assets/red_rice_flour_25kg.png' || p.slug === 'red-rice-flour-25kg') return redRice25kgImg;
-                if (url === '/assets/red_rice_flour_2kg.jpg' || p.slug === 'red-rice-flour-2kg') return redRice2kgImg;
-                if (url === '/assets/roasted_chilli_powder_50g.jpg' || p.slug === 'roasted-chilli-powder-50g') return roastedChilli50gImg;
+                const name = (p.name || '').toLowerCase();
+                const url = (p.image_url || '').toLowerCase();
+                const slug = (p.slug || '').toLowerCase();
+
+                if (name.includes('red raw rice 25kg') || slug === 'red-raw-rice-25kg' || url.includes('red_raw_rice_25kg')) return redRawRice25kgImg;
+                if (name.includes('red raw rice 10kg') || slug === 'red-raw-rice-10kg') return redRice10kgImg;
+                if (name.includes('red raw rice 5kg') || slug === 'red-raw-rice-5kg') return redRice5kgImg;
+                if (name.includes('flour 25kg') || slug === 'red-rice-flour-25kg' || url.includes('flour_25kg')) return redRice25kgImg;
+                if (name.includes('flour 10kg') || slug === 'red-rice-flour-10kg' || url.includes('flour_10kg')) return redRice10kgImg;
+                if (name.includes('flour 5kg') || slug === 'red-rice-flour-5kg' || url.includes('flour_5kg')) return redRice5kgImg;
+                if (name.includes('flour 2kg') || slug === 'red-rice-flour-2kg' || url.includes('flour_2kg')) return redRice2kgImg;
+                if (name.includes('750ml') || slug === 'gingelly-oil' || url.includes('750ml')) return gingellyOil750mlImg;
+                if (name.includes('375ml') || slug === 'gingelly-oil-375ml' || url.includes('375ml')) return gingellyOil375mlImg;
+                if (name.includes('bengal gram') || name.includes('dhal') || name.includes('peanut')) return bengalGramYellowImg;
+                if (name.includes('pakoda') || slug.includes('pakoda')) return plateDumplingsImg;
+                if (name.includes('bites') || name.includes('chips')) return bitesPackImg;
+                if (name.includes('garlic murukku')) return garlicMurukkuImg;
+                if (name.includes('masala murukku') || name.includes('murukku') || name.includes('mixture')) return masalaMurukkuImg;
+                if (name.includes('chilli') || name.includes('spice')) return roastedChilli50gImg;
                 if (typeof url === 'string' && (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:'))) return url;
                 return p.image_url || hero3dImg;
               };
@@ -979,13 +984,14 @@ const Products = () => {
                     flexDirection: 'column'
                   }}
                 >
-                  {/* Image Box */}
+                  {/* Image Box with Category & Weight Overlay Badges */}
                   <div className="product-image-box" style={{ position: 'relative', height: '230px', backgroundColor: '#F8FAFC', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px' }}>
                     <img
                       src={getProductImage(product)}
                       alt={product.name || 'TASTRAA Product'}
                       style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain', transition: 'transform 0.3s ease' }}
                     />
+                    {/* Category Tag */}
                     <span style={{
                       position: 'absolute',
                       top: '14px',
@@ -996,10 +1002,30 @@ const Products = () => {
                       fontWeight: '800',
                       padding: '4px 12px',
                       borderRadius: '9999px',
-                      textTransform: 'uppercase'
+                      textTransform: 'uppercase',
+                      boxShadow: '0 2px 6px rgba(0,0,0,0.15)'
                     }}>
                       {product.category || 'Food Essential'}
                     </span>
+
+                    {/* Weight / Pack Size Overlay Badge directly on Photo */}
+                    {product.unit && (
+                      <span style={{
+                        position: 'absolute',
+                        top: '14px',
+                        right: '14px',
+                        backgroundColor: '#FFD700',
+                        color: '#0F4A24',
+                        border: '1.5px solid #0F4A24',
+                        fontSize: '0.8rem',
+                        fontWeight: '900',
+                        padding: '4px 12px',
+                        borderRadius: '9999px',
+                        boxShadow: '0 3px 10px rgba(0,0,0,0.2)'
+                      }}>
+                        {product.unit}
+                      </span>
+                    )}
                   </div>
 
                   {/* Card Body */}
