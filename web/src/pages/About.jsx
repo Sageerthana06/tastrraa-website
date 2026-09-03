@@ -512,7 +512,18 @@ const About = () => {
               gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
               gap: '24px'
             }}>
-              {/* 1 */}
+              {/* 1: Genuineness, Hard Work, and Elevation */}
+              <div style={{ padding: '24px', borderRadius: '16px', backgroundColor: '#FAF9F5', border: '1px solid #E2E8F0' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
+                  <Sparkles size={20} style={{ color: '#B45309' }} />
+                  <h4 style={{ margin: 0, fontSize: '1.05rem', fontWeight: '800', color: '#B45309' }}>Genuineness, Hard Work & Elevation</h4>
+                </div>
+                <p style={{ margin: 0, color: '#475569', fontSize: '0.925rem', lineHeight: '1.6' }}>
+                  Built on genuine values, dedicated hard work, and elevating food quality and community trust at every level.
+                </p>
+              </div>
+
+              {/* 2 */}
               <div style={{ padding: '24px', borderRadius: '16px', backgroundColor: '#FAF9F5', border: '1px solid #E2E8F0' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
                   <Leaf size={20} style={{ color: '#0F4A24' }} />
