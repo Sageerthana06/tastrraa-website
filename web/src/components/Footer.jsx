@@ -103,7 +103,7 @@ const Footer = () => {
               </div>
               <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
                 <Mail size={16} style={{ color: '#F59E0B', flexShrink: 0 }} />
-                <span style={{ color: '#E5E7EB' }}>manivannann1980@gmail.com</span>
+                <span style={{ color: '#E5E7EB' }}>tastraa2008@gmail.com</span>
               </div>
             </div>
           </div>

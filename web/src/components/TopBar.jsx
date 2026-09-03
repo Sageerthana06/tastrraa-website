@@ -34,9 +34,9 @@ const TopBar = () => {
             <Phone size={12} style={{ color: '#FFD54F' }} />
             <span>021 205 2200</span>
           </a>
-          <a href="mailto:manivannann1980@gmail.com" style={{ display: 'flex', alignItems: 'center', gap: '5px', color: '#FFFFFF', whiteSpace: 'nowrap' }}>
+          <a href="mailto:tastraa2008@gmail.com" style={{ display: 'flex', alignItems: 'center', gap: '5px', color: '#FFFFFF', whiteSpace: 'nowrap' }}>
             <Mail size={12} style={{ color: '#FFD54F' }} />
-            <span>manivannann1980@gmail.com</span>
+            <span>tastraa2008@gmail.com</span>
           </a>
         </div>
       </div>

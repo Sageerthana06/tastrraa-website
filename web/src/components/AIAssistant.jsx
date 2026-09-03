@@ -54,7 +54,7 @@ const AIAssistant = () => {
       if (query.includes('location') || query.includes('where') || query.includes('address')) {
         localAnswer = "TASTRAA (PVT) LTD is located at No. 41, Kalasalai Road, Thirunelvely, Kopay, Jaffna, Sri Lanka.";
       } else if (query.includes('contact') || query.includes('phone') || query.includes('call') || query.includes('email')) {
-        localAnswer = "You can contact TASTRAA via phone at 0779789223 or 0212052200, or email us at manivannann1980@gmail.com.";
+        localAnswer = "You can contact TASTRAA via phone at 0779789223 or 0212052200, or email us at tastraa2008@gmail.com.";
       } else if (query.includes('product') || query.includes('sell') || query.includes('offer')) {
         localAnswer = "TASTRAA produces three core lines: 1. Rice Flour (Super fine), 2. Traditional Jaffna Mixture, and 3. Pure Cold-Pressed Gingelly Oil.";
       } else if (query.includes('rice flour')) {

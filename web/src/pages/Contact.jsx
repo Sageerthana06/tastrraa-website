@@ -114,7 +114,7 @@ const Contact = () => {
                     <div>
                       <strong style={{ display: 'block', color: '#0F4A24', fontSize: '0.95rem' }}>Email Address:</strong>
                       <span style={{ color: '#475569', fontSize: '0.95rem', fontWeight: '600' }}>
-                        manivannann1980@gmail.com
+                        tastraa2008@gmail.com
                       </span>
                     </div>
                   </div>
