@@ -66,7 +66,7 @@ const fallbackProducts = [
     unit: '25kg',
     description: 'Premium quality Red Rice Flour 25kg',
     features: ['Premium Quality', 'Traditional Taste', 'Wholesale Rate: LKR 5600'],
-    image_url: '/assets/red_rice_flour_5kg.jpg',
+    image_url: '/assets/red_rice_flour_25kg.png',
     slug: 'red-rice-flour-25kg'
   },
   {
@@ -78,7 +78,7 @@ const fallbackProducts = [
     unit: '10kg',
     description: 'Premium quality Red Rice Flour 10kg',
     features: ['Premium Quality', 'Traditional Taste', 'Wholesale Rate: LKR 2300'],
-    image_url: '/assets/red_rice_flour_5kg.jpg',
+    image_url: '/assets/red_rice_flour_10kg.jpg',
     slug: 'red-rice-flour-10kg'
   },
   {
@@ -971,16 +971,13 @@ const Products = () => {
                 const url = (p.image_url || '').toLowerCase();
                 const slug = (p.slug || '').toLowerCase();
 
-                // Red Raw Rice (Yellow Bag)
-                if (name.includes('red raw rice') || slug.includes('red-raw-rice') || url.includes('red_raw_rice')) return redRawRice25kgImg;
-
-                // Red Rice Flour (Green Bags by Weight)
+                if (name.includes('red raw rice 25kg') || slug === 'red-raw-rice-25kg' || url.includes('red_raw_rice_25kg')) return redRawRice25kgImg;
+                if (name.includes('red raw rice 10kg') || slug === 'red-raw-rice-10kg') return redRice10kgImg;
+                if (name.includes('red raw rice 5kg') || slug === 'red-raw-rice-5kg') return redRice5kgImg;
                 if (name.includes('flour 25kg') || slug === 'red-rice-flour-25kg' || url.includes('flour_25kg')) return redRice25kgImg;
                 if (name.includes('flour 10kg') || slug === 'red-rice-flour-10kg' || url.includes('flour_10kg')) return redRice10kgImg;
                 if (name.includes('flour 5kg') || slug === 'red-rice-flour-5kg' || url.includes('flour_5kg')) return redRice5kgImg;
                 if (name.includes('flour 2kg') || slug === 'red-rice-flour-2kg' || url.includes('flour_2kg')) return redRice2kgImg;
-
-                // Oils & Spices
                 if (name.includes('750ml') || slug === 'gingelly-oil' || url.includes('750ml')) return gingellyOil750mlImg;
                 if (name.includes('375ml') || slug === 'gingelly-oil-375ml' || url.includes('375ml')) return gingellyOil375mlImg;
                 if (name.includes('bengal gram') || name.includes('dhal') || name.includes('peanut')) return bengalGramYellowImg;
@@ -1008,7 +1005,7 @@ const Products = () => {
                     flexDirection: 'column'
                   }}
                 >
-                  {/* Image Box */}
+                  {/* Image Box with Category & Weight Overlay Badges */}
                   <div className="product-image-box" style={{ position: 'relative', height: '230px', backgroundColor: '#F8FAFC', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px' }}>
                     <img
                       src={getProductImage(product)}
@@ -1031,6 +1028,29 @@ const Products = () => {
                     }}>
                       {product.category || 'Food Essential'}
                     </span>
+
+                    {/* Weight / Pack Size Overlay Badge - Compact & Non-stretching */}
+                    {product.unit && (
+                      <span style={{
+                        position: 'absolute',
+                        top: '12px',
+                        right: '12px',
+                        backgroundColor: '#FEF3C7',
+                        color: '#92400E',
+                        border: '1px solid #FCD34D',
+                        fontSize: '0.75rem',
+                        fontWeight: '800',
+                        padding: '3px 10px',
+                        borderRadius: '9999px',
+                        boxShadow: '0 2px 6px rgba(0,0,0,0.1)',
+                        whiteSpace: 'nowrap',
+                        width: 'auto',
+                        maxWidth: 'max-content',
+                        zIndex: 3
+                      }}>
+                        📦 {product.unit}
+                      </span>
+                    )}
                   </div>
 
                   {/* Card Body */}
