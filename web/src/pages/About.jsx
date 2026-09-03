@@ -45,81 +45,12 @@ const About = () => {
       <section style={{ padding: '60px 0' }}>
         <div className="container">
 
-          {/* Section: COMPANY OVERVIEW */}
-          <div style={{
-            backgroundColor: '#FFFFFF',
-            borderRadius: '24px',
-            padding: '36px',
-            border: '1px solid #E5E7EB',
-            boxShadow: '0 4px 20px rgba(0,0,0,0.03)',
-            marginBottom: '32px'
-          }}>
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-              gap: '30px',
-              alignItems: 'center'
-            }}>
-              <div>
-                <div style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                  backgroundColor: '#ECFDF5',
-                  color: '#047857',
-                  border: '1px solid #A7F3D0',
-                  padding: '5px 14px',
-                  borderRadius: '9999px',
-                  fontWeight: '800',
-                  fontSize: '0.75rem',
-                  letterSpacing: '1px',
-                  marginBottom: '16px'
-                }}>
-                  <ShieldCheck size={14} />
-                  <span>COMPANY OVERVIEW</span>
-                </div>
-
-                <p style={{
-                  color: '#4B5563',
-                  fontSize: '1.05rem',
-                  lineHeight: '1.75',
-                  margin: 0
-                }}>
-                  Founded in 2008, TASTRAA (PVT) LTD is a food production company focused on consistent, safe, and practical pantry staples. We operate at Island level, supporting local sourcing and local employment throughout our production process. Our aim is to deliver products customers can rely on, backed by responsive customer care.
-                </p>
-              </div>
-
-              <div style={{
-                backgroundColor: '#F4FBF7',
-                borderRadius: '20px',
-                padding: '24px 28px',
-                border: '1px solid #E6F4ED',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '16px'
-              }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', color: '#1F2937', fontWeight: '700', fontSize: '0.975rem' }}>
-                  <MapPin size={18} style={{ color: '#047857', flexShrink: 0 }} />
-                  <span>Island level operations</span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', color: '#1F2937', fontWeight: '700', fontSize: '0.975rem' }}>
-                  <Leaf size={18} style={{ color: '#047857', flexShrink: 0 }} />
-                  <span>Local sourcing and local expertise</span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', color: '#1F2937', fontWeight: '700', fontSize: '0.975rem' }}>
-                  <Package size={18} style={{ color: '#047857', flexShrink: 0 }} />
-                  <span>Everyday cooking essentials</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Section: VISION & MISSION */}
+          {/* Section 1: VISION & MISSION */}
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
             gap: '24px',
-            marginBottom: '60px'
+            marginBottom: '32px'
           }}>
             {/* VISION CARD */}
             <div style={{
@@ -180,6 +111,75 @@ const About = () => {
               <p style={{ margin: 0, color: '#4B5563', fontSize: '1.05rem', fontWeight: '600', lineHeight: '1.6' }}>
                 Manufacture and supply/distribute quality products for mankind.
               </p>
+            </div>
+          </div>
+
+          {/* Section 2: COMPANY OVERVIEW */}
+          <div style={{
+            backgroundColor: '#FFFFFF',
+            borderRadius: '24px',
+            padding: '36px',
+            border: '1px solid #E5E7EB',
+            boxShadow: '0 4px 20px rgba(0,0,0,0.03)',
+            marginBottom: '60px'
+          }}>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+              gap: '30px',
+              alignItems: 'center'
+            }}>
+              <div>
+                <div style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  backgroundColor: '#ECFDF5',
+                  color: '#047857',
+                  border: '1px solid #A7F3D0',
+                  padding: '5px 14px',
+                  borderRadius: '9999px',
+                  fontWeight: '800',
+                  fontSize: '0.75rem',
+                  letterSpacing: '1px',
+                  marginBottom: '16px'
+                }}>
+                  <ShieldCheck size={14} />
+                  <span>COMPANY OVERVIEW</span>
+                </div>
+
+                <p style={{
+                  color: '#4B5563',
+                  fontSize: '1.05rem',
+                  lineHeight: '1.75',
+                  margin: 0
+                }}>
+                  Founded in 2008, TASTRAA (PVT) LTD is a food production company focused on consistent, safe, and practical pantry staples. We operate at Island level, supporting local sourcing and local employment throughout our production process. Our aim is to deliver products customers can rely on, backed by responsive customer care.
+                </p>
+              </div>
+
+              <div style={{
+                backgroundColor: '#F4FBF7',
+                borderRadius: '20px',
+                padding: '24px 28px',
+                border: '1px solid #E6F4ED',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '16px'
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', color: '#1F2937', fontWeight: '700', fontSize: '0.975rem' }}>
+                  <MapPin size={18} style={{ color: '#047857', flexShrink: 0 }} />
+                  <span>Island level operations</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', color: '#1F2937', fontWeight: '700', fontSize: '0.975rem' }}>
+                  <Leaf size={18} style={{ color: '#047857', flexShrink: 0 }} />
+                  <span>Local sourcing and local expertise</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', color: '#1F2937', fontWeight: '700', fontSize: '0.975rem' }}>
+                  <Package size={18} style={{ color: '#047857', flexShrink: 0 }} />
+                  <span>Everyday cooking essentials</span>
+                </div>
+              </div>
             </div>
           </div>
           {/* Section: OUR STORY & CORPORATE PROFILE */}
