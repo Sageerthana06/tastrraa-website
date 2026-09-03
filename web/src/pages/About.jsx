@@ -7,74 +7,120 @@ import gmpCertifiedImg from '../assets/gmp_certified.png';
 const About = () => {
   return (
     <div style={{ backgroundColor: '#FAF9F5', minHeight: '100vh' }}>
-      {/* Hero Banner with Red, Green, Gold accents */}
+      {/* Hero Banner with Red, Green, Gold accents & 3D Ambient Orbs */}
       <section style={{
-        background: 'linear-gradient(135deg, #0F4A24 0%, #083117 100%)',
+        background: 'linear-gradient(135deg, #083117 0%, #0F4A24 50%, #052210 100%)',
         color: '#FFFFFF',
-        padding: '75px 0',
+        padding: '85px 0 75px',
         textAlign: 'center',
         position: 'relative',
         overflow: 'hidden'
       }}>
+        {/* Ambient Glowing Orbs */}
+        <motion.div
+          animate={{ scale: [1, 1.15, 1], opacity: [0.3, 0.5, 0.3] }}
+          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+          style={{
+            position: 'absolute',
+            top: '-120px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: '650px',
+            height: '650px',
+            background: 'radial-gradient(circle, rgba(255, 215, 0, 0.2) 0%, rgba(255,255,255,0) 70%)',
+            pointerEvents: 'none',
+            borderRadius: '50%'
+          }}
+        />
+
+        <motion.div
+          animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.45, 0.2] }}
+          transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+          style={{
+            position: 'absolute',
+            bottom: '-80px',
+            right: '15%',
+            width: '450px',
+            height: '450px',
+            background: 'radial-gradient(circle, rgba(129, 199, 132, 0.25) 0%, rgba(255,255,255,0) 70%)',
+            pointerEvents: 'none',
+            borderRadius: '50%'
+          }}
+        />
+
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+          {/* Badge */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 15 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
+            initial={{ opacity: 0, y: -25, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             style={{
               display: 'inline-flex',
               alignItems: 'center',
               gap: '8px',
               backgroundColor: 'rgba(255, 255, 255, 0.12)',
-              border: '1px solid rgba(255, 255, 255, 0.25)',
-              padding: '6px 16px',
+              border: '1px solid rgba(255, 215, 0, 0.4)',
+              padding: '8px 22px',
               borderRadius: '9999px',
-              marginBottom: '16px',
+              marginBottom: '20px',
+              boxShadow: '0 4px 20px rgba(0,0,0,0.2)',
+              backdropFilter: 'blur(10px)',
               maxWidth: '95%'
             }}
           >
             <Sparkles size={16} style={{ color: '#FFD700', flexShrink: 0 }} />
-            <span style={{ color: '#FFD700', fontWeight: '800', fontSize: 'clamp(0.7rem, 2.5vw, 0.825rem)', letterSpacing: '0.5px' }}>
+            <span style={{ color: '#FFD700', fontWeight: '800', fontSize: 'clamp(0.7rem, 2.5vw, 0.825rem)', letterSpacing: '1px' }}>
               ESTABLISHED 2008 • TASTRAA (PVT) LTD
             </span>
           </motion.div>
 
+          {/* TASTRAA Main Animated Title */}
           <motion.h1
-            initial={{ opacity: 0, scale: 0.85, y: -20 }}
+            initial={{ opacity: 0, scale: 0.75, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.3, ease: 'easeOut' }}
+            transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             style={{
-              fontSize: 'clamp(2.5rem, 8.5vw, 4.5rem)',
+              fontSize: 'clamp(2.8rem, 9.5vw, 5.2rem)',
               fontWeight: '900',
-              marginBottom: '4px',
-              color: '#FFD700',
+              marginBottom: '2px',
+              background: 'linear-gradient(180deg, #FFFFFF 0%, #FFD700 65%, #F59E0B 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
               fontFamily: "'Poppins', sans-serif",
-              lineHeight: '1.1',
-              letterSpacing: '3px',
-              filter: 'drop-shadow(0 6px 20px rgba(0,0,0,0.4))'
+              lineHeight: '1.05',
+              letterSpacing: '4px',
+              filter: 'drop-shadow(0 10px 25px rgba(0,0,0,0.45))'
             }}
           >
             TASTRAA
           </motion.h1>
 
+          {/* (PVT) LTD Animated Subtitle */}
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.15, ease: 'easeOut' }}
+            transition={{ duration: 0.5, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
             style={{
-              fontSize: 'clamp(1rem, 3.5vw, 1.5rem)',
+              fontSize: 'clamp(1.1rem, 3.8vw, 1.7rem)',
               fontWeight: '900',
               color: '#FFFFFF',
-              letterSpacing: '5px',
-              marginBottom: '20px',
-              filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.3))'
+              letterSpacing: '6px',
+              marginBottom: '24px',
+              textShadow: '0 4px 14px rgba(0,0,0,0.35)'
             }}
           >
             (PVT) LTD
           </motion.div>
-          <p style={{ maxWidth: '780px', margin: '0 auto', color: '#E2E8F0', fontSize: '1.1rem', fontWeight: '600', lineHeight: '1.6' }}>
+
+          {/* Paragraph Animated text */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            style={{ maxWidth: '780px', margin: '0 auto', color: '#E2E8F0', fontSize: 'clamp(0.95rem, 2.2vw, 1.15rem)', fontWeight: '600', lineHeight: '1.65' }}
+          >
             Trusted Rice Flour, Mixture, and Gingelly Oil Using Local Raw Materials & Local Expertise
-          </p>
+          </motion.p>
         </div>
       </section>
 
