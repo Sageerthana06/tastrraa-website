@@ -579,7 +579,18 @@ const About = () => {
                 </p>
               </div>
 
-              {/* 2 */}
+              {/* 2: Quality Products for Mankind */}
+              <div style={{ padding: '24px', borderRadius: '16px', backgroundColor: '#FAF9F5', border: '1px solid #E2E8F0' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
+                  <Award size={20} style={{ color: '#D32F2F' }} />
+                  <h4 style={{ margin: 0, fontSize: '1.05rem', fontWeight: '800', color: '#D32F2F' }}>Quality Products for Mankind</h4>
+                </div>
+                <p style={{ margin: 0, color: '#475569', fontSize: '0.925rem', lineHeight: '1.6' }}>
+                  Manufacture and supply/distribute quality products for mankind with dedication to purity and nutritional excellence.
+                </p>
+              </div>
+
+              {/* 3 */}
               <div style={{ padding: '24px', borderRadius: '16px', backgroundColor: '#FAF9F5', border: '1px solid #E2E8F0' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
                   <Leaf size={20} style={{ color: '#0F4A24' }} />
