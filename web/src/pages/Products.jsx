@@ -1008,22 +1008,26 @@ const Products = () => {
                       {product.category || 'Food Essential'}
                     </span>
 
-                    {/* Weight / Pack Size Overlay Badge directly on Photo */}
+                    {/* Weight / Pack Size Overlay Badge - Compact & Non-stretching */}
                     {product.unit && (
                       <span style={{
                         position: 'absolute',
-                        top: '14px',
-                        right: '14px',
-                        backgroundColor: '#FFD700',
-                        color: '#0F4A24',
-                        border: '1.5px solid #0F4A24',
-                        fontSize: '0.8rem',
-                        fontWeight: '900',
-                        padding: '4px 12px',
+                        top: '12px',
+                        right: '12px',
+                        backgroundColor: '#FEF3C7',
+                        color: '#92400E',
+                        border: '1px solid #FCD34D',
+                        fontSize: '0.75rem',
+                        fontWeight: '800',
+                        padding: '3px 10px',
                         borderRadius: '9999px',
-                        boxShadow: '0 3px 10px rgba(0,0,0,0.2)'
+                        boxShadow: '0 2px 6px rgba(0,0,0,0.1)',
+                        whiteSpace: 'nowrap',
+                        width: 'auto',
+                        maxWidth: 'max-content',
+                        zIndex: 3
                       }}>
-                        {product.unit}
+                        📦 {product.unit}
                       </span>
                     )}
                   </div>
