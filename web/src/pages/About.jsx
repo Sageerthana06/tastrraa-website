@@ -16,33 +16,33 @@ const About = () => {
         position: 'relative',
         overflow: 'hidden'
       }}>
-        {/* Ambient Glowing Orbs */}
+        {/* Ambient Glowing Orbs - Red & Yellow */}
         <motion.div
-          animate={{ scale: [1, 1.15, 1], opacity: [0.3, 0.5, 0.3] }}
-          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+          animate={{ scale: [1, 1.25, 1], opacity: [0.35, 0.65, 0.35] }}
+          transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
           style={{
             position: 'absolute',
             top: '-120px',
-            left: '50%',
+            left: '35%',
             transform: 'translateX(-50%)',
             width: '650px',
             height: '650px',
-            background: 'radial-gradient(circle, rgba(255, 215, 0, 0.2) 0%, rgba(255,255,255,0) 70%)',
+            background: 'radial-gradient(circle, rgba(239, 68, 68, 0.3) 0%, rgba(255,255,255,0) 70%)',
             pointerEvents: 'none',
             borderRadius: '50%'
           }}
         />
 
         <motion.div
-          animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.45, 0.2] }}
-          transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+          animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }}
+          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
           style={{
             position: 'absolute',
-            bottom: '-80px',
-            right: '15%',
-            width: '450px',
-            height: '450px',
-            background: 'radial-gradient(circle, rgba(129, 199, 132, 0.25) 0%, rgba(255,255,255,0) 70%)',
+            bottom: '-100px',
+            right: '25%',
+            width: '550px',
+            height: '550px',
+            background: 'radial-gradient(circle, rgba(255, 215, 0, 0.35) 0%, rgba(255,255,255,0) 70%)',
             pointerEvents: 'none',
             borderRadius: '50%'
           }}
@@ -59,11 +59,11 @@ const About = () => {
               alignItems: 'center',
               gap: '8px',
               backgroundColor: 'rgba(255, 255, 255, 0.12)',
-              border: '1px solid rgba(255, 215, 0, 0.4)',
+              border: '1.5px solid rgba(255, 215, 0, 0.5)',
               padding: '8px 22px',
               borderRadius: '9999px',
               marginBottom: '20px',
-              boxShadow: '0 4px 20px rgba(0,0,0,0.2)',
+              boxShadow: '0 4px 25px rgba(239, 68, 68, 0.25)',
               backdropFilter: 'blur(10px)',
               maxWidth: '95%'
             }}
@@ -74,28 +74,39 @@ const About = () => {
             </span>
           </motion.div>
 
-          {/* TASTRAA Main Animated Title */}
+          {/* TASTRAA Main Animated Red & Yellow Shimmer Title */}
           <motion.h1
             initial={{ opacity: 0, scale: 0.75, y: 30 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            animate={{
+              opacity: 1,
+              scale: 1,
+              y: 0,
+              backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
+            }}
+            transition={{
+              opacity: { duration: 0.6, delay: 0.1 },
+              scale: { duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] },
+              y: { duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] },
+              backgroundPosition: { duration: 4, repeat: Infinity, ease: 'linear' }
+            }}
             style={{
-              fontSize: 'clamp(2.8rem, 9.5vw, 5.2rem)',
+              fontSize: 'clamp(2.8rem, 9.5vw, 5.5rem)',
               fontWeight: '900',
-              marginBottom: '2px',
-              background: 'linear-gradient(180deg, #FFFFFF 0%, #FFD700 65%, #F59E0B 100%)',
+              marginBottom: '4px',
+              backgroundImage: 'linear-gradient(90deg, #FFD700 0%, #FF3333 30%, #FFD700 60%, #FF3333 85%, #FFD700 100%)',
+              backgroundSize: '200% auto',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               fontFamily: "'Poppins', sans-serif",
               lineHeight: '1.05',
               letterSpacing: '4px',
-              filter: 'drop-shadow(0 10px 25px rgba(0,0,0,0.45))'
+              filter: 'drop-shadow(0 8px 25px rgba(220, 38, 38, 0.45))'
             }}
           >
             TASTRAA
           </motion.h1>
 
-          {/* (PVT) LTD Animated Subtitle */}
+          {/* (PVT) LTD Animated Subtitle with Red & Gold highlights */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -103,13 +114,12 @@ const About = () => {
             style={{
               fontSize: 'clamp(1.1rem, 3.8vw, 1.7rem)',
               fontWeight: '900',
-              color: '#FFFFFF',
               letterSpacing: '6px',
               marginBottom: '24px',
-              textShadow: '0 4px 14px rgba(0,0,0,0.35)'
+              filter: 'drop-shadow(0 4px 15px rgba(0,0,0,0.4))'
             }}
           >
-            (PVT) LTD
+            <span style={{ color: '#FF3333' }}>(PVT)</span> <span style={{ color: '#FFD700' }}>LTD</span>
           </motion.div>
 
           {/* Paragraph Animated text */}
