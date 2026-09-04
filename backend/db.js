@@ -116,7 +116,7 @@ export const initDb = async () => {
 };
 
 const setupMemoryStore = async () => {
-  const hashedPassword = await bcrypt.hash('admin123', 10);
+  const hashedPassword = await bcrypt.hash('0987', 10);
   memoryAdmins = [
     { id: 1, email: 'admin@tastraa.com', password: hashedPassword, name: 'TASTRAA Admin Manager' },
     { id: 2, email: 'admin@tastrraa.com', password: hashedPassword, name: 'TASTRAA Admin Manager' }
