@@ -44,7 +44,7 @@ const fallbackProducts = [
     unit: '10kg',
     description: 'Premium quality Red Raw Rice 10kg',
     features: ['Premium Quality', 'Traditional Taste', 'Wholesale Rate: LKR 2600'],
-    image_url: '/assets/tastraa_red_raw_rice_25kg.jpg',
+    image_url: '/assets/tastraa_red_raw_rice_10kg.png',
     slug: 'red-raw-rice-10kg'
   },
   {
@@ -56,7 +56,7 @@ const fallbackProducts = [
     unit: '5kg',
     description: 'Premium quality Red Raw Rice 5kg',
     features: ['Premium Quality', 'Traditional Taste', 'Wholesale Rate: LKR 1300'],
-    image_url: '/assets/tastraa_red_raw_rice_25kg.jpg',
+    image_url: '/assets/tastraa_red_raw_rice_5kg.jpg',
     slug: 'red-raw-rice-5kg'
   },
   {
