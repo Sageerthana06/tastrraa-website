@@ -13,7 +13,9 @@ import bengalGram100Img from '../assets/bengal_gram_100.jpg';
 import gingellyOil750mlImg from '../assets/gingelly_oil_750ml.jpg';
 import gingellyOil375mlImg from '../assets/gingelly_oil_375ml.jpg';
 import bengalGramPackImg from '../assets/bengal_gram_pack.jpg';
-import redRawRice25kgImg from '../assets/red_raw_rice_25kg.jpg';
+const redRawRice25kgImg = '/assets/tastraa_red_raw_rice_25kg.jpg';
+const redRawRice10kgImg = '/assets/tastraa_red_raw_rice_10kg.png';
+const redRawRice5kgImg = '/assets/tastraa_red_raw_rice_5kg.jpg';
 import plateDumplingsImg from '../assets/plate_dumplings.jpg';
 import bitesPackImg from '../assets/bites_pack.jpg';
 import bengalGramYellowImg from '../assets/bengal_gram_yellow.jpg';
@@ -42,7 +44,7 @@ const fallbackProducts = [
     unit: '10kg',
     description: 'Premium quality Red Raw Rice 10kg',
     features: ['Premium Quality', 'Traditional Taste', 'Wholesale Rate: LKR 2600'],
-    image_url: '/assets/tastraa_red_raw_rice_5kg.jpg',
+    image_url: '/assets/tastraa_red_raw_rice_25kg.jpg',
     slug: 'red-raw-rice-10kg'
   },
   {
@@ -54,7 +56,7 @@ const fallbackProducts = [
     unit: '5kg',
     description: 'Premium quality Red Raw Rice 5kg',
     features: ['Premium Quality', 'Traditional Taste', 'Wholesale Rate: LKR 1300'],
-    image_url: '/assets/tastraa_red_raw_rice_5kg.jpg',
+    image_url: '/assets/tastraa_red_raw_rice_25kg.jpg',
     slug: 'red-raw-rice-5kg'
   },
   {
@@ -222,7 +224,7 @@ const fallbackProducts = [
     unit: '1kg',
     description: 'Premium quality Pakoda 1kg',
     features: ['Premium Quality', 'Traditional Taste', 'Wholesale Rate: LKR 880'],
-    image_url: '/assets/plate_dumplings.jpg',
+    image_url: '/assets/tastraa_pakoda.jpg',
     slug: 'pakoda-1kg'
   },
   {
@@ -234,7 +236,7 @@ const fallbackProducts = [
     unit: '500g',
     description: 'Premium quality Pakoda 500g',
     features: ['Premium Quality', 'Traditional Taste', 'Wholesale Rate: LKR 460'],
-    image_url: '/assets/plate_dumplings.jpg',
+    image_url: '/assets/tastraa_pakoda.jpg',
     slug: 'pakoda-500g'
   },
   {
@@ -246,7 +248,7 @@ const fallbackProducts = [
     unit: '250g',
     description: 'Premium quality Pakoda 250g',
     features: ['Premium Quality', 'Traditional Taste', 'Wholesale Rate: LKR 250'],
-    image_url: '/assets/plate_dumplings.jpg',
+    image_url: '/assets/tastraa_pakoda.jpg',
     slug: 'pakoda-250g'
   },
   {
@@ -258,7 +260,7 @@ const fallbackProducts = [
     unit: '80g',
     description: 'Premium quality Pakoda 80g',
     features: ['Premium Quality', 'Traditional Taste', 'Wholesale Rate: LKR 75'],
-    image_url: '/assets/plate_dumplings.jpg',
+    image_url: '/assets/tastraa_pakoda.jpg',
     slug: 'pakoda-80g'
   },
   {
@@ -270,7 +272,7 @@ const fallbackProducts = [
     unit: '40g',
     description: 'Premium quality Pakoda 40g',
     features: ['Premium Quality', 'Traditional Taste', 'Wholesale Rate: LKR 35'],
-    image_url: '/assets/plate_dumplings.jpg',
+    image_url: '/assets/tastraa_pakoda.jpg',
     slug: 'pakoda-40g'
   },
   {
@@ -282,7 +284,7 @@ const fallbackProducts = [
     unit: '1kg',
     description: 'Premium quality Peanut Pakoda 1kg',
     features: ['Premium Quality', 'Traditional Taste', 'Wholesale Rate: LKR 1400'],
-    image_url: '/assets/bengal_gram_yellow.jpg',
+    image_url: '/assets/tastraa_peanut.jpg',
     slug: 'peanut-pakoda-1kg'
   },
   {
@@ -294,7 +296,7 @@ const fallbackProducts = [
     unit: '250g',
     description: 'Premium quality Peanut Pakoda 250g',
     features: ['Premium Quality', 'Traditional Taste', 'Wholesale Rate: LKR 400'],
-    image_url: '/assets/bengal_gram_yellow.jpg',
+    image_url: '/assets/tastraa_peanut.jpg',
     slug: 'peanut-pakoda-250g'
   },
   {
@@ -306,7 +308,7 @@ const fallbackProducts = [
     unit: '100g',
     description: 'Premium quality Peanut Pakoda 100g',
     features: ['Premium Quality', 'Traditional Taste', 'Wholesale Rate: LKR 170'],
-    image_url: '/assets/bengal_gram_yellow.jpg',
+    image_url: '/assets/tastraa_peanut.jpg',
     slug: 'peanut-pakoda-100g'
   },
   {
@@ -462,7 +464,7 @@ const fallbackProducts = [
     unit: '1kg',
     description: 'Premium quality Manioc Chips 1kg',
     features: ['Premium Quality', 'Traditional Taste', 'Wholesale Rate: LKR 900'],
-    image_url: '/assets/tastraa_bites.jpg',
+    image_url: '/assets/tastraa_manioc_chips.jpg',
     slug: 'manioc-chips-1kg'
   },
   {
@@ -474,7 +476,7 @@ const fallbackProducts = [
     unit: '250g',
     description: 'Premium quality Manioc Chips 250g',
     features: ['Premium Quality', 'Traditional Taste', 'Wholesale Rate: LKR 300'],
-    image_url: '/assets/tastraa_bites.jpg',
+    image_url: '/assets/tastraa_manioc_chips.jpg',
     slug: 'manioc-chips-250g'
   },
   {
@@ -486,7 +488,7 @@ const fallbackProducts = [
     unit: '60g',
     description: 'Premium quality Manioc Chips 60g',
     features: ['Premium Quality', 'Traditional Taste', 'Wholesale Rate: LKR 75'],
-    image_url: '/assets/tastraa_bites.jpg',
+    image_url: '/assets/tastraa_manioc_chips.jpg',
     slug: 'manioc-chips-60g'
   },
   {
@@ -498,7 +500,7 @@ const fallbackProducts = [
     unit: '30g',
     description: 'Premium quality Manioc Chips 30g',
     features: ['Premium Quality', 'Traditional Taste', 'Wholesale Rate: LKR 40'],
-    image_url: '/assets/tastraa_bites.jpg',
+    image_url: '/assets/tastraa_manioc_chips.jpg',
     slug: 'manioc-chips-30g'
   },
   {
@@ -678,7 +680,7 @@ const fallbackProducts = [
     unit: '1kg',
     description: 'Premium quality Peanut 1kg',
     features: ['Premium Quality', 'Traditional Taste', 'Wholesale Rate: LKR 1300'],
-    image_url: '/assets/bengal_gram_yellow.jpg',
+    image_url: '/assets/tastraa_peanut.jpg',
     slug: 'peanut-1kg'
   },
   {
@@ -690,7 +692,7 @@ const fallbackProducts = [
     unit: '100g',
     description: 'Premium quality Peanut 100g',
     features: ['Premium Quality', 'Traditional Taste', 'Wholesale Rate: LKR 180'],
-    image_url: '/assets/bengal_gram_yellow.jpg',
+    image_url: '/assets/tastraa_peanut.jpg',
     slug: 'peanut-100g'
   },
   {
@@ -702,7 +704,7 @@ const fallbackProducts = [
     unit: '50g',
     description: 'Premium quality Peanut 50g',
     features: ['Premium Quality', 'Traditional Taste', 'Wholesale Rate: LKR 80'],
-    image_url: '/assets/bengal_gram_yellow.jpg',
+    image_url: '/assets/tastraa_peanut.jpg',
     slug: 'peanut-50g'
   },
   {
@@ -972,22 +974,20 @@ const Products = () => {
                 const slug = (p.slug || '').toLowerCase();
 
                 if (name.includes('red raw rice 25kg') || slug === 'red-raw-rice-25kg' || url.includes('red_raw_rice_25kg')) return redRawRice25kgImg;
-                if (name.includes('red raw rice 10kg') || slug === 'red-raw-rice-10kg') return redRice10kgImg;
-                if (name.includes('red raw rice 5kg') || slug === 'red-raw-rice-5kg') return redRice5kgImg;
+                if (name.includes('red raw rice 10kg') || slug === 'red-raw-rice-10kg' || url.includes('red_raw_rice_10kg')) return redRawRice10kgImg;
+                if (name.includes('red raw rice 5kg') || slug === 'red-raw-rice-5kg' || url.includes('red_raw_rice_5kg')) return redRawRice5kgImg;
                 if (name.includes('flour 25kg') || slug === 'red-rice-flour-25kg' || url.includes('flour_25kg')) return redRice25kgImg;
                 if (name.includes('flour 10kg') || slug === 'red-rice-flour-10kg' || url.includes('flour_10kg')) return redRice10kgImg;
                 if (name.includes('flour 5kg') || slug === 'red-rice-flour-5kg' || url.includes('flour_5kg')) return redRice5kgImg;
                 if (name.includes('flour 2kg') || slug === 'red-rice-flour-2kg' || url.includes('flour_2kg')) return redRice2kgImg;
+                if (name.includes('bengal gram') || name.includes('dhal')) return bengalGramYellowImg;
                 if (name.includes('750ml') || slug === 'gingelly-oil' || url.includes('750ml')) return gingellyOil750mlImg;
                 if (name.includes('375ml') || slug === 'gingelly-oil-375ml' || url.includes('375ml')) return gingellyOil375mlImg;
-                if (name.includes('bengal gram') || name.includes('dhal') || name.includes('peanut')) return bengalGramYellowImg;
-                if (name.includes('pakoda') || slug.includes('pakoda')) return plateDumplingsImg;
-                if (name.includes('bites') || name.includes('chips')) return bitesPackImg;
                 if (name.includes('garlic murukku')) return garlicMurukkuImg;
-                if (name.includes('masala murukku') || name.includes('murukku') || name.includes('mixture')) return masalaMurukkuImg;
+                if (name.includes('masala murukku') || name.includes('murukku')) return masalaMurukkuImg;
                 if (name.includes('chilli') || name.includes('spice')) return roastedChilli50gImg;
-                if (typeof url === 'string' && (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:'))) return url;
-                return p.image_url || hero3dImg;
+                if (p.image_url) return p.image_url;
+                return hero3dImg;
               };
 
               return (
