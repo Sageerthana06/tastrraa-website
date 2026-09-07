@@ -56,13 +56,13 @@ const AIAssistant = () => {
       } else if (query.includes('contact') || query.includes('phone') || query.includes('call') || query.includes('email')) {
         localAnswer = "You can contact TASTRAA via phone at 0779789223 or 0212052200, or email us at tastraa2008@gmail.com.";
       } else if (query.includes('product') || query.includes('sell') || query.includes('offer')) {
-        localAnswer = "TASTRAA produces three core lines: 1. Rice Flour (Super fine), 2. Traditional Jaffna Mixture, and 3. Pure Cold-Pressed Gingelly Oil.";
+        localAnswer = "TASTRAA produces three core lines: 1. Rice Flour (Super fine), 2. Traditional Jaffna Mixture, and 3. Gingelly Oil.";
       } else if (query.includes('rice flour')) {
         localAnswer = "TASTRAA Rice Flour is ground from 100% locally sourced premium Sri Lankan rice. It has a super-fine texture and contains no added preservatives.";
       } else if (query.includes('mixture')) {
         localAnswer = "TASTRAA Mixture is an authentic spicy and savory Jaffna snack made with high quality peanuts, fried gram, curry leaves, and traditional spice blends.";
       } else if (query.includes('gingelly') || query.includes('sesame') || query.includes('oil')) {
-        localAnswer = "TASTRAA Gingelly Oil is 100% pure cold-pressed sesame oil extracted using traditional methods, rich in natural aroma and heart-healthy nutrients.";
+        localAnswer = "TASTRAA Gingelly Oil is 100% sesame oil extracted using traditional methods, rich in natural aroma and heart-healthy nutrients.";
       }
 
       setMessages((prev) => [...prev, { sender: 'ai', text: localAnswer }]);

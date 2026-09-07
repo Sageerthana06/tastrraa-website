@@ -53,7 +53,7 @@ const AdminLogin = () => {
       <div style={{
         backgroundColor: '#FFFFFF',
         width: '100%',
-        maxWidth: '420px',
+        maxWidth: '280px',
         borderRadius: '24px',
         boxShadow: '0 10px 40px rgba(0,0,0,0.08)',
         border: '1px solid #E5E7EB',

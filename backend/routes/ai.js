@@ -11,7 +11,7 @@ const KNOWLEDGE_BASE = {
   phone: ["0779789223", "0212052200"],
   email: "tastraa2008@gmail.com",
   products: ["Rice Flour", "Mixture", "Gingelly Oil"],
-  about: "TASTRAA (PVT) LTD was established in June 2008 in Jaffna, Sri Lanka. We specialize in processing high-quality, locally sourced food essentials including super-fine Rice Flour, traditional Jaffna Mixture, and pure cold-pressed Gingelly Oil for households and commercial businesses."
+  about: "TASTRAA (PVT) LTD was established in June 2008 in Jaffna, Sri Lanka. We specialize in processing high-quality, locally sourced food essentials including super-fine Rice Flour, traditional Jaffna Mixture, and  Gingelly Oil for households and commercial businesses."
 };
 
 // POST /api/ai/ask
@@ -95,7 +95,7 @@ router.post('/ask', async (req, res) => {
     if (q.includes('gingelly') || q.includes('sesame') || q.includes('oil')) {
       return res.json({
         success: true,
-        answer: `TASTRAA Gingelly Oil is 100% pure cold-pressed sesame oil extracted using traditional methods from premium sesame seeds. It features a rich natural aroma and is ideal for healthy cooking and authentic flavor.`
+        answer: `TASTRAA Gingelly Oil is 100% oil extracted using traditional methods from premium sesame seeds. It features a rich natural aroma and is ideal for healthy cooking and authentic flavor.`
       });
     }
 

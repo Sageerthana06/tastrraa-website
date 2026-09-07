@@ -187,18 +187,18 @@ const fallbackDetails = {
   'gingelly-oil': {
     id: 106,
     slug: 'gingelly-oil',
-    name: 'Pure Cold-Pressed Gingelly Oil (750ml)',
+    name: 'Gingelly Oil (750ml)',
     category: 'Gingelly Oil',
     price: '950.00',
     unit: '750ml Bottle',
-    description: '100% Pure cold-pressed sesame oil extracted using traditional methods. Rich natural aroma and heart-healthy.',
+    description: '100%  oil extracted using traditional methods. Rich natural aroma and heart-healthy.',
     features: ['Cold Pressed', '100% Pure Sesame', 'Rich Aroma', 'Best for Cooking'],
     image_url: gingellyOil750mlImg
   },
   'gingelly-oil-375ml': {
     id: 113,
     slug: 'gingelly-oil-375ml',
-    name: 'Pure Cold-Pressed Gingelly Oil (375ml)',
+    name: 'Gingelly Oil (375ml)',
     category: 'Gingelly Oil',
     price: '500.00',
     unit: '375ml Bottle',

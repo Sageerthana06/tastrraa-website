@@ -1629,7 +1629,7 @@ const defaultProducts = [
     category: 'OIL',
     unit_size: '375ml Bottle',
     price: '500.00',
-    description: '100% pure cold-pressed sesame oil with authentic Jaffna aroma. Hygienic sealed bottle.',
+    description: '100% oil with authentic Jaffna aroma. Hygienic sealed bottle.',
     image_url: gingellyOil375mlImg,
     slug: 'gingelly-oil-375ml'
   },

@@ -1,4 +1,4 @@
-import fs from 'fs';
+import fs from "fs";
 
 const rawData = `
 Red rice flour 5kg. 1140 1200
@@ -78,65 +78,86 @@ Mikser 200g 180 300
 Mikser 400g 360 600
 `;
 
-const lines = rawData.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+const lines = rawData
+  .split("\n")
+  .map((l) => l.trim())
+  .filter((l) => l.length > 0);
 
 const getCategoryAndImage = (name) => {
   const n = name.toLowerCase();
-  if (n.includes('rice flour')) return { cat: 'Flour', img: '/assets/red_rice_flour_5kg.jpg' };
-  if (n.includes('murukku')) return { cat: 'Murukku', img: '/assets/masala_murukku.jpg' };
-  if (n.includes('pakoda') && !n.includes('peanut')) return { cat: 'Pakoda', img: '/assets/plate_dumplings.jpg' };
-  if (n.includes('peanut pakoda')) return { cat: 'Pakoda', img: '/assets/bengal_gram_yellow.jpg' };
-  if (n.includes('thadduvadai') || n.includes('manioc chips') || n.includes('bites')) return { cat: 'Bites & Chips', img: '/assets/bites_pack.jpg' };
-  if (n.includes('mixture') || n.includes('mikser')) return { cat: 'Mixture', img: '/assets/bites_pack.jpg' };
-  if (n.includes('dhal') || n.includes('bengal gram') || n.includes('peanut')) return { cat: 'Dhal & Gram', img: '/assets/bengal_gram_yellow.jpg' };
-  if (n.includes('chilli powder')) return { cat: 'Spices', img: '/assets/roasted_chilli_powder_50g.jpg' };
-  if (n.includes('gingelly oil')) return { cat: 'Gingelly Oil', img: '/assets/gingelly_oil_750ml.jpg' };
-  return { cat: 'Other', img: '/assets/bites_pack.jpg' };
+  if (n.includes("rice flour"))
+    return { cat: "Flour", img: "/assets/red_rice_flour_5kg.jpg" };
+  if (n.includes("murukku"))
+    return { cat: "Murukku", img: "/assets/masala_murukku.jpg" };
+  if (n.includes("pakoda") && !n.includes("peanut"))
+    return { cat: "Pakoda", img: "/assets/plate_dumplings.jpg" };
+  if (n.includes("peanut pakoda"))
+    return { cat: "Pakoda", img: "/assets/bengal_gram_yellow.jpg" };
+  if (n.includes("thadduvadai"))
+    return { cat: "Bites & Chips", img: "/assets/plate_dumplings.jpg" };
+  if (n.includes("manioc chips") || n.includes("bites"))
+    return { cat: "Bites & Chips", img: "/assets/bites_pack.jpg" };
+  if (n.includes("mixture") || n.includes("mikser"))
+    return { cat: "Mixture", img: "/assets/bites_pack.jpg" };
+  if (n.includes("dhal") || n.includes("bengal gram") || n.includes("peanut"))
+    return { cat: "Dhal & Gram", img: "/assets/bengal_gram_yellow.jpg" };
+  if (n.includes("chilli powder"))
+    return { cat: "Spices", img: "/assets/roasted_chilli_powder_50g.jpg" };
+  if (n.includes("gingelly oil"))
+    return { cat: "Gingelly Oil", img: "/assets/gingelly_oil_750ml.jpg" };
+  return { cat: "Other", img: "/assets/bites_pack.jpg" };
 };
 
-let productsJs = '  memoryProducts = [\n';
+let productsJs = "  memoryProducts = [\n";
 let id = 101;
 
-lines.forEach(line => {
+lines.forEach((line) => {
   // e.g. "Red rice flour 5kg. 1140 1200"
   // e.g. "Mikser 200g 180 300"
   let match = line.match(/^(.*?)\s*([\d\.]+[kmlg]+)\.?\s+(\d+)\s+(\d+)$/i);
   if (!match) {
-     match = line.match(/^(.*?)\.?\s+(\d+)\s+(\d+)$/i);
+    match = line.match(/^(.*?)\.?\s+(\d+)\s+(\d+)$/i);
   }
-  
+
   if (match) {
     let nameBase, unit, wholesale, retail;
     if (match.length === 5) {
-       nameBase = match[1].trim();
-       unit = match[2].trim();
-       wholesale = match[3];
-       retail = match[4];
+      nameBase = match[1].trim();
+      unit = match[2].trim();
+      wholesale = match[3];
+      retail = match[4];
     } else {
-       // Need to extract unit from nameBase
-       let parts = match[1].trim().split(' ');
-       unit = parts.pop();
-       nameBase = parts.join(' ').trim();
-       wholesale = match[2];
-       retail = match[3];
+      // Need to extract unit from nameBase
+      let parts = match[1].trim().split(" ");
+      unit = parts.pop();
+      nameBase = parts.join(" ").trim();
+      wholesale = match[2];
+      retail = match[3];
     }
-    
+
     // Capitalize name
-    const name = nameBase.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ') + ' ' + unit;
-    const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    const name =
+      nameBase
+        .split(" ")
+        .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+        .join(" ") +
+      " " +
+      unit;
+    const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
     const { cat, img } = getCategoryAndImage(name);
-    
+
     productsJs += `    { id: ${id++}, name: '${name}', slug: '${slug}', description: 'Premium quality ${name}', category: '${cat}', price: ${retail}.00, wholesale_price: ${wholesale}.00, unit: '${unit}', image_url: '${img}', features: ['Premium Quality', 'Traditional Taste', 'Wholesale Rate: LKR ${wholesale}'], is_active: true },\n`;
   } else {
     console.log("Could not parse:", line);
   }
 });
 
-productsJs += '  ];';
+productsJs += "  ];";
 
-let dbContent = fs.readFileSync('db.js', 'utf8');
-const start = dbContent.indexOf('  memoryProducts = [');
-const end = dbContent.indexOf('  ];\n};', start) + 4;
-dbContent = dbContent.substring(0, start) + productsJs + dbContent.substring(end);
-fs.writeFileSync('db.js', dbContent);
-console.log('db.js updated successfully!');
+let dbContent = fs.readFileSync("db.js", "utf8");
+const start = dbContent.indexOf("  memoryProducts = [");
+const end = dbContent.indexOf("  ];\n};", start) + 4;
+dbContent =
+  dbContent.substring(0, start) + productsJs + dbContent.substring(end);
+fs.writeFileSync("db.js", dbContent);
+console.log("db.js updated successfully!");
