@@ -29,15 +29,52 @@ h2 {
   padding: 0;
 }
 
-html,
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
 body {
   width: 100%;
+  max-width: 100%;
   overflow-x: hidden;
   font-family: var(--font-main);
   color: var(--brand-dark);
   background-color: #faf9f5;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Modal and Drawer Global Height Constraints for High Browser Zoom (150% - 200%) */
+.modal-3d-card {
+  max-height: 90vh !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mobile-nav-drawer {
+  max-height: calc(100vh - 80px) !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+.ai-chat-window {
+  max-height: calc(100vh - 40px) !important;
+  max-width: calc(100vw - 24px) !important;
+  overflow-y: auto !important;
 }
 
 a {
@@ -117,6 +154,7 @@ button {
 
 /* Floating Particle Animations */
 @keyframes floatParticle1 {
+
   0%,
   100% {
     transform: translateY(0px) rotate(0deg) scale(1);
@@ -128,6 +166,7 @@ button {
 }
 
 @keyframes floatParticle2 {
+
   0%,
   100% {
     transform: translateY(0px) rotate(0deg) scale(1);
@@ -139,6 +178,7 @@ button {
 }
 
 @keyframes floatParticle3 {
+
   0%,
   100% {
     transform: translateY(0px) rotate(0deg);
@@ -154,6 +194,7 @@ button {
 }
 
 @keyframes pulseGlowGold {
+
   0%,
   100% {
     box-shadow:
@@ -253,12 +294,10 @@ button {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: linear-gradient(
-    60deg,
-    transparent,
-    rgba(255, 255, 255, 0.3),
-    transparent
-  );
+  background: linear-gradient(60deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent);
   transform: rotate(30deg) translateY(-100%);
   transition: transform 0.8s ease;
 }
@@ -309,12 +348,10 @@ button {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: linear-gradient(
-    60deg,
-    transparent,
-    rgba(255, 255, 255, 0.3),
-    transparent
-  );
+  background: linear-gradient(60deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent);
   transform: rotate(30deg) translateY(-100%);
   transition: transform 0.8s ease;
 }
@@ -392,11 +429,9 @@ button {
   content: "";
   position: absolute;
   inset: -20px;
-  background: radial-gradient(
-    circle,
-    rgba(129, 199, 132, 0.25) 0%,
-    rgba(255, 255, 255, 0) 70%
-  );
+  background: radial-gradient(circle,
+      rgba(129, 199, 132, 0.25) 0%,
+      rgba(255, 255, 255, 0) 70%);
   border-radius: 50%;
   pointer-events: none;
   z-index: 0;
@@ -463,6 +498,14 @@ svg {
   .hero-3d-grid {
     gap: 30px !important;
   }
+
+  .desktop-nav {
+    display: none !important;
+  }
+
+  .mobile-menu-btn {
+    display: flex !important;
+  }
 }
 
 /* Tablets (<= 992px) */
@@ -486,16 +529,27 @@ svg {
     gap: 18px !important;
   }
 
-  .desktop-nav {
-    display: none !important;
-  }
-
-  .mobile-menu-btn {
-    display: flex !important;
-  }
-
   .responsive-grid-2col {
     grid-template-columns: 1fr !important;
+  }
+}
+
+/* Mid-scale Tablets & High Browser Zoom (<= 850px) */
+@media (max-width: 850px) {
+  .product-card-body {
+    padding: 18px 16px !important;
+  }
+
+  .action-buttons {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+
+  .action-buttons a,
+  .action-buttons button {
+    padding: 10px 8px !important;
+    font-size: 0.78rem !important;
+    min-width: 0 !important;
   }
 }
 
@@ -563,7 +617,7 @@ svg {
     grid-template-columns: 1fr !important;
   }
 
-  .modal-3d-grid > div {
+  .modal-3d-grid>div {
     padding: 20px !important;
   }
 
@@ -632,7 +686,7 @@ svg {
     gap: 14px 10px !important;
   }
 
-  .bottom-bar-grid > div {
+  .bottom-bar-grid>div {
     gap: 10px !important;
   }
 
@@ -658,7 +712,8 @@ svg {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 10px !important;
   }
-  .heritage-2col-photos > div {
+
+  .heritage-2col-photos>div {
     min-height: 160px !important;
     border-radius: 16px !important;
   }
@@ -674,15 +729,18 @@ svg {
     height: 150px !important;
     padding: 10px !important;
   }
+
   .product-image-box span {
     font-size: 0.6rem !important;
     padding: 2px 8px !important;
     top: 8px !important;
     left: 8px !important;
   }
+
   .product-card-body {
     padding: 12px !important;
   }
+
   .product-title {
     font-size: 0.9rem !important;
     margin-bottom: 6px !important;
@@ -690,6 +748,7 @@ svg {
     overflow: hidden;
     text-overflow: ellipsis;
   }
+
   .product-desc {
     font-size: 0.75rem !important;
     margin-bottom: 8px !important;
@@ -700,16 +759,20 @@ svg {
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+
   .product-features {
     display: none !important;
   }
+
   .qty-selector {
     padding: 4px 6px !important;
     margin-bottom: 10px !important;
   }
+
   .qty-label {
     display: none !important;
   }
+
   .price-box {
     padding-top: 8px !important;
     margin-bottom: 12px !important;
@@ -717,13 +780,16 @@ svg {
     align-items: flex-start !important;
     gap: 4px !important;
   }
+
   .price-text {
     font-size: 1.05rem !important;
   }
+
   .action-buttons {
     grid-template-columns: 1fr !important;
     gap: 6px !important;
   }
+
   .action-buttons a,
   .action-buttons button {
     padding: 8px !important;
@@ -812,18 +878,14 @@ svg {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(
-      ellipse 80% 50% at 50% 0%,
+    radial-gradient(ellipse 80% 50% at 50% 0%,
       rgba(255, 255, 180, 0.45) 0%,
-      transparent 60%
-    ),
-    repeating-linear-gradient(
-      0deg,
+      transparent 60%),
+    repeating-linear-gradient(0deg,
       transparent,
       transparent 3px,
       rgba(0, 0, 0, 0.03) 3px,
-      rgba(0, 0, 0, 0.03) 4px
-    );
+      rgba(0, 0, 0, 0.03) 4px);
   pointer-events: none;
 }
 
@@ -950,23 +1012,23 @@ svg {
   left: -40%;
   width: 32%;
   height: 100%;
-  background: linear-gradient(
-    105deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.55) 50%,
-    transparent 100%
-  );
+  background: linear-gradient(105deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.55) 50%,
+      transparent 100%);
   transform: skewX(-18deg);
   animation: tastraaShineSweep 3.4s ease-in-out infinite;
   pointer-events: none;
 }
 
 @keyframes tastraaLogoPulse {
+
   0%,
   100% {
     opacity: 0.45;
     transform: scale(1);
   }
+
   50% {
     opacity: 0.9;
     transform: scale(1.08);
@@ -974,11 +1036,13 @@ svg {
 }
 
 @keyframes tastraaMottoGlow {
+
   0%,
   100% {
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
     transform: translateY(0);
   }
+
   50% {
     box-shadow: 0 6px 18px rgba(198, 40, 40, 0.35);
     transform: translateY(-3px);
@@ -986,20 +1050,24 @@ svg {
 }
 
 @keyframes boardLetterBob {
+
   0%,
   100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-8px);
   }
 }
 
 @keyframes tastraaLetterGlow {
+
   0%,
   100% {
     filter: drop-shadow(0 0 0 rgba(255, 213, 79, 0));
   }
+
   50% {
     filter: drop-shadow(0 0 10px rgba(255, 213, 79, 0.85));
   }
@@ -1009,6 +1077,7 @@ svg {
   0% {
     left: -45%;
   }
+
   55%,
   100% {
     left: 120%;

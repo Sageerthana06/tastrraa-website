@@ -137,7 +137,11 @@ const Navbar = () => {
           {/* Desktop Nav Items */}
           <nav
             className="desktop-nav"
-            style={{ display: "flex", alignItems: "center", gap: "28px" }}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "clamp(12px, 1.8vw, 24px)",
+            }}
           >
             {navLinks.map((link) => {
               const active = isActive(link.path);
@@ -237,11 +241,15 @@ const Navbar = () => {
       {/* Mobile Navigation Drawer */}
       {mobileOpen && (
         <div
+          className="mobile-nav-drawer"
           style={{
             backgroundColor: "#FFFFFF",
             borderTop: "1px solid #E2E8F0",
             padding: "16px 20px 24px",
             boxShadow: "0 12px 30px rgba(0,0,0,0.12)",
+            maxHeight: "calc(100vh - 80px)",
+            overflowY: "auto",
+            WebkitOverflowScrolling: "touch",
           }}
         >
           <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>

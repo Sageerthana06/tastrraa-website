@@ -15,7 +15,7 @@ import {
   Target,
   Package,
 } from "lucide-react";
-import logoImg from "../assets/logo-round.png";
+import logoImg from "../assets/logo.png";
 import gmpCertifiedImg from "../assets/gmp_certified.png";
 import heroBgImg from "../assets/tastraa_hero.jpg";
 

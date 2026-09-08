@@ -1,7 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, Award, CheckCircle, ShieldCheck } from 'lucide-react';
-import logoImg from '../assets/logo-round.png';
+import logoImg from '../assets/logo.png';
+
+const FacebookIcon = ({ size = 18, color = "currentColor", style }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill={color}
+    style={style}
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+  </svg>
+);
 
 const Footer = () => {
   return (
@@ -99,11 +112,29 @@ const Footer = () => {
               </div>
               <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
                 <Phone size={16} style={{ color: '#F59E0B', flexShrink: 0 }} />
-                <span style={{ color: '#E5E7EB' }}>0779789223 / 0212052200</span>
+                <span style={{ color: '#E5E7EB' }}>0779789223 /  0764400816</span>
               </div>
               <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
                 <Mail size={16} style={{ color: '#F59E0B', flexShrink: 0 }} />
                 <span style={{ color: '#E5E7EB' }}>tastraa2008@gmail.com</span>
+              </div>
+              <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                <FacebookIcon size={16} color="#1877F2" style={{ flexShrink: 0 }} />
+                <a
+                  href="https://www.facebook.com/share/1EsYXLyLYH/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    color: '#60A5FA',
+                    textDecoration: 'none',
+                    fontWeight: '600',
+                    transition: 'color 0.2s',
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = '#93C5FD')}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = '#60A5FA')}
+                >
+                  facebook.com/TASTRAA
+                </a>
               </div>
             </div>
           </div>

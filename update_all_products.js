@@ -76,11 +76,15 @@ const getCategoryAndImage = (name) => {
   }
   if (n.includes('rice flour')) return { cat: 'Flour', img: '/assets/red_rice_flour_5kg.jpg' };
   if (n.includes('murukku')) return { cat: 'Murukku', img: '/assets/tastraa_masala_murukku.jpg' };
-  if (n.includes('pakoda') && !n.includes('peanut')) return { cat: 'Pakoda', img: '/assets/plate_dumplings.jpg' };
-  if (n.includes('peanut pakoda')) return { cat: 'Pakoda', img: '/assets/bengal_gram_yellow.jpg' };
-  if (n.includes('thadduvadai') || n.includes('manioc chips') || n.includes('bites')) return { cat: 'Bites & Chips', img: '/assets/tastraa_bites.jpg' };
+  if (n.includes('pakoda') && !n.includes('peanut')) return { cat: 'Pakoda', img: '/assets/tastraa_pakoda.jpg' };
+  if (n.includes('peanut pakoda')) return { cat: 'Pakoda', img: '/assets/tastraa_peanut_pakoda.jpg' };
+  if (n.includes('thadduvadai')) return { cat: 'Bites & Chips', img: '/assets/plate_dumplings.jpg' };
+  if (n.includes('manioc chips')) return { cat: 'Bites & Chips', img: '/assets/tastraa_manioc_chips.jpg' };
+  if (n.includes('bites')) return { cat: 'Bites & Chips', img: '/assets/tastraa_bites.jpg' };
   if (n.includes('mixture') || n.includes('mikser')) return { cat: 'Mixture', img: '/assets/tastraa_mixture.jpg' };
-  if (n.includes('dhal') || n.includes('bengal gram') || n.includes('peanut')) return { cat: 'Dhal & Gram', img: '/assets/bengal_gram_yellow.jpg' };
+  if (n.includes('dhal')) return { cat: 'Dhal & Gram', img: '/assets/tastraa_dhal.jpg' };
+  if (n.includes('peanut')) return { cat: 'Dhal & Gram', img: '/assets/tastraa_peanut.jpg' };
+  if (n.includes('bengal gram')) return { cat: 'Dhal & Gram', img: '/assets/bengal_gram_yellow.jpg' };
   if (n.includes('chilli powder')) return { cat: 'Spices', img: '/assets/roasted_chilli_powder_50g.jpg' };
   if (n.includes('gingelly oil')) return { cat: 'Gingelly Oil', img: '/assets/gingelly_oil_750ml.jpg' };
   return { cat: 'Other', img: '/assets/tastraa_bites.jpg' };

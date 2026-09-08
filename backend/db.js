@@ -163,6 +163,73 @@ const setupMemoryStore = async () => {
     },
   ];
   memoryProducts = [
+
+
+    {
+      id: 3,
+      name: 'TASTRAA  Gingelly Oil (500ml)',
+      slug: 'tastraa-pure-cold-pressed-gingelly-oil-500ml',
+      description: 'gingelly oil extracted from selected sesame seeds using traditional expeller methods.',
+      category: 'Gingelly Oil',
+      price: 1250.00,
+      unit: '500ml',
+      image_url: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=800&q=80',
+      features: ['Cold-Pressed Extraction', '100% Pure Sesame', 'Rich Natural Aroma'],
+      is_active: true
+    },
+
+
+
+
+
+    {
+      id: 9,
+      name: 'TASTRAA Bengal Gram',
+      slug: 'tastraa-bengal-gram-100',
+      description: 'Authentic roasted yellow Bengal Gram seasoned with salt. Crisp, delicious, healthy traditional roasted snack.',
+      category: 'Mixture',
+      price: 500.00,
+      unit: 'Rs 500 Pack',
+      image_url: '/assets/bengal_gram_yellow.jpg',
+      features: ['Roasted Yellow Gram', '100% Pure & Natural'],
+      is_active: true
+    },
+    {
+      id: 10,
+      name: 'TASTRAA Plate Dumplings',
+      slug: 'tastraa-plate-dumplings-100',
+      description: 'Authentic traditional crunchy Plate Dumplings made from dhal, vegetable oil, salt, and spicy red chilli powder.',
+      category: 'Mixture',
+      price: 100.00,
+      unit: 'Rs 100 Pack',
+      image_url: '/assets/plate_dumplings.jpg',
+      features: ['Authentic Plate Dumplings', 'Crispy Tea-time Snack'],
+      is_active: true
+    },
+    {
+      id: 11,
+      name: 'TASTRAA Bites',
+      slug: 'tastraa-bites-50',
+      description: 'Crunchy savory snack Bites made with wheat flour, urad dal, vegetable oil, and spicy red chilli seasoning.',
+      category: 'Mixture',
+      price: 50.00,
+      unit: 'Rs 50 Pack',
+      image_url: '/assets/bites_pack.jpg',
+      features: ['Crispy Savory Bites', 'Rs 50 Pocket Pack'],
+      is_active: true
+    },
+    {
+      id: 12,
+      name: 'TASTRAA Masala Murukku',
+      slug: 'tastraa-masala-murukku-50',
+      description: 'Authentic spicy & crispy Masala Murukku made with rice flour, urad flour, gram flour, curry leaves, and traditional spices.',
+      category: 'Mixture',
+      price: 50.00,
+      unit: 'Rs 50 Pack',
+      image_url: '/assets/masala_murukku.jpg',
+      features: ['Authentic Masala Murukku', '100% Veg Snack'],
+      is_active: true
+    },
     {
       id: 101,
       name: "Red Raw Rice 25kg",
@@ -262,6 +329,23 @@ const setupMemoryStore = async () => {
         "Premium Quality",
         "Traditional Taste",
         "Wholesale Rate: LKR 1140",
+      ],
+      is_active: true,
+    },
+    {
+      id: 1061,
+      name: "Roasted Rice Flour 1kg",
+      slug: "roasted-rice-flour-1kg",
+      description: "Premium quality Roasted Rice Flour 1kg (வறுத்த அரிசி மா)",
+      category: "Flour",
+      price: 300.0,
+      wholesale_price: 250.0,
+      unit: "1kg",
+      image_url: "/assets/roasted_rice_flour_1kg.jpg",
+      features: [
+        "Premium Quality",
+        "Traditional Taste",
+        "Wholesale Rate: LKR 250",
       ],
       is_active: true,
     },
@@ -529,7 +613,7 @@ const setupMemoryStore = async () => {
       price: 1800.0,
       wholesale_price: 1400.0,
       unit: "1kg",
-      image_url: "/assets/tastraa_peanut.jpg",
+      image_url: "/assets/tastraa_peanut_pakoda.jpg",
       features: [
         "Premium Quality",
         "Traditional Taste",
@@ -546,7 +630,7 @@ const setupMemoryStore = async () => {
       price: 450.0,
       wholesale_price: 400.0,
       unit: "250g",
-      image_url: "/assets/tastraa_peanut.jpg",
+      image_url: "/assets/tastraa_peanut_pakoda.jpg",
       features: [
         "Premium Quality",
         "Traditional Taste",
@@ -563,7 +647,7 @@ const setupMemoryStore = async () => {
       price: 200.0,
       wholesale_price: 170.0,
       unit: "100g",
-      image_url: "/assets/tastraa_peanut.jpg",
+      image_url: "/assets/tastraa_peanut_pakoda.jpg",
       features: [
         "Premium Quality",
         "Traditional Taste",
@@ -1022,7 +1106,7 @@ const setupMemoryStore = async () => {
       price: 1000.0,
       wholesale_price: 700.0,
       unit: "1kg",
-      image_url: "/assets/bengal_gram_yellow.jpg",
+      image_url: "/assets/tastraa_dhal.jpg",
       features: [
         "Premium Quality",
         "Traditional Taste",
@@ -1039,7 +1123,7 @@ const setupMemoryStore = async () => {
       price: 300.0,
       wholesale_price: 200.0,
       unit: "250g",
-      image_url: "/assets/bengal_gram_yellow.jpg",
+      image_url: "/assets/tastraa_dhal.jpg",
       features: [
         "Premium Quality",
         "Traditional Taste",
@@ -1056,7 +1140,7 @@ const setupMemoryStore = async () => {
       price: 50.0,
       wholesale_price: 35.0,
       unit: "40g",
-      image_url: "/assets/bengal_gram_yellow.jpg",
+      image_url: "/assets/tastraa_dhal.jpg",
       features: [
         "Premium Quality",
         "Traditional Taste",
@@ -1073,7 +1157,7 @@ const setupMemoryStore = async () => {
       price: 20.0,
       wholesale_price: 16.0,
       unit: "18g",
-      image_url: "/assets/bengal_gram_yellow.jpg",
+      image_url: "/assets/tastraa_dhal.jpg",
       features: [
         "Premium Quality",
         "Traditional Taste",

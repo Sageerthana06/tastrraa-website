@@ -7,20 +7,14 @@ import { authenticateToken } from '../middleware/auth.js';
 
 const router = express.Router();
 
-// Multer storage setup for image uploads
-const uploadsDir = path.join(process.cwd(), 'uploads');
-if (!fs.existsSync(uploadsDir)) {
-  fs.mkdirSync(uploadsDir, { recursive: true });
-}
-
+// Multer storage setup for image uploads (Disk storage)
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, uploadsDir);
+  destination: function (req, file, cb) {
+    cb(null, path.join(process.cwd(), 'uploads'));
   },
-  filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-    const ext = path.extname(file.originalname);
-    cb(null, 'product-' + uniqueSuffix + ext);
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    cb(null, uniqueSuffix + path.extname(file.originalname));
   }
 });
 
@@ -137,13 +131,21 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// POST /api/products/upload - Upload Product Image (Protected)
-router.post('/upload', authenticateToken, upload.single('image'), (req, res) => {
+// POST /api/products/upload - Upload Product Image locally (Protected)
+router.post('/upload', authenticateToken, upload.single('image'), async (req, res) => {
   if (!req.file) {
     return res.status(400).json({ success: false, message: 'No image file uploaded.' });
   }
-  const imageUrl = `/uploads/${req.file.filename}`;
-  return res.json({ success: true, imageUrl });
+
+  try {
+    const baseUrl = `${req.protocol}://${req.get('host')}`;
+    const imageUrl = `${baseUrl}/uploads/${req.file.filename}`;
+    
+    return res.json({ success: true, imageUrl: imageUrl });
+  } catch (error) {
+    console.error('Error uploading locally:', error);
+    return res.status(500).json({ success: false, message: 'Internal server error during upload.' });
+  }
 });
 
 // POST /api/products - Create Product (Protected)

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ArrowRight,
+  ArrowDown,
   Award,
   Leaf,
   ShieldCheck,
@@ -37,6 +38,7 @@ import redRice5kgImg from '../assets/red_rice_flour_5kg.jpg';
 import redRice10kgImg from '../assets/red_rice_flour_10kg.jpg';
 import redRice25kgImg from '../assets/red_rice_flour_25kg.png';
 import redRice2kgImg from '../assets/red_rice_flour_2kg.jpg';
+import roastedRice1kgImg from '../assets/roasted_rice_flour_1kg.jpg';
 import roastedChilli50gImg from '../assets/roasted_chilli_powder_50g.jpg';
 import bengalGram100Img from '../assets/bengal_gram_100.jpg';
 import gingellyOil750mlImg from '../assets/gingelly_oil_750ml.jpg';
@@ -204,7 +206,7 @@ const Home = () => {
   const currentStageItem = stageShowcaseItems[activeStageIndex];
 
   return (
-    <div style={{ overflowX: 'hidden', backgroundColor: '#FAF9F5', position: 'relative' }}>
+    <div style={{ backgroundColor: '#FAF9F5', position: 'relative' }}>
 
       {/* ============================================================ */}
       {/* CINEMATIC FLOATING PRODUCTS & VIBRANT AURORA BACKGROUND */}
@@ -792,6 +794,38 @@ const Home = () => {
                     </span>
                   </div>
                 </div>
+
+                {/* Explore Details & Catalog Scroll Down Button */}
+                <div style={{ textAlign: 'center', marginTop: '22px' }}>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const el = document.getElementById('home-catalog');
+                      if (el) el.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    style={{
+                      backgroundColor: '#0F4A24',
+                      color: '#FFFFFF',
+                      border: 'none',
+                      borderRadius: '9999px',
+                      padding: '10px 24px',
+                      fontWeight: '800',
+                      fontSize: '0.85rem',
+                      letterSpacing: '0.5px',
+                      cursor: 'pointer',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '8px',
+                      boxShadow: '0 4px 14px rgba(15, 74, 36, 0.35)',
+                      transition: 'transform 0.2s ease',
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.04)'}
+                    onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                  >
+                    <span>EXPLORE PRODUCTS & DETAILS</span>
+                    <ArrowDown size={16} style={{ color: '#FFD700' }} />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -800,11 +834,8 @@ const Home = () => {
         {/* ============================================================ */}
         {/* 3. INTERACTIVE 3D PRODUCT CATALOG SECTION                    */}
         {/* ============================================================ */}
-        <motion.section
-          initial={{ opacity: 0, y: 70 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.3 }}
+        <section
+          id="home-catalog"
           style={{ padding: '80px 0', backgroundColor: 'transparent' }}
         >
           <div className="container">
@@ -882,6 +913,7 @@ const Home = () => {
                   if (url === '/assets/red_rice_flour_10kg.jpg' || p.slug === 'red-rice-flour-10kg') return redRice10kgImg;
                   if (url === '/assets/red_rice_flour_25kg.png' || p.slug === 'red-rice-flour-25kg') return redRice25kgImg;
                   if (url === '/assets/red_rice_flour_2kg.jpg' || p.slug === 'red-rice-flour-2kg') return redRice2kgImg;
+                  if (url === '/assets/roasted_rice_flour_1kg.jpg' || p.slug === 'roasted-rice-flour-1kg' || (p.name && p.name.toLowerCase().includes('roasted rice flour'))) return roastedRice1kgImg;
                   if (url === '/assets/roasted_chilli_powder_50g.jpg' || p.slug === 'roasted-chilli-powder-50g') return roastedChilli50gImg;
                   if (typeof url === 'string' && (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:'))) return url;
                   return p.image_url || hero3dImg;
@@ -1035,16 +1067,12 @@ const Home = () => {
               </Link>
             </div>
           </div>
-        </motion.section>
+        </section>
 
         {/* ============================================================ */}
         {/* 4. 3D INTERACTIVE FLAVOR & NUTRITION MATRIX SHOWCASE         */}
         {/* ============================================================ */}
-        <motion.section
-          initial={{ opacity: 0, y: 70 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.3 }}
+        <section
           style={{ padding: '70px 0', backgroundColor: 'rgba(255, 255, 255, 0.7)', borderTop: '1px solid #E2E8F0', borderBottom: '1px solid #E2E8F0' }}
         >
           <div className="container">
@@ -1182,16 +1210,12 @@ const Home = () => {
 
             </div>
           </div>
-        </motion.section>
+        </section>
 
         {/* ============================================================ */}
         {/* 6. HERITAGE & MANUFACTURING FACILITY SECTION                */}
         {/* ============================================================ */}
-        <motion.section
-          initial={{ opacity: 0, y: 70 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.3 }}
+        <section
           style={{ padding: '70px 0', backgroundColor: 'rgba(255, 255, 255, 0.7)', borderTop: '1px solid #E2E8F0' }}
         >
           <div className="container">
@@ -1313,7 +1337,7 @@ const Home = () => {
               </Link>
             </div>
           </div>
-        </motion.section>
+        </section>
 
         {/* ============================================================ */}
         {/* 7. INTERACTIVE 3D PRODUCT INSPECTOR MODAL                    */}
@@ -1341,7 +1365,8 @@ const Home = () => {
                   borderRadius: '28px',
                   maxWidth: '720px',
                   width: '100%',
-                  overflow: 'hidden',
+                  maxHeight: 'min(760px, 90vh)',
+                  overflowY: 'auto',
                   boxShadow: '0 25px 60px rgba(0,0,0,0.3)',
                   position: 'relative'
                 }}
@@ -1602,6 +1627,17 @@ const defaultProducts = [
     description: 'Sealed 2KG transparent retail package of 100% natural Red Rice Flour for everyday household cooking. MRP LKR 800.00.',
     image_url: redRice2kgImg,
     slug: 'red-rice-flour-2kg'
+  },
+  {
+    id: 1061,
+    name: 'Roasted Rice Flour 1KG (வறுத்த அரிசி மா)',
+    category: 'FLOUR',
+    unit_size: '1KG Pack',
+    price: '300.00',
+    wholesale_price: '250.00',
+    description: 'Authentic 100% natural Roasted Rice Flour (வறுத்த அரிசி மா / බැதபு සහல் පිටி) 1KG pack. Ideal for String Hoppers and Pittu. MRP LKR 300.00.',
+    image_url: roastedRice1kgImg,
+    slug: 'roasted-rice-flour-1kg'
   },
   {
     id: 5,

@@ -17,6 +17,7 @@ import redRice5kgImg from "../assets/red_rice_flour_5kg.jpg";
 import redRice10kgImg from "../assets/red_rice_flour_10kg.jpg";
 import redRice25kgImg from "../assets/red_rice_flour_25kg.png";
 import redRice2kgImg from "../assets/red_rice_flour_2kg.jpg";
+import roastedRice1kgImg from "../assets/roasted_rice_flour_1kg.jpg";
 import roastedChilli50gImg from "../assets/roasted_chilli_powder_50g.jpg";
 import bengalGram100Img from "../assets/bengal_gram_100.jpg";
 import gingellyOil750mlImg from "../assets/gingelly_oil_750ml.jpg";
@@ -30,6 +31,8 @@ import bitesPackImg from "../assets/bites_pack.jpg";
 import bengalGramYellowImg from "../assets/bengal_gram_yellow.jpg";
 import masalaMurukkuImg from "../assets/masala_murukku.jpg";
 import garlicMurukkuImg from "../assets/garlic_murukku.jpg";
+import tastraaDhalImg from "../assets/tastraa_dhal.jpg";
+import tastraaPeanutPakodaImg from "../assets/tastraa_peanut_pakoda.jpg";
 
 const fallbackProducts = [
   {
@@ -127,6 +130,22 @@ const fallbackProducts = [
     ],
     image_url: "/assets/red_rice_flour_5kg.jpg",
     slug: "red-rice-flour-5kg",
+  },
+  {
+    id: 1061,
+    name: "Roasted Rice Flour 1kg",
+    category: "Flour",
+    price: "300.00",
+    wholesale_price: "250.00",
+    unit: "1kg",
+    description: "Premium quality Roasted Rice Flour 1kg (வறுத்த அரிசி மா)",
+    features: [
+      "Premium Quality",
+      "Traditional Taste",
+      "Wholesale Rate: LKR 250",
+    ],
+    image_url: "/assets/roasted_rice_flour_1kg.jpg",
+    slug: "roasted-rice-flour-1kg",
   },
   {
     id: 107,
@@ -381,7 +400,7 @@ const fallbackProducts = [
       "Traditional Taste",
       "Wholesale Rate: LKR 1400",
     ],
-    image_url: "/assets/tastraa_peanut.jpg",
+    image_url: "/assets/tastraa_peanut_pakoda.jpg",
     slug: "peanut-pakoda-1kg",
   },
   {
@@ -397,7 +416,7 @@ const fallbackProducts = [
       "Traditional Taste",
       "Wholesale Rate: LKR 400",
     ],
-    image_url: "/assets/tastraa_peanut.jpg",
+    image_url: "/assets/tastraa_peanut_pakoda.jpg",
     slug: "peanut-pakoda-250g",
   },
   {
@@ -413,7 +432,7 @@ const fallbackProducts = [
       "Traditional Taste",
       "Wholesale Rate: LKR 170",
     ],
-    image_url: "/assets/tastraa_peanut.jpg",
+    image_url: "/assets/tastraa_peanut_pakoda.jpg",
     slug: "peanut-pakoda-100g",
   },
   {
@@ -685,7 +704,7 @@ const fallbackProducts = [
       "Traditional Taste",
       "Wholesale Rate: LKR 1400",
     ],
-    image_url: "/assets/tastraa_bites.jpg",
+    image_url: "/assets/plate_dumplings.jpg",
     slug: "thadduvadai-1kg",
   },
   {
@@ -701,7 +720,7 @@ const fallbackProducts = [
       "Traditional Taste",
       "Wholesale Rate: LKR 400",
     ],
-    image_url: "/assets/tastraa_bites.jpg",
+    image_url: "/assets/plate_dumplings.jpg",
     slug: "thadduvadai-250g",
   },
   {
@@ -717,7 +736,7 @@ const fallbackProducts = [
       "Traditional Taste",
       "Wholesale Rate: LKR 75",
     ],
-    image_url: "/assets/tastraa_bites.jpg",
+    image_url: "/assets/plate_dumplings.jpg",
     slug: "thadduvadai-60g",
   },
   {
@@ -733,7 +752,7 @@ const fallbackProducts = [
       "Traditional Taste",
       "Wholesale Rate: LKR 40",
     ],
-    image_url: "/assets/tastraa_bites.jpg",
+    image_url: "/assets/plate_dumplings.jpg",
     slug: "thadduvadai-30g",
   },
   {
@@ -845,7 +864,7 @@ const fallbackProducts = [
       "Traditional Taste",
       "Wholesale Rate: LKR 700",
     ],
-    image_url: "/assets/bengal_gram_yellow.jpg",
+    image_url: "/assets/tastraa_dhal.jpg",
     slug: "dhal-1kg",
   },
   {
@@ -861,7 +880,7 @@ const fallbackProducts = [
       "Traditional Taste",
       "Wholesale Rate: LKR 200",
     ],
-    image_url: "/assets/bengal_gram_yellow.jpg",
+    image_url: "/assets/tastraa_dhal.jpg",
     slug: "dhal-250g",
   },
   {
@@ -877,7 +896,7 @@ const fallbackProducts = [
       "Traditional Taste",
       "Wholesale Rate: LKR 35",
     ],
-    image_url: "/assets/bengal_gram_yellow.jpg",
+    image_url: "/assets/tastraa_dhal.jpg",
     slug: "dhal-40g",
   },
   {
@@ -893,7 +912,7 @@ const fallbackProducts = [
       "Traditional Taste",
       "Wholesale Rate: LKR 16",
     ],
-    image_url: "/assets/bengal_gram_yellow.jpg",
+    image_url: "/assets/tastraa_dhal.jpg",
     slug: "dhal-18g",
   },
   {
@@ -1314,8 +1333,12 @@ const Products = () => {
                 if (p.tamil_name) return p.tamil_name;
                 const name = (p.name || "").toLowerCase();
                 if (name.includes("red raw rice")) return "சிவப்பு பச்சரிசி";
-                if (name.includes("roasted red rice flour"))
-                  return "வறுத்த சிவப்பு அரிசி மாவு";
+                if (
+                  name.includes("roasted red rice flour") ||
+                  name.includes("roasted rice flour") ||
+                  name.includes("roasted flour")
+                )
+                  return "வறுத்த அரிசி மா";
                 if (
                   name.includes("red rice flour") ||
                   name.includes("rice flour")
@@ -1325,16 +1348,19 @@ const Products = () => {
                   return "சுத்தமான நல்லெண்ணெய்";
                 if (name.includes("chilli powder") || name.includes("chilli"))
                   return "வறுத்த மிளகாய்த்தூள்";
-                if (name.includes("garlic murukku")) return "பூண்டு முறுக்கு";
+                if (name.includes("garlic murukku")) return "உள்ளி முறுக்கு";
                 if (name.includes("masala murukku")) return "மசாலா முறுக்கு";
                 if (name.includes("murukku")) return "முறுக்கு";
+                if (name.includes("peanut pakoda")) return "நிலக்கடலை பகோடா";
                 if (name.includes("pakoda")) return "கார பகோடா";
                 if (name.includes("mixture")) return "சுவையான மிச்சர்";
+                if (name.includes("thadduvadai") || name.includes("dumpling"))
+                  return "தட்டு வடை";
                 if (name.includes("manioc") || name.includes("chips"))
                   return "மரவள்ளி சிப்ஸ்";
                 if (name.includes("bites")) return "சுவையான பைட்ஸ்";
-                if (name.includes("bengal gram") || name.includes("dhal"))
-                  return "கடலை பருப்பு";
+                if (name.includes("bengal gram")) return "மஞ்சள் கடலை";
+                if (name.includes("dhal") || name.includes("paruppu")) return "சுவையான பருப்பு";
                 if (name.includes("peanut")) return "வேர்க்கடலை";
                 return "";
               };
@@ -1345,6 +1371,13 @@ const Products = () => {
                 const url = (p.image_url || "").toLowerCase();
                 const slug = (p.slug || "").toLowerCase();
 
+                if (
+                  name.includes("thadduvadai") ||
+                  slug.includes("thadduvadai") ||
+                  url.includes("plate_dumplings") ||
+                  name.includes("dumpling")
+                )
+                  return plateDumplingsImg;
                 if (
                   name.includes("red raw rice 25kg") ||
                   slug === "red-raw-rice-25kg" ||
@@ -1387,7 +1420,27 @@ const Products = () => {
                   url.includes("flour_2kg")
                 )
                   return redRice2kgImg;
-                if (name.includes("bengal gram") || name.includes("dhal"))
+                if (
+                  name.includes("roasted rice flour") ||
+                  name.includes("flour 1kg") ||
+                  slug === "roasted-rice-flour-1kg" ||
+                  url.includes("roasted_rice_flour_1kg")
+                )
+                  return roastedRice1kgImg;
+                if (
+                  name.includes("dhal") ||
+                  slug.includes("dhal") ||
+                  url.includes("dhal") ||
+                  name.includes("paruppu")
+                )
+                  return tastraaDhalImg;
+                if (
+                  name.includes("peanut pakoda") ||
+                  slug.includes("peanut-pakoda") ||
+                  url.includes("peanut_pakoda")
+                )
+                  return tastraaPeanutPakodaImg;
+                if (name.includes("bengal gram"))
                   return bengalGramYellowImg;
                 if (
                   name.includes("750ml") ||
@@ -1773,12 +1826,13 @@ const Products = () => {
                           rel="noopener noreferrer"
                           className="btn-green-3d"
                           style={{
-                            padding: "12px 20px",
+                            padding: "12px 14px",
                             fontSize: "0.85rem",
                             fontWeight: "800",
                             justifyContent: "center",
                             borderRadius: "9999px",
                             whiteSpace: "nowrap",
+                            minWidth: 0,
                           }}
                         >
                           <Send size={15} />
