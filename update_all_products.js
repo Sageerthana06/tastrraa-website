@@ -2,8 +2,8 @@ import fs from 'fs';
 
 const rawData = `
 1. Red rice flour 5kg. 1140 1200
-2. Red rice flour 10kg. 2300 3000
-3. Red rice flour 25kg. 5600 7000
+2. Red rice flour 10kg. 2250 3000
+3. Red rice flour 25kg. 5550 7000
 1. Mixture 1kg. 880 1200
 2. Mixture 500g. 460 600        
 4. Mixture 80g. 75 100
@@ -71,8 +71,8 @@ const lines = rawData.split('\n').map(l => l.trim()).filter(l => l.length > 0);
 const getCategoryAndImage = (name) => {
   const n = name.toLowerCase();
   if (n.includes('raw rice')) {
-     if (n.includes('25kg')) return { cat: 'Rice', img: '/assets/tastraa_red_raw_rice_25kg.jpg' };
-     return { cat: 'Rice', img: '/assets/tastraa_red_raw_rice_5kg.jpg' };
+    if (n.includes('25kg')) return { cat: 'Rice', img: '/assets/tastraa_red_raw_rice_25kg.jpg' };
+    return { cat: 'Rice', img: '/assets/tastraa_red_raw_rice_5kg.jpg' };
   }
   if (n.includes('rice flour')) return { cat: 'Flour', img: '/assets/red_rice_flour_5kg.jpg' };
   if (n.includes('murukku')) return { cat: 'Murukku', img: '/assets/tastraa_masala_murukku.jpg' };
@@ -96,33 +96,33 @@ let id = 101;
 lines.forEach(line => {
   // strip "1. " from start
   let cleaned = line.replace(/^\d+\.\s*/, '');
-  
+
   let match = cleaned.match(/^(.*?)\s*([\d\.]+[kmlg]+)\.?\s+(\d+)\s+(\d+)$/i);
   if (!match) {
-     match = cleaned.match(/^(.*?)\.?\s+(\d+)\s+(\d+)$/i);
+    match = cleaned.match(/^(.*?)\.?\s+(\d+)\s+(\d+)$/i);
   }
-  
+
   if (match) {
     let nameBase, unit, wholesale, retail;
     if (match.length === 5) {
-       nameBase = match[1].trim();
-       unit = match[2].trim();
-       wholesale = match[3];
-       retail = match[4];
+      nameBase = match[1].trim();
+      unit = match[2].trim();
+      wholesale = match[3];
+      retail = match[4];
     } else {
-       // Need to extract unit from nameBase
-       let parts = match[1].trim().split(' ');
-       unit = parts.pop();
-       nameBase = parts.join(' ').trim();
-       wholesale = match[2];
-       retail = match[3];
+      // Need to extract unit from nameBase
+      let parts = match[1].trim().split(' ');
+      unit = parts.pop();
+      nameBase = parts.join(' ').trim();
+      wholesale = match[2];
+      retail = match[3];
     }
-    
+
     // Capitalize name
     const name = nameBase.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ') + ' ' + unit;
     const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
     const { cat, img } = getCategoryAndImage(name);
-    
+
     parsedProducts.push({
       id: id++,
       name, slug, cat, retail, wholesale, unit, img
@@ -151,11 +151,11 @@ parsedProducts.sort((a, b) => {
   if (catA === -1) catA = 99;
   if (catB === -1) catB = 99;
   if (catA !== catB) return catA - catB;
-  
+
   const baseA = getBaseName(a.name);
   const baseB = getBaseName(b.name);
   if (baseA !== baseB) return baseA.localeCompare(baseB);
-  
+
   const weightA = getUnitWeight(a.unit);
   const weightB = getUnitWeight(b.unit);
   return weightB - weightA;
@@ -170,7 +170,7 @@ parsedProducts.forEach(p => {
 // Update backend/db.js
 let productsJsForDb = '  memoryProducts = [\n';
 parsedProducts.forEach(p => {
-    productsJsForDb += `    { id: ${p.id}, name: '${p.name}', slug: '${p.slug}', description: 'Premium quality ${p.descName}', category: '${p.cat}', price: ${p.retail}.00, wholesale_price: ${p.wholesale}.00, unit: '${p.unit}', image_url: '${p.img}', features: ['Premium Quality', 'Traditional Taste', 'Wholesale Rate: LKR ${p.wholesale}'], is_active: true },\n`;
+  productsJsForDb += `    { id: ${p.id}, name: '${p.name}', slug: '${p.slug}', description: 'Premium quality ${p.descName}', category: '${p.cat}', price: ${p.retail}.00, wholesale_price: ${p.wholesale}.00, unit: '${p.unit}', image_url: '${p.img}', features: ['Premium Quality', 'Traditional Taste', 'Wholesale Rate: LKR ${p.wholesale}'], is_active: true },\n`;
 });
 productsJsForDb += '  ];';
 
@@ -184,7 +184,7 @@ console.log('backend/db.js updated successfully!');
 // Update web/src/pages/Products.jsx fallbackProducts
 let productsJsForFrontend = 'const fallbackProducts = [\n';
 parsedProducts.forEach(p => {
-    productsJsForFrontend += `  {
+  productsJsForFrontend += `  {
     id: ${p.id},
     name: '${p.name}',
     category: '${p.cat}',

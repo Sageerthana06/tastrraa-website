@@ -1633,9 +1633,9 @@ const defaultProducts = [
     name: 'Roasted Rice Flour 1KG (வறுத்த அரிசி மா)',
     category: 'FLOUR',
     unit_size: '1KG Pack',
-    price: '300.00',
+    price: '400.00',
     wholesale_price: '250.00',
-    description: 'Authentic 100% natural Roasted Rice Flour (வறுத்த அரிசி மா / බැதபு සහல் පිටி) 1KG pack. Ideal for String Hoppers and Pittu. MRP LKR 300.00.',
+    description: 'Authentic 100% natural Roasted Rice Flour (வறுத்த அரிசி மா / බැதபு සහல் පිටி) 1KG pack. Ideal for String Hoppers and Pittu. MRP LKR 400.00.',
     image_url: roastedRice1kgImg,
     slug: 'roasted-rice-flour-1kg'
   },

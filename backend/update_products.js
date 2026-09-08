@@ -2,8 +2,8 @@ import fs from "fs";
 
 const rawData = `
 Red rice flour 5kg. 1140 1200
-Red rice flour 10kg. 2300 3000
-Red rice flour 25kg. 5600 7000
+Red rice flour 10kg. 2250 3000
+Red rice flour 25kg. 5550 7000
 
 Mixture 1kg. 880 1200
 Mixture 500g. 460 600        
