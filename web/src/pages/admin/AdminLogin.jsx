@@ -114,7 +114,7 @@ const AdminLogin = () => {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="tastraatastraa@gmail.com"
+                placeholder="Enter admin email"
                 style={{
                   width: '100%',
                   padding: '10px 12px 10px 38px',
