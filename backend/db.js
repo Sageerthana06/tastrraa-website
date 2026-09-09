@@ -95,7 +95,7 @@ export const initDb = async () => {
         [email],
       );
       if (adminCheck.rows.length === 0) {
-        const hashedPassword = await bcrypt.hash("abcd1234# ", 10);
+        const hashedPassword = await bcrypt.hash("YOUR_NEW_PASSWORD", 10);
         await client.query(
           "INSERT INTO admins (email, password, name) VALUES ($1, $2, $3)",
           [email, hashedPassword, "TASTRAA Admin Manager"],
@@ -108,7 +108,7 @@ export const initDb = async () => {
           existingAdmin.password,
         );
         if (!isPasswordValid) {
-          const hashedPassword = await bcrypt.hash("abcd1234#", 10);
+          const hashedPassword = await bcrypt.hash("YOUR_NEW_PASSWORD", 10);
           await client.query("UPDATE admins SET password = $1 WHERE id = $2", [
             hashedPassword,
             existingAdmin.id,
@@ -152,7 +152,7 @@ export const initDb = async () => {
 };
 
 const setupMemoryStore = async () => {
-  const hashedPassword = await bcrypt.hash("abcd1234#", 10);
+  const hashedPassword = await bcrypt.hash("YOUR_NEW_PASSWORD", 10);
   memoryAdmins = [
     {
       id: 1,
