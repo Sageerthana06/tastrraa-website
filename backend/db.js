@@ -87,35 +87,43 @@ export const initDb = async () => {
       `ALTER TABLE products ADD COLUMN IF NOT EXISTS wholesale_price NUMERIC(10, 2);`,
     );
 
-    // Ensure default admin accounts exist with valid bcrypt password hash
-    const adminEmails = ["tastraatastraa@gmail.com", "tastraatastraa@gmail.com", "admin"];
-    for (const email of adminEmails) {
-      const adminCheck = await client.query(
-        "SELECT * FROM admins WHERE LOWER(email) = LOWER($1)",
-        [email],
+    // Ensure default admin accounts exist, synced to ADMIN_PASSWORD from .env
+    const adminPassword = process.env.ADMIN_PASSWORD;
+
+    if (!adminPassword) {
+      console.warn(
+        "⚠️ ADMIN_PASSWORD is not set in .env — skipping admin account sync.",
       );
-      if (adminCheck.rows.length === 0) {
-        const hashedPassword = await bcrypt.hash("YOUR_NEW_PASSWORD", 10);
-        await client.query(
-          "INSERT INTO admins (email, password, name) VALUES ($1, $2, $3)",
-          [email, hashedPassword, "TASTRAA Admin Manager"],
+    } else {
+      const adminEmails = ["tastraatastraa@gmail.com", "admin"];
+      for (const email of adminEmails) {
+        const adminCheck = await client.query(
+          "SELECT * FROM admins WHERE LOWER(email) = LOWER($1)",
+          [email],
         );
-        console.log(`✅ Created default admin account (${email})`);
-      } else {
-        const existingAdmin = adminCheck.rows[0];
-        const isPasswordValid = await bcrypt.compare(
-          "abcd1234# ",
-          existingAdmin.password,
-        );
-        if (!isPasswordValid) {
-          const hashedPassword = await bcrypt.hash("YOUR_NEW_PASSWORD", 10);
-          await client.query("UPDATE admins SET password = $1 WHERE id = $2", [
-            hashedPassword,
-            existingAdmin.id,
-          ]);
-          console.log(
-            `✅ Updated ${email} password to valid bcrypt hash for abcd1234#`,
+        if (adminCheck.rows.length === 0) {
+          const hashedPassword = await bcrypt.hash(adminPassword, 10);
+          await client.query(
+            "INSERT INTO admins (email, password, name) VALUES ($1, $2, $3)",
+            [email, hashedPassword, "TASTRAA Admin Manager"],
           );
+          console.log(`✅ Created admin account (${email})`);
+        } else {
+          const existingAdmin = adminCheck.rows[0];
+          const isPasswordValid = await bcrypt.compare(
+            adminPassword,
+            existingAdmin.password,
+          );
+          if (!isPasswordValid) {
+            const hashedPassword = await bcrypt.hash(adminPassword, 10);
+            await client.query(
+              "UPDATE admins SET password = $1 WHERE id = $2",
+              [hashedPassword, existingAdmin.id],
+            );
+            console.log(`✅ Synced ${email} password with ADMIN_PASSWORD`);
+          } else {
+            console.log(`✅ Admin account verified (${email})`);
+          }
         }
       }
     }
@@ -152,7 +160,8 @@ export const initDb = async () => {
 };
 
 const setupMemoryStore = async () => {
-  const hashedPassword = await bcrypt.hash("YOUR_NEW_PASSWORD", 10);
+  const adminPassword = process.env.ADMIN_PASSWORD || "abcd1234#";
+  const hashedPassword = await bcrypt.hash(adminPassword, 10);
   memoryAdmins = [
     {
       id: 1,
