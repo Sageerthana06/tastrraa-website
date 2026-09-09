@@ -29,26 +29,12 @@ router.post('/login', async (req, res) => {
 
     let admin = result.rows[0];
 
-    // Fallback if email search had no result but user typed 'admin' or matching admin emails
     if (!admin) {
-      if (cleanEmail === 'admin@tastraa.com' || cleanEmail === 'admin@tastrraa.com' || cleanEmail === 'admin') {
-        const hashedPassword = await bcrypt.hash('admin123', 10);
-        admin = {
-          id: 1,
-          email: 'admin@tastraa.com',
-          password: hashedPassword,
-          name: 'TASTRAA Admin Manager'
-        };
-      } else {
-        console.log(`🔒 Login failed: Admin email not found (${cleanEmail})`);
-        return res.status(401).json({ success: false, message: 'Invalid admin email or password.' });
-      }
+      console.log(`🔒 Login failed: Admin email not found (${cleanEmail})`);
+      return res.status(401).json({ success: false, message: 'Invalid admin email or password.' });
     }
 
-    let isMatch = await bcrypt.compare(cleanPassword, admin.password);
-    if (!isMatch && cleanPassword === 'admin123') {
-      isMatch = true;
-    }
+    const isMatch = await bcrypt.compare(cleanPassword, admin.password);
 
     if (!isMatch) {
       console.log(`🔒 Login failed: Password mismatch for admin (${cleanEmail})`);

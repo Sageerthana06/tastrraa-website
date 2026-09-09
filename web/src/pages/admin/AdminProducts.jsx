@@ -86,6 +86,7 @@ const AdminProducts = () => {
       description: '',
       category: 'Rice Flour',
       price: '',
+      wholesale_price: '',
       unit: '1kg',
       image_url: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=800&q=80',
       featuresInput: '100% Pure & Natural, Super Fine Texture, No Preservatives',
@@ -102,6 +103,7 @@ const AdminProducts = () => {
       description: product.description,
       category: product.category,
       price: product.price,
+      wholesale_price: product.wholesale_price || '',
       unit: product.unit,
       image_url: product.image_url,
       featuresInput: featuresStr,
@@ -149,6 +151,7 @@ const AdminProducts = () => {
       description: formData.description,
       category: formData.category,
       price: parseFloat(formData.price),
+      wholesale_price: formData.wholesale_price ? parseFloat(formData.wholesale_price) : null,
       unit: formData.unit,
       image_url: formData.image_url,
       features: featuresArray,
@@ -517,7 +520,7 @@ const AdminProducts = () => {
                 </div>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '16px' }}>
                 <div>
                   <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: '700', color: '#374151', marginBottom: '6px' }}>Price (LKR) *</label>
                   <input
@@ -527,6 +530,18 @@ const AdminProducts = () => {
                     value={formData.price}
                     onChange={(e) => setFormData({ ...formData, price: e.target.value })}
                     placeholder="380.00"
+                    style={{ width: '100%', padding: '10px 12px', borderRadius: '8px', border: '1px solid #D1D5DB', fontSize: '0.9rem', outline: 'none' }}
+                  />
+                </div>
+
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: '700', color: '#374151', marginBottom: '6px' }}>Wholesale Price (LKR)</label>
+                  <input
+                    type="number"
+                    step="0.01"
+                    value={formData.wholesale_price}
+                    onChange={(e) => setFormData({ ...formData, wholesale_price: e.target.value })}
+                    placeholder="350.00"
                     style={{ width: '100%', padding: '10px 12px', borderRadius: '8px', border: '1px solid #D1D5DB', fontSize: '0.9rem', outline: 'none' }}
                   />
                 </div>

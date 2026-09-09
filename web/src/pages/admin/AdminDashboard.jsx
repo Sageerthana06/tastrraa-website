@@ -20,10 +20,10 @@ const AdminDashboard = () => {
       setLoading(true);
       try {
         const response = await api.get('/stats');
-        if (response.data?.success && response.data.stats && response.data.stats.total > 0) {
+        if (response.data?.success && response.data.stats) {
           setStats(response.data.stats);
         } else {
-          setStats({ total: 12, active: 12, inactive: 0, categoryBreakdown: { 'Rice Flour': 2, 'Mixture': 7, 'Gingelly Oil': 2, 'Spices': 2 } });
+          setStats({ total: 0, active: 0, inactive: 0, categoryBreakdown: {} });
         }
       } catch (err) {
         console.error('Stats fetch error:', err);
@@ -31,7 +31,7 @@ const AdminDashboard = () => {
           localStorage.removeItem('tastraa_admin_token');
           navigate('/admin/login');
         } else {
-          setStats({ total: 12, active: 12, inactive: 0, categoryBreakdown: { 'Rice Flour': 2, 'Mixture': 7, 'Gingelly Oil': 2, 'Spices': 2 } });
+          setStats({ total: 0, active: 0, inactive: 0, categoryBreakdown: {} });
         }
       } finally {
         setLoading(false);

@@ -29,7 +29,7 @@ const AdminLogin = () => {
     }
 
     // Fallback authentication for Vercel / standalone frontend deployment
-    if ((email.trim().toLowerCase() === 'admin@tastraa.com' || email.trim().toLowerCase() === 'admin@tastrraa.com') && password === '0987') {
+    if ((email.trim().toLowerCase() === 'tastraatastraa@gmail.com' || email.trim().toLowerCase() === 'admin@tastrraa.com') && password === '0987') {
       const demoAdmin = { id: 1, email: email.trim(), name: 'TASTRAA Admin Manager' };
       const demoToken = 'demo-jwt-token-tastraa-admin';
       localStorage.setItem('tastraa_admin_token', demoToken);
@@ -67,16 +67,16 @@ const AdminLogin = () => {
           textAlign: 'center',
           borderBottom: '4px solid #D32F2F'
         }}>
-          <img 
-            src={logoImg} 
-            alt="TASTRAA Logo" 
+          <img
+            src={logoImg}
+            alt="TASTRAA Logo"
             style={{
               height: '46px',
               backgroundColor: '#FFFFFF',
               padding: '6px 12px',
               borderRadius: '8px',
               marginBottom: '14px'
-            }} 
+            }}
           />
           <h2 style={{ fontSize: '1.4rem', fontWeight: '800', margin: 0, color: '#FFFFFF' }}>Admin Portal</h2>
           <p style={{ margin: '4px 0 0 0', fontSize: '0.825rem', color: '#FEF3C7' }}>TASTRAA (PVT) LTD Products Management</p>
@@ -114,7 +114,7 @@ const AdminLogin = () => {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="admin@tastraa.com"
+                placeholder="tastraatastraa@gmail.com"
                 style={{
                   width: '100%',
                   padding: '10px 12px 10px 38px',

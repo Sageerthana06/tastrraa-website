@@ -1078,8 +1078,19 @@ const Products = () => {
   useEffect(() => {
     let isMounted = true;
     const fetchProducts = async () => {
-      setProducts(fallbackProducts);
-      setLoading(false);
+      try {
+        const response = await api.get('/products');
+        if (response.data?.success && response.data.products) {
+          if (isMounted) setProducts(response.data.products);
+        } else {
+          if (isMounted) setProducts(fallbackProducts);
+        }
+      } catch (err) {
+        console.error('Failed to fetch real products, using fallback:', err);
+        if (isMounted) setProducts(fallbackProducts);
+      } finally {
+        if (isMounted) setLoading(false);
+      }
     };
     fetchProducts();
     return () => {

@@ -60,6 +60,7 @@ export const initDb = async () => {
         description TEXT NOT NULL,
         category VARCHAR(100) NOT NULL,
         price NUMERIC(10, 2) NOT NULL,
+        wholesale_price NUMERIC(10, 2),
         unit VARCHAR(50) NOT NULL,
         image_url TEXT NOT NULL,
         features JSONB DEFAULT '[]'::jsonb,
@@ -82,16 +83,19 @@ export const initDb = async () => {
     await client.query(
       `ALTER TABLE products ADD COLUMN IF NOT EXISTS is_active BOOLEAN DEFAULT TRUE;`,
     );
+    await client.query(
+      `ALTER TABLE products ADD COLUMN IF NOT EXISTS wholesale_price NUMERIC(10, 2);`,
+    );
 
     // Ensure default admin accounts exist with valid bcrypt password hash
-    const adminEmails = ["admin@tastraa.com", "admin@tastrraa.com"];
+    const adminEmails = ["tastraatastraa@gmail.com", "tastraatastraa@gmail.com", "admin"];
     for (const email of adminEmails) {
       const adminCheck = await client.query(
         "SELECT * FROM admins WHERE LOWER(email) = LOWER($1)",
         [email],
       );
       if (adminCheck.rows.length === 0) {
-        const hashedPassword = await bcrypt.hash("admin123", 10);
+        const hashedPassword = await bcrypt.hash("abcd1234# ", 10);
         await client.query(
           "INSERT INTO admins (email, password, name) VALUES ($1, $2, $3)",
           [email, hashedPassword, "TASTRAA Admin Manager"],
@@ -100,17 +104,17 @@ export const initDb = async () => {
       } else {
         const existingAdmin = adminCheck.rows[0];
         const isPasswordValid = await bcrypt.compare(
-          "admin123",
+          "abcd1234# ",
           existingAdmin.password,
         );
         if (!isPasswordValid) {
-          const hashedPassword = await bcrypt.hash("admin123", 10);
+          const hashedPassword = await bcrypt.hash("abcd1234#", 10);
           await client.query("UPDATE admins SET password = $1 WHERE id = $2", [
             hashedPassword,
             existingAdmin.id,
           ]);
           console.log(
-            `✅ Updated ${email} password to valid bcrypt hash for admin123`,
+            `✅ Updated ${email} password to valid bcrypt hash for abcd1234#`,
           );
         }
       }
@@ -121,8 +125,8 @@ export const initDb = async () => {
 
     for (const p of initialProducts) {
       await client.query(
-        `INSERT INTO products (name, slug, description, category, price, unit, image_url, features, is_active)
-           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+        `INSERT INTO products (name, slug, description, category, price, wholesale_price, unit, image_url, features, is_active)
+           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
            ON CONFLICT (slug) DO NOTHING`,
         [
           p.name,
@@ -130,6 +134,7 @@ export const initDb = async () => {
           p.description,
           p.category,
           p.price,
+          p.wholesale_price || null,
           p.unit,
           p.image_url,
           JSON.stringify(p.features),
@@ -147,11 +152,11 @@ export const initDb = async () => {
 };
 
 const setupMemoryStore = async () => {
-  const hashedPassword = await bcrypt.hash("0987", 10);
+  const hashedPassword = await bcrypt.hash("abcd1234#", 10);
   memoryAdmins = [
     {
       id: 1,
-      email: "admin@tastraa.com",
+      email: "tastraatastraa@gmail.com",
       password: hashedPassword,
       name: "TASTRAA Admin Manager",
     },
@@ -160,6 +165,12 @@ const setupMemoryStore = async () => {
       email: "admin@tastrraa.com",
       password: hashedPassword,
       name: "TASTRAA Admin Manager",
+    },
+    {
+      id: 3,
+      email: "admin",
+      password: hashedPassword,
+      name: "TASTRAA Admin",
     },
   ];
   memoryProducts = [

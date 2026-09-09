@@ -151,7 +151,7 @@ router.post('/upload', authenticateToken, upload.single('image'), async (req, re
 // POST /api/products - Create Product (Protected)
 router.post('/', authenticateToken, async (req, res) => {
   try {
-    const { name, description, category, price, unit, image_url, features, is_active } = req.body;
+    const { name, description, category, price, wholesale_price, unit, image_url, features, is_active } = req.body;
 
     if (!name || !description || !category || price === undefined || !unit) {
       return res.status(400).json({ success: false, message: 'Missing required product fields.' });
@@ -169,9 +169,9 @@ router.post('/', authenticateToken, async (req, res) => {
     const finalImageUrl = image_url || 'https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=800&q=80';
 
     const result = await queryDb(
-      `INSERT INTO products (name, slug, description, category, price, unit, image_url, features, is_active)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *`,
-      [name, slug, description, category, parseFloat(price), unit, finalImageUrl, featuresJson, activeBool]
+      `INSERT INTO products (name, slug, description, category, price, wholesale_price, unit, image_url, features, is_active)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *`,
+      [name, slug, description, category, parseFloat(price), wholesale_price ? parseFloat(wholesale_price) : null, unit, finalImageUrl, featuresJson, activeBool]
     );
 
     const created = result.rows[0];
@@ -193,7 +193,7 @@ router.post('/', authenticateToken, async (req, res) => {
 router.put('/:id', authenticateToken, async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, description, category, price, unit, image_url, features, is_active } = req.body;
+    const { name, description, category, price, wholesale_price, unit, image_url, features, is_active } = req.body;
 
     const checkProduct = await queryDb('SELECT * FROM products WHERE id = $1', [id]);
     if (checkProduct.rows.length === 0) {
@@ -206,6 +206,7 @@ router.put('/:id', authenticateToken, async (req, res) => {
     const newDescription = description || current.description;
     const newCategory = category || current.category;
     const newPrice = price !== undefined ? parseFloat(price) : current.price;
+    const newWholesalePrice = wholesale_price !== undefined ? (wholesale_price ? parseFloat(wholesale_price) : null) : current.wholesale_price;
     const newUnit = unit || current.unit;
     const newImageUrl = image_url || current.image_url;
     const newFeatures = Array.isArray(features) ? JSON.stringify(features) : (features !== undefined ? features : current.features);
@@ -213,9 +214,9 @@ router.put('/:id', authenticateToken, async (req, res) => {
 
     const result = await queryDb(
       `UPDATE products 
-       SET name = $1, slug = $2, description = $3, category = $4, price = $5, unit = $6, image_url = $7, features = $8, is_active = $9, updated_at = CURRENT_TIMESTAMP
-       WHERE id = $10 RETURNING *`,
-      [newName, newSlug, newDescription, newCategory, newPrice, newUnit, newImageUrl, newFeatures, newIsActive, id]
+       SET name = $1, slug = $2, description = $3, category = $4, price = $5, wholesale_price = $6, unit = $7, image_url = $8, features = $9, is_active = $10, updated_at = CURRENT_TIMESTAMP
+       WHERE id = $11 RETURNING *`,
+      [newName, newSlug, newDescription, newCategory, newPrice, newWholesalePrice, newUnit, newImageUrl, newFeatures, newIsActive, id]
     );
 
     const updated = result.rows[0];
