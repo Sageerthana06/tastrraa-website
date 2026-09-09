@@ -19,6 +19,7 @@ import redRice25kgImg from "../assets/red_rice_flour_25kg.png";
 import redRice2kgImg from "../assets/red_rice_flour_2kg.jpg";
 import roastedRice1kgImg from "../assets/roasted_rice_flour_1kg.jpg";
 import roastedChilli50gImg from "../assets/roasted_chilli_powder_50g.jpg";
+import curryPowderImg from "../assets/curry_powder1.jpg";
 import bengalGram100Img from "../assets/bengal_gram_100.jpg";
 import gingellyOil750mlImg from "../assets/gingelly_oil_750ml.jpg";
 import gingellyOil375mlImg from "../assets/gingelly_oil_375ml.jpg";
@@ -40,7 +41,7 @@ const fallbackProducts = [
     name: "Red Raw Rice 25kg",
     category: "Rice",
     price: "7500.00",
-    wholesale_price: "6500.00",
+    wholesale_price: "4750.00",
     unit: "25kg",
     description: "Premium quality Red Raw Rice 25kg",
     features: [
@@ -51,28 +52,13 @@ const fallbackProducts = [
     image_url: "/assets/tastraa_red_raw_rice_25kg.jpg",
     slug: "red-raw-rice-25kg",
   },
-  {
-    id: 102,
-    name: "Red Raw Rice 10kg",
-    category: "Rice",
-    price: "3000.00",
-    wholesale_price: "2600.00",
-    unit: "10kg",
-    description: "Premium quality Red Raw Rice 10kg",
-    features: [
-      "Premium Quality",
-      "Traditional Taste",
-      "Wholesale Rate: LKR 2600",
-    ],
-    image_url: "/assets/tastraa_red_raw_rice_10kg.png",
-    slug: "red-raw-rice-10kg",
-  },
+
   {
     id: 103,
     name: "Red Raw Rice 5kg",
     category: "Rice",
     price: "1500.00",
-    wholesale_price: "1300.00",
+    wholesale_price: "950.00",
     unit: "5kg",
     description: "Premium quality Red Raw Rice 5kg",
     features: [
@@ -197,7 +183,7 @@ const fallbackProducts = [
   },
   {
     id: 110,
-    name: "Mikser 400g",
+    name: "Mixture 400g",
     category: "Mixture",
     price: "600.00",
     wholesale_price: "360.00",
@@ -213,7 +199,7 @@ const fallbackProducts = [
   },
   {
     id: 111,
-    name: "Mikser 200g",
+    name: "Mixture 200g",
     category: "Mixture",
     price: "300.00",
     wholesale_price: "180.00",
@@ -920,7 +906,7 @@ const fallbackProducts = [
     name: "Peanut 1kg",
     category: "Dhal & Gram",
     price: "1800.00",
-    wholesale_price: "1300.00",
+    wholesale_price: "950.00",
     unit: "1kg",
     description: "Premium quality Peanut 1kg",
     features: [
@@ -1384,12 +1370,7 @@ const Products = () => {
                   url.includes("red_raw_rice_25kg")
                 )
                   return redRawRice25kgImg;
-                if (
-                  name.includes("red raw rice 10kg") ||
-                  slug === "red-raw-rice-10kg" ||
-                  url.includes("red_raw_rice_10kg")
-                )
-                  return redRawRice10kgImg;
+
                 if (
                   name.includes("red raw rice 5kg") ||
                   slug === "red-raw-rice-5kg" ||
@@ -1457,6 +1438,8 @@ const Products = () => {
                 if (name.includes("garlic murukku")) return garlicMurukkuImg;
                 if (name.includes("masala murukku") || name.includes("murukku"))
                   return masalaMurukkuImg;
+                if (name.includes("chilli powder 1kg") || name.includes("chilli powder 250g") || name.includes("curry powder"))
+                  return curryPowderImg;
                 if (name.includes("chilli") || name.includes("spice"))
                   return roastedChilli50gImg;
                 if (p.image_url) return p.image_url;

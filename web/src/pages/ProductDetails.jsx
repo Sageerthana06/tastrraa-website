@@ -20,6 +20,7 @@ import bengalGramYellowImg from '../assets/bengal_gram_yellow.jpg';
 import masalaMurukkuImg from '../assets/masala_murukku.jpg';
 import tastraaDhalImg from '../assets/tastraa_dhal.jpg';
 import tastraaPeanutPakodaImg from '../assets/tastraa_peanut_pakoda.jpg';
+import curryPowderImg from '../assets/curry_powder.jpg';
 
 const fallbackDetails = {
   'red-rice-flour-5kg': {
@@ -158,8 +159,8 @@ const fallbackDetails = {
   },
   'mikser-200g': {
     id: 159,
-    slug: 'mikser-200g',
-    name: 'Mikser 200g (மிக்சர்)',
+    slug: 'Mixture-200g',
+    name: 'Mixture 200g (மிக்சர்)',
     category: 'Mixture',
     price: '300.00',
     unit: '200g Pack',
@@ -170,7 +171,7 @@ const fallbackDetails = {
   '159': {
     id: 159,
     slug: 'mikser-200g',
-    name: 'Mikser 200g (மிக்சர்)',
+    name: 'Mixture200g (மிக்சர்)',
     category: 'Mixture',
     price: '300.00',
     unit: '200g Pack',
@@ -549,31 +550,20 @@ const fallbackDetails = {
     name: 'Red Raw Rice 25kg (சிவப்பு பச்சரிசி)',
     category: 'Rice',
     price: '7500.00',
-    wholesale_price: '6500.00',
+    wholesale_price: '4750.00',
     unit: '25kg Sack',
     description: 'Premium Quality Red Raw Rice (சிவப்பு பச்சரிசி) 25kg wholesale sack. 100% natural, traditionally sourced.',
     features: ['25kg Wholesale Sack', '100% Natural Red Rice', 'Premium Quality', 'Wholesale Rate: LKR 6500'],
     image_url: redRawRice25kgImg
   },
-  'red-raw-rice-10kg': {
-    id: 102,
-    slug: 'red-raw-rice-10kg',
-    name: 'Red Raw Rice 10kg (சிவப்பு பச்சரிசி)',
-    category: 'Rice',
-    price: '3000.00',
-    wholesale_price: '2600.00',
-    unit: '10kg Sack',
-    description: 'Premium Quality Red Raw Rice (சிவப்பு பச்சரிசி) 10kg sack. Ideal for households and retail.',
-    features: ['10kg Sack', '100% Natural Red Rice', 'Premium Quality', 'Wholesale Rate: LKR 2600'],
-    image_url: '/assets/tastraa_red_raw_rice_10kg.png'
-  },
+
   'red-raw-rice-5kg': {
     id: 103,
     slug: 'red-raw-rice-5kg',
     name: 'Red Raw Rice 5kg (சிவப்பு பச்சரிசி)',
     category: 'Rice',
     price: '1500.00',
-    wholesale_price: '1300.00',
+    wholesale_price: '950.00',
     unit: '5kg Sack',
     description: 'Premium Quality Red Raw Rice (சிவப்பு பச்சரிசி) 5kg household pack.',
     features: ['5kg Sack', '100% Natural Red Rice', 'Premium Quality', 'Wholesale Rate: LKR 1300'],
@@ -1037,7 +1027,7 @@ const fallbackDetails = {
     name: 'Peanut 1kg (வேர்க்கடலை)',
     category: 'Dhal & Gram',
     price: '1800.00',
-    wholesale_price: '1300.00',
+    wholesale_price: '950.00',
     unit: '1kg Pack',
     description: 'Crispy roasted Peanuts (வேர்க்கடலை) 1kg bulk pack. Lightly salted, crunchy, and delicious.',
     features: ['1kg Bulk Pack', 'Crispy Roasted Peanuts', 'Lightly Salted', 'Wholesale Rate: LKR 1300'],
@@ -1237,6 +1227,13 @@ Please let me know availability and delivery options.`;
       url.includes('peanut_pakoda')
     ) {
       return tastraaPeanutPakodaImg;
+    }
+    if (
+      name.includes('chilli powder 1kg') || 
+      name.includes('chilli powder 250g') || 
+      name.includes('curry powder')
+    ) {
+      return curryPowderImg;
     }
     return p.image_url || hero3dImg;
   };

@@ -116,14 +116,14 @@ export const initDb = async () => {
       }
     }
 
-    // TRUNCATE AND RESEED with new price lists
-    await client.query("TRUNCATE TABLE products RESTART IDENTITY CASCADE");
+    // Seed products safely without destroying existing data
     const initialProducts = memoryProducts;
 
     for (const p of initialProducts) {
       await client.query(
         `INSERT INTO products (name, slug, description, category, price, unit, image_url, features, is_active)
-           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
+           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+           ON CONFLICT (slug) DO NOTHING`,
         [
           p.name,
           p.slug,
@@ -137,7 +137,7 @@ export const initDb = async () => {
         ],
       );
     }
-    console.log("✅ Initial TASTRAA products seeded into PostgreSQL");
+    console.log("✅ TASTRAA products seeded into PostgreSQL safely");
     client.release();
   } catch (err) {
     console.error("⚠️ PostgreSQL connection failed:", err.message);
@@ -247,23 +247,7 @@ const setupMemoryStore = async () => {
       ],
       is_active: true,
     },
-    {
-      id: 102,
-      name: "Red Raw Rice 10kg",
-      slug: "red-raw-rice-10kg",
-      description: "Premium quality Red Raw Rice 10kg",
-      category: "Rice",
-      price: 3000.0,
-      wholesale_price: 2600.0,
-      unit: "10kg",
-      image_url: "/assets/tastraa_red_raw_rice_10kg.png",
-      features: [
-        "Premium Quality",
-        "Traditional Taste",
-        "Wholesale Rate: LKR 2600",
-      ],
-      is_active: true,
-    },
+
     {
       id: 103,
       name: "Red Raw Rice 5kg",

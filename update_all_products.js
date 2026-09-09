@@ -59,7 +59,7 @@ const rawData = `
 2. Gingelly oil 350ml 560 750
 3. Gingelly oil 200ml 320 400
 1. Red raw rice 25kg 6500 7500
-2. Red raw rice 10kg 2600 3000
+
 3. Red raw rice 5kg 1300 1500
 4. Mikser 200g 180 300
 5. Mikser 400g 360 600
