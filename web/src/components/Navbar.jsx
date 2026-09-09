@@ -77,8 +77,8 @@ const Navbar = () => {
             <motion.img
               src={logoImg}
               alt="TASTRAA Logo"
-              whileHover={{ scale: 1.05, rotate: 2 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              whileHover={{ scale: 2.05, rotate: 8 }}
+              transition={{ type: "spring", stiffness: 400 }}
               style={{
                 height: scrolled ? "44px" : "52px",
                 width: "auto",
@@ -86,52 +86,7 @@ const Navbar = () => {
                 transition: "height 0.3s ease",
               }}
             />
-            <div style={{ display: "flex", flexDirection: "column" }}>
-              <span
-                className="logo-text-gradient"
-                style={{
-                  fontWeight: "1000",
-                  fontSize: "clamp(1rem, 3.5vw, 1.25rem)",
-                  letterSpacing: "0.5px",
-                  lineHeight: "1.1",
-                  fontFamily: "'Poppins', sans-serif",
-                }}
-              >
-                TASTRAA
-              </span>
-              <motion.span
-                animate={{
-                  scale: [1, 1.06, 1],
-                  filter: [
-                    "drop-shadow(0 0 2px rgba(211,47,47,0.2))",
-                    "drop-shadow(0 0 8px rgba(211,47,47,0.6))",
-                    "drop-shadow(0 0 2px rgba(211,47,47,0.2))",
-                  ],
-                }}
-                transition={{
-                  duration: 2.2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                style={{
-                  background:
-                    "linear-gradient(135deg, #D32F2F 0%, #B45309 45%, #0F4A24 100%)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  fontWeight: "800",
-                  fontSize: "1.1rem",
-                  letterSpacing: "0.8px",
-                  lineHeight: "1",
-                  marginTop: "0px",
-                  fontFamily:
-                    "'Baloo Thambi 2', 'Anek Tamil', 'Noto Serif Tamil', sans-serif",
-                  display: "inline-block",
-                  transformOrigin: "left center",
-                }}
-              >
-                ரேஸ்ரா
-              </motion.span>
-            </div>
+
           </Link>
 
           {/* Desktop Nav Items */}
