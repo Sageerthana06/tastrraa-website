@@ -90,7 +90,7 @@ const getCategoryAndImage = (name) => {
   if (n.includes("murukku"))
     return { cat: "Murukku", img: "/assets/masala_murukku.jpg" };
   if (n.includes("pakoda") && !n.includes("peanut"))
-    return { cat: "Pakoda", img: "/assets/plate_dumplings.jpg" };
+    return { cat: "Pakoda", img: "/assets/pakoda.jpeg" };
   if (n.includes("peanut pakoda"))
     return { cat: "Pakoda", img: "/assets/bengal_gram_yellow.jpg" };
   if (n.includes("thadduvadai"))

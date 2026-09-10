@@ -30,7 +30,7 @@ const redRawRice5kgImg = "/assets/tastraa_red_raw_rice_5kg.jpg";
 import plateDumplingsImg from "../assets/plate_dumplings.jpg";
 import bitesPackImg from "../assets/bites_pack.jpg";
 import bengalGramYellowImg from "../assets/bengal_gram_yellow.jpg";
-import masalaMurukkuImg from "../assets/masala_murukku.jpg";
+import masalaMurukkuImg from "../assets/tastraa_masala_murukku.jpg";
 import garlicMurukkuImg from "../assets/garlic_murukku.jpg";
 import tastraaDhalImg from "../assets/tastraa_dhal.jpg";
 import tastraaPeanutPakodaImg from "../assets/tastraa_peanut_pakoda.jpg";
@@ -322,7 +322,7 @@ const fallbackProducts = [
       "Traditional Taste",
       "Wholesale Rate: LKR 880",
     ],
-    image_url: "/assets/tastraa_pakoda.jpg",
+    image_url: "/assets/pakoda.jpeg",
     slug: "pakoda-1kg",
   },
   {
@@ -338,7 +338,7 @@ const fallbackProducts = [
       "Traditional Taste",
       "Wholesale Rate: LKR 460",
     ],
-    image_url: "/assets/tastraa_pakoda.jpg",
+    image_url: "/assets/pakoda.jpeg",
     slug: "pakoda-500g",
   },
   {
@@ -354,7 +354,7 @@ const fallbackProducts = [
       "Traditional Taste",
       "Wholesale Rate: LKR 250",
     ],
-    image_url: "/assets/tastraa_pakoda.jpg",
+    image_url: "/assets/pakoda.jpeg",
     slug: "pakoda-250g",
   },
   {
@@ -370,7 +370,7 @@ const fallbackProducts = [
       "Traditional Taste",
       "Wholesale Rate: LKR 75",
     ],
-    image_url: "/assets/tastraa_pakoda.jpg",
+    image_url: "/assets/pakoda.jpeg",
     slug: "pakoda-80g",
   },
   {
@@ -386,7 +386,7 @@ const fallbackProducts = [
       "Traditional Taste",
       "Wholesale Rate: LKR 35",
     ],
-    image_url: "/assets/tastraa_pakoda.jpg",
+    image_url: "/assets/pakoda.jpeg",
     slug: "pakoda-40g",
   },
   {

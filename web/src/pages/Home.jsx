@@ -48,7 +48,7 @@ import redRawRice25kgImg from '../assets/red_raw_rice_25kg.jpg';
 import plateDumplingsImg from '../assets/plate_dumplings.jpg';
 import bitesPackImg from '../assets/bites_pack.jpg';
 import bengalGramYellowImg from '../assets/bengal_gram_yellow.jpg';
-import masalaMurukkuImg from '../assets/masala_murukku.jpg';
+import masalaMurukkuImg from '../assets/tastraa_masala_murukku.jpg';
 
 // Real leaves falling animation moved to global FallingLeaves component
 

@@ -17,7 +17,7 @@ import redRawRice25kgImg from '../assets/red_raw_rice_25kg.jpg';
 import plateDumplingsImg from '../assets/plate_dumplings.jpg';
 import bitesPackImg from '../assets/bites_pack.jpg';
 import bengalGramYellowImg from '../assets/bengal_gram_yellow.jpg';
-import masalaMurukkuImg from '../assets/masala_murukku.jpg';
+import masalaMurukkuImg from '../assets/tastraa_masala_murukku.jpg';
 import tastraaDhalImg from '../assets/tastraa_dhal.jpg';
 import tastraaPeanutPakodaImg from '../assets/tastraa_peanut_pakoda.jpg';
 import curryPowderImg from '../assets/curry_powder.jpg';
@@ -695,7 +695,7 @@ const fallbackDetails = {
     unit: '1kg Pack',
     description: 'Authentic crispy Pakoda (கார பகோடா) 1kg bulk pack. Traditional spiced gram flour fritters.',
     features: ['1kg Bulk Pack', 'Traditional Jaffna Recipe', 'Crispy & Spicy', 'Wholesale Rate: LKR 880'],
-    image_url: '/assets/tastraa_pakoda.jpg'
+    image_url: '/assets/pakoda.jpeg'
   },
   'pakoda-500g': {
     id: 118,
@@ -707,7 +707,7 @@ const fallbackDetails = {
     unit: '500g Pack',
     description: 'Authentic crispy Pakoda (கார பகோடா) 500g family pack.',
     features: ['500g Pack', 'Traditional Jaffna Recipe', 'Crispy & Spicy', 'Wholesale Rate: LKR 460'],
-    image_url: '/assets/tastraa_pakoda.jpg'
+    image_url: '/assets/pakoda.jpeg'
   },
   'pakoda-250g': {
     id: 119,
@@ -719,7 +719,7 @@ const fallbackDetails = {
     unit: '250g Pack',
     description: 'Authentic crispy Pakoda (கார பகோடா) 250g retail pack.',
     features: ['250g Pack', 'Traditional Jaffna Recipe', 'Crispy & Spicy', 'Wholesale Rate: LKR 250'],
-    image_url: '/assets/tastraa_pakoda.jpg'
+    image_url: '/assets/pakoda.jpeg'
   },
   'pakoda-80g': {
     id: 120,
@@ -731,7 +731,7 @@ const fallbackDetails = {
     unit: '80g Pack',
     description: 'Authentic crispy Pakoda (கார பகோடா) 80g snack pack.',
     features: ['80g Pack', 'Traditional Jaffna Recipe', 'Crispy & Spicy', 'Wholesale Rate: LKR 75'],
-    image_url: '/assets/tastraa_pakoda.jpg'
+    image_url: '/assets/pakoda.jpeg'
   },
   'pakoda-40g': {
     id: 121,
@@ -743,7 +743,7 @@ const fallbackDetails = {
     unit: '40g Pack',
     description: 'Authentic crispy Pakoda (கார பகோடா) 40g pocket pack.',
     features: ['40g Pocket Pack', 'Traditional Jaffna Recipe', 'Crispy & Spicy', 'Wholesale Rate: LKR 35'],
-    image_url: '/assets/tastraa_pakoda.jpg'
+    image_url: '/assets/pakoda.jpeg'
   },
 
   // ── Garlic Murukku variants ──
@@ -1229,8 +1229,8 @@ Please let me know availability and delivery options.`;
       return tastraaPeanutPakodaImg;
     }
     if (
-      name.includes('chilli powder 1kg') || 
-      name.includes('chilli powder 250g') || 
+      name.includes('chilli powder 1kg') ||
+      name.includes('chilli powder 250g') ||
       name.includes('curry powder')
     ) {
       return curryPowderImg;

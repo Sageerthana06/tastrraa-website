@@ -89,7 +89,7 @@ router.get('/', async (req, res) => {
 router.get('/slug/:slug', async (req, res) => {
   try {
     const { slug } = req.params;
-    const result = await queryDb('SELECT * FROM products WHERE slug = $1', [slug]);
+    const result = await queryDb('SELECT * FROM products WHERE slug = ?', [slug]);
 
     if (result.rows.length === 0) {
       return res.status(404).json({ success: false, message: 'Product not found.' });
@@ -112,7 +112,7 @@ router.get('/slug/:slug', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const result = await queryDb('SELECT * FROM products WHERE id = $1', [id]);
+    const result = await queryDb('SELECT * FROM products WHERE id = ?', [id]);
 
     if (result.rows.length === 0) {
       return res.status(404).json({ success: false, message: 'Product not found.' });
@@ -159,7 +159,7 @@ router.post('/', authenticateToken, async (req, res) => {
 
     let slug = slugify(name);
     // Ensure slug uniqueness
-    const existingSlug = await queryDb('SELECT id FROM products WHERE slug = $1', [slug]);
+    const existingSlug = await queryDb('SELECT id FROM products WHERE slug = ?', [slug]);
     if (existingSlug.rows.length > 0) {
       slug = `${slug}-${Date.now().toString().slice(-4)}`;
     }
@@ -170,11 +170,12 @@ router.post('/', authenticateToken, async (req, res) => {
 
     const result = await queryDb(
       `INSERT INTO products (name, slug, description, category, price, wholesale_price, unit, image_url, features, is_active)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *`,
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [name, slug, description, category, parseFloat(price), wholesale_price ? parseFloat(wholesale_price) : null, unit, finalImageUrl, featuresJson, activeBool]
     );
 
-    const created = result.rows[0];
+    const createdRes = await queryDb('SELECT * FROM products WHERE id = ?', [result.insertId]);
+    const created = createdRes.rows[0];
     return res.status(201).json({
       success: true,
       message: 'Product created successfully!',
@@ -195,7 +196,7 @@ router.put('/:id', authenticateToken, async (req, res) => {
     const { id } = req.params;
     const { name, description, category, price, wholesale_price, unit, image_url, features, is_active } = req.body;
 
-    const checkProduct = await queryDb('SELECT * FROM products WHERE id = $1', [id]);
+    const checkProduct = await queryDb('SELECT * FROM products WHERE id = ?', [id]);
     if (checkProduct.rows.length === 0) {
       return res.status(404).json({ success: false, message: 'Product not found.' });
     }
@@ -212,14 +213,15 @@ router.put('/:id', authenticateToken, async (req, res) => {
     const newFeatures = Array.isArray(features) ? JSON.stringify(features) : (features !== undefined ? features : current.features);
     const newIsActive = is_active !== undefined ? Boolean(is_active) : current.is_active;
 
-    const result = await queryDb(
+    await queryDb(
       `UPDATE products 
-       SET name = $1, slug = $2, description = $3, category = $4, price = $5, wholesale_price = $6, unit = $7, image_url = $8, features = $9, is_active = $10, updated_at = CURRENT_TIMESTAMP
-       WHERE id = $11 RETURNING *`,
+       SET name = ?, slug = ?, description = ?, category = ?, price = ?, wholesale_price = ?, unit = ?, image_url = ?, features = ?, is_active = ?, updated_at = CURRENT_TIMESTAMP
+       WHERE id = ?`,
       [newName, newSlug, newDescription, newCategory, newPrice, newWholesalePrice, newUnit, newImageUrl, newFeatures, newIsActive, id]
     );
 
-    const updated = result.rows[0];
+    const updatedRes = await queryDb('SELECT * FROM products WHERE id = ?', [id]);
+    const updated = updatedRes.rows[0];
     return res.json({
       success: true,
       message: 'Product updated successfully!',
@@ -238,12 +240,12 @@ router.put('/:id', authenticateToken, async (req, res) => {
 router.delete('/:id', authenticateToken, async (req, res) => {
   try {
     const { id } = req.params;
-    const checkProduct = await queryDb('SELECT id FROM products WHERE id = $1', [id]);
+    const checkProduct = await queryDb('SELECT id FROM products WHERE id = ?', [id]);
     if (checkProduct.rows.length === 0) {
       return res.status(404).json({ success: false, message: 'Product not found.' });
     }
 
-    await queryDb('DELETE FROM products WHERE id = $1', [id]);
+    await queryDb('DELETE FROM products WHERE id = ?', [id]);
     return res.json({ success: true, message: 'Product deleted successfully.' });
   } catch (error) {
     console.error('Error deleting product:', error);

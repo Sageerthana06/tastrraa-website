@@ -18,7 +18,11 @@ const app = express();
 const PORT = process.env.PORT || 5001;
 
 // Security & Middleware
-app.use(cors());
+const corsOptions = {
+  origin: process.env.FRONTEND_URL || '*',
+  optionsSuccessStatus: 200
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -48,11 +52,9 @@ app.use((err, req, res, next) => {
 // Initialize Database & Start Server
 initDb().then(() => {
   app.listen(PORT, () => {
-    console.log(`🚀 TASTRAA Backend Server running on http://localhost:${PORT}`);
+    console.log(`🚀 TASTRAA Backend Server running on port ${PORT}`);
   });
 }).catch(err => {
-  console.error('Failed to initialize database:', err);
-  app.listen(PORT, () => {
-    console.log(`🚀 TASTRAA Backend Server running on http://localhost:${PORT} (Database Fallback Mode)`);
-  });
+  console.error('❌ Failed to initialize database, shutting down server.');
+  process.exit(1);
 });

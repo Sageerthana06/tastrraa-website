@@ -21,7 +21,7 @@ router.post('/login', async (req, res) => {
 
     let result;
     try {
-      result = await queryDb('SELECT * FROM admins WHERE LOWER(email) = LOWER($1)', [cleanEmail]);
+      result = await queryDb('SELECT * FROM admins WHERE LOWER(email) = LOWER(?)', [cleanEmail]);
     } catch (dbErr) {
       console.warn('⚠️ Database query error during auth, falling back to default admin:', dbErr.message);
       result = { rows: [] };
